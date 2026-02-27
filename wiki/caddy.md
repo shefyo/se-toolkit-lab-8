@@ -31,13 +31,33 @@ In this project, the `Caddyfile` is at [`caddy/Caddyfile`](../caddy/Caddyfile):
 
 ```caddyfile
 :{$CADDY_CONTAINER_PORT} {
-    reverse_proxy http://app:{$APP_CONTAINER_PORT}
+    handle /items* {
+        reverse_proxy http://app:{$APP_CONTAINER_PORT}
+    }
+    handle /learners* {
+        reverse_proxy http://app:{$APP_CONTAINER_PORT}
+    }
+    handle /interactions* {
+        reverse_proxy http://app:{$APP_CONTAINER_PORT}
+    }
+    handle /docs* {
+        reverse_proxy http://app:{$APP_CONTAINER_PORT}
+    }
+    handle /openapi.json {
+        reverse_proxy http://app:{$APP_CONTAINER_PORT}
+    }
+    handle {
+        root * /srv
+        try_files {path} /index.html
+        file_server
+    }
 }
 ```
 
 This configuration:
 
 - Listens on the port specified by the `CADDY_CONTAINER_PORT` [environment variable](./environments.md#environment-variables).
-- Forwards all requests to the `app` service on the port specified by `APP_CONTAINER_PORT`.
+- Routes API paths (`/items*`, `/learners*`, `/interactions*`, `/docs*`, `/openapi.json`) to the `app` service.
+- Serves the front-end static files from `/srv` for all other paths. The `try_files` directive falls back to `index.html` for client-side routing.
 
 The `{$VARIABLE}` syntax reads the value of an [environment variable](./environments.md#environment-variables) at runtime.
