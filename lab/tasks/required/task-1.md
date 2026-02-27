@@ -48,9 +48,9 @@ Title: `[Task] Observe System Component Interaction`
 
 ### 1.3. Open `Swagger UI`
 
-1. Open `http://<your-vm-ip-address>:42002/docs` in a browser.
+1. Open in a browser: `http://<your-vm-ip-address>:42002/docs`.
 
-   See [`<your-vm-ip-address>`](../../../wiki/vm.md#your-vm-ip-address).
+   Replace [`<your-vm-ip-address>`](../../../wiki/vm.md#your-vm-ip-address) with the IP address of your VM.
 
 2. [Authorize](../../../wiki/swagger.md#authorize-in-swagger-ui) with the API key.
 
