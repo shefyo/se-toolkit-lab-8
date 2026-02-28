@@ -1,4 +1,4 @@
-# Observe System Component Interaction
+# Observe the interaction of system components
 
 <h4>Time</h4>
 
@@ -6,7 +6,7 @@
 
 <h4>Purpose</h4>
 
-Trace a request from `Swagger` through the API to the database using the browser developer tools and `pgAdmin`.
+Trace a request from [`Swagger UI`](../../../wiki/swagger.md#swagger-ui) through the [API](../../../wiki/web-development.md#api) to the [database](../../../wiki/database.md#what-is-a-database) using the browser developer tools and [`pgAdmin`](../../../wiki/pgadmin.md#what-is-pgadmin).
 
 <h4>Context</h4>
 
