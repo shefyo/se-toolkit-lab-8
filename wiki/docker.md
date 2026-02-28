@@ -93,6 +93,9 @@ If you installed `Docker Desktop`:
 
 ### Clean up `Docker`
 
+> [!NOTE]
+> If there are permission errors, replace `docker` with `sudo docker`.
+
 1. To stop all running containers,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
