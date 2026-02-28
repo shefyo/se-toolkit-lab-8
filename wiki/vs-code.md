@@ -635,15 +635,17 @@ Here are some [workspace settings](#workspace-settings) that you can change:
 #### Open the file using `code`
 
 1. [Open a new `VS Code Terminal`](#open-a-new-vs-code-terminal) if something is running in your current `VS Code Terminal`.
-2. [Run in the `VS Code Terminal`](#run-a-command-in-the-vs-code-terminal):
+2. To open a file from the terminal,
 
-  ```terminal
-  code <file-path>
-  ```
+   [run in the `VS Code Terminal`](#run-a-command-in-the-vs-code-terminal):
 
-  See [`<file-path>`](./file-system.md#file-path).
+   ```terminal
+   code <file-path>
+   ```
 
-1. (`macOS` only) If the `code <file-path>` shows an error that the `code` command doesn't exist, [add `VS Code` to `PATH`](#macos-only-add-vs-code-to-path).
+   See [`<file-path>`](./file-system.md#file-path).
+
+3. (`macOS` only) If the `code <file-path>` shows an error that the `code` command doesn't exist, [add `VS Code` to `PATH`](#macos-only-add-vs-code-to-path).
 
 ### Open the `Markdown` preview
 
@@ -748,7 +750,9 @@ Steps:
 3. [Install the extension](./vs-code.md#install-the-extension) with the identifier `ms-vscode-remote.remote-wsl`.
 
    This extension lets you use `VS Code` in [`WSL`](./operating-system.md#wsl).
-4. [Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+4. To install `Ubuntu` in `WSL`,
+
+   [run in the `VS Code Terminal`](#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    wsl --install -d Ubuntu-24.04
@@ -764,18 +768,18 @@ Steps:
 
    See [`PATH` environment variable](./environments.md#path-environment-variable).
 2. [Open a new `VS Code Terminal`](#open-a-new-vs-code-terminal).
-3. Check that the `code` command is available in the `VS Code Terminal`:
+3. To check that the `code` command is available,
 
-    [Run in the `VS Code Terminal`](#run-a-command-in-the-vs-code-terminal):
+   [run in the `VS Code Terminal`](#run-a-command-in-the-vs-code-terminal):
 
-    ```terminal
-    code --version
-    ```
+   ```terminal
+   code --version
+   ```
 
-    The output should be similar to this text:
+   The output should be similar to this text:
 
-    ```terminal
-    1.109.0
-    bdd88df003631aaa0bcbe057cb0a940b80a476fa
-    x64
-    ```
+   ```terminal
+   1.109.0
+   bdd88df003631aaa0bcbe057cb0a940b80a476fa
+   x64
+   ```

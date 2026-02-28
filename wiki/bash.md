@@ -22,9 +22,11 @@ Docs:
 
 ### Run a command
 
-Type a command name followed by its arguments to execute it:
+Type a command name followed by its arguments to execute it.
 
-[Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+To run a command with arguments,
+
+[run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
 ```terminal
 <command> <arguments>
@@ -32,9 +34,9 @@ Type a command name followed by its arguments to execute it:
 
 #### Run a command - example
 
-List the files in the current directory:
+To list files in the current directory,
 
-[Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+[run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
 ```terminal
 ls .
@@ -44,7 +46,9 @@ ls .
 
 The pipe operator `|` sends the [standard output](./shell.md#what-is-a-shell) of one command as input to another.
 
-[Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+To pipe the output of one command into another,
+
+[run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
 ```terminal
 <command-1> | <command-2>
@@ -52,9 +56,9 @@ The pipe operator `|` sends the [standard output](./shell.md#what-is-a-shell) of
 
 #### Pipe the `stdout` - example
 
-List files and show only the first 5 lines:
+To list files and show only the first 5 lines,
 
-[Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+[run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
 ```terminal
 ls . | head -5

@@ -93,25 +93,25 @@ If you installed `Docker Desktop`:
 
 ### Clean up `Docker`
 
-1. Stop all running containers:
+1. To stop all running containers,
 
-   [Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    docker stop $(docker ps -q) 2>/dev/null
    ```
 
-2. Remove all stopped containers:
+2. To remove all stopped containers,
 
-   [Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    docker container prune -f
    ```
 
-3. Delete unused volumes:
+3. To delete unused volumes,
 
-   [Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    docker volume prune -f

@@ -52,7 +52,9 @@ See [Get the IP address of the VM](#get-the-ip-address-of-the-vm).
 
 1. Disable `VPN`.
 2. Connect your computer to the `Wi-Fi` network `UniversityStudent`.
-3. [Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+3. To check the connection to your VM,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    ping <your-vm-ip-address>
@@ -171,7 +173,9 @@ If you can't connect:
 1. [Go to the VM page](#go-to-the-vm-page).
 2. Verify the VM is in `Running` status.
 3. Verify the VM IP address has not changed.
-4. In your local terminal, test the [`SSH`](./ssh.md) connection in verbose mode:
+4. To test the [`SSH`](./ssh.md) connection in verbose mode,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    ssh -v se-toolkit-vm
