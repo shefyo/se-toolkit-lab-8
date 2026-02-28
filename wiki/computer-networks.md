@@ -120,7 +120,7 @@ When a [process](./operating-system.md#process) "listens on a port", it means th
 
 The [operating system](./operating-system.md) allocates the port to that process, and any incoming network traffic directed to that port will be handled by the listening process.
 
-This is how [services](./operating-system.md#service) like [web servers](./web-development.md), [SSH daemons](./ssh.md#ssh-daemon), or [databases](./database.md) accept connections from clients. A port can only be listened to by one process at a time.
+This is how [services](./operating-system.md#service) like [web servers](./web-development.md), [`SSH` daemons](./ssh.md#ssh-daemon), or [databases](./database.md) accept connections from clients. A port can only be listened to by one process at a time.
 
 ## Wi-Fi
 
