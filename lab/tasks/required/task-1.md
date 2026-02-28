@@ -35,7 +35,9 @@ Title: `[Task] Observe System Component Interaction`
 ### 1.2. Deploy the back-end to the VM
 
 1. [Connect to your VM](../../../wiki/vm.md#connect-to-the-vm).
-2. Clone your fork on the VM (skip this step if already cloned):
+2. To clone your fork on the VM (skip this step if already cloned),
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    git clone <your-fork-url> se-toolkit-lab-4
@@ -43,13 +45,17 @@ Title: `[Task] Observe System Component Interaction`
 
    Replace [`<your-fork-url>`](../../../wiki/github.md#your-fork-url).
 
-3. Navigate to the project directory and pull the latest changes:
+3. To navigate to the project directory and pull the latest changes,
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    cd se-toolkit-lab-4 && git pull
    ```
 
-4. Create the `.env.docker.secret` file (if it does not exist):
+4. To create the `.env.docker.secret` file (if it does not exist),
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    cp .env.docker.example .env.docker.secret
@@ -59,13 +65,17 @@ Title: `[Task] Observe System Component Interaction`
 
    **Important:** `0.0.0.0` means the server listens on **all network interfaces**. This makes the service accessible from outside the VM (e.g., from your laptop).
 
-6. Start the services:
+6. To start the services,
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    docker compose --env-file .env.docker.secret up --build -d
    ```
 
-7. Check that the containers are running:
+7. To check that the containers are running,
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    docker compose --env-file .env.docker.secret ps
