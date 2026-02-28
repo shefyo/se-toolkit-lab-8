@@ -7,6 +7,7 @@ from sqlmodel import Field, SQLModel
 # Ensure referenced FK target tables are registered in SQLModel metadata
 # whenever InteractionLog is imported.
 
+
 class InteractionLog(SQLModel, table=True):
     """An interaction log entry in the database."""
 
@@ -27,6 +28,16 @@ class InteractionLogCreate(SQLModel):
     learner_id: int
     item_id: int
     kind: str
+
+    model_config = {
+        "json_schema_extra": {
+            "example": """{
+                "learner_id": 1,
+                "item_id": 1,
+                "kind": "attempt"
+            }"""
+        }
+    }
 
 
 class InteractionModel(SQLModel):
