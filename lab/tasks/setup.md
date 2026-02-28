@@ -383,10 +383,9 @@ A coding agent can help you write code, explain concepts, and debug issues.
 
 These enhancements can make your life easier:
 
-- [Set up a coding agent](#24-set-up-a-coding-agent)
-- [Set up `Nix`](#21-new-set-up-nix)
-- [Set up `direnv`](#22-new-set-up-direnv)
-- [Learn to go back after clicking a link](#23-upd-learn-to-go-back-after-clicking-a-link)
+- [Set up `Nix`](#22-new-set-up-nix)
+- [Set up `direnv`](#23-new-set-up-direnv)
+- [Learn to go back after clicking a link](#24-upd-learn-to-go-back-after-clicking-a-link)
 - [Set up the shell prompt](#25-set-up-the-shell-prompt)
 - [Customize the `Source Control`](#26-customize-the-source-control)
 - [Get familiar with `GitLens`](#27-get-familiar-with-gitlens)
@@ -401,7 +400,7 @@ These enhancements can make your life easier:
 
 ### 2.3. (NEW) Set up `direnv`
 
-1. [Set up `Nix`](#21-new-set-up-nix).
+1. [Set up `Nix`](#22-new-set-up-nix).
 2. [Set up `direnv`](../../wiki/direnv.md#set-up-direnv).
 
 ### 2.4. (UPD) Learn to go back after clicking a link
