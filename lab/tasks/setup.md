@@ -11,7 +11,7 @@
     - [1.3.5. (UPD) Add a classmate as a collaborator](#135-upd-add-a-classmate-as-a-collaborator)
     - [1.3.6. (UPD) Protect your `main` branch](#136-upd-protect-your-main-branch)
   - [1.4. Set up programs](#14-set-up-programs)
-    - [1.4.1. Set up `VS Code`](#141-set-up-vs-code)
+    - [1.4.1. (UPD) Set up `VS Code`](#141-upd-set-up-vs-code)
     - [1.4.2. (UPD) Set up `Docker`](#142-upd-set-up-docker)
     - [1.4.3. (UPD) (`Windows` only) Set the default shell for the `VS Code Terminal`](#143-upd-windows-only-set-the-default-shell-for-the-vs-code-terminal)
     - [1.4.4. Set up `Git`](#144-set-up-git)
@@ -128,7 +128,7 @@
 
 ### 1.4. Set up programs
 
-#### 1.4.1. Set up `VS Code`
+#### 1.4.1. (UPD) Set up `VS Code`
 
 1. (Optional) [Read about `VS Code`](../../wiki/vs-code.md#what-is-vs-code).
 2. [Set up `VS Code`](../../wiki/vs-code.md#set-up-vs-code).
