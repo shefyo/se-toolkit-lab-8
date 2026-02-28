@@ -5,7 +5,9 @@
 - [What is `Bash`](#what-is-bash)
 - [`Bash` syntax basics](#bash-syntax-basics)
   - [Run a command](#run-a-command)
+    - [Run a command - example](#run-a-command---example)
   - [Pipe the `stdout`](#pipe-the-stdout)
+    - [Pipe the `stdout` - example](#pipe-the-stdout---example)
 
 ## What is `Bash`
 
@@ -20,13 +22,17 @@ Docs:
 
 ### Run a command
 
+Type a command name followed by its arguments to execute it:
+
 [Run using the `VS Code Terminal`](./vs-code.md#run-a-command-using-the-vs-code-terminal):
 
 ```terminal
 <command> <arguments>
 ```
 
-Example:
+#### Run a command - example
+
+List the files in the current directory:
 
 [Run using the `VS Code Terminal`](./vs-code.md#run-a-command-using-the-vs-code-terminal):
 
@@ -36,13 +42,17 @@ ls .
 
 ### Pipe the `stdout`
 
+The pipe operator `|` sends the [standard output](./shell.md#what-is-a-shell) of one command as input to another.
+
 [Run using the `VS Code Terminal`](./vs-code.md#run-a-command-using-the-vs-code-terminal):
 
 ```terminal
 <command-1> | <command-2>
 ```
 
-Example:
+#### Pipe the `stdout` - example
+
+List files and show only the first 5 lines:
 
 [Run using the `VS Code Terminal`](./vs-code.md#run-a-command-using-the-vs-code-terminal):
 
