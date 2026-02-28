@@ -24,7 +24,7 @@
   - [1.9. Set up `Python`](#19-set-up-python)
     - [1.9.1. Install `uv`](#191-install-uv)
     - [1.9.2. (UPD) Set up `Python` in `VS Code`](#192-upd-set-up-python-in-vs-code)
-  - [1.10. (NEW) Clean up `Docker`](#110-new-clean-up-docker)
+  - [1.10. (NEW) Prepare `Docker`](#110-new-prepare-docker)
   - [1.11. Start the services](#111-start-the-services)
     - [1.11.1. (UPD) Set up the `Docker` environment](#1111-upd-set-up-the-docker-environment)
     - [1.11.2. (UPD) Prepare `Docker`](#1112-upd-prepare-docker)

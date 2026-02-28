@@ -197,44 +197,8 @@ Docs:
 
 ### Create the `autochecker` user
 
-The `autochecker` user is a restricted user for the instructor to verify VM hardening.
-
-1. To create the user without `sudo` privileges,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   sudo adduser --disabled-password --gecos "" autochecker
-   ```
-
-2. To create the `.ssh` directory,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   sudo mkdir -p /home/autochecker/.ssh
-   sudo chmod 700 /home/autochecker/.ssh
-   ```
-
-3. To add the instructor's [`SSH`](./ssh.md#what-is-ssh) public key,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   echo "<instructor-public-key>" | sudo tee /home/autochecker/.ssh/authorized_keys
-   ```
-
-4. To set permissions,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   sudo chown -R autochecker:autochecker /home/autochecker/.ssh
-   sudo chmod 600 /home/autochecker/.ssh/authorized_keys
-   ```
-
-> [!NOTE]
-> The instructor will provide the public key to add.
+1. [Create the `autochecker` user](./vm-autochecker.md#create-the-autochecker-user).
+2. [Add the `SSH` public key to the `autochecker` user](./vm-autochecker.md#add-an-ssh-public-key-to-the-autochecker-user).
 
 ### Restart `sshd`
 
