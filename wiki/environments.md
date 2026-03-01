@@ -3,7 +3,7 @@
 <h2>Table of contents</h2>
 
 - [What is environment](#what-is-environment)
-- [Environment variables](#environment-variables)
+- [Environment variable](#environment-variable)
 - [Common environment variables](#common-environment-variables)
   - [`PATH` environment variable](#path-environment-variable)
 - [`.env` file](#env-file)
@@ -20,7 +20,7 @@
 
 ## What is environment
 
-## Environment variables
+## Environment variable
 
 Environment variables are named values that are available to a program running in a particular [deployment environment](#deployment-environments).
 
@@ -38,7 +38,7 @@ Look at the environment variables available to the `VS Code Terminal`:
 
 ## Common environment variables
 
-These [environment variables](#environment-variables) are available in most [operating systems](./operating-system.md#what-is-an-operating-system):
+These [environment variables](#environment-variable) are available in most [operating systems](./operating-system.md#what-is-an-operating-system):
 
 - [`PATH`](#path-environment-variable)
 
@@ -59,7 +59,7 @@ These [environment variables](#environment-variables) are available in most [ope
 
 ## `.env` file
 
-We call `.env` file a file that contains a list of [environment variables](#environment-variables) in the `<env-variable-name>=<env-variable-value>` format.
+We call `.env` file a file that contains a list of [environment variables](#environment-variable) in the `<env-variable-name>=<env-variable-value>` format.
 
 Examples:
 
@@ -110,7 +110,7 @@ Match in [`.gitignore`](./git.md#gitignore) all files that can contain [unencryp
 
 A program can run in multiple [deployment environments](https://github.com/inno-se/the-guide?tab=readme-ov-file#environments).
 
-Each development environment may need a specific set of [environment variables](#environment-variables). This set can be different for each environment.
+Each development environment may need a specific set of [environment variables](#environment-variable). This set can be different for each environment.
 
 ### Development environment
 
