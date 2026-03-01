@@ -10,6 +10,7 @@
 - [Open tables in the database](#open-tables-in-the-database)
 - [Browse the table](#browse-the-table)
 - [Inspect columns in the table](#inspect-columns-in-the-table)
+- [Open the `Query Tool`](#open-the-query-tool)
 - [Run a query](#run-a-query)
 - [Copy the data output](#copy-the-data-output)
 - [Get the ER diagram](#get-the-er-diagram)
@@ -120,21 +121,25 @@ The value of [`PGADMIN_HOST_PORT` in `.env.docker.secret`](./dotenv-docker-secre
 3. Click `Properties`.
 4. Click `Columns`.
 
-## Run a query
+## Open the `Query Tool`
 
 > [!NOTE]
-> The `<db-name>` is the name of the database where you want to run a query.
+> The `<db-name>` is the name of the database where you want run the [`SQL` query](./sql.md#sql-query).
 
 1. [Open the database `<db-name>`](#open-the-database).
 2. Right-click `<db-name>`.
 3. Click `Query Tool`.
-4. Write your [`SQL`](./sql.md) query, e.g.:
+
+## Run a query
+
+1. [Open the `Query Tool`](#open-the-query-tool).
+2. Write your `SQL` query, e.g.:
 
    ```sql
    SELECT tablename FROM pg_tables WHERE schemaname = 'public';
    ```
 
-5. Click `Execute Script`.
+3. Click `Execute Script`.
 
    <img alt="Execute script" src="./images/pgadmin/execute-script.png" style="width:300px">
 
