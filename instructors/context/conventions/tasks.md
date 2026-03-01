@@ -169,11 +169,9 @@ Each task has a clear **Purpose** (what the student learns) and **Context** (why
 
 When the lab has multiple domain entities (e.g., resources, models, tables), assign each entity a distinct learning role:
 
-| Role      | What students do              | Example                                                |
-| --------- | ----------------------------- | ------------------------------------------------------ |
-| Reference | Study existing implementation | `items` endpoints (fully implemented)                  |
-| Debug     | Enable and fix broken code    | `interactions` endpoint (commented out, contains bugs) |
-| Implement | Build from a template         | `learners` endpoint (placeholder-based template)       |
+- **Reference** — study existing implementation — `items` endpoints (fully implemented)
+- **Debug** — enable and fix broken code — `interactions` endpoint (commented out, contains bugs)
+- **Implement** — build from a template — `learners` endpoint (placeholder-based template)
 
 This prevents overlap and ensures each task has a unique learning objective.
 

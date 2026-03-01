@@ -246,6 +246,8 @@ If you can't [connect to your VM](../../wiki/vm.md#connect-to-the-vm), complete 
    cp .env.docker.example .env.docker.secret
    ```
 
+<!-- TODO do something about these notes -->
+
 > [!NOTE]
 > The `.env.docker.secret` file contains environment variables for the `Docker` containers.
 >
@@ -258,6 +260,10 @@ If you can't [connect to your VM](../../wiki/vm.md#connect-to-the-vm), complete 
 
 #### 1.11.2. (UPD) Start the services using `Docker Compose`
 
+> [!NOTE]
+> [`Docker Compose`](../../wiki/docker-compose.md#what-is-docker-compose) reads environment variables from `.env.docker.secret`
+> and uses them to configure the containers defined in [`docker-compose.yml`](../../docker-compose.yml).
+
 1. To start the services,
 
    [run in the `VS Code Terminal`](../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
@@ -265,10 +271,6 @@ If you can't [connect to your VM](../../wiki/vm.md#connect-to-the-vm), complete 
    ```terminal
    docker compose --env-file .env.docker.secret up --build
    ```
-
-> [!NOTE]
-> [`Docker Compose`](../../wiki/docker-compose.md#what-is-docker-compose) reads environment variables from `.env.docker.secret`
-> and uses them to configure the containers defined in [`docker-compose.yml`](../../docker-compose.yml).
 
 2. Wait for the services to start. You should see log output from the `app`, `postgres`, `pgadmin`, and `caddy` containers.
 
