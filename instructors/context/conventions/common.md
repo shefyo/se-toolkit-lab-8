@@ -24,12 +24,13 @@
 
 ## 4.1. Instructions wording
 
-| Action             | Wording                                        |
-| ------------------ | ---------------------------------------------- |
-| Navigate somewhere | `Go to X.`                                     |
-| Click something    | `Click X.`                                     |
-| Choose an option   | `Method N:` prefix (see [4.6](#46-little-toc)) |
-| Complete all steps | `Complete the following steps:`                |
+| Action             | Wording                                         |
+| ------------------ | ----------------------------------------------- |
+| Navigate somewhere | `Go to X.`                                      |
+| Click something    | `Click X.`                                      |
+| Choose an option   | `Method N:` prefix (see [4.6](#46-little-toc))  |
+| Complete all steps | `Complete the following steps:`                 |
+| Conditional steps  | `If <condition>, complete the following steps:` |
 
 - **Split compound instructions.** Never write "Do A and do B." Instead, split into two numbered steps.
 - **Finish complete sentences with a `.`**
