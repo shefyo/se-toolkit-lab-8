@@ -301,7 +301,7 @@ Complete these steps if you can't [connect to your VM](../../wiki/vm.md#connect-
    docker compose --env-file .env.docker.secret logs
    ```
 
-2. [See logs for a specific service](../../wiki/docker-compose.md#docker-compose-logs-for-a-specific-service):
+2. See logs for the `postgres` service:
 
    ```terminal
    docker compose --env-file .env.docker.secret logs postgres
