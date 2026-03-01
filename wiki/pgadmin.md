@@ -5,28 +5,27 @@
 - [What is `pgAdmin`](#what-is-pgadmin)
 - [`<pgadmin-port>`](#pgadmin-port)
 - [Open `pgAdmin`](#open-pgadmin)
-- [Connect to a `PostgreSQL` server](#connect-to-a-postgresql-server)
-- [Open the database](#open-the-database)
-- [Open tables in the database](#open-tables-in-the-database)
-- [Browse the table](#browse-the-table)
-- [Inspect columns in the table](#inspect-columns-in-the-table)
-- [Open the `Query Tool`](#open-the-query-tool)
-- [Run a query](#run-a-query)
-- [Copy the data output](#copy-the-data-output)
-- [Get the ER diagram](#get-the-er-diagram)
+- [Manage `PostgreSQL` servers](#manage-postgresql-servers)
+  - [Connect to the `PostgreSQL` server](#connect-to-the-postgresql-server)
+  - [Delete the `PostgreSQL` server](#delete-the-postgresql-server)
+- [`Object Explorer`](#object-explorer)
+  - [Open the database](#open-the-database)
+  - [Open schemas in the database](#open-schemas-in-the-database)
+  - [Open tables in the database](#open-tables-in-the-database)
+  - [Browse data in the table](#browse-data-in-the-table)
+  - [Browse columns in the table](#browse-columns-in-the-table)
+- [`Query Tool`](#query-tool)
+  - [Open the `Query Tool`](#open-the-query-tool)
+  - [Run the query](#run-the-query)
+  - [Copy the query data output](#copy-the-query-data-output)
+- [`ERD Tool`](#erd-tool)
+  - [Open the ERD for the database](#open-the-erd-for-the-database)
+  - [View the ERD in crow's foot notation](#view-the-erd-in-crows-foot-notation)
+  - [View the ERD in Chen notation](#view-the-erd-in-chen-notation)
 
 ## What is `pgAdmin`
 
 `pgAdmin` is a web-based graphical tool for managing `PostgreSQL` databases.
-
-It lets you:
-
-<!-- no toc -->
-- [connect to a `PostgreSQL` server](#connect-to-a-postgresql-server);
-- [open a database](#open-the-database) on that server;
-- inspect the [database schema](./database.md#database-schema);
-- [browse tables](#browse-the-table) in that database;
-- run [`SQL` queries](./sql.md#sql-query) against that database.
 
 Docs:
 
@@ -54,7 +53,14 @@ The value of [`PGADMIN_HOST_PORT` in `.env.docker.secret`](./dotenv-docker-secre
 
 <!-- TODO servers.json -->
 
-## Connect to a `PostgreSQL` server
+## Manage `PostgreSQL` servers
+
+Actions:
+
+- [Connect to the `PostgreSQL` server](#connect-to-the-postgresql-server)
+- [Delete the `PostgreSQL` server](#delete-the-postgresql-server)
+
+### Connect to the `PostgreSQL` server
 
 > [!NOTE]
 > The environment variables are defined in the [`.env.docker.secret`](./dotenv-docker-secret.md#what-is-envdockersecret) file that you used to deploy the [`pgadmin` service](./docker-compose-yml.md#pgadmin-service).
@@ -65,19 +71,28 @@ The value of [`PGADMIN_HOST_PORT` in `.env.docker.secret`](./dotenv-docker-secre
 4. In the `General` tab:
    - `Name`: the value of [`POSTGRES_SERVER_NAME`](./dotenv-docker-secret.md#postgres_server_name).
 5. In the `Connection` tab:
-   - `Host name/address`: the value of the [`PostgreSQL` service name](./constants.md#postgresql-service-name) (see [`Docker Compose` networking](./docker-compose.md#networking)).
+   - `Host name/address`: the value of the [`PostgreSQL` service name](./constants.md#postgresql-service-name) (see [`Docker Compose` networking](./docker-compose.md#docker-compose-networking)).
    - `Port`: The value of the [default `PostgreSQL` port](./constants.md#default-postgresql-port).
    - `Maintenance database`: the value of [`POSTGRES_SERVER_NAME`](./dotenv-docker-secret.md#postgres_server_name).
    - `Username`: the value of [`POSTGRES_USER`](./dotenv-docker-secret.md#postgres_user).
    - `Password`: the value of [`POSTGRES_PASSWORD`](./dotenv-docker-secret.md#postgres_password).
 6. Click `Save`.
 
-> [!IMPORTANT]
-> The host name is `postgres`, not `localhost`.
-> This is because `pgAdmin` and `PostgreSQL` run in separate `Docker` containers.
-> `Docker Compose` creates a network where services can reach each other by their service name.
+### Delete the `PostgreSQL` server
 
-## Open the database
+<!-- TODO -->
+
+## `Object Explorer`
+
+Actions:
+
+- [Open the database](#open-the-database)
+- [Open schemas in the database](#open-schemas-in-the-database)
+- [Open tables in the database](#open-tables-in-the-database)
+- [Browse data in the table](#browse-data-in-the-table)
+- [Browse columns in the table](#browse-columns-in-the-table)
+
+### Open the database
 
 > [!NOTE]
 > The `<db-name>` is the name of the database which you want to open.
@@ -87,17 +102,27 @@ The value of [`PGADMIN_HOST_PORT` in `.env.docker.secret`](./dotenv-docker-secre
 3. Expand `Databases`.
 4. Expand `<db-name>`.
 
-## Open tables in the database
+### Open schemas in the database
+
+> [!NOTE]
+> See [database schema](./database.md#database-schema).
+
+> [!NOTE]
+> The `<db-name>` is the name of the database where you want to see schemas.
+
+1. [Open the database `<db-name>`](#open-the-database).
+2. Expand `Schemas`.
+
+### Open tables in the database
 
 > [!NOTE]
 > The `<db-name>` is the name of the database where you want to open tables.
 
-1. [Open the database `<db-name>`](#open-the-database).
-2. Expand `Schemas`.
-3. Expand `public`.
-4. Expand `Tables`.
+1. [Open schemas in the database `<db-name>`](#open-schemas-in-the-database).
+2. Expand `public`.
+3. Expand `Tables`.
 
-## Browse the table
+### Browse data in the table
 
 > [!NOTE]
 > The `<db-name>` is the name of the database where you want to browse tables.
@@ -109,30 +134,46 @@ The value of [`PGADMIN_HOST_PORT` in `.env.docker.secret`](./dotenv-docker-secre
 3. Click `View/Edit Data`.
 4. Click `All Rows`.
 
-## Inspect columns in the table
+### Browse columns in the table
 
 > [!NOTE]
-> The `<db-name>` is the name of the database where you want to inspect columns in the table `<table-name>`.
+> The `<db-name>` is the name of the database that has the table `<table-name>`.
 >
-> The `<table-name>` is the name of the table where you want to inspect columns.
+> The `<table-name>` is the name of the table whose columns you want to inspect.
 
 1. [Open tables in the database `<db-name>`](#open-tables-in-the-database).
 2. Right-click `<table-name>`.
 3. Click `Properties`.
 4. Click `Columns`.
 
-## Open the `Query Tool`
+## `Query Tool`
+
+Docs:
+
+- [Query Tool](https://www.pgadmin.org/docs/pgadmin4/9.12/query_tool.html)
+
+Actions:
+
+<!-- no toc -->
+- [Open the `Query Tool`](#open-the-query-tool).
+- [Run the query](#run-the-query).
+- [Copy the query data output](#copy-the-query-data-output)
+
+### Open the `Query Tool`
 
 > [!NOTE]
-> The `<db-name>` is the name of the database where you want run the [`SQL` query](./sql.md#sql-query).
+> The `<db-name>` is the name of the database that you want to run [`SQL` queries](./sql.md#sql-query) against.
 
 1. [Open the database `<db-name>`](#open-the-database).
 2. Right-click `<db-name>`.
 3. Click `Query Tool`.
 
-## Run a query
+### Run the query
 
-1. [Open the `Query Tool`](#open-the-query-tool).
+> [!NOTE]
+> The `<db-name>` is the name of the database that you run the [`SQL` query](./sql.md#sql-query) against.
+
+1. [Open the `Query Tool` for the database `<db-name>`](#open-the-query-tool).
 2. Write your `SQL` query, e.g.:
 
    ```sql
@@ -151,9 +192,12 @@ The value of [`PGADMIN_HOST_PORT` in `.env.docker.secret`](./dotenv-docker-secre
 
    <img alt="Query messages tab" src="./images/pgadmin/query-messages-tab.png" style="width:300px">
 
-## Copy the data output
+### Copy the query data output
 
-1. [Run a query](#run-a-query).
+> [!NOTE]
+> The `<db-name>` is the name of the database that you run the [`SQL` query](./sql.md#sql-query) against.
+
+1. [Run the query against the database `<db-name>`](#run-the-query).
 2. Open the `Data Output` tab.
 3. Click the upper-left corner in the `Data Output` tab to select the full table.
 
@@ -162,3 +206,50 @@ The value of [`PGADMIN_HOST_PORT` in `.env.docker.secret`](./dotenv-docker-secre
 
    <img alt="Data Output - select all" src="./images/pgadmin/data-output-copy.png" style="width:400px">
 
+## `ERD Tool`
+
+Docs:
+
+- [ERD Tool](https://www.pgadmin.org/docs/pgadmin4/9.12/erd_tool.html)
+
+Actions:
+
+- [Open the ERD for the database](#open-the-erd-for-the-database)
+- View the ERD in a specific notation:
+  - Option 1: [View the ERD in crow's foot notation](#view-the-erd-in-crows-foot-notation).
+  - Option 2: [View the ERD in Chen notation](#view-the-erd-in-chen-notation).
+
+### Open the ERD for the database
+
+> [!NOTE]
+> See [Entity-relationship diagram (ERD)](./database.md#entity-relationship-diagram-erd).
+
+1. [Open the database `<db-name>`](#open-the-database).
+2. Right-click the `<db-name>`.
+3. Click `ERD for Database`.
+
+### View the ERD in crow's foot notation
+
+> [!NOTE]
+> See [ERD in crow's foot notation](./database.md#erd-in-crows-foot-notation).
+
+1. [Open the ERD for the database `<db-name>`](#open-the-erd-for-the-database).
+2. Click `Cardinality Notation`.
+3. Click `Crow's Foot Notation`.
+
+   You should see an ERD like this:
+
+   <img alt="ERD in crow's foot notation" src="./images/pgadmin/erd-crows-foot.png" style="width:400px">
+
+### View the ERD in Chen notation
+
+> [!NOTE]
+> See [ERD in Chen notation](./database.md#erd-in-chen-notation).
+
+1. [Open the ERD for the database `<db-name>`](#open-the-erd-for-the-database).
+2. Click `Cardinality Notation`.
+3. Click `Chen Notation`.
+
+   You should see an ERD like this:
+
+   <img alt="ERD in Chen notation" src="./images/pgadmin/erd-chen.png" style="width:400px">
