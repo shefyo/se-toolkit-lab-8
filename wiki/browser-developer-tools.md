@@ -87,7 +87,7 @@ Complete these steps:
 ### Inspect the request headers
 
 > [!NOTE]
-> See [`HTTP` request headers](./http.md#http-request-headers).
+> See [`HTTP` request headers](./http.md#http-request-header).
 
 - `Chrome`: Click `Headers`.
 

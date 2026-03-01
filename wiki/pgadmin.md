@@ -69,11 +69,11 @@ Actions:
 2. Right-click `Servers` in the left panel.
 3. Click `Register` -> `Server...`.
 4. In the `General` tab:
-   - `Name`: the value of [`POSTGRES_SERVER_NAME`](./dotenv-docker-secret.md#postgres_server_name).
+   - `Name`: the value of [`POSTGRES_SERVER_NAME`](./constants.md#postgresql-server-name-in-pgadmin).
 5. In the `Connection` tab:
-   - `Host name/address`: the value of the [`PostgreSQL` service name](./constants.md#postgresql-service-name) (see [`Docker Compose` networking](./docker-compose.md#docker-compose-networking)).
+   - `Host name/address`: the value of the [`PostgreSQL` service name](./constants.md#postgresql-service-name-in-docker-compose) (see [`Docker Compose` networking](./docker-compose.md#docker-compose-networking)).
    - `Port`: The value of the [default `PostgreSQL` port](./constants.md#default-postgresql-port).
-   - `Maintenance database`: the value of [`POSTGRES_SERVER_NAME`](./dotenv-docker-secret.md#postgres_server_name).
+   - `Maintenance database`: the value of [`POSTGRES_DB`](./dotenv-docker-secret.md#postgres_db).
    - `Username`: the value of [`POSTGRES_USER`](./dotenv-docker-secret.md#postgres_user).
    - `Password`: the value of [`POSTGRES_PASSWORD`](./dotenv-docker-secret.md#postgres_password).
 6. Click `Save`.
@@ -223,7 +223,7 @@ Actions:
 ### Open the ERD for the database
 
 > [!NOTE]
-> See [Entity-relationship diagram (ERD)](./database.md#entity-relationship-diagram-erd).
+> See [ERD](./database.md#erd).
 
 1. [Open the database `<db-name>`](#open-the-database).
 2. Right-click the `<db-name>`.

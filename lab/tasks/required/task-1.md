@@ -155,7 +155,7 @@ Title: `[Task] Observe System Component Interaction`
 > The API transformed the `JSON` from your request into a row in the `interacts` table.
 
 1. [Open `pgAdmin`](../../../wiki/pgadmin.md#open-pgadmin).
-2. [Run a query](../../../wiki/pgadmin.md#run-a-query) on the `interacts` table:
+2. [Run a query](../../../wiki/pgadmin.md#run-the-query) on the `interacts` table:
 
    ```sql
    SELECT * FROM interacts ORDER BY id DESC LIMIT 5;
@@ -180,7 +180,7 @@ Comment 4: [Paste the ERD from `pgAdmin`](#184-paste-the-erd-from-pgadmin)
 
 #### 1.8.1. Write the request as `fetch` code
 
-1. [Copy the selected request as `fetch` code](../../../wiki/browser-developer-tools.md#copy-request-as-fetch-code).
+1. [Copy the selected request as `fetch` code](../../../wiki/browser-developer-tools.md#copy-the-request-as-fetch-code).
 2. Paste this code in a `Markdown` code block.
 
    Format of the block (see in [`Markdown` preview](../../../wiki/vs-code.md#open-the-markdown-preview) if you read in `VS Code`):
@@ -204,7 +204,7 @@ Comment 4: [Paste the ERD from `pgAdmin`](#184-paste-the-erd-from-pgadmin)
 
 #### 1.8.2. Write the response
 
-1. [Copy the response](../../../wiki/browser-developer-tools.md#copy-response) to the selected request.
+1. [Copy the response](../../../wiki/browser-developer-tools.md#copy-the-response) to the selected request.
 2. Paste the response as `JSON` in a `Markdown` code block.
 
    Format of the block (see in [`Markdown` preview](../../../wiki/vs-code.md#open-the-markdown-preview) if you read in `VS Code`):
@@ -225,7 +225,7 @@ Comment 4: [Paste the ERD from `pgAdmin`](#184-paste-the-erd-from-pgadmin)
 
 #### 1.8.3. Write the data output from `pgAdmin`
 
-1. [Copy the full data output](../../../wiki/pgadmin.md#copy-the-data-output) that you got when verifying in the `pgAdmin` that a new row appeared.
+1. [Copy the full data output](../../../wiki/pgadmin.md#copy-the-query-data-output) that you got when verifying in the `pgAdmin` that a new row appeared.
 2. Paste the output as `CSV` in a `Markdown` code block.
 
    Format of the block (see in [`Markdown` preview](../../../wiki/vs-code.md#open-the-markdown-preview) if you read in `VS Code`):
@@ -250,7 +250,7 @@ Comment 4: [Paste the ERD from `pgAdmin`](#184-paste-the-erd-from-pgadmin)
 
 #### 1.8.4. Paste the ERD from `pgAdmin`
 
-1. [View the ERD](../../../wiki/pgadmin.md#view-the-erd).
+1. [View the ERD in Chen notation](../../../wiki/pgadmin.md#view-the-erd-in-chen-notation).
 2. Make a screenshot where all three tables are fully visible.
 3. Paste the screenshot.
 

@@ -4,7 +4,7 @@
 
 <!-- TODO explain why this value -->
 
-## `PostgreSQL` service name
+## `PostgreSQL` service name in `Docker Compose`
 
 Value: `postgres`
 

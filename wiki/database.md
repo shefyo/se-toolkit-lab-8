@@ -49,7 +49,7 @@ See [`SQL`](./sql.md).
 
 The database schema defines the structure of the database: tables, columns, data types, and constraints.
 
-You can [inspect columns](./pgadmin.md#inspect-columns) of a table in [`pgAdmin`](./pgadmin.md).
+You can [inspect columns](./pgadmin.md#browse-columns-in-the-table) of a table in [`pgAdmin`](./pgadmin.md).
 
 > [!NOTE]
 > The column names in the database must match the field names in the `Python` code.
