@@ -113,3 +113,52 @@ Complete these steps:
   <img alt="Firefox - Request response tab" src="./images/browser-developer-tools/firefox/request-response-tab.png" style="width:400px"></img>
 
 <!-- TODO safari -->
+
+## Copy request information
+
+You can:
+
+- [Copy request as `fetch` code](#copy-request-as-fetch-code)
+- [Copy response](#copy-response)
+
+### Copy request as `fetch` code
+
+1. [Select the request](#select-the-request).
+2. Right-click the request.
+3. Copy request to clipboard as `fetch` code:
+
+    - `Chrome`:
+
+      1. Click `Copy`.
+      2. Click `Copy as fetch`.
+
+    - `Firefox`:
+
+      1. Click `Copy Value`.
+      2. Click `Copy as Fetch`.
+
+    - `Safari`
+
+      1. Click `Copy`.
+      2. Click `Copy as Fetch`.
+
+### Copy response
+
+1. [Select the request](#select-the-request).
+2. Right-click the request.
+3. Copy response to clipboard:
+
+    - `Chrome`:
+
+      1. Click `Copy`.
+      2. Click `Copy response`.
+
+    - `Firefox`:
+
+      1. Click `Copy Value`.
+      2. Click `Copy Response`.
+
+    - `Safari`
+
+      1. Click `Copy`.
+      2. Click `Copy Response`.
