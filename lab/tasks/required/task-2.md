@@ -169,7 +169,7 @@ return [i for i in interactions if i.item_id == item_id]
 
 1. [Commit](../../../wiki/git-workflow.md#commit) your changes.
 
-   Use the following commit message:
+   Use this commit message:
 
    ```text
    fix: filter interactions by item_id instead of learner_id
@@ -191,15 +191,19 @@ return [i for i in interactions if i.item_id == item_id]
 
 1. Set the required environment variables in the terminal. Complete the following steps:
 
-   1. Set the base URL of your deployed API:
+   1. To set the base URL of your deployed API,
+
+      [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
       ```terminal
-      export API_BASE_URL=http://<your-vm-ip-address>:<api-port>
+      export API_BASE_URL=http://<your-vm-ip-address>:<app-port>
       ```
 
-      Replace [`<your-vm-ip-address>`](../../../wiki/vm.md#your-vm-ip-address) with the IP address of your VM. See [`<api-port>`](../../../wiki/placeholders.md#api-port).
+      Replace [`<your-vm-ip-address>`](../../../wiki/vm.md#your-vm-ip-address) with the IP address of your VM. See [`<app-port>`](../../../wiki/placeholders.md#app-port).
 
-   2. Set the API token (use the same value as in your `.env.secret`):
+   2. To set the API token (use the same value as in your `.env.secret`),
+
+      [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
       ```terminal
       export API_TOKEN=<your-api-token>
@@ -321,7 +325,7 @@ return [i for i in interactions if i.item_id == item_id]
 
 1. [Commit](../../../wiki/git-workflow.md#commit) your changes.
 
-   Use the following commit message:
+   Use this commit message:
 
    ```text
    fix: rename timestamp to created_at in InteractionModel
