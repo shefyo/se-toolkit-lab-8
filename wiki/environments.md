@@ -2,7 +2,7 @@
 
 <h2>Table of contents</h2>
 
-- [What is environment](#what-is-environment)
+- [What is an environment](#what-is-an-environment)
 - [Environment variable](#environment-variable)
 - [Common environment variables](#common-environment-variables)
   - [`PATH` environment variable](#path-environment-variable)
@@ -18,7 +18,11 @@
   - [Staging environment](#staging-environment)
   - [Production environment](#production-environment)
 
-## What is environment
+## What is an environment
+
+An environment (deployment environment) is ...
+
+<!-- TODO -->
 
 ## Environment variable
 

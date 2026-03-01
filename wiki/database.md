@@ -34,6 +34,9 @@ Docs:
 
 - [Official PostgreSQL docs](https://www.postgresql.org/docs/)
 
+<!-- TODO move to postgres.md -->
+<!-- TODO update docker-postgres to reference postgres.md -->
+
 ## `pgAdmin`
 
 See [`pgAdmin`](./pgadmin.md).

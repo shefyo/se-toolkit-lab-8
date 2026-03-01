@@ -21,6 +21,8 @@
   - [Listen on a port](#listen-on-a-port)
 - [`Wi-Fi`](#wi-fi)
   - [`Wi-Fi` network](#wi-fi-network)
+- [Reverse proxy](#reverse-proxy)
+  - [Forward request](#forward-request)
 
 ## What is a network
 
@@ -151,3 +153,13 @@ A `Wi-Fi` network is a [network](#what-is-a-network) that [machines](#machine) c
 Each `Wi-Fi` network has a name (called `SSID`) that identifies it to nearby devices.
 
 Example: `UniversityStudent`, `Home_Network`.
+
+## Reverse proxy
+
+A reverse proxy is a server that sits in front of a backend [service](./web-development.md#service) and forwards incoming client requests to it.
+
+<!-- TODO update -->
+
+### Forward request
+
+<!-- TODO -->

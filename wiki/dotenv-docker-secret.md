@@ -32,6 +32,7 @@
 
 Default values: [`.env.docker.example`](../.env.docker.example)
 
+<!-- TODO values are used for deployment using --env-file. replaces values in docker-compose.yml -->
 <!-- TODO explain each variable -->
 <!-- TODO add links to computer-networks#0000 for 0.0.0.0 
 and links for 127.0.0.1 -->

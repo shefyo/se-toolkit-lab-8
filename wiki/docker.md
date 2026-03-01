@@ -155,6 +155,8 @@ See [`Docker Compose`](./docker-compose.md) for the full list of commands.
 
 ### Service
 
+<!-- TODO move to docker-compose.md -->
+
 A service is a named entry under the `services:` key in `docker-compose.yml`. It defines how to build or pull an [image](#image) and run it as a [container](#container).
 
 For example, this project defines four services in [`docker-compose.yml`](../docker-compose.yml): `app`, `postgres`, `pgadmin`, and `caddy`.
