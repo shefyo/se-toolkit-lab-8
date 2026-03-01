@@ -19,8 +19,8 @@
   - [System port](#system-port)
   - [User port](#user-port)
   - [Listen on a port](#listen-on-a-port)
-- [Wi-Fi](#wi-fi)
-  - [Wi-Fi network](#wi-fi-network)
+- [`Wi-Fi`](#wi-fi)
+  - [`Wi-Fi` network](#wi-fi-network)
 
 ## What is a network
 
@@ -130,21 +130,23 @@ A **user port** (or **registered port**) is a [network port](#port) designated f
 
 ### Listen on a port
 
-When a [process](./operating-system.md#process) "listens on a port", it means the process has bound itself to a specific network port number and is waiting for incoming network connections on that port.
+When a [process](./operating-system.md#process) "listens on a port", it means the [process](./operating-system.md#process) has bound itself to a specific [network port number](#port-number) and is waiting for incoming network connections on that [port](#port).
 
-The [operating system](./operating-system.md) allocates the port to that process, and any incoming network traffic directed to that port will be handled by the listening process.
+The [operating system](./operating-system.md#what-is-an-operating-system) allocates the port to that process, and any incoming network traffic directed to that port will be handled by the listening process.
 
-This is how [services](./operating-system.md#service) like [web servers](./web-development.md), [`SSH` daemons](./ssh.md#ssh-daemon), or [databases](./database.md) accept connections from clients. A port can only be listened to by one process at a time.
+This is how [services](./operating-system.md#service) like [web servers](./web-development.md), [`SSH` daemons](./ssh.md#ssh-daemon), or [databases](./database.md#what-is-a-database) accept connections from [clients](./web-development.md#web-client).
 
-## Wi-Fi
+A port can only be listened on by one process at a time.
+
+## `Wi-Fi`
 
 `Wi-Fi` is a wireless technology that allows [machines](#machine) to connect to a [network](#what-is-a-network) without physical cables.
 
 It uses radio waves to transmit data between devices and a wireless access point (a router).
 
-### Wi-Fi network
+### `Wi-Fi` network
 
-A `Wi-Fi` network is a [network](#what-is-a-network) that [machines](#machine) connect to using [Wi-Fi](#wi-fi).
+A `Wi-Fi` network is a [network](#what-is-a-network) that [machines](#machine) connect to using [`Wi-Fi`](#wi-fi).
 
 Each `Wi-Fi` network has a name (called `SSID`) that identifies it to nearby devices.
 
