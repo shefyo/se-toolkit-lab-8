@@ -58,7 +58,9 @@ Title: `[Task] Back-end Testing`
 #### 1.3.0. Create the `.env.secret` file
 
 1. [Check that the current directory is `se-toolkit-lab-4`](../../../wiki/shell.md#check-the-current-directory-is-directory-name).
-2. [Run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
+2. To create the `.env.secret` file from the example,
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    cp .env.example .env.secret
@@ -71,7 +73,9 @@ Title: `[Task] Back-end Testing`
 
 #### 1.3.1. Run existing unit tests
 
-1. [Run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
+1. To run the existing unit tests,
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    uv run poe test
@@ -87,6 +91,9 @@ Title: `[Task] Back-end Testing`
 
 #### 1.3.2. Add a new unit test
 
+> [!NOTE]
+> Feel free to use AI to generate the tests. Make sure to provide them with necessary context.
+
 1. [Open the file](../../../wiki/vs-code.md#open-the-file):
    [`backend/tests/unit/test_interactions.py`](../../../backend/tests/unit/test_interactions.py).
 2. Add a new unit test that targets the following boundary-value case:
@@ -95,16 +102,15 @@ Title: `[Task] Back-end Testing`
 
    Name the test `test_filter_excludes_interaction_with_different_learner_id`.
 
-> [!NOTE]
-> Feel free to use AI to generate the tests. Make sure to provide them with necessary context.
+3. To run the tests,
 
-1. [Run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    uv run poe test
    ```
 
-2. Observe that the new test fails.
+4. Observe that the new test fails.
 
    The output should be similar to this:
 
@@ -149,7 +155,9 @@ return [i for i in interactions if i.item_id == item_id]
 
 #### 1.3.4. Rerun unit tests
 
-1. [Run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
+1. To rerun the unit tests,
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    uv run poe test
@@ -166,6 +174,9 @@ return [i for i in interactions if i.item_id == item_id]
    ```text
    fix: filter interactions by item_id instead of learner_id
    ```
+
+<!-- TODO push commit -->
+<!-- TODO pull branch on the VM -->
 
 ### 1.4. Part B: Run end-to-end tests remotely
 
@@ -194,7 +205,9 @@ return [i for i in interactions if i.item_id == item_id]
       export API_TOKEN=<your-api-token>
       ```
 
-2. [Run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
+2. To run the end-to-end tests,
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    uv run poe test-e2e
@@ -243,7 +256,9 @@ return [i for i in interactions if i.item_id == item_id]
 
    </details>
 
-3. [Run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
+3. To run the end-to-end tests,
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    uv run poe test-e2e
@@ -292,7 +307,9 @@ return [i for i in interactions if i.item_id == item_id]
 #### 1.4.5. Redeploy and rerun
 
 1. Deploy the fixed version to the VM.
-2. [Run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
+2. To run the end-to-end tests,
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    uv run poe test-e2e
@@ -336,7 +353,9 @@ return [i for i in interactions if i.item_id == item_id]
 
 #### 1.5.3. Run the full test suite
 
-1. [Run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
+1. To run the full test suite,
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    uv run poe test
