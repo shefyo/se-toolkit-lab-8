@@ -18,7 +18,7 @@
   - [Open the `Query Tool`](#open-the-query-tool)
   - [Run the query](#run-the-query)
   - [Copy the query data output](#copy-the-query-data-output)
-  - [Download the query data output](#download-the-query-data-output)
+  - [Save to file the query data output](#save-to-file-the-query-data-output)
 - [`ERD Tool`](#erd-tool)
   - [Open the ERD for the database](#open-the-erd-for-the-database)
   - [View the ERD in crow's foot notation](#view-the-erd-in-crows-foot-notation)
@@ -214,7 +214,7 @@ Actions:
 
    <img alt="Data Output - select all" src="./images/pgadmin/data-output-copy.png" style="width:400px">
 
-### Download the query data output
+### Save to file the query data output
 
 > [!NOTE]
 > The `<db-name>` is the name of the database that you run the [`SQL` query](./sql.md#sql-query) against.
