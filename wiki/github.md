@@ -31,7 +31,7 @@
   - [Default branch](#default-branch)
   - [Base branch](#base-branch)
   - [Compare branch](#compare-branch)
-    - [`<compare-branch-name>`](#compare-branch-name)
+    - [`<compare-branch>`](#compare-branch)
 - [Create a pull request in your fork](#create-a-pull-request-in-your-fork)
   - [Open the PR editor using `GitHub`](#open-the-pr-editor-using-github)
     - [Open the PR editor using a button](#open-the-pr-editor-using-a-button)
@@ -244,7 +244,7 @@ The base branch is the branch in the [base repository](#base-repository) that yo
 
 The compare branch (also called the pull request branch or head branch) is the branch that contains the changes you want to merge into the [base branch](#base-branch).
 
-#### `<compare-branch-name>`
+#### `<compare-branch>`
 
 A placeholder for the name of the [compare branch](#compare-branch).
 
@@ -281,20 +281,20 @@ A placeholder for the name of the [compare branch](#compare-branch).
    2. In `Filter repos`, write `<your-github-username>`.
    3. Click `<your-github-username>/<repo-name>` to select your fork.
 5. Select `main` as the [base branch](#base-branch):
-   1. Click `base: <branch-name>`.
+   1. Click `base: <branch>`.
    2. In `Find a branch`, write `main`.
    3. Click `main` in the list.
-6. Select `<compare-branch-name>` as the [compare branch](#compare-branch):
+6. Select `<compare-branch>` as the [compare branch](#compare-branch):
    1. Click `compare: main`.
-   2. In `Find a branch`, write [`<compare-branch-name>`](#compare-branch-name).
-   3. Click the `<compare-branch-name>` in the list.
+   2. In `Find a branch`, write [`<compare-branch>`](#compare-branch).
+   3. Click the `<compare-branch>` in the list.
 7. Click `Create pull request`.
 
 #### Open the PR editor using the branch list
 
 1. [Go to your fork](#go-to-your-fork).
 2. Click `main` under the repo name to view all branches.
-3. Click `<branch-name>` that you want to use for PR.
+3. Click `<branch>` that you want to use for PR.
 4. You'll see the `Contribute` button if the branch has commits that aren't yet in the `main` branch.
 5. Click `Contribute`.
 6. Click `Open pull request`.

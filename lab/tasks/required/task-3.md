@@ -246,10 +246,10 @@ Method 2:
    [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   git fetch origin && git checkout <task-branch-name>
+   git fetch origin && git checkout <task-branch>
    ```
 
-   Replace [`<task-branch-name>`](../../../wiki/git-workflow.md#task-branch-name).
+   Replace [`<task-branch>`](../../../wiki/git-workflow.md#task-branch).
 
 6. To rebuild and restart the `caddy` service,
 
