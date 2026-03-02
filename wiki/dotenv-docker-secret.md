@@ -47,7 +47,7 @@ Default values: [`.env.docker.example`](../.env.docker.example)
 
 ## `app`
 
-Variables for the backend [web server](./web-development.md#web-server) [container](./docker.md#container).
+Variables for the backend [`app` service](./docker-compose-yml.md#app-service).
 
 ### `APP_NAME`
 
@@ -111,7 +111,7 @@ Default: `my-secret-api-key`
 
 ## `postgres`
 
-Variables for [`PostgreSQL`](./database.md#postgresql) [container](./docker.md#container).
+Variables for the [`postgres` service](./docker-compose-yml.md#postgres-service).
 
 ### `POSTGRES_DB`
 
@@ -145,7 +145,7 @@ Default: `42004`
 
 ## `pgadmin`
 
-Variables for [`pgAdmin`](./pgadmin.md#what-is-pgadmin) [container](./docker.md#container).
+Variables for the [`pgadmin` service](./docker-compose-yml.md#pgadmin-service).
 
 ### `PGADMIN_EMAIL`
 
@@ -173,7 +173,7 @@ Default: `42003`
 
 ## `caddy`
 
-Variables for [`Caddy`](./caddy.md#what-is-caddy) [container](./docker.md#container).
+Variables for the [`caddy` service](./docker-compose-yml.md#caddy-service).
 
 ### `CADDY_CONTAINER_PORT`
 
