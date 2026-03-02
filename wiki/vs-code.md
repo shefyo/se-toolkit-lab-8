@@ -41,9 +41,9 @@
   - [Close the `Source Control`](#close-the-source-control)
 - [`Extensions`](#extensions)
   - [Open the `Extensions`](#open-the-extensions)
-  - [Install the extension](#install-the-extension)
-  - [Filter the `Extensions`](#filter-the-extensions)
-  - [Install recommended `Extensions`](#install-recommended-extensions)
+  - [Install the `VS Code` extension](#install-the-vs-code-extension)
+  - [Filter the `VS Code` extensions](#filter-the-vs-code-extensions)
+  - [Install the recommended `VS Code` extensions](#install-the-recommended-vs-code-extensions)
 - [Keyboard shortcuts](#keyboard-shortcuts)
   - [Frequently used shortcuts](#frequently-used-shortcuts)
     - [Shortcut: `Go back`](#shortcut-go-back)
@@ -462,8 +462,8 @@ Docs:
 Actions:
 
 - [Open the `Extensions`](#open-the-extensions)
-- [Filter the `Extensions`](#filter-the-extensions)
-- [Install recommended `Extensions`](#install-recommended-extensions)
+- [Filter the `VS Code` extensions](#filter-the-vs-code-extensions)
+- [Install the recommended `VS Code` extensions](#install-the-recommended-vs-code-extensions)
 
 ### Open the `Extensions`
 
@@ -476,7 +476,7 @@ Method 2:
 
 1. Press `Ctrl+Shift+X` (`Cmd+Shift+X` on `macOS`).
 
-### Install the extension
+### Install the `VS Code` extension
 
 1. [Open the `Extensions`](#open-the-extensions).
 2. Write:
@@ -491,7 +491,7 @@ Method 2:
 3. Click the extension.
 4. Click `Install`.
 
-### Filter the `Extensions`
+### Filter the `VS Code` extensions
 
 1. [Open the `Extensions`](#open-the-extensions).
 2. Click the icon `Filter Extensions...`.
@@ -500,7 +500,7 @@ Method 2:
 3. A menu will open.
 4. Select a filter in the menu and click it to apply the filter.
 
-### Install recommended `Extensions`
+### Install the recommended `VS Code` extensions
 
 > [!NOTE]
 > Recommended extensions are listed in [`.vscode/extensions.json`](../.vscode/extensions.json).

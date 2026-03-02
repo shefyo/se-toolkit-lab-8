@@ -189,7 +189,7 @@
 1. [Open in `VS Code` the directory](../../wiki/vs-code.md#open-the-directory):
    `se-toolkit-lab-4`.
 2. [Check the current shell in the `VS Code Terminal`](../../wiki/vs-code.md#check-the-current-shell-in-the-vs-code-terminal).
-3. [Install recommended extensions](../../wiki/vs-code.md#install-recommended-extensions).
+3. [Install the recommended `VS Code` extensions](../../wiki/vs-code.md#install-the-recommended-vs-code-extensions).
 
 <details><summary>Troubleshooting</summary>
 
