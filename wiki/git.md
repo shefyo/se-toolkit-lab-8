@@ -199,8 +199,10 @@ Typical sequence:
 1. Create an issue.
 2. Create a branch from `main`.
 3. Commit changes to the branch.
-4. Push branch and open a PR.
-5. Get review and merge.
+4. Push branch.
+5. Open a PR.
+6. Get review.
+7. Merge the branch to `main`.
 
 ## Check your `Git` config
 
