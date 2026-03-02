@@ -105,7 +105,7 @@ If you installed `Docker Desktop`:
    docker stop $(docker ps -q) 2>/dev/null
    ```
 
-   You should see no output.
+   You should see removed [container IDs](#container-id).
 
 2. To remove all stopped containers,
 
@@ -115,9 +115,10 @@ If you installed `Docker Desktop`:
    docker container prune -f
    ```
 
-   The output should be similar to this:
+   The output should be empty or similar to this:
 
    ```terminal
+   ...
    Total reclaimed space: ...
    ```
 
