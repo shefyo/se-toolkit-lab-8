@@ -6,6 +6,7 @@
 - [Remote](#remote)
 - [Commit](#commit)
   - [Commit hash](#commit-hash)
+  - [`<git-commit-hash>`](#git-commit-hash)
   - [Commit message](#commit-message)
     - [`Conventional Commits`](#conventional-commits)
       - [Common prefixes in `Conventional Commits`](#common-prefixes-in-conventional-commits)
@@ -54,6 +55,10 @@ Docs:
 
 - [Git Has Integrity](https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection#_git_has_integrity)
 - [Revision Selection - Short SHA-1](https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection#_short_sha_1)
+
+### `<git-commit-hash>`
+
+A [commit hash](#commit-hash) (without `<` and `>`).
 
 ### Commit message
 
