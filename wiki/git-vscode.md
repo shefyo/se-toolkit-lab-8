@@ -288,7 +288,7 @@ For each conflicting file, complete the following steps:
 
 ### Pull changes from `<branch>` on `<remote>` using the `VS Code Terminal`
 
-1. To pull changes from `<remote>/<branch>`,
+1. To pull changes from `<branch>` on `<remote>`,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -315,7 +315,7 @@ For each conflicting file, complete the following steps:
 
 ### Pull and rebase using the `VS Code Terminal`
 
-1. To pull `<branch>` from `<remote>` and rebase onto it,
+1. To pull changes from `<branch>` on `<remote>` and rebase onto it,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
