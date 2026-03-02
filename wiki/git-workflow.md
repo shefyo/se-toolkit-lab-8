@@ -15,7 +15,6 @@ Outline:
 
 - [Create a `Lab Task` issue](#create-a-lab-task-issue)
 - [Switch to the `main` branch](#switch-to-the-main-branch)
-- [Detect conflicts](#detect-conflicts)
 - [Pull changes from `main` on `origin`](#pull-changes-from-main-on-origin)
 - [Pull changes from `main` on `upstream`](#pull-changes-from-main-on-upstream)
 - [Switch to a new branch](#switch-to-a-new-branch)
@@ -40,10 +39,6 @@ Outline:
 ## Switch to the `main` branch
 
 [Switch to the `main` branch](./git-vscode.md#switch-to-the-branch) in `VS Code`.
-
-## Detect conflicts
-
-[Detect conflicts with the `origin/main`](./git-vscode.md#detect-conflicts).
 
 ## Pull changes from `main` on `origin`
 
