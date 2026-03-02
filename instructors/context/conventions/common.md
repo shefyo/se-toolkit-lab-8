@@ -23,6 +23,7 @@
 - [4.21. `docker compose up` commands](#421-docker-compose-up-commands)
 - [4.22. Environment variable references](#422-environment-variable-references)
 - [4.23. Horizontal rules](#423-horizontal-rules)
+- [4.24. Inline paths](#424-inline-paths)
 
 ## 4.1. Instructions wording
 
@@ -354,3 +355,9 @@ Use exactly three dashes (`---`) for horizontal rules.
 Good: `---`
 
 Bad: `----`, `-----`, `***`, `___`
+
+## 4.24. Inline paths
+
+Use a trailing `/` for directory paths: `` `lab/tasks/` ``, `` `frontend/` ``.
+
+Exception: `..` references do not get a trailing `/`: `` `lab/tasks/..` ``.
