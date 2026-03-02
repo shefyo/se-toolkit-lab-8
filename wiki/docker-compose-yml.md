@@ -36,7 +36,7 @@ Configuration in [`docker-compose.yml`](../docker-compose.yml):
 - **`ports`** — maps [`APP_HOST_ADDRESS`](./dotenv-docker-secret.md#app_host_address):[`APP_HOST_PORT`](./dotenv-docker-secret.md#app_host_port) on the [host](./computer-networks.md#host) to [`APP_CONTAINER_PORT`](./dotenv-docker-secret.md#app_container_port) inside the container.
 - **`expose`** — makes `APP_CONTAINER_PORT` accessible to other services via [`Docker Compose` networking](./docker-compose.md#docker-compose-networking).
 - **`environment`** — passes [environment variables](./environments.md#environment-variable) into the container. The values come from [`.env.docker.secret`](./dotenv-docker-secret.md#what-is-envdockersecret).
-- **`depends_on`** — waits for the [`postgres` service](#postgres-service) to pass its [health check](./docker.md#health-checks) before starting.
+- **`depends_on`** — waits for the [`postgres` service](#postgres-service) to pass its [health check](./docker-compose.md#health-checks) before starting.
 
 ### `postgres` service
 
@@ -49,7 +49,7 @@ Configuration in [`docker-compose.yml`](../docker-compose.yml):
 - **`environment`** — sets the database name ([`POSTGRES_DB`](./dotenv-docker-secret.md#postgres_db)), user ([`POSTGRES_USER`](./dotenv-docker-secret.md#postgres_user)), and password ([`POSTGRES_PASSWORD`](./dotenv-docker-secret.md#postgres_password)) from [`.env.docker.secret`](./dotenv-docker-secret.md#what-is-envdockersecret).
 - **`ports`** — maps [`POSTGRES_HOST_ADDRESS`](./dotenv-docker-secret.md#postgres_host_address):[`POSTGRES_HOST_PORT`](./dotenv-docker-secret.md#postgres_host_port) on the [host](./computer-networks.md#host) to [`CONST_POSTGRESQL_DEFAULT_PORT`](./dotenv-docker-secret.md#const_postgresql_default_port) inside the container.
 - **`volumes`** — mounts [`postgres_data`](#postgres_data) for persistent data storage and [`backend/app/data/init.sql`](../backend/app/data/init.sql) as the database initialization script. Scripts in `/docker-entrypoint-initdb.d/` run on the first startup of the container.
-- **`healthcheck`** — runs `pg_isready` every 5 seconds to verify the database is ready to accept connections. Other services use this [health check](./docker.md#health-checks) to wait before starting.
+- **`healthcheck`** — runs `pg_isready` every 5 seconds to verify the database is ready to accept connections. Other services use this [health check](./docker-compose.md#health-checks) to wait before starting.
 
 ### `pgadmin` service
 
@@ -61,7 +61,7 @@ Configuration in [`docker-compose.yml`](../docker-compose.yml):
 - **`restart: unless-stopped`** — restarts the [container](./docker.md#container) automatically unless it is explicitly stopped.
 - **`environment`** — sets the login email ([`PGADMIN_EMAIL`](./dotenv-docker-secret.md#pgadmin_email)) and password ([`PGADMIN_PASSWORD`](./dotenv-docker-secret.md#pgadmin_password)) from [`.env.docker.secret`](./dotenv-docker-secret.md#what-is-envdockersecret).
 - **`ports`** — maps [`PGADMIN_HOST_ADDRESS`](./dotenv-docker-secret.md#pgadmin_host_address):[`PGADMIN_HOST_PORT`](./dotenv-docker-secret.md#pgadmin_host_port) on the [host](./computer-networks.md#host) to port `80` inside the container.
-- **`depends_on`** — waits for the [`postgres` service](#postgres-service) to pass its [health check](./docker.md#health-checks) before starting.
+- **`depends_on`** — waits for the [`postgres` service](#postgres-service) to pass its [health check](./docker-compose.md#health-checks) before starting.
 
 ### `caddy` service
 
@@ -81,11 +81,11 @@ See [`Caddy` in this project](./caddy.md#caddy-in-this-project) for how the `Cad
 
 ## Volumes
 
-[Volumes](./docker.md#volume) are defined under the `volumes:` key at the top level of [`docker-compose.yml`](../docker-compose.yml).
+[Volumes](./docker-compose.md#volume) are defined under the `volumes:` key at the top level of [`docker-compose.yml`](../docker-compose.yml).
 
 ### `postgres_data`
 
-A named [volume](./docker.md#volume) that stores [`PostgreSQL`](./database.md#postgresql) data. Data in this volume persists across container restarts.
+A named [volume](./docker-compose.md#volume) that stores [`PostgreSQL`](./database.md#postgresql) data. Data in this volume persists across container restarts.
 
 The [`postgres` service](#postgres-service) mounts this volume at `/var/lib/postgresql/data`.
 

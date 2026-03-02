@@ -245,7 +245,7 @@ If you can't [connect to your VM](../../wiki/vm.md#connect-to-the-vm), complete 
 ### 1.11. Start the services
 
 > [!NOTE]
-> See [service](../../wiki/docker.md#service).
+> See [service](../../wiki/docker-compose.md#service).
 
 #### 1.11.1. (UPD) Set up the `Docker` environment
 

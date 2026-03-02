@@ -7,6 +7,7 @@
   - [Service name](#service-name)
 - [`Docker Compose` networking](#docker-compose-networking)
 - [Volume](#volume)
+- [Health checks](#health-checks)
 - [Actions](#actions)
   - [Stop and remove all containers](#stop-and-remove-all-containers)
   - [Stop and remove all containers and volumes](#stop-and-remove-all-containers-and-volumes)
@@ -20,11 +21,13 @@ Example of the file: [`docker-compose.yml`](../docker-compose.yml).
 
 See also:
 
-- [`Docker`](./docker.md) for general `Docker` concepts ([images](./docker.md#image), [containers](./docker.md#container), [volumes](./docker.md#volume), [health checks](./docker.md#health-checks), etc.).
+- [`Docker`](./docker.md) for general `Docker` concepts ([images](./docker.md#image), [containers](./docker.md#container), etc.).
 
 ## Service
 
-<!-- TODO -->
+A service is a named entry under the `services:` key in `docker-compose.yml`. It defines how to build or pull an [image](./docker.md#image) and run it as a [container](./docker.md#container).
+
+For example, this project defines four services in [`docker-compose.yml`](../docker-compose.yml): `app`, `postgres`, `pgadmin`, and `caddy`.
 
 ### Service name
 
@@ -39,6 +42,45 @@ Docs:
 - [Networking in Compose](https://docs.docker.com/compose/how-tos/networking/)
 
 ## Volume
+
+A volume is persistent storage managed by `Docker`. Data in a volume survives [container](./docker.md#container) restarts.
+
+Volumes are defined in `docker-compose.yml`:
+
+```yaml
+volumes:
+  postgres_data:
+```
+
+A [service](#service) can mount a volume to store data:
+
+```yaml
+services:
+  postgres:
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+```
+
+## Health checks
+
+A health check is a command that `Docker` runs periodically to check if a [container](./docker.md#container) is healthy.
+
+Other [services](#service) can wait for a container to be healthy before starting:
+
+```yaml
+services:
+  app:
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+```
 
 ## Actions
 
@@ -56,7 +98,7 @@ Docs:
 
 ### Stop and remove all containers and volumes
 
-1. To stop all running [services](#service), remove [containers](./docker.md#container), and remove [volumes](./docker.md#volume),
+1. To stop all running [services](#service), remove [containers](./docker.md#container), and remove [volumes](#volume),
 
    [run in the `VS Code Terminal`](../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -66,7 +108,7 @@ Docs:
 
 ## Stop and remove all containers, volumes, and images
 
-1. To stop all running [services](#service), remove [containers](./docker.md#container), remove [volumes](./docker.md#volume), and remove [images](./docker.md#image),
+1. To stop all running [services](#service), remove [containers](./docker.md#container), remove [volumes](#volume), and remove [images](./docker.md#image),
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 

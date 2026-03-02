@@ -19,9 +19,6 @@
   - [`docker ps`](#docker-ps)
     - [`docker ps` useful variants](#docker-ps-useful-variants)
 - [`Docker Compose`](#docker-compose)
-  - [Service](#service)
-- [Volume](#volume)
-- [Health checks](#health-checks)
 - [`DockerHub`](#dockerhub)
   - [`<your-dockerhub-username>`](#your-dockerhub-username)
 
@@ -172,55 +169,6 @@ docker run --name <container-name> -p <host-port>:<container-port> <image-name>
 `Docker Compose` runs multi-container apps from a `docker-compose.yml` file.
 
 See [`Docker Compose`](./docker-compose.md) for the full list of commands.
-
-### Service
-
-<!-- TODO move to docker-compose.md -->
-
-A service is a named entry under the `services:` key in `docker-compose.yml`. It defines how to build or pull an [image](#image) and run it as a [container](#container).
-
-For example, this project defines four services in [`docker-compose.yml`](../docker-compose.yml): `app`, `postgres`, `pgadmin`, and `caddy`.
-
-## Volume
-
-A volume is persistent storage managed by `Docker`. Data in a volume survives container restarts.
-
-Volumes are defined in `docker-compose.yml`:
-
-```yaml
-volumes:
-  postgres_data:
-```
-
-A service can mount a volume to store data:
-
-```yaml
-services:
-  postgres:
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-```
-
-## Health checks
-
-A health check is a command that `Docker` runs periodically to check if a container is healthy.
-
-Other services can wait for a container to be healthy before starting:
-
-```yaml
-services:
-  app:
-    depends_on:
-      postgres:
-        condition: service_healthy
-
-  postgres:
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-```
 
 ## `DockerHub`
 
