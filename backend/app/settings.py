@@ -15,8 +15,8 @@ class Settings(BaseSettings):
 
     cors_origins: list[str] = Field(default=[], alias="CORS_ORIGINS")
 
-    enable_interactions: bool = Field(default=False, alias="ENABLE_INTERACTIONS")
-    enable_learners: bool = Field(default=False, alias="ENABLE_LEARNERS")
+    enable_interactions: bool = Field(default=False, alias="APP_ENABLE_INTERACTIONS")
+    enable_learners: bool = Field(default=False, alias="APP_ENABLE_LEARNERS")
 
     db_host: str = Field(default="localhost", alias="DB_HOST")
     db_port: int = Field(default=5432, alias="DB_PORT")
