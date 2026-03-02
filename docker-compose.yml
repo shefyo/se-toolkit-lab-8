@@ -12,8 +12,8 @@ services:
       - ADDRESS=${APP_CONTAINER_ADDRESS:?'APP_CONTAINER_ADDRESS is a required environment variable'}
       - PORT=${APP_CONTAINER_PORT:?'APP_CONTAINER_PORT is a required environment variable'}
       - API_KEY=${API_KEY:?'API_KEY is a required environment variable'}
-      - ENABLE_INTERACTIONS=${ENABLE_INTERACTIONS:-false}
-      - ENABLE_LEARNERS=${ENABLE_LEARNERS:-false}
+      - APP_ENABLE_INTERACTIONS=${APP_ENABLE_INTERACTIONS:-false}
+      - APP_ENABLE_LEARNERS=${APP_ENABLE_LEARNERS:-false}
       - DB_HOST=postgres
       - DB_PORT=5432
       - DB_NAME=${POSTGRES_DB:-lab-4}
