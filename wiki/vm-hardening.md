@@ -9,7 +9,6 @@
   - [Configure `fail2ban`](#configure-fail2ban)
   - [Disable root `SSH` login](#disable-root-ssh-login)
   - [Disable password authentication](#disable-password-authentication)
-  - [Create the `autochecker` user](#create-the-autochecker-user)
   - [Restart `sshd`](#restart-sshd)
 
 ## What is VM hardening
@@ -200,11 +199,6 @@ Docs:
 
 > [!IMPORTANT]
 > Make sure your `SSH` key is set up before disabling password authentication.
-
-### Create the `autochecker` user
-
-1. [Create the `autochecker` user](./vm-autochecker.md#create-the-autochecker-user).
-2. [Add the `SSH` public key to the `autochecker` user](./vm-autochecker.md#add-an-ssh-public-key-to-the-autochecker-user).
 
 ### Restart `sshd`
 
