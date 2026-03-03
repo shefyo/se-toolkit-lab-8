@@ -322,7 +322,7 @@ Title: `[Task] Back-end Testing`
 2. Add two end-to-end tests that cover the following cases:
 
    - Test 1: `GET /interactions/` returns [`HTTP` status code](../../../wiki/http.md#http-response-status-code) `200`.
-   - Test 2: `GET /interactions/` response body is a [`JSON`](../../../wiki/file-formats.md#json) array.
+   - Test 2: `GET /interactions/` response items contain the expected fields (`id`, `item_id`, `created_at`).
 
    <details><summary>Click to open the solution</summary>
 
@@ -335,9 +335,13 @@ Title: `[Task] Back-end Testing`
        assert response.status_code == 200
 
 
-   def test_get_interactions_response_is_a_list(client: httpx.Client) -> None:
+   def test_get_interactions_response_items_have_expected_fields(client: httpx.Client) -> None:
        response = client.get("/interactions/")
-       assert isinstance(response.json(), list)
+       data = response.json()
+       assert len(data) > 0
+       assert "id" in data[0]
+       assert "item_id" in data[0]
+       assert "created_at" in data[0]
    ```
 
    </details>
@@ -356,7 +360,7 @@ Title: `[Task] Back-end Testing`
 
    ```terminal
    FAILED backend/tests/e2e/test_interactions.py::test_get_interactions_returns_200 - assert 500 == 200
-   FAILED backend/tests/e2e/test_interactions.py::test_get_interactions_response_is_a_list - json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+   FAILED backend/tests/e2e/test_interactions.py::test_get_interactions_response_items_have_expected_fields - json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
    ```
 
    The `500` status code means the server encountered an internal error while building the response.
