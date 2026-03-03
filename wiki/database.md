@@ -24,11 +24,11 @@ Databases store data in structures such as tables (rows and columns).
 
 A database server is software that manages one or more databases and handles queries from clients (applications).
 
-Examples of database servers: `PostgreSQL`, `MySQL`, `SQLite`.
+Examples of database servers: [`PostgreSQL`](./postgresql.md#what-is-postgresql), `MySQL`, `SQLite`.
 
 ## `PostgreSQL`
 
-`PostgreSQL` is a popular open-source relational database server.
+[`PostgreSQL`](./postgresql.md#what-is-postgresql) is a popular open-source relational database server.
 
 Docs:
 
@@ -39,20 +39,20 @@ Docs:
 
 ## `pgAdmin`
 
-See [`pgAdmin`](./pgadmin.md).
+See [`pgAdmin`](./pgadmin.md#what-is-pgadmin).
 
 ## `SQL`
 
-See [`SQL`](./sql.md).
+See [`SQL`](./sql.md#what-is-sql).
 
 ## Database schema
 
 The database schema defines the structure of the database: tables, columns, data types, and constraints.
 
-You can [inspect columns](./pgadmin.md#browse-columns-in-the-table) of a table in [`pgAdmin`](./pgadmin.md).
+You can [inspect columns](./pgadmin.md#browse-columns-in-the-table) of a table in [`pgAdmin`](./pgadmin.md#what-is-pgadmin).
 
 > [!NOTE]
-> The column names in the database must match the field names in the `Python` code.
+> The column names in the database must match the field names in the [`Python`](./python.md#what-is-python) code.
 > If they don't match, the application will fail to read data from the database.
 
 ## ERD
@@ -73,4 +73,4 @@ See [Crow’s Foot Notation](https://www.red-gate.com/blog/crow-s-foot-notation/
 
 ## EERD
 
-<!-- TODO -->
+<!-- TODO add section content -->

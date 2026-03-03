@@ -18,7 +18,6 @@
     - [`docker run` useful flags](#docker-run-useful-flags)
   - [`docker ps`](#docker-ps)
     - [`docker ps` useful variants](#docker-ps-useful-variants)
-- [`Docker Compose`](#docker-compose)
 - [`DockerHub`](#dockerhub)
   - [`<your-dockerhub-username>`](#your-dockerhub-username)
 
@@ -72,7 +71,7 @@ A container is an isolated runtime for an application and its dependencies.
 
 ### Container ID
 
-<!-- TODO -->
+<!-- TODO add section content -->
 
 ## Set up `Docker`
 
@@ -165,10 +164,6 @@ docker run --name <container-name> -p <host-port>:<container-port> <image-name>
 
 - `docker ps` - only running containers.
 - `docker ps -a` - all containers (including stopped).
-
-## `Docker Compose`
-
-[`Docker Compose`](./docker-compose.md#what-is-docker-compose) runs multi-[container](#container) apps from a `docker-compose.yml` file.
 
 ## `DockerHub`
 

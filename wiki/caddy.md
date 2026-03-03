@@ -39,10 +39,10 @@ In this project, the [`Caddyfile`](#caddyfile) is at [`caddy/Caddyfile`](../cadd
 
 This configuration:
 
-- Reads the value of [`CADDY_CONTAINER_PORT`](./dotenv-docker-secret.md#caddy_container_port).
+- Reads the value of [`CADDY_CONTAINER_PORT`](./dotenv-docker-secret.md#caddy_container_port) in [`.env.docker.secret`](./dotenv-docker-secret.md#what-is-envdockersecret).
 - Makes `Caddy` [listen on the port](./computer-networks.md#listen-on-a-port) listen on this port inside a [`Docker` container](./docker.md#container).
 - [Serves frontend files](#caddy-serves-frontend-files)
-- [Forward requests to backend](#caddy-forwards-requests-to-backend)
+- [Forwards requests to backend](#caddy-forwards-requests-to-backend)
 
 ### `Caddy` serves frontend files
 
