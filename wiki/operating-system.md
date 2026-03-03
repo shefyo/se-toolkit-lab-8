@@ -80,7 +80,13 @@ They form the basis of multitasking in the operating system.
 
 ### Background process
 
-<!-- TODO -->
+A background process is a [process](#process) that runs without holding the terminal — the shell prompt returns immediately and the process continues running while it is not attached to any terminal session.
+
+You can start a background process in the [shell](./shell.md#what-is-a-shell) by appending `&` to a command:
+
+```terminal
+<command> &
+```
 
 ### PID
 
