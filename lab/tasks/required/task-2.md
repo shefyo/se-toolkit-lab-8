@@ -31,7 +31,7 @@ The back-end contains intentional bugs that you will discover and fix by writing
   - [1.4. Part B: Run end-to-end tests remotely](#14-part-b-run-end-to-end-tests-remotely)
     - [1.4.1. Create the environment file for end-to-end tests](#141-create-the-environment-file-for-end-to-end-tests)
     - [1.4.2. Run existing end-to-end tests](#142-run-existing-end-to-end-tests)
-    - [1.4.3. Add two end-to-end tests](#143-add-two-end-to-end-tests)
+    - [1.4.3. Add three end-to-end tests](#143-add-three-end-to-end-tests)
     - [1.4.4. Fix the bug](#144-fix-the-bug)
     - [1.4.5. Redeploy and rerun](#145-redeploy-and-rerun)
     - [1.4.6. Commit the fix](#146-commit-the-fix)
@@ -269,7 +269,7 @@ Title: `[Task] Back-end Testing`
 <!-- no toc -->
 - [1.4.1. Create the environment file for end-to-end tests](#141-create-the-environment-file-for-end-to-end-tests)
 - [1.4.2. Run existing end-to-end tests](#142-run-existing-end-to-end-tests)
-- [1.4.3. Add two end-to-end tests](#143-add-two-end-to-end-tests)
+- [1.4.3. Add three end-to-end tests](#143-add-three-end-to-end-tests)
 - [1.4.4. Fix the bug](#144-fix-the-bug)
 - [1.4.5. Redeploy and rerun](#145-redeploy-and-rerun)
 - [1.4.6. Commit the fix](#146-commit-the-fix)
@@ -315,14 +315,15 @@ Title: `[Task] Back-end Testing`
    ===================== 2 passed in X.XXs =====================
    ```
 
-#### 1.4.3. Add two end-to-end tests
+#### 1.4.3. Add three end-to-end tests
 
 1. [Open the file](../../../wiki/vs-code.md#open-the-file):
    [`backend/tests/e2e/test_interactions.py`](../../../backend/tests/e2e/test_interactions.py).
-2. Add two end-to-end tests that cover the following cases:
+2. Add three end-to-end tests that cover the following cases:
 
    - Test 1: `GET /interactions/` returns [`HTTP` status code](../../../wiki/http.md#http-response-status-code) `200`.
    - Test 2: `GET /interactions/` response items contain the expected fields (`id`, `item_id`, `created_at`).
+   - Test 3: `GET /interactions/?max_item_id=1` returns a non-empty list where every item has `item_id` less than or equal to `1`. This confirms the [Part A fix](#134-fix-the-bug) at the API level.
 
    <details><summary>Click to open the solution</summary>
 
@@ -342,6 +343,14 @@ Title: `[Task] Back-end Testing`
        assert "id" in data[0]
        assert "item_id" in data[0]
        assert "created_at" in data[0]
+
+
+   def test_get_interactions_filter_includes_boundary(client: httpx.Client) -> None:
+       response = client.get("/interactions/?max_item_id=1")
+       assert response.status_code == 200
+       data = response.json()
+       assert len(data) > 0
+       assert all(item["item_id"] <= 1 for item in data)
    ```
 
    </details>
@@ -354,13 +363,14 @@ Title: `[Task] Back-end Testing`
    uv run poe test-e2e
    ```
 
-4. Observe that both new tests fail.
+4. Observe that all three new tests fail.
 
    The output should be similar to this:
 
    ```terminal
    FAILED backend/tests/e2e/test_interactions.py::test_get_interactions_returns_200 - assert 500 == 200
    FAILED backend/tests/e2e/test_interactions.py::test_get_interactions_response_items_have_expected_fields - json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+   FAILED backend/tests/e2e/test_interactions.py::test_get_interactions_filter_includes_boundary - assert 500 == 200
    ```
 
    The `500` status code means the server encountered an internal error while building the response.
@@ -413,7 +423,7 @@ Title: `[Task] Back-end Testing`
    The output should be similar to this:
 
    ```terminal
-   ===================== 4 passed in X.XXs =====================
+   ===================== 5 passed in X.XXs =====================
    ```
 
 #### 1.4.6. Commit the fix
