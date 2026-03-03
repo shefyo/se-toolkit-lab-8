@@ -22,8 +22,7 @@ Outline:
 - [Edit files](#edit-files)
 - [Commit](#commit)
 - [(Optional) Undo commits](#optional-undo-commits)
-- [Publish the branch](#publish-the-branch)
-- [Push more commits](#push-more-commits)
+- [Push commits](#push-commits)
 - [Create a PR to the `main` branch in your fork](#create-a-pr-to-the-main-branch-in-your-fork)
 - [Get a PR review](#get-a-pr-review)
   - [PR review rules](#pr-review-rules)
@@ -68,13 +67,10 @@ We'll refer to the [new branch](#switch-to-a-new-branch) as `<task-branch>`.
 
 [Undo commits](./git-vscode.md#undo-commits) if necessary.
 
-## Publish the branch
+## Push commits
 
-[Publish the branch](./git-vscode.md#publish-the-branch) with your changes.
-
-## Push more commits
-
-[Push more commits](./git-vscode.md#push-more-commits) to the published branch if necessary.
+1. [Publish the branch](./git-vscode.md#publish-the-branch) with your changes.
+2. [Push more commits](./git-vscode.md#push-more-commits) to the published branch if necessary.
 
 ## Create a PR to the `main` branch in your fork
 
