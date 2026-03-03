@@ -653,7 +653,15 @@ Here are some [workspace settings](#workspace-settings) that you can change:
 
    See [`<file-path>`](./file-system.md#file-path).
 
-3. (`macOS` only) If the `code <file-path>` shows an error that the `code` command doesn't exist, [add `VS Code` to `PATH`](#macos-only-add-vs-code-to-path).
+   **Note:** the file will be created if it doesn't yet exist.
+
+3. <details><summary>Troubleshooting</summary>
+
+   <h4>(<code>macOS</code> only) <code>command code doesn't exist</code></h4>
+
+   [Add `VS Code` to `PATH`](#macos-only-add-vs-code-to-path).
+
+   </details>
 
 #### Open the file using a context menu
 
