@@ -71,7 +71,20 @@ A container is an isolated runtime for an application and its dependencies.
 
 ### Container ID
 
-<!-- TODO add section content -->
+A container ID is a unique string that `Docker` assigns to each [container](#container) when it is created.
+
+`Docker` commands use the container ID (or its short prefix) to target a specific container — for example, to stop or inspect it.
+
+You can view container IDs with [`docker ps`](#docker-ps).
+
+For example:
+
+```terminal
+CONTAINER ID   IMAGE     ...
+a3f5b9c2d1e4   my-app    ...
+```
+
+`a3f5b9c2d1e4` is the container ID (a short prefix of the full 64-character string).
 
 ## Set up `Docker`
 
