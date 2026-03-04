@@ -214,7 +214,8 @@ When a task specifies a commit message, provide it in a code block:
 ## 4.13. Diagrams
 
 - Use `.drawio.svg` format for editable diagrams (created with [draw.io](https://app.diagrams.net/)).
-- Store diagrams in `lab/images/`.
+- Store diagrams used in `wiki/` in `wiki/images/`; store diagrams used in `lab/` in `lab/images/`.
+- Docs in `lab/` may also reference images stored in `wiki/images/`.
 - Reference them with standard Markdown image syntax: `![Alt text](../images/diagram.drawio.svg)`.
 
 ## 4.14. `<!-- TODO -->` comments
