@@ -1,10 +1,10 @@
 ---
 name: review-file-by-conventions
-description: Review a task file for convention violations
+description: Review a file for convention violations
 argument-hint: "<path>"
 ---
 
-Review a single file for violations of the lab authoring conventions. The file must be under `lab/tasks/` or `wiki/`.
+Review a single file for problems — first conceptual and pedagogical issues, then convention violations. The file must be under `lab/tasks/` or `wiki/`.
 
 ## Steps
 
@@ -12,14 +12,15 @@ Review a single file for violations of the lab authoring conventions. The file m
 2. Read the target file.
 3. Read the convention files that apply to the target file:
    - **For `lab/tasks/` files:**
+     - `instructors/context/conventions/tasks.md` — Section 13 defines the ten review dimensions (D1–D10) for conceptual review; Section 3 and Section 12 define task structure and design principles for convention review
      - `instructors/context/conventions/common.md` — writing conventions (4.1–4.23)
-     - `instructors/context/conventions/tasks.md` — task structure (Section 3) and design principles (Section 12)
    - **For `wiki/` files:**
      - `instructors/context/conventions/common.md` — writing conventions (4.1–4.23)
      - `instructors/context/conventions/wiki.md` — wiki file structure and section patterns
-4. Go through the target file **line by line**. Check it against **every** convention in both files. Flag each violation with its line number.
-5. Scan for `<!-- TODO ... -->` comments. Report each one with its line number and the comment text.
-6. Scan for empty sections: a heading immediately followed by another heading, a `<!-- TODO ... -->` comment, or end of file, with no real content lines in between. Report each empty section with its line number and heading text.
+4. **Conceptual review** (only for `lab/tasks/` files): Analyse the file against each dimension (D1–D10) from Section 13 of `tasks.md`. For each problem found, record: the dimension, the line number(s) or section, a short description, severity (`[High]`, `[Medium]`, or `[Low]`), and a suggested fix.
+5. **Convention review**: Go through the target file **line by line**. Check it against **every** convention in the applicable convention files. Flag each violation with its line number.
+6. Scan for `<!-- TODO ... -->` comments. Report each one with its line number and the comment text.
+7. Scan for empty sections: a heading immediately followed by another heading, a `<!-- TODO ... -->` comment, or end of file, with no real content lines in between. Report each empty section with its line number and heading text.
 
 ## Rules
 
@@ -37,9 +38,10 @@ Write the report to `tmp/review-file-by-conventions/<repo-root-path>`, where `<r
 The report must be self-contained so another session or agent can act on it without extra context. Structure:
 
 1. **Header** — file path reviewed, date, convention files used.
-2. **Findings** — grouped by convention number (e.g., "4.2. Terminal commands", "Section 3. Task document structure"). Under each group, list findings as numbered items with line numbers. If a group has no findings, write "No issues found."
-3. **TODOs** — list every `<!-- TODO ... -->` comment with its line number and text. If none, write "No TODOs found."
-4. **Empty sections** — list every heading that has no content (only a TODO comment, another heading, or EOF follows). Include line number and heading text. If none, write "No empty sections found."
-5. **Summary** — total violation count (conventions + TODOs + empty sections) and a short overall assessment.
+2. **Conceptual findings** (only for `lab/tasks/` files) — grouped by dimension (D1–D10). Under each dimension, list findings as numbered items with severity, line number(s) or section, description, and suggested fix. If a dimension has no findings, write "No issues found."
+3. **Convention findings** — grouped by convention number (e.g., "4.2. Terminal commands", "Section 3. Task document structure"). Under each group, list findings as numbered items with line numbers. If a group has no findings, write "No issues found."
+4. **TODOs** — list every `<!-- TODO ... -->` comment with its line number and text. If none, write "No TODOs found."
+5. **Empty sections** — list every heading that has no content (only a TODO comment, another heading, or EOF follows). Include line number and heading text. If none, write "No empty sections found."
+6. **Summary** — total finding count (conceptual by severity + convention violations + TODOs + empty sections) and a short overall assessment.
 
 After writing the file, print its path in the conversation so the user can find it.
