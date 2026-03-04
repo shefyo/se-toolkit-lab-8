@@ -242,7 +242,7 @@ sequenceDiagram
     Student->>Caddy: GET / (opens app in browser)
     Caddy-->>Browser: index.html + JS bundle (static files)
     Note over Student,Browser: Student enters API key in the UI
-    Browser->>Browser: Save token to localStorage
+    Browser->>Browser: Save the key to localStorage
     Browser->>Caddy: GET /items (Authorization: Bearer <token>)
     Caddy->>API: Proxy GET /items
     API->>API: verify_api_key()
