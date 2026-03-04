@@ -1,8 +1,8 @@
-# Testing
+# Quality assurance
 
 <h2>Table of contents</h2>
 
-- [What is testing](#what-is-testing)
+- [What is quality assurance](#what-is-quality-assurance)
 - [Assertion](#assertion)
 - [Dynamic analysis](#dynamic-analysis)
 - [Static analysis](#static-analysis)
@@ -10,7 +10,7 @@
 - [Unit test](#unit-test)
 - [End-to-end test](#end-to-end-test)
 
-## What is testing
+## What is quality assurance
 
 Testing is the practice of verifying that software behaves as expected by running it with specific inputs and checking that the outputs match the expected results.
 

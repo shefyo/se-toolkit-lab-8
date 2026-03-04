@@ -6,7 +6,7 @@
 
 ## What is `.env.tests.e2e.secret`
 
-`.env.tests.e2e.secret` is an [`.env` file](./environments.md#env-file) that stores [environment variables](./environments.md#environment-variable) for running [end-to-end tests](./testing.md#end-to-end-tests).
+`.env.tests.e2e.secret` is an [`.env` file](./environments.md#env-file) that stores [environment variables](./environments.md#environment-variable) for running [end-to-end tests](./quality-assurance.md#end-to-end-tests).
 
 Default values: [`.env.tests.e2e.example`](../.env.tests.e2e.example)
 

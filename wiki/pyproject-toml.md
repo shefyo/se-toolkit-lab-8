@@ -24,7 +24,7 @@
 
 [`pyproject.toml`](../pyproject.toml) is the central configuration file for a [`Python`](./python.md#what-is-python) project. It defines project metadata, dependencies, and tool settings in [`TOML`](./file-formats.md#toml) format.
 
-In this project, `pyproject.toml` configures the application dependencies, development tools, a [task runner](#toolpoetasks), and [static analysis](./testing.md#static-analysis) tools.
+In this project, `pyproject.toml` configures the application dependencies, development tools, a [task runner](#toolpoetasks), and [static analysis](./quality-assurance.md#static-analysis) tools.
 
 Docs:
 
@@ -62,7 +62,7 @@ dev = [
 ```
 
 - **`poethepoet`** — the [task runner](#toolpoetasks) used to run predefined commands.
-- **`pyright`** — a [static analysis](./testing.md#static-analysis) type checker for `Python`.
+- **`pyright`** — a [static analysis](./quality-assurance.md#static-analysis) type checker for `Python`.
 - **`pytest`** — the [testing framework](./python.md#pytest).
 - **`ruff`** — a fast [linter](#toolrufflint) and [formatter](#poe-format) for `Python`.
 - **`ty`** — a type checker for `Python`.
@@ -77,7 +77,7 @@ Docs:
 
 ### Static analysis
 
-See [Static analysis](./testing.md#static-analysis).
+See [Static analysis](./quality-assurance.md#static-analysis).
 
 #### `poe check`
 
@@ -86,7 +86,7 @@ See [Static analysis](./testing.md#static-analysis).
 sequence = ["format", "lint", "typecheck"]
 ```
 
-Runs all [static analysis](./testing.md#static-analysis) tools in sequence: [`poe format`](#poe-format), [`poe lint`](#poe-lint), [`poe typecheck`](#poe-typecheck).
+Runs all [static analysis](./quality-assurance.md#static-analysis) tools in sequence: [`poe format`](#poe-format), [`poe lint`](#poe-lint), [`poe typecheck`](#poe-typecheck).
 
 #### `poe format`
 
@@ -117,7 +117,7 @@ Runs both type checkers (`ty` and `pyright`) in parallel.
 
 ### Dynamic analysis
 
-See [Dynamic analysis](./testing.md#dynamic-analysis).
+See [Dynamic analysis](./quality-assurance.md#dynamic-analysis).
 
 #### `poe test`
 
@@ -142,7 +142,7 @@ cmd = "pytest backend/tests/unit"
 envfile = ".env.tests.unit.secret"
 ```
 
-Runs [unit tests](./testing.md#unit-test) in `backend/tests/unit/` using [`pytest`](./python.md#pytest).
+Runs [unit tests](./quality-assurance.md#unit-test) in `backend/tests/unit/` using [`pytest`](./python.md#pytest).
 
 Uses [environment variables](./environments.md#environment-variable) from [`.env.tests.unit.secret`](./dotenv-tests-unit-secret.md#what-is-envtestsunitsecret).
 
@@ -154,7 +154,7 @@ cmd = "pytest backend/tests/e2e"
 envfile = ".env.tests.e2e.secret"
 ```
 
-Runs [end-to-end tests](./testing.md#end-to-end-test) in `backend/tests/e2e/` against the deployed API using [`pytest`](./python.md#pytest).
+Runs [end-to-end tests](./quality-assurance.md#end-to-end-test) in `backend/tests/e2e/` against the deployed API using [`pytest`](./python.md#pytest).
 
 Uses [environment variables](./environments.md#environment-variable) from [`.env.tests.e2e.secret`](./dotenv-tests-e2e-secret.md#what-is-envtestse2esecret).
 

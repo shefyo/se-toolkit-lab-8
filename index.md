@@ -33,7 +33,7 @@
   - [Shell](#shell)
   - [`SSH`](#ssh)
   - [Swagger](#swagger)
-  - [Testing](#testing)
+  - [Quality assurance](#quality-assurance)
   - [Useful programs](#useful-programs)
   - [Visualize the architecture](#visualize-the-architecture)
   - [VM](#vm)
@@ -197,7 +197,7 @@ Key setup, connecting to a VM, and common errors.
 
 `Swagger UI` for exploring and testing API endpoints.
 
-### [Testing](./wiki/testing.md)
+### [Quality assurance](./wiki/quality-assurance.md)
 
 What testing is, assertions, and links to language-specific testing guides.
 

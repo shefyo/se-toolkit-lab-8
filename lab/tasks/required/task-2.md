@@ -111,7 +111,7 @@ Title: `[Task] Back-end Testing`
 1. [Open the file](../../../wiki/vs-code.md#open-the-file):
    [`backend/tests/unit/test_interactions.py`](../../../backend/tests/unit/test_interactions.py).
 
-2. Add a new unit test that targets the following [boundary-value case](../../../wiki/testing.md#boundary-value-analysis):
+2. Add a new unit test that targets the following [boundary-value case](../../../wiki/quality-assurance.md#boundary-value-analysis):
 
    An interaction whose `item_id` is exactly equal to `max_item_id` — for example, `item_id=2` and `max_item_id=2`. This interaction should appear in the results because the filter condition is "less than or equal to."
 
@@ -155,7 +155,7 @@ Title: `[Task] Back-end Testing`
    - The test failed (`FAILED`).
    - The test is in the file `backend/tests/unit/test_interactions.py`.
    - The name of the failing test is `test_filter_includes_interaction_at_boundary`.
-   - The failed [assertion](../../../wiki/testing.md#assertion) is `assert 0 == 1` — the filter returned 0 interactions, but 1 was expected.
+   - The failed [assertion](../../../wiki/quality-assurance.md#assertion) is `assert 0 == 1` — the filter returned 0 interactions, but 1 was expected.
 
 #### 1.3.4. Fix the bug
 
@@ -281,7 +281,7 @@ Title: `[Task] Back-end Testing`
 - [1.4.7. Commit the fix](#147-commit-the-fix)
 
 > [!NOTE]
-> [End-to-end (E2E) tests](../../../wiki/testing.md#end-to-end-test) run on your local machine and send real [`HTTP` requests](../../../wiki/http.md#http-request) to the deployed version on the VM.
+> [End-to-end (E2E) tests](../../../wiki/quality-assurance.md#end-to-end-test) run on your local machine and send real [`HTTP` requests](../../../wiki/http.md#http-request) to the deployed version on the VM.
 >
 > In [Part A](#13-part-a-run-unit-tests-locally), a unit test caught a logic error inside a single function. Some bugs only appear when all components interact during a real request — for example, a mismatch between layers of the stack. End-to-end tests catch these integration-level failures.
 
