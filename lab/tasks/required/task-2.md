@@ -510,7 +510,11 @@ Title: `[Task] Back-end Testing`
 
 2. Give it this prompt:
 
-   > "Read the back-end source code under `backend/` and the existing unit tests in `backend/tests/unit/test_interactions.py`. Generate five new unit tests that cover edge cases and boundary values not already tested. Write them to a new file `backend/tests/unit/test_interactions_ai.py`."
+   > Read the back-end source code under `backend/` and the existing unit tests in `backend/tests/unit/test_interactions.py`.
+   >
+   > Generate ten new unit tests that cover edge cases and boundary values not already tested.
+   >
+   > Write them to a new file `backend/tests/unit/test_interactions_ai.py`.
 
 3. Wait for the agent to generate the tests.
 
