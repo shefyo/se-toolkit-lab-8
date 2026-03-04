@@ -21,7 +21,7 @@ The back-end contains intentional bugs that you will discover and fix by writing
   - [1.2. Create a `Lab Task` issue](#12-create-a-lab-task-issue)
   - [1.3. Part A: Run unit tests locally](#13-part-a-run-unit-tests-locally)
     - [1.3.1. Create the environment file for unit tests](#131-create-the-environment-file-for-unit-tests)
-    - [1.3.2. Run existing unit tests](#132-run-existing-unit-tests)
+    - [1.3.2. Run all unit tests](#132-run-all-unit-tests)
     - [1.3.3. Add a new unit test](#133-add-a-new-unit-test)
     - [1.3.4. Fix the bug](#134-fix-the-bug)
     - [1.3.5. Rerun unit tests](#135-rerun-unit-tests)
@@ -62,7 +62,7 @@ Title: `[Task] Back-end Testing`
 
 <!-- no toc -->
 - [1.3.1. Create the environment file for unit tests](#131-create-the-environment-file-for-unit-tests)
-- [1.3.2. Run existing unit tests](#132-run-existing-unit-tests)
+- [1.3.2. Run all unit tests](#132-run-all-unit-tests)
 - [1.3.3. Add a new unit test](#133-add-a-new-unit-test)
 - [1.3.4. Fix the bug](#134-fix-the-bug)
 - [1.3.5. Rerun unit tests](#135-rerun-unit-tests)
@@ -83,9 +83,9 @@ Title: `[Task] Back-end Testing`
    cp .env.tests.unit.example .env.tests.unit.secret
    ```
 
-#### 1.3.2. Run existing unit tests
+#### 1.3.2. Run all unit tests
 
-1. To run the existing unit tests,
+1. To run all unit tests,
 
    [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -93,7 +93,9 @@ Title: `[Task] Back-end Testing`
    uv run poe test-unit
    ```
 
-2. All existing tests should pass.
+   See [`poe test-unit`](../../../wiki/pyproject-toml.md#poe-test-unit).
+
+2. All tests should pass.
 
    The output should be similar to this:
 
@@ -311,6 +313,8 @@ Title: `[Task] Back-end Testing`
    ```terminal
    uv run poe test-e2e
    ```
+
+   See [`poe test-e2e`](../../../wiki/pyproject-toml.md#poe-test-e2e).
 
 2. All existing end-to-end tests should pass.
 
@@ -571,6 +575,8 @@ Title: `[Task] Back-end Testing`
    ```terminal
    uv run poe test
    ```
+
+   See [`poe test`](../../../wiki/pyproject-toml.md#poe-test).
 
 2. All tests (including the curated AI-generated ones) should pass.
 
