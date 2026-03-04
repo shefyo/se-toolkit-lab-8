@@ -39,7 +39,6 @@
   - [VM](#vm)
   - [Your VM image](#your-vm-image)
   - [`VS Code`](#vs-code)
-  - [Web development](#web-development)
 
 ## Lab tasks
 
@@ -220,7 +219,3 @@ Programs pre-installed on the lab VM image (`docker`, `uv`, `python`, `nix`, etc
 ### [`VS Code`](./wiki/vs-code.md)
 
 IDE layout, panels, the `Command Palette`, and editor features.
-
-### [Web development](./wiki/web-development.md)
-
-Web servers, REST APIs, `JSON`, and using `Swagger UI` to interact with endpoints.

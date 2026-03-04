@@ -10,6 +10,8 @@
     - [`Markdown` docs](#markdown-docs)
     - [`Markdown` in this project](#markdown-in-this-project)
     - [`Markdown` code block](#markdown-code-block)
+  - [`HTML`](#html)
+  - [`CSS`](#css)
   - [`JSON`](#json)
     - [`JSON` docs](#json-docs)
     - [`JSON` example](#json-example)
@@ -72,6 +74,14 @@ You see the rendered `HTML` when you [open the `Markdown` preview](./vs-code.md#
 - [`.github/pull_request_template.md`](../.github/pull_request_template.md) — [`GitHub` pull request](./github.md#pull-request) template.
 
 #### `Markdown` code block
+
+### `HTML`
+
+`HTML` (`HyperText Markup Language`) is the standard language for structuring content on the web. An `HTML` file defines the structure and content of a web page using tags.
+
+### `CSS`
+
+`CSS` (`Cascading Style Sheets`) is a language for styling `HTML` content — controlling layout, colors, fonts, and other visual properties.
 
 ### `JSON`
 

@@ -3,6 +3,9 @@
 <h2>Table of contents</h2>
 
 - [What is `HTTP`](#what-is-http)
+- [Web server and web client](#web-server-and-web-client)
+  - [Web server](#web-server)
+  - [Web client](#web-client)
 - [Communication using `HTTP`](#communication-using-http)
 - [`HTTP` request](#http-request)
   - [`HTTP` request method](#http-request-method)
@@ -12,9 +15,6 @@
 - [`HTTP` response](#http-response)
 - [`HTTP` response status code](#http-response-status-code)
 - [Common `HTTP` response status codes](#common-http-response-status-codes)
-- [Send a `GET` request](#send-a-get-request)
-  - [Send a `GET` request using a browser](#send-a-get-request-using-a-browser)
-  - [Send a `GET` request using `curl`](#send-a-get-request-using-curl)
   - [`200` (OK)](#200-ok)
   - [`201` (Created)](#201-created)
   - [`400` (Bad Request)](#400-bad-request)
@@ -23,14 +23,36 @@
   - [`404` (Not Found)](#404-not-found)
   - [`422` (Unprocessable Entity)](#422-unprocessable-entity)
   - [`500` (Internal Server Error)](#500-internal-server-error)
+- [Send a `GET` request](#send-a-get-request)
+  - [Send a `GET` request using a browser](#send-a-get-request-using-a-browser)
+  - [Send a `GET` request using `curl`](#send-a-get-request-using-curl)
 
 ## What is `HTTP`
 
-`HTTP` (`HyperText Transfer Protocol`) is the foundation of data communication on the web. This [protocol](./computer-networks.md#protocol) defines how messages are formatted and transmitted between [web servers and web clients](./web-development.md#web-server-and-web-client).
+`HTTP` (`HyperText Transfer Protocol`) is the foundation of data communication on the web. This [protocol](./computer-networks.md#protocol) defines how messages are formatted and transmitted between [web servers and web clients](#web-server-and-web-client).
+
+## Web server and web client
+
+### Web server
+
+A web server is software that delivers content or services to [web clients](#web-client) over the [Internet](./computer-networks.md#internet) using a [protocol](./computer-networks.md#protocol).
+
+> [!NOTE]
+> We refer to a web server as software only.
+>
+> Other sources may refer to it as hardware too.
+>
+> Example: [What is a web server](https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_web_server).
+
+### Web client
+
+A web client is software that requests content from a [web server](#web-server) and displays the received content.
+
+Web clients include [browsers](./useful-programs.md#browser) ([`Chrome`](./useful-programs.md#chrome), [`Firefox`](./useful-programs.md#firefox)) and command-line tools ([`curl`](./useful-programs.md#curl)).
 
 ## Communication using `HTTP`
 
-The following diagram illustrates the communication between a [web client](./web-development.md#web-client) and [web server](./web-development.md#web-server) using the `HTTP` protocol:
+The following diagram illustrates the communication between a [web client](#web-client) and [web server](#web-server) using the `HTTP` protocol:
 
 ```mermaid
 sequenceDiagram
