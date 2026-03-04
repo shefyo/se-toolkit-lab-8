@@ -47,20 +47,19 @@ Docs:
 
 ### Install `Node.js`
 
-1. To install the latest [`Node.js`](#what-is-nodejs) LTS version,
+1. To install [`Node.js`](#what-is-nodejs),
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   nvm install --lts
+   nvm install 25.7.0
    ```
 
 2. The output should be similar to this:
 
    ```terminal
-   Installing latest LTS version.
-   Downloading and installing node v22.14.0...
-   Now using node v22.14.0 (npm v10.9.2)
+   Downloading and installing node v25.7.0...
+   Now using node v25.7.0 (npm v11.10.1)
    ```
 
 3. To set this version as the default,
@@ -89,6 +88,7 @@ Complete these steps:
 ### Install `Node.js` and dependencies
 
 1. [Open in `VS Code` the project directory](./vs-code.md#open-the-directory).
+
 2. To install project dependencies,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
@@ -123,5 +123,5 @@ Complete these steps:
 2. The output should be similar to this:
 
    ```terminal
-   v22.14.0
+   v25.7.0
    ```
