@@ -71,7 +71,7 @@ Alternatively, the name of that branch (without `<` and `>`).
 
 ## Push commits
 
-1. [Publish the branch](./git-vscode.md#publish-the-branch) with your changes.
+1. [Publish the branch](./git-vscode.md#publish-the-branch) with your changes if it's not yet published.
 2. [Push more commits](./git-vscode.md#push-more-commits) to the published branch if necessary.
 
 ## Create a PR to the `main` branch in your fork
