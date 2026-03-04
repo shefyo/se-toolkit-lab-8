@@ -25,6 +25,7 @@
   - [12.19. Step checkpoints](#1219-step-checkpoints)
   - [12.20. Recovery guidance](#1220-recovery-guidance)
   - [12.21. Controlled task environment](#1221-controlled-task-environment)
+  - [12.22. Autochecker-verifiable outcomes](#1222-autochecker-verifiable-outcomes)
 - [13. Conceptual review dimensions](#13-conceptual-review-dimensions)
   - [D1. Learning objective clarity](#d1-learning-objective-clarity)
   - [D2. Step-by-step completeness](#d2-step-by-step-completeness)
@@ -37,6 +38,7 @@
   - [D9. Git workflow coherence](#d9-git-workflow-coherence)
   - [D10. Conceptual gaps and misconceptions](#d10-conceptual-gaps-and-misconceptions)
   - [D11. Controlled AI steps](#d11-controlled-ai-steps)
+  - [D12. Autochecker verifiability](#d12-autochecker-verifiability)
 - [15. Testing pattern](#15-testing-pattern)
 - [17. Checklist before publishing](#17-checklist-before-publishing)
 
@@ -451,6 +453,22 @@ This principle extends to AI-assisted steps. When a task requires students to us
 
 Together with [step checkpoints](#1219-step-checkpoints), a controlled environment guarantees that every student who follows the instructions reaches the same verified state at the end of each step — making lab completion predictable and reviewer-verifiable.
 
+### 12.22. Autochecker-verifiable outcomes
+
+Every acceptance criterion must be verifiable by the autochecker — not just by a human reviewer. Design task outcomes with automated checking in mind from the start.
+
+The autochecker is a program that verifies outcomes through two channels:
+
+- **Repository checks:** Fetches data from the `GitHub` repository — PR exists, is approved, is merged; issue has the correct title; CI checks pass.
+- **VM checks:** Connects to the student's VM via an unprivileged `SSH` connection and runs commands — checks running containers, accessible ports, expected process state, and file contents.
+
+Rules for autochecker-compatible criteria:
+
+- Every criterion must map to a concrete, machine-checkable condition.
+- Avoid open-ended deliverables such as "write a short paragraph" or "describe your findings." Replace them with structured deliverables: a file at a known path, exact expected values in a questionnaire, or a state observable via `SSH`.
+- For file-content checks, constrain the answer format to a single value per field, an exact string, or a regex-matchable pattern — not free text.
+- When a criterion is about understanding (e.g., "student explains X"), replace it with a verifiable proxy: a questionnaire answer, a file at a specific path, or a commit with a required message format.
+
 ---
 
 ## 13. Conceptual review dimensions
@@ -531,6 +549,12 @@ When a task includes AI-assisted steps:
 - Is there a checkpoint specifying what correct AI output looks like or how to verify it?
 - If AI output is variable, is there a concrete acceptance criterion the student must satisfy regardless of what the AI produced?
 
+### D12. Autochecker verifiability
+
+- Does every acceptance criterion map to a condition the autochecker can verify (repository state, VM state, or file content)?
+- Are there open-ended deliverables (free-text paragraphs, vague "describe X") that cannot be checked automatically?
+- Are file-content answers constrained to a single value, exact string, or regex-matchable pattern?
+
 ---
 
 ## 15. Testing pattern
@@ -583,6 +607,7 @@ When a task includes AI-assisted steps:
 - [ ] Tool/concept names are wrapped in backticks: `` `VS Code` ``, `` `Git` ``, `` `Docker` ``.
 - [ ] `Git workflow` is referenced from tasks that produce code changes.
 - [ ] Acceptance criteria are concrete and verifiable.
+- [ ] Every acceptance criterion maps to an autochecker-verifiable condition (repository state, VM state, or file content).
 - [ ] Commit message format is documented (conventional commits).
 - [ ] Setup instructions cover: fork, clone, install tools, configure environment.
 - [ ] Branch protection rules are documented.
