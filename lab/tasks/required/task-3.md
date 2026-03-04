@@ -28,7 +28,7 @@ Finally, you will use an AI agent to add a new feature to the front-end.
     - [1.4.1. Deploy the front-end to the VM](#141-deploy-the-front-end-to-the-vm)
     - [1.4.2. Verify in the browser](#142-verify-in-the-browser)
   - [1.5. Part C: Modify the front-end with an AI agent](#15-part-c-modify-the-front-end-with-an-ai-agent)
-    - [1.5.1. Add a `description` column](#151-add-a-description-column)
+    - [1.5.1. Add a type filter](#151-add-a-type-filter)
     - [1.5.2. Verify in the dev server](#152-verify-in-the-dev-server)
     - [1.5.3. Deploy the change to the VM](#153-deploy-the-change-to-the-vm)
   - [1.6. Finish the task](#16-finish-the-task)
@@ -221,7 +221,7 @@ Title: `[Task] Add Front-end`
 ### 1.5. Part C: Modify the front-end with an AI agent
 
 <!-- no toc -->
-- [1.5.1. Add a `description` column](#151-add-a-description-column)
+- [1.5.1. Add a type filter](#151-add-a-type-filter)
 - [1.5.2. Verify in the dev server](#152-verify-in-the-dev-server)
 - [1.5.3. Deploy the change to the VM](#153-deploy-the-change-to-the-vm)
 
@@ -229,37 +229,31 @@ Title: `[Task] Add Front-end`
 > The AI agent can read all front-end source files and find the right component to modify.
 > Your job is to write a clear prompt and verify that the result is correct.
 
-#### 1.5.1. Add a `description` column
+#### 1.5.1. Add a type filter
 
-1. Verify that the API response includes a `description` field. Complete these steps:
+1. Open the AI agent in the `frontend/` directory.
 
-   1. Open the browser developer tools (press `F12`).
-   2. Go to the `Network` tab and refresh the front-end page.
-   3. Click on the `/items` request and inspect the response body.
+2. Write a prompt that instructs the agent to add a dropdown that filters table rows by type. A good prompt tells the agent:
 
-   Verify that each item includes a `description` field with a non-empty value.
-
-2. Open the AI agent in the `frontend/` directory.
-
-3. Write a prompt that instructs the agent to add a `description` column to the data table. A good prompt tells the agent:
-
-   - Which column to add.
-   - Where the data comes from (the API response).
-   - Which parts of the component to update (the table header and each row).
+   - What the dropdown should list (unique types from the loaded items, plus an `All` option).
+   - What happens when a type is selected (only rows with that type are shown).
+   - What happens when `All` is selected (all rows are shown).
+   - Where to place the dropdown (above the table).
 
    <details><summary>Hint: example prompt</summary>
 
-   > "Add a `description` column to the data table. The API already returns this field. Add it to the table header and display the value in each row."
+   > "Add a filter dropdown above the table that lists all unique item types plus an 'All' option. When a type is selected, only rows with that type are shown. When 'All' is selected, all rows are shown. Derive the list of types from the loaded items — do not hardcode them."
 
    </details>
 
-4. Wait for the agent to make the changes.
+3. Wait for the agent to make the changes.
 
-5. Review the changes the agent made. Verify that all of the following are true:
+4. Review the changes the agent made. Verify that all of the following are true:
 
-   - `description: string` is added to the `Item` interface.
-   - A `Description` header is added to the table.
-   - Each row displays `item.description`.
+   - A `useState` hook tracks the selected type.
+   - A `<select>` dropdown lists unique types derived from `items`, with an `All` option.
+   - The table rows are filtered to show only the selected type (or all rows when `All` is selected).
+   - The dropdown is placed above the table.
 
    If any of these are missing or incorrect, prompt the agent again to fix the specific issue.
 
@@ -268,9 +262,10 @@ Title: `[Task] Add Front-end`
    If the AI agent is not available, make the changes manually:
 
    1. Open the file [`frontend/src/App.tsx`](../../../frontend/src/App.tsx) ([how to open a file](../../../wiki/vs-code.md#open-the-file)).
-   2. Add `description: string` to the `Item` interface.
-   3. Add a `Description` header to the table.
-   4. Add a cell that displays `item.description` in each row.
+   2. Add a `useState` hook for the selected type, initialized to `'All'`.
+   3. Derive the list of unique types from `items`.
+   4. Add a `<select>` dropdown above the table that lists `All` and each unique type.
+   5. Filter the rows displayed in the table by the selected type.
 
    </details>
 
@@ -279,7 +274,7 @@ Title: `[Task] Add Front-end`
 1. Check that the dev server is still running (or restart it with `npm run dev`).
 2. Open the front-end in the browser.
 
-   Verify that the new column appears in the table.
+   Verify that the filter dropdown appears above the table and filters rows correctly.
 
 > [!NOTE]
 > The dev server picks up the changes automatically — no rebuild is needed.
@@ -291,14 +286,14 @@ Title: `[Task] Add Front-end`
    Use the following commit message:
 
    ```text
-   feat: add description column to the front-end table
+   feat: add type filter to the front-end table
 
-   - Add `description: string` to the `Item` interface in `App.tsx`
-   - Add `Description` header to the table
-   - Display `item.description` in each row
+   - Add filter dropdown with unique types derived from items
+   - Show all items when "All" is selected
+   - Filter table rows client-side by selected type
    ```
 
-2. [Push your changes](../../../wiki/git-workflow.md#push-more-commits).
+2. [Push your changes](../../../wiki/git-workflow.md#push-commits).
 3. [Connect to your VM](../../../wiki/vm.md#connect-to-the-vm).
 4. To navigate to the project directory,
 
@@ -318,7 +313,7 @@ Title: `[Task] Add Front-end`
 
    Replace [`<task-branch>`](../../../wiki/git-workflow.md#task-branch).
 
-   **Note:** The VM's repository is currently on `main` from Part B. This switches it to your task branch to get the `description` column changes you just pushed.
+   **Note:** The VM's repository is currently on `main` from Part B. This switches it to your task branch to get the type filter changes you just pushed.
 
 6. To rebuild and restart the `caddy` service,
 
@@ -356,13 +351,13 @@ Title: `[Task] Add Front-end`
    - [`<your-vm-ip-address>`](../../../wiki/vm.md#your-vm-ip-address)
    - [`<caddy-port>`](../../../wiki/caddy.md#caddy-port)
 
-   Verify the new column appears in the production build.
+   Verify the filter dropdown appears and works in the production build.
 
 ### 1.6. Finish the task
 
 1. [Create a PR](../../../wiki/git-workflow.md#create-a-pr-to-the-main-branch-in-your-fork) with your changes.
 
-   In the PR description, include a screenshot of the front-end table showing the `description` column.
+   In the PR description, include a screenshot of the front-end table with the type filter in use (a type selected, rows filtered).
 
 2. [Get a PR review](../../../wiki/git-workflow.md#get-a-pr-review) and complete the subsequent steps in the `Git workflow`.
 
@@ -371,8 +366,8 @@ Title: `[Task] Add Front-end`
 ## 2. Acceptance criteria
 
 - [ ] Issue has the correct title.
-- [ ] `description: string` is added to the `Item` interface in `frontend/src/App.tsx`.
-- [ ] A `Description` column header and row cell are present in the table in `frontend/src/App.tsx`.
-- [ ] The PR description includes a screenshot of the front-end table showing the `description` column.
+- [ ] A filter dropdown is present in `frontend/src/App.tsx` that filters rows by `type`.
+- [ ] The dropdown includes an option to show all items.
+- [ ] The PR description includes a screenshot of the front-end table with the type filter in use (a type selected, rows filtered).
 - [ ] PR is approved.
 - [ ] PR is merged.
