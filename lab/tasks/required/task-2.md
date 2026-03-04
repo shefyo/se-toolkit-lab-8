@@ -555,6 +555,11 @@ Title: `[Task] Back-end Testing`
 
 2. All tests (including the curated AI-generated ones) should pass.
 
+> [!NOTE]
+> If a test fails, decide whether the test or the implementation is wrong.
+> If the test is flawed, go back to [1.5.2](#152-review-and-curate-the-tests) and fix or discard it.
+> If the test reveals a real bug, fix the implementation.
+
 #### 1.5.4. Commit the curated tests
 
 1. [Commit](../../../wiki/git-workflow.md#commit) your changes.
