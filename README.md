@@ -36,7 +36,7 @@ Read the tasks and complete them by yourself.
 
 When stuck or not sure, ask the [AI coding agent](./wiki/coding-agents.md#what-is-a-coding-agent).
 
-Use appropriate [prompts](./wiki/lab.md#prompts-for-ai-agents).
+Use appropriate [prompts](./wiki/lab.md#prompts-for-coding-agents).
 
 Remember: Use the LLM to enhance your understanding, not replace it.
 
