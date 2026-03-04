@@ -68,7 +68,6 @@ In simple words, you should be able to say:
 ### Prerequisites
 
 1. Complete the [lab setup](./lab/tasks/setup.md)
-2. Set up an [AI coding agent](./wiki/coding-agents.md)
 
 ### Required
 
