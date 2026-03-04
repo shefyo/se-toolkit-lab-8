@@ -1,26 +1,26 @@
 # Wiki conventions — applies to `wiki/` only
 
-- [7. Wiki documents (`wiki/`)](#7-wiki-documents-wiki)
-  - [Purpose](#purpose)
-  - [Naming](#naming)
-  - [Structure of a wiki file](#structure-of-a-wiki-file)
-  - [Key rules](#key-rules)
-  - [Standard wiki topics to include](#standard-wiki-topics-to-include)
-- [12.13. `vs-code.md` section structure pattern](#1213-vs-codemd-section-structure-pattern)
-- [17. Checklist before publishing](#17-checklist-before-publishing)
+- [1. Wiki documents (`wiki/`)](#1-wiki-documents-wiki)
+  - [1.1. Purpose](#11-purpose)
+  - [1.2. Naming](#12-naming)
+  - [1.3. Structure of a wiki file](#13-structure-of-a-wiki-file)
+  - [1.4. Key rules](#14-key-rules)
+  - [1.5. Standard wiki topics to include](#15-standard-wiki-topics-to-include)
+- [2. `vs-code.md` section structure pattern](#2-vs-codemd-section-structure-pattern)
+- [3. Checklist before publishing](#3-checklist-before-publishing)
 
-## 7. Wiki documents (`wiki/`)
+## 1. Wiki documents (`wiki/`)
 
-### Purpose
+### 1.1. Purpose
 
 Wiki files are **reference documents** — one file per tool or concept. They are linked from task docs whenever a concept or operation is first mentioned.
 
-### Naming
+### 1.2. Naming
 
 - One file per tool/concept: `vs-code.md`, `git.md`, `docker.md`, `python.md`, `shell.md`, etc.
 - Use lowercase with hyphens.
 
-### Structure of a wiki file
+### 1.3. Structure of a wiki file
 
 ```markdown
 # <Tool or Concept Name>
@@ -46,7 +46,7 @@ Docs:
 ...
 ```
 
-### Key rules
+### 1.4. Key rules
 
 - Each section is self-contained and linkable (task docs link to `wiki/<file>.md#<section>`).
 - Start every wiki file with a `## What is <tool or concept>` section that defines the tool/concept in 1–3 sentences and includes a link to official docs. The heading may use natural phrasing (articles, singular/plural) that differs from the H1 title — e.g., `# Computer Networks` → `## What is a computer network`.
@@ -58,7 +58,7 @@ Docs:
 - Vendor instructions that aren't good enough anywhere else (e.g., rewrite unclear official docs).
 - Provide fallback methods when one method may not work for all students.
 
-### Standard wiki topics to include
+### 1.5. Standard wiki topics to include
 
 Depending on the lab, consider creating wiki files for:
 
@@ -105,7 +105,7 @@ Depending on the lab, consider creating wiki files for:
 
 ----
 
-## 12.13. `vs-code.md` section structure pattern
+## 2. `vs-code.md` section structure pattern
 
 Each section in `vs-code.md` should follow this pattern (other wiki files use the simpler "What is" + "Docs:" structure described above):
 
@@ -134,7 +134,7 @@ This provides: what it is, where to find it, official docs, and how to use it.
 
 ----
 
-## 17. Checklist before publishing
+## 3. Checklist before publishing
 
 **Always required:**
 
