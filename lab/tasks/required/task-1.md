@@ -43,13 +43,9 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
 >
 > they should also create a branch.
 >
-> may be check issue body
->
 > Break line at the end of all curl commands json
 >
-> Load test the api to make it robust enough to handle the load by students
->
-> Give hints how to provide prompts where plausible, with the "planning", "step-by-step", "explain" bit in it.
+> Give hints how to provide prompts where plausible, with the "planning", "step-by-step", "explain" bit in it. May be provide example or some guidelines on how to ask llm agent in an effective eduactional manner.
 
 > We follow the usual [`Git workflow`](../../../wiki/git-workflow.md) to complete all tasks.
 
