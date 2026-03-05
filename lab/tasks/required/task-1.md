@@ -91,7 +91,7 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
    run in the `VS Code Terminal`:
 
    ```terminal
-   curl -u <your-email>@innopolis.university:<your-password> "https://auche.namaz.live/api/logs?limit=5"
+   curl -u <your-email>@innopolis.university:<your-github-username><your-telegram-alias> "https://auche.namaz.live/api/logs?limit=5"
    ```
 
    You should see a JSON object with a `logs` array:
@@ -131,7 +131,7 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
    run in the `VS Code Terminal`:
 
    ```terminal
-   curl -u <your-email>@innopolis.university:<your-password> "https://auche.namaz.live/api/logs?since=2026-03-01T00:00:00Z&limit=5"
+   curl -u <your-email>@innopolis.university:<your-github-username><your-telegram-alias> "https://auche.namaz.live/api/logs?since=2026-03-01T00:00:00Z&limit=5"
    ```
 
    You should see only logs submitted after March 1st 2026.
