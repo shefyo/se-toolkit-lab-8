@@ -77,6 +77,7 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
 
    > [!NOTE]
    > Items with `"type": "lab"` are labs. Items with `"type": "task"` have a non-null `task` field and belong to the lab specified in the `lab` field.
+   > 
    > You can paste the response in an [online JSON viewer](https://jsonformatter.org/) and press beautify to view it properly.
 #### 1.2.2. Fetch check logs
 
