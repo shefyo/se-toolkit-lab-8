@@ -312,29 +312,31 @@ This is an important step that will make your life easier. The agent we will use
 1. Create an account in [Qwen Chat](https://chat.qwen.ai/?mode=register)
 2. Install `Qwen code` on your local machine.
 
-Linux / macOS:
-```bash
-curl -fsSL https://qwen-code-assets.oss-cn-hangzhou.aliyuncs.com/installation/install-qwen.sh | bash
-```
-
-Windows (Run as Administrator CMD):
-```cmd
-curl -fsSL -o %TEMP%\install-qwen.bat https://qwen-code-assets.oss-cn-hangzhou.aliyuncs.com/installation/install-qwen.bat && %TEMP%\install-qwen.bat
-```
-
-> **Note**: It's recommended to restart your terminal after installation to ensure environment variables take effect.
+  Linux / macOS:
+  ```bash
+  curl -fsSL https://qwen-code-assets.oss-cn-hangzhou.aliyuncs.com/installation/install-qwen.sh | bash
+  ```
+  
+  Windows (Run as Administrator CMD):
+  ```cmd
+  curl -fsSL -o %TEMP%\install-qwen.bat https://qwen-code-assets.oss-cn-hangzhou.aliyuncs.com/installation/install-qwen.bat && %TEMP%\install-qwen.bat
+  ```
+  
+  > **Note**: It's recommended to restart your terminal after installation to ensure environment variables take effect.
 
 3. Now launch `Qwen code` in Terminal on your laptop:
-```terminal
-qwen
-```
-
-And authenticate with your Qwen Chat OAuth option following the instructions.
-
-You can now ask it, for example:
-> What is this lab supposed to teach me.
-
-It is my personal preference to use terminal version of the agent, yet there are other ways to use it as an VS Code extension, read more here if interested: [AI coding agent setup](../../wiki/coding-agents.md)
+  ```terminal
+  qwen
+  ```
+  
+  And authenticate with your Qwen Chat OAuth option following the instructions.
+  
+  You can now ask it, for example:
+  ```
+  What is this lab supposed to teach me.
+  ```
+  
+  > [!Note] It is my personal preference to use terminal version of the agent, yet there are other ways to use it as an VS Code extension, read more here if interested: [AI coding agent setup](../../wiki/coding-agents.md)
 
 ----
 
