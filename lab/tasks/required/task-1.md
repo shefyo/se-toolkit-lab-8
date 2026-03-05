@@ -38,7 +38,8 @@ The code stubs in [`backend/app/etl.py`](../../../backend/app/etl.py) contain de
 ### 1.1. Create an issue
 
 Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
-<TODO> they should also create a branch right</TODO>
+
+> [!TODO:] they should also create a branch right.
 
 > We follow the usual [`Git workflow`](../../../wiki/git-workflow.md) to complete all tasks.
 
