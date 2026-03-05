@@ -305,6 +305,37 @@ We refer to your fork as `fork` and to the original repo as `upstream` (выше
 1. Open in `Telegram`: <https://t.me/auchebot>.
 2. Start the bot and enter your email, github alias, and VM IP.
 
+### 1.8 Set up `Qwen Code` coding agent
+
+This is an important step that will make your life easier. The agent we will use is `Qwen Code`. There are better coding agents, but this one works in Russia without VPN and has a free tier.
+
+1. Create an account in [Qwen Chat](https://chat.qwen.ai/?mode=register)
+2. Install `Qwen code` on your local machine.
+
+Linux / macOS:
+```bash
+curl -fsSL https://qwen-code-assets.oss-cn-hangzhou.aliyuncs.com/installation/install-qwen.sh | bash
+```
+
+Windows (Run as Administrator CMD):
+```cmd
+curl -fsSL -o %TEMP%\install-qwen.bat https://qwen-code-assets.oss-cn-hangzhou.aliyuncs.com/installation/install-qwen.bat && %TEMP%\install-qwen.bat
+```
+
+> **Note**: It's recommended to restart your terminal after installation to ensure environment variables take effect.
+
+3. Now launch `Qwen code` in Terminal on your laptop:
+```terminal
+qwen
+```
+
+And authenticate with your Qwen Chat OAuth option following the instructions.
+
+You can now ask it, for example:
+> What is this lab supposed to teach me.
+
+It is my personal preference to use terminal version of the agent, yet there are other ways to use it as an VS Code extension, read more here if interested: [AI coding agent setup](../../wiki/coding-agents.md)
+
 ----
 
 🎉 Congrats! You are done with the setup! Now the tasks should go smoothly.
