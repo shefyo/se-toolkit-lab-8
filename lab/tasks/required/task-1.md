@@ -12,53 +12,51 @@ Build an ETL pipeline that fetches data from an external API and loads it into t
 
 The database starts empty. The autochecker dashboard API provides anonymized check results for all students across all labs. Your job is to build a pipeline that fetches this data and populates the local database so the system can serve it through existing endpoints and power analytics in the next task.
 
-The code stubs in [`backend/app/etl.py`](../../../backend/app/etl.py) contain detailed TODOs. You will use an AI coding agent to implement the pipeline functions.
-
 <h4>Table of contents</h4>
 
 - [1. Steps](#1-steps)
-  - [1.1. Follow the `Git workflow`](#11-follow-the-git-workflow)
-  - [1.2. Create a `Lab Task` issue](#12-create-a-lab-task-issue)
-  - [1.3. Part A: Explore the API](#13-part-a-explore-the-api)
-    - [1.3.1. Fetch the item catalog](#131-fetch-the-item-catalog)
-    - [1.3.2. Fetch check logs](#132-fetch-check-logs)
-    - [1.3.3. Test incremental sync](#133-test-incremental-sync)
-  - [1.4. Part B: Build the pipeline](#14-part-b-build-the-pipeline)
-    - [1.4.1. Read the code stubs](#141-read-the-code-stubs)
-    - [1.4.2. Implement the pipeline](#142-implement-the-pipeline)
-    - [1.4.3. Deploy and test](#143-deploy-and-test)
-    - [1.4.4. Verify the data](#144-verify-the-data)
-    - [1.4.5. Test idempotency](#145-test-idempotency)
-    - [1.4.6. Commit your work](#146-commit-your-work)
-  - [1.5. Finish the task](#15-finish-the-task)
+  - [1.1. Follow the usual `Git workflow`](#11-follow-the-usual-git-workflow)
+  - [1.2. Part A: Explore the API](#12-part-a-explore-the-api)
+    - [1.2.1. Fetch the item catalog](#121-fetch-the-item-catalog)
+    - [1.2.2. Fetch check logs](#122-fetch-check-logs)
+    - [1.2.3. Test incremental sync](#123-test-incremental-sync)
+  - [1.3. Part B: Build the pipeline](#13-part-b-build-the-pipeline)
+    - [1.3.1. Read the code stubs](#131-read-the-code-stubs)
+    - [1.3.2. Implement the pipeline](#132-implement-the-pipeline)
+    - [1.3.3. Deploy and test](#133-deploy-and-test)
+    - [1.3.4. Verify the data](#134-verify-the-data)
+    - [1.3.5. Test idempotency](#135-test-idempotency)
+    - [1.3.6. Commit your work](#136-commit-your-work)
+  - [1.4. Finish the task](#14-finish-the-task)
+  - [1.5. Check the task using the autochecker](#15-check-the-task-using-the-autochecker)
 - [2. Acceptance criteria](#2-acceptance-criteria)
 
 ## 1. Steps
 
-### 1.1. Create an issue
+### 1.1. Follow the usual [`Git workflow`](../../../wiki/git-workflow.md)
 
-Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
+1. Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`.
+2. Create a task branch from `main` and switch to it.
 
-> [!TODO:]
->
-> they should also create a branch.
->
-> Break line at the end of all curl commands json
->
-> Give hints how to provide prompts where plausible, with the "planning", "step-by-step", "explain" bit in it. May be provide example or some guidelines on how to ask llm agent in an effective eduactional manner.
+   Suggested branch name format: `task/<issue-number>-<short-title>`.
+   Example: `task/42-build-data-pipeline`.
 
-> We follow the usual [`Git workflow`](../../../wiki/git-workflow.md) to complete all tasks.
+   Why this format:
+   - The issue number makes branch-to-issue mapping immediate.
+   - The short title makes branch purpose clear in PR lists and `Git` history.
+   - The pattern reduces naming collisions across the team.
 
 ### 1.2. Part A: Explore the API
 
 <!-- no toc -->
-- [1.3.1. Fetch the item catalog](#131-fetch-the-item-catalog)
-- [1.3.2. Fetch check logs](#132-fetch-check-logs)
-- [1.3.3. Test incremental sync](#133-test-incremental-sync)
+- [1.2.1. Fetch the item catalog](#121-fetch-the-item-catalog)
+- [1.2.2. Fetch check logs](#122-fetch-check-logs)
+- [1.2.3. Test incremental sync](#123-test-incremental-sync)
 
 > [!NOTE]
-> Before writing any code, lets explore the autochecker API with `curl` to understand the data format.
-> The API uses HTTP Basic Auth — your <email> as the username and `<your-github-username><your-telegram-alias>` as the password.
+> Before writing any code, let's explore the autochecker API with `curl` to understand the data format.
+> The API uses HTTP Basic Auth: `<your-email>` as the username and `<your-password>` as the password.
+> Here, `<your-password>` is `<your-github-username><your-telegram-alias>`.
 
 #### 1.2.1. Fetch the item catalog
 
@@ -67,10 +65,12 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
    run in the `VS Code Terminal`:
 
    ```terminal
-   curl -u <your-email>@innopolis.university:<your-github-username><your-telegram-alias> https://auche.namaz.live/api/items
+   curl \
+     -u <your-email>@innopolis.university:<your-password> \
+     "https://auche.namaz.live/api/items"
    ```
 
-   Replace `<your-email>` and `<your-github-username><your-telegram-alias>` (must be same as you entered in autochecker bot).
+   Replace `<your-email>` and `<your-password>` with your autochecker credentials.
 
    You should see a JSON array of lab and task objects:
 
@@ -82,10 +82,9 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
    ]
    ```
 
-   > [!NOTE]
-   > Items with `"type": "lab"` are labs. Items with `"type": "task"` have a non-null `task` field and belong to the lab specified in the `lab` field.
-   > 
-   > You can paste the response in an [online JSON viewer](https://jsonformatter.org/) and press beautify to view it properly.
+> [!NOTE]
+> Items with `"type": "lab"` are labs. Items with `"type": "task"` have a non-null `task` field and belong to the lab specified in the `lab` field.
+> If your terminal shows JSON in one long line, you can format the output using an [online JSON viewer](https://jsonformatter.org/).
 
 #### 1.2.2. Fetch check logs
 
@@ -94,7 +93,9 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
    run in the `VS Code Terminal`:
 
    ```terminal
-   curl -u <your-email>@innopolis.university:<your-github-username><your-telegram-alias> "https://auche.namaz.live/api/logs?limit=5"
+   curl \
+     -u <your-email>@innopolis.university:<your-password> \
+     "https://auche.namaz.live/api/logs?limit=5"
    ```
 
    You should see a JSON object with a `logs` array:
@@ -127,14 +128,16 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
    > - `score` is a percentage (0.0–100.0).
    > - `passed`, `failed`, and `total` are the number of individual checks.
 
-#### 1.3.3. Test incremental sync
+#### 1.2.3. Test incremental sync
 
 1. To fetch only recent logs,
 
    run in the `VS Code Terminal`:
 
    ```terminal
-   curl -u <your-email>@innopolis.university:<your-github-username><your-telegram-alias> "https://auche.namaz.live/api/logs?since=2026-03-01T00:00:00Z&limit=5"
+   curl \
+     -u <your-email>@innopolis.university:<your-password> \
+     "https://auche.namaz.live/api/logs?since=2026-03-01T00:00:00Z&limit=5"
    ```
 
    You should see only logs submitted after March 1st 2026.
@@ -143,17 +146,19 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
    > The `since` parameter enables incremental sync — you can fetch new data each time.
    > Your pipeline will use the most recent `submitted_at` from the database as the `since` value.
 
-### 1.4. Part B: Build the pipeline
+### 1.3. Part B: Build the pipeline
 
 <!-- no toc -->
-- [1.4.1. Read the code stubs](#141-read-the-code-stubs)
-- [1.4.2. Implement the pipeline](#142-implement-the-pipeline)
-- [1.4.3. Deploy and test](#143-deploy-and-test)
-- [1.4.4. Verify the data](#144-verify-the-data)
-- [1.4.5. Test idempotency](#145-test-idempotency)
-- [1.4.6. Commit your work](#146-commit-your-work)
+- [1.3.1. Read the code stubs](#131-read-the-code-stubs)
+- [1.3.2. Implement the pipeline](#132-implement-the-pipeline)
+- [1.3.3. Deploy and test](#133-deploy-and-test)
+- [1.3.4. Verify the data](#134-verify-the-data)
+- [1.3.5. Test idempotency](#135-test-idempotency)
+- [1.3.6. Commit your work](#136-commit-your-work)
 
-#### 1.4.1. Read the code stubs
+#### 1.3.1. Read the code stubs
+
+The code stubs in `backend/app/etl.py` contain detailed TODOs.
 
 1. Open the file:
    [`backend/app/etl.py`](../../../backend/app/etl.py).
@@ -180,12 +185,12 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
    - How to match API data to database models.
    - How to ensure idempotent upserts (skip records that already exist).
 
-#### 1.4.2. Implement the pipeline
+#### 1.3.2. Implement the pipeline
 
 1. Start the `Qwen code` coding agent in the terminal inside the project directory.
-2. Give it a prompt like:
+2. Give it a prompt that asks for planning, implementation, and explanation:
 
-   > "Read the TODO comments in `backend/app/etl.py` and implement all five functions. Use the existing models in `backend/app/models/` and the settings in `backend/app/settings.py`. The API uses HTTP Basic Auth. Explain to me step by step to maximize learning."
+   > "Read the TODO comments in `backend/app/etl.py` and implement all five functions. Use the existing models in `backend/app/models/` and the settings in `backend/app/settings.py`. The API uses HTTP Basic Auth. First give me a short numbered plan, then implement function-by-function, and explain each function step by step as if teaching a junior engineer."
 
 3. Wait for the agent to generate the implementation.
 
@@ -198,9 +203,13 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
    - Returns `{"new_records": N, "total_records": M}` from `sync()`.
 
 > [!TIP]
-> If you prefer to implement the functions manually, the TODO comments in `etl.py` describe each function step by step.
+> To get educational answers from a coding agent, ask for these explicitly:
+> - "Plan first, then code."
+> - "Explain each function step by step."
+> - "Call out assumptions and edge cases."
+> - "After coding, summarize why this implementation is correct."
 
-#### 1.4.3. Deploy and test
+#### 1.3.3. Deploy and test
 
 1. Push your changes and deploy to the VM.
 
@@ -258,7 +267,7 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
 
    </details>
 
-#### 1.4.4. Verify the data
+#### 1.3.4. Verify the data
 
 1. In `Swagger UI`, try `GET /items/`.
 
@@ -274,7 +283,7 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
 
 4. (Optional) Open [`pgAdmin`](../../../wiki/pgadmin.md#what-is-pgadmin) and inspect the tables directly.
 
-#### 1.4.5. Test idempotency
+#### 1.3.5. Test idempotency
 
 1. In `Swagger UI`, run `POST /pipeline/sync` again.
 
@@ -293,7 +302,7 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
 > Idempotent upserts are important for production pipelines.
 > If the pipeline is interrupted, you can safely re-run it without creating duplicates.
 
-#### 1.4.6. Commit your work
+#### 1.3.6. Commit your work
 
 1. [Commit](../../../wiki/git-workflow.md#commit) your changes.
 
@@ -303,10 +312,14 @@ Create a `Lab Task` issue titled: `[Task] Build the Data Pipeline`
    feat: implement ETL pipeline for autochecker data
    ```
 
-### 1.5. Finish the task
+### 1.4. Finish the task
 
 1. [Create a PR](../../../wiki/git-workflow.md#create-a-pr-to-the-main-branch-in-your-fork) with your changes.
 2. [Get a PR review](../../../wiki/git-workflow.md#get-a-pr-review) and complete the subsequent steps in the `Git workflow`.
+
+### 1.5. Check the task using the autochecker
+
+[Check the task using the autochecker `Telegram` bot](../../../wiki/autochecker.md#check-the-task-using-the-autochecker-bot).
 
 ---
 
