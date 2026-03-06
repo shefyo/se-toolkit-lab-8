@@ -111,7 +111,6 @@ We refer to your fork as `fork` and to the original repo as `upstream` (выше
 3. Create the environment files:
 
    ```terminal
-   cp .env.example .env.secret
    cp .env.docker.example .env.docker.secret
    ```
 
@@ -120,7 +119,7 @@ We refer to your fork as `fork` and to the original repo as `upstream` (выше
    The ETL pipeline fetches data from the autochecker dashboard API.
    You need to set your credentials in both environment files.
 
-   Open `.env.secret` (created from `.env.example`) and set:
+   Open `.env.docker.secret` (created from `.env.docker.example`) and set:
 
    ```text
    AUTOCHECKER_EMAIL=<your-email>@innopolis.university
