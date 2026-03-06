@@ -98,7 +98,7 @@ You can implement the endpoints manually or use an AI coding agent. Each endpoin
 >
 > The agent will have the test expectations and the TODO comments to guide it.
 
-The `lab` query parameter is a lab identifier like `"lab-04"`. Use it to find items whose title contains the lab identifier.
+The `lab` query parameter is a lab identifier like `"lab-04"`. Transform it to match the title format (e.g. `"lab-04"` → `"Lab 04"`) and find items whose title contains that string.
 
 <!-- no toc -->
 - [1.4.1. Scores histogram](#141-scores-histogram)
@@ -123,7 +123,7 @@ Returns the distribution of scores in four buckets:
 
 Query logic:
 
-1. Find the lab item whose title contains the `lab` parameter.
+1. Find the lab item whose title contains the `lab` parameter (e.g. `"lab-04"` → match `"Lab 04"` in the title).
 2. Find all task items that belong to this lab (`parent_id = lab.id`).
 3. Query interactions for these tasks that have a `score`.
 4. Group scores into 4 buckets using `CASE WHEN` expressions.

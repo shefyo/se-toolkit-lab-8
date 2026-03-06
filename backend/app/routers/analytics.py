@@ -21,7 +21,7 @@ async def get_scores(
     """Score distribution histogram for a given lab.
 
     TODO: Implement this endpoint.
-    - Find the lab item by matching title (contains the lab identifier)
+    - Find the lab item by matching title (e.g. "lab-04" → title contains "Lab 04")
     - Find all tasks that belong to this lab (parent_id = lab.id)
     - Query interactions for these items that have a score
     - Group scores into buckets: "0-25", "26-50", "51-75", "76-100"
