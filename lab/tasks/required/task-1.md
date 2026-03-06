@@ -77,7 +77,7 @@ The API has HTTP Basic Auth, we'll use `curl` to send requests.
 
    Replace `<your-email>` and `<github-username><telegram-alias>` with the credentials you entered in autochecker bot.
 
-   You should see a JSON array of lab and task from this course:
+   You should see a JSON array of labs and tasks from this course:
 
    ```json
    [
