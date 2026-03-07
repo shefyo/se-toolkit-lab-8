@@ -12,6 +12,50 @@ Build an ETL pipeline that fetches data from an external API and loads it into t
 
 The database starts empty. We can get anonymized data on task completions in Autochecker API. Your job is to build a pipeline that fetches this data and populates your database so the system can serve it through existing endpoints to display as analytics.
 
+<h4>Diagram</h4>
+
+```mermaid
+sequenceDiagram
+    actor Developer
+    participant API as Autochecker API<br/>(instructors' VM)
+    participant Local as App+DB<br/>(your computer)
+    participant GH as GitHub
+    participant VM as App+DB<br/>(your VM)
+
+    Note over Developer,API: Part A — Explore the API
+    Developer->>API: curl /api/items
+    API-->>Developer: Item catalog JSON
+    Developer->>API: curl /api/logs?limit=5
+    API-->>Developer: Check logs JSON
+    Developer->>API: curl /api/logs?since=...
+    API-->>Developer: Recent logs JSON
+
+    Note over Developer,VM: Part B — Build and test the pipeline
+    Developer->>Local: docker compose up --build
+    Developer->>Local: POST /pipeline/sync
+    Local->>API: Fetch all items
+    API-->>Local: Items
+    Local->>API: Fetch all logs (paginated)
+    API-->>Local: Logs
+    Local-->>Developer: {"new_records": N, "total_records": N}
+    Developer->>Local: GET /items/
+    Developer->>Local: GET /learners/
+    Developer->>Local: GET /interactions/
+    Developer->>Local: POST /pipeline/sync (idempotency check)
+    Local-->>Developer: {"new_records": 0, "total_records": N}
+
+    Developer->>GH: git push
+    Developer->>VM: git pull
+    Developer->>VM: docker compose up --build
+    Developer->>VM: POST /pipeline/sync
+    VM->>API: Fetch all items
+    API-->>VM: Items
+    VM->>API: Fetch all logs (paginated)
+    API-->>VM: Logs
+    VM-->>Developer: {"new_records": N, "total_records": N}
+    Developer->>GH: Create PR
+```
+
 <h4>Table of contents</h4>
 
 - [1. Steps](#1-steps)
