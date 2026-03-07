@@ -144,4 +144,6 @@ See [`Linux` permissions](./linux.md#permissions) for how permissions work on [`
 
 ## Terminal
 
-<!-- TODO -->
+A terminal is a program that provides a text-based interface for interacting with the operating system.
+
+See [Terminal](./terminal.md#what-is-a-terminal) for more details.
