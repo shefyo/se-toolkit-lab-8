@@ -20,6 +20,8 @@ Docs:
 
 ## Hardening steps
 
+The steps below create a non-root user, configure a firewall, set up brute-force protection, and harden the [`SSH`](./ssh.md#what-is-ssh) configuration.
+
 ### Create a non-root user
 
 1. To connect to the VM as the [`root` user](./linux.md#the-root-user),
@@ -39,6 +41,8 @@ Docs:
    ```terminal
    adduser <username>
    ```
+
+   Replace `<username>` with your chosen username.
 
 3. To add the user to the `sudo` group,
 
@@ -76,7 +80,7 @@ Docs:
 
 ### Configure `ufw` firewall
 
-`ufw` (`Uncomplicated Firewall`) is a simple firewall for [`Linux`](./linux.md#what-is-linux). By default, `ufw` denies all incoming traffic. The steps below create exceptions for the ports your VM needs.
+`ufw` (Uncomplicated Firewall) is a simple firewall for [`Linux`](./linux.md#what-is-linux). By default, `ufw` denies all incoming traffic. The steps below create exceptions for the ports your VM needs.
 
 1. Find the [`<caddy-port>`](./caddy.md#caddy-port).
 
@@ -87,6 +91,8 @@ Docs:
    ```terminal
    sudo ufw allow 22
    ```
+
+   **Important:** Always allow `SSH` (port 22) before enabling `ufw`. Otherwise, you will lock yourself out of the VM.
 
 3. To allow the application port,
 
@@ -112,12 +118,9 @@ Docs:
    sudo ufw status
    ```
 
-> [!IMPORTANT]
-> Always allow `SSH` (port 22) before enabling `ufw`. Otherwise, you will lock yourself out of the VM.
-
 ### Configure `fail2ban`
 
-`fail2ban` blocks IP addresses that make too many failed login attempts. Even after password authentication is disabled, `fail2ban` remains useful: it rate-limits repeated `SSH` connection attempts and can be extended to protect other services.
+`fail2ban` blocks IP addresses that make too many failed login attempts. Even after password authentication is disabled, `fail2ban` remains useful: it rate-limits repeated [`SSH`](./ssh.md#what-is-ssh) connection attempts and can be extended to protect other services.
 
 1. To update the package list,
 
