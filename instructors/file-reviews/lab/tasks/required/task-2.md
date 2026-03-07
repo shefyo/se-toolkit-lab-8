@@ -81,7 +81,7 @@ No issues found.
 
 ### 4.1. Instructions wording
 
-1. **Line 264.** Compound instruction: "Try each analytics endpoint with `lab=lab-04` (or any lab that has data). Verify that each returns a `200` response with a `JSON` array." Convention: "Never write 'Do A and do B.' Instead, split into two numbered steps."
+1. ~~**Line 264.** Compound instruction: "Try each analytics endpoint with `lab=lab-04` (or any lab that has data). Verify that each returns a `200` response with a `JSON` array." Convention: "Never write 'Do A and do B.' Instead, split into two numbered steps."~~
 
 ### 4.2. Terminal commands
 
@@ -101,7 +101,7 @@ No issues found.
 
 ### 4.6. Mini-ToC
 
-1. **Lines 92–109.** The inline mini-ToC for step 1.5 is separated from its `###` heading by several paragraphs. Convention 1.1 in tasks.md: "Add an inline mini-ToC… right after the `###` heading." The `<!-- no toc -->` comment and bullet list should appear immediately after the heading line.
+1. ~~**Lines 92–109.** The inline mini-ToC for step 1.5 is separated from its `###` heading by several paragraphs. Convention 1.1 in tasks.md: "Add an inline mini-ToC… right after the `###` heading." The `<!-- no toc -->` comment and bullet list should appear immediately after the heading line.~~
 
 ### 4.7. Table of contents
 
@@ -109,11 +109,11 @@ No issues found.
 
 ### 4.8. Links and cross-references
 
-1. **Line 13.** "The ETL pipeline from Task 1" — "Task 1" is not linked. Convention 4.8: "Provide a link to each file that exists in the repo." The file `lab/tasks/required/task-1.md` exists and should be linked.
+1. ~~**Line 13.** "The ETL pipeline from Task 1" — "Task 1" is not linked. Convention 4.8: "Provide a link to each file that exists in the repo." The file `lab/tasks/required/task-1.md` exists and should be linked.~~
 
 ### 4.9. Notes, tips, warnings
 
-1. **Lines 60–63.** Indented note inside a list item uses `> **Note:**` format. The correct fallback format for indented alerts is `> 🟦 **Note**` (with emoji, without colon) per convention 4.9.
+1. ~~**Lines 60–63.** Indented note inside a list item uses `> **Note:**` format. The correct fallback format for indented alerts is `> 🟦 **Note**` (with emoji, without colon) per convention 4.9.~~
 
 ### 4.10. Images
 
@@ -149,7 +149,7 @@ No issues found.
 
 ### 4.18. Inline formatting of technical terms
 
-1. **Line 99.** `SQLAlchemy/SQLModel` are not wrapped in backticks inside the TIP block. These are library/tool names and should be formatted as `` `SQLAlchemy` ``/`` `SQLModel` `` per convention 4.18.
+1. ~~**Line 99.** `SQLAlchemy/SQLModel` are not wrapped in backticks inside the TIP block. These are library/tool names and should be formatted as `` `SQLAlchemy` ``/`` `SQLModel` `` per convention 4.18.~~
 
 ### 4.19. Steps with sub-steps
 
@@ -185,9 +185,9 @@ Not applicable (placeholder is used, not an example IP).
 
 ### Section 1. Task document template (tasks.md)
 
-1. **Lines 11–17.** Missing `<h4>Diagram</h4>` section. The task involves actions across multiple environments (local development, GitHub, VM deployment via Docker), so a Mermaid sequence diagram is required per convention 1.1: "Diagram is required whenever the task involves actions across multiple actors or environments."
+1. ~~**Lines 11–17.** Missing `<h4>Diagram</h4>` section. The task involves actions across multiple environments (local development, GitHub, VM deployment via Docker), so a Mermaid sequence diagram is required per convention 1.1: "Diagram is required whenever the task involves actions across multiple actors or environments."~~
 
-2. **Line 9.** Purpose contains two sentences. Template specifies `<One sentence: what the student will learn.>`
+2. ~~**Line 9.** Purpose contains two sentences. Template specifies `<One sentence: what the student will learn.>`~~
 
 ---
 
