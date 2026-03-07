@@ -43,7 +43,7 @@ Follow the [`Git workflow`](../../../wiki/git-workflow.md) to complete this task
 
 1. Create a `GitHub` issue titled:
 
-   ```
+   ```text
    [Task] Build the Data Pipeline
    ```
 
@@ -69,7 +69,7 @@ Follow the [`Git workflow`](../../../wiki/git-workflow.md) to complete this task
 - [1.3.2. Fetch check logs](#132-fetch-check-logs)
 - [1.3.3. Test incremental sync](#133-test-incremental-sync)
 
-Before writing code, let's explore the autochecker API.
+Before writing code, let's explore the Autochecker API.
 
 The API has HTTP Basic Auth, we'll use `curl` to send requests.
 
@@ -85,7 +85,7 @@ The API has HTTP Basic Auth, we'll use `curl` to send requests.
      "https://auche.namaz.live/api/items"
    ```
 
-   Replace `<your-email>` and `<github-username><telegram-alias>` with the credentials you entered in autochecker bot.
+   Replace `<your-email>` and `<github-username><telegram-alias>` with the credentials you entered in Autochecker bot.
 
    You should see a `JSON` array of labs and tasks from this course:
 
@@ -255,13 +255,13 @@ The code stubs in `backend/app/etl.py` contain detailed TODOs.
    }
    ```
 
-   The exact numbers depend on how many check results exist in the autochecker.
+   The exact numbers depend on how many check results exist in the Autochecker.
 
    <details><summary><b>Troubleshooting (click to open)</b></summary>
 
-   <h4>401 Unauthorized from the autochecker API</h4>
+   <h4>401 Unauthorized from the Autochecker API</h4>
 
-   Check that `AUTOCHECKER_EMAIL` and `AUTOCHECKER_PASSWORD` are set correctly in `.env.docker.secret`. The password is `<github-username><telegram-alias>` (no spaces, no `@`).
+   Check that [`AUTOCHECKER_EMAIL`](../../../wiki/dotenv-docker-secret.md#autochecker_email) and [`AUTOCHECKER_PASSWORD`](../../../wiki/dotenv-docker-secret.md#autochecker_password) are set correctly in [`.env.docker.secret`](../../../wiki/dotenv-docker-secret.md#what-is-envdockersecret). The password is `<github-username><telegram-alias>` (no spaces, no `@`).
 
    <h4>500 Internal Server Error</h4>
 
@@ -277,7 +277,7 @@ The code stubs in `backend/app/etl.py` contain detailed TODOs.
 
    <h4>Connection refused to the autochecker API</h4>
 
-   Verify that `AUTOCHECKER_API_URL` is set to `https://auche.namaz.live` in `.env.docker.secret`.
+   Verify that [`AUTOCHECKER_API_URL`](../../../wiki/dotenv-docker-secret.md#autochecker_api_url) is set to `https://auche.namaz.live` in [`.env.docker.secret`](../../../wiki/dotenv-docker-secret.md#what-is-envdockersecret).
 
    </details>
 
@@ -350,12 +350,14 @@ The code stubs in `backend/app/etl.py` contain detailed TODOs.
    docker compose --env-file .env.docker.secret up --build -d
    ```
 
+   Replace [`<task-branch>`](../../../wiki/git-workflow.md#task-branch).
+
 2. Open [`Swagger UI`](../../../wiki/swagger.md#open-swagger-ui) at `http://<your-vm-ip-address>:<caddy-port>/docs`.
 
    Replace:
 
    - `<your-vm-ip-address>` with your VM's IP address.
-   - `<caddy-port>` with the value of [`CADDY_HOST_PORT`](../../../wiki/dotenv-docker-secret.md#caddy_host_port) (default: `42002`).
+   - `<caddy-port>` with the value of [`CADDY_HOST_PORT`](../../../wiki/dotenv-docker-secret.md#caddy_host_port) in [`.env.docker.secret`](../../../wiki/dotenv-docker-secret.md#what-is-envdockersecret) (default: `42002`).
 
 3. Authorize with your [`API_KEY`](../../../wiki/dotenv-docker-secret.md#api_key).
 
@@ -365,19 +367,8 @@ The code stubs in `backend/app/etl.py` contain detailed TODOs.
 
 ### 1.5. Finish the task
 
-1. Go to your fork on `GitHub` and click `Pull requests` → `New pull request`.
-
-2. **Change the base repository to your own fork** — by default `GitHub` sets the base to the upstream (`inno-se-toolkit/se-toolkit-lab-5`). Click `base repository` and select `<your-github-username>/se-toolkit-lab-5` instead.
-
-3. Set the base branch to `main` and the compare branch to your task branch (e.g. `task/1-build-data-pipeline`).
-
-4. Write a PR title and description. Link the PR to the issue by writing `Closes #<issue-number>` in the description.
-
-5. Click `Create pull request`.
-
-6. Ask your partner to review and approve the PR.
-
-7. Merge the PR and close the issue.
+1. [Create a PR](../../../wiki/git-workflow.md#create-a-pr) with your changes.
+2. [Get a PR review](../../../wiki/git-workflow.md#get-a-pr-review) and complete the subsequent steps in the `Git workflow`.
 
 ### 1.6. Check the task using the autochecker
 
