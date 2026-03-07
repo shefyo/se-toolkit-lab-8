@@ -68,7 +68,7 @@ Not applicable — no AI-assisted steps in this task.
 ### Section 1. Task document template
 
 1. **Line 15** — Missing `<h4>Diagram</h4>` section. The task involves actions across multiple environments (editor for `docker-compose.yml`, terminal for `Docker` commands, browser for `Grafana` UI, `Grafana` connecting to `PostgreSQL`). A Mermaid sequence diagram showing this flow should be added between Context and Table of contents, or an explicit decision to omit it should be justified (single-environment task).
-2. **After line 138** — Missing autochecker step. Convention 4.23 requires every task to end with a step titled "Check the task using the autochecker" as the final step before `## 2. Acceptance criteria`. This step is absent.
+2. ~~**After line 138** — Missing autochecker step. Convention 4.23 requires every task to end with a step titled "Check the task using the autochecker" as the final step before `## 2. Acceptance criteria`. This step is absent.~~
 3. **Lines 136–138** — Step 1.7 "Finish the task" uses the wrong ending pattern. "Finish the task" is reserved for the PR + review flow (create PR, get review). The current content ("Close the issue.") matches the no-code ending but uses the wrong heading name.
 
 ### 4.1. Instructions wording
@@ -77,7 +77,7 @@ No issues found.
 
 ### 4.2. Terminal commands
 
-1. **Line 46** — "On your VM, to start `Grafana`," does not start with "To \<intention\>," as required by the convention. The "On your VM" prefix precedes the "To..." pattern. Rewrite as: "To start `Grafana` on your VM," or move "On your VM" into a preceding context sentence.
+1. ~~**Line 46** — "On your VM, to start `Grafana`," does not start with "To \<intention\>," as required by the convention. The "On your VM" prefix precedes the "To..." pattern. Rewrite as: "To start `Grafana` on your VM," or move "On your VM" into a preceding context sentence.~~
 
 ### 4.3. Command Palette commands
 
@@ -105,7 +105,7 @@ No issues found.
 
 ### 4.9. Notes, tips, warnings
 
-1. **Line 79** — The `> [!NOTE]` alert is indented inside list item 3 (3-space indent). Convention 4.9 states: "GitHub-flavored Markdown alerts do not render correctly when indented." Replace with the blockquote-with-bold-label fallback (`> 🟦 **Note**`) or restructure the content to place the alert at the top indentation level.
+1. ~~**Line 79** — The `> [!NOTE]` alert is indented inside list item 3 (3-space indent). Convention 4.9 states: "GitHub-flavored Markdown alerts do not render correctly when indented." Replace with the blockquote-with-bold-label fallback (`> 🟦 **Note**`) or restructure the content to place the alert at the top indentation level.~~
 
 ### 4.10. Images
 
@@ -141,11 +141,11 @@ Not applicable.
 
 ### 4.18. Inline formatting of technical terms
 
-1. **Line 9** — "SQL" is not backticked. Should be `` `SQL` ``.
-2. **Line 13** — "React" is not backticked. Should be `` `React` ``.
-3. **Line 80** — "Docker" in "Docker network" is not backticked. Should be `` `Docker` network``.
-4. **Line 132** — "React" and "Chart.js" are not backticked. Should be `` `React` `` and `` `Chart.js` ``.
-5. **Line 133** — "Grafana" is not backticked. Should be `` `Grafana` ``.
+1. ~~**Line 9** — "SQL" is not backticked. Should be `` `SQL` ``.~~
+2. ~~**Line 13** — "React" is not backticked. Should be `` `React` ``.~~
+3. ~~**Line 80** — "Docker" in "Docker network" is not backticked. Should be `` `Docker` network``.~~
+4. ~~**Line 132** — "React" and "Chart.js" are not backticked. Should be `` `React` `` and `` `Chart.js` ``.~~
+5. ~~**Line 133** — "Grafana" is not backticked. Should be `` `Grafana` ``.~~
 
 ### 4.19. Steps with sub-steps
 
@@ -161,7 +161,7 @@ No issues found.
 
 ### 4.22. Environment variable references
 
-1. **Line 42** — `.env.docker.secret` is referenced in prose but not linked. Per convention, the file name should be linked to its wiki section: `` [`.env.docker.secret`](../../../wiki/dotenv-docker-secret.md#what-is-envdockersecret) ``. (The specific variables `GF_SECURITY_ADMIN_USER` and `GF_SECURITY_ADMIN_PASSWORD` do not have wiki sections in `wiki/dotenv-docker-secret.md`, so variable-level links cannot be added without first updating the wiki.)
+1. ~~**Line 42** — `.env.docker.secret` is referenced in prose but not linked. Per convention, the file name should be linked to its wiki section: `` [`.env.docker.secret`](../../../wiki/dotenv-docker-secret.md#what-is-envdockersecret) ``. (The specific variables `GF_SECURITY_ADMIN_USER` and `GF_SECURITY_ADMIN_PASSWORD` do not have wiki sections in `wiki/dotenv-docker-secret.md`, so variable-level links cannot be added without first updating the wiki.)~~
 
 ### 4.23. Horizontal rules
 
