@@ -9,7 +9,6 @@
   - [`Windows`](#windows)
     - [`WSL`](#wsl)
 - [Program](#program)
-  - [Useful programs](#useful-programs)
 - [Process](#process)
   - [Background process](#background-process)
   - [PID](#pid)
@@ -19,7 +18,6 @@
   - [`<username>` placeholder](#username-placeholder)
 - [Group](#group)
 - [Permission](#permission)
-- [Terminal](#terminal)
 
 ## What is an operating system
 
@@ -67,10 +65,6 @@ A program is an executable file containing instructions that can be run by the o
 It's a static entity stored on disk that becomes a [process](#process) when executed.
 
 Programs can be compiled binaries, scripts, or other executable files that perform specific tasks when run by a user or system.
-
-### Useful programs
-
-See [Useful programs](./useful-programs.md).
 
 ## Process
 
@@ -141,9 +135,3 @@ A permission is a rule that controls whether a [user](#user) or [group](#group) 
 Permissions determine what actions each user can perform on the system, preventing unauthorized access and protecting shared resources.
 
 See [`Linux` permissions](./linux.md#permissions) for how permissions work on [`Linux`](./linux.md#what-is-linux).
-
-## Terminal
-
-A terminal is a program that provides a text-based interface for interacting with the operating system.
-
-See [Terminal](./terminal.md#what-is-a-terminal) for more details.
