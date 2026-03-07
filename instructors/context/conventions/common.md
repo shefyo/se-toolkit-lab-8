@@ -115,6 +115,8 @@ Provide a little table of contents when the list of options or steps is long. Us
 ### Do X using `GitLens`
 ```
 
+Place `<!-- no toc -->` on the line immediately before the list (not before any introductory sentence). Use a numbered list when the items are sequential steps. Use a bulleted list when the items are unordered options.
+
 Don't provide a mini-ToC when all lists of items are short.
 
 ## 4.7. Table of contents
