@@ -5,6 +5,7 @@
 - [What is VM hardening](#what-is-vm-hardening)
 - [Hardening steps](#hardening-steps)
   - [Create a non-root user](#create-a-non-root-user)
+  - [Set up SSH key authentication for the new user](#set-up-ssh-key-authentication-for-the-new-user)
   - [Configure `ufw` firewall](#configure-ufw-firewall)
   - [Configure `fail2ban`](#configure-fail2ban)
   - [Harden `SSH` config](#harden-ssh-config)
@@ -22,10 +23,11 @@ Docs:
 
 <!-- no toc -->
 1. [Create a non-root user](#create-a-non-root-user)
-2. [Configure `ufw` firewall](#configure-ufw-firewall)
-3. [Configure `fail2ban`](#configure-fail2ban)
-4. [Harden `SSH` config](#harden-ssh-config)
-5. [Restart `sshd`](#restart-sshd)
+2. [Set up SSH key authentication for the new user](#set-up-ssh-key-authentication-for-the-new-user)
+3. [Configure `ufw` firewall](#configure-ufw-firewall)
+4. [Configure `fail2ban`](#configure-fail2ban)
+5. [Harden `SSH` config](#harden-ssh-config)
+6. [Restart `sshd`](#restart-sshd)
 
 ### Create a non-root user
 
@@ -59,19 +61,49 @@ Docs:
    usermod -aG sudo <username>
    ```
 
-5. To set up [`SSH`](./ssh.md#what-is-ssh) key authentication for the new user,
+### Set up SSH key authentication for the new user
+
+1. To create the `.ssh` directory for the new user,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    mkdir -p /home/<username>/.ssh
+   ```
+
+2. To copy the authorized keys from the `root` user,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
    cp /root/.ssh/authorized_keys /home/<username>/.ssh/
+   ```
+
+3. To set the correct ownership on the `.ssh` directory,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
    chown -R <username>:<username> /home/<username>/.ssh
+   ```
+
+4. To set the correct permissions on the `.ssh` directory,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
    chmod 700 /home/<username>/.ssh
+   ```
+
+5. To set the correct permissions on the `authorized_keys` file,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
    chmod 600 /home/<username>/.ssh/authorized_keys
    ```
 
-6. To verify you can `SSH` as the new user,
+6. To verify you can [`SSH`](./ssh.md#what-is-ssh) as the new user,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -81,7 +113,7 @@ Docs:
 
    Replace [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address).
 
-7. Confirm the connection did not prompt for a password. If it did, repeat step 4.
+7. Confirm the connection did not prompt for a password. If it did, repeat step 3.
 
 8. Disconnect from the root session and use the non-root user for all remaining steps.
 
