@@ -16,7 +16,7 @@ Substitute actual week and meeting numbers for N and M.
 - **Attendance**: Note if any speaker joined late, left early, or was silent throughout the meeting.
 - **Skip noise**: Ignore connection issues, screen sharing problems, audio glitches, crosstalk, filler words, and other non-substantive artifacts. Focus only on meaningful content.
 - **Unclear content**: If something in the transcript is inaudible or the meaning is ambiguous, flag it with [unclear] rather than guessing.
-- **Do not infer decisions**: Only record decisions that were explicitly stated or clearly agreed upon. Do not infer consensus from silence. Proposals, hypotheticals, and "what if" suggestions that were not concluded belong in Open Questions, not Decisions.
+- **Do not infer decisions**: Only record decisions that were explicitly stated or clearly agreed upon. Do not infer consensus from silence. Proposals, hypotheticals, and "what if" suggestions that were not concluded belong in [Open questions](#open-questions), not [Decisions](#decisions).
 - **Superseded decisions**: If a later discussion in the same meeting overrides an earlier agreement, only include the final version in Decisions. Note the evolution briefly (e.g., "Initially agreed on X, later revised to Y because...").
 - **Cross-references**: When a decision leads to an action point, or an open question relates to a decision, reference it using an anchor link (see [Anchor links](#anchor-links)). This applies across all sections.
 - **Items as subsections**: Write each distinct item within a section — numbered decisions, open questions, action points, status update items, glossary terms, Q&A pairs, and discussions — as a Markdown subsection with a heading rather than a bullet list entry or blockquote. Write the content beneath the heading as prose paragraphs. This makes each item individually linkable via a Markdown anchor. Never use bold text to label items within a section. Each heading must use the format `### S.N. Label N: Title` — where `S.N.` is the two-level section number (e.g., `5.2.`), `Label` is the section label (`Decision`, `Open question`, `Action point`, `Date or deadline`, `Question and answer`, or `Discussion`), and `N` is the item number within that section (omitted for `Date or deadline`, `Question and answer`, and `Discussion`).
@@ -25,14 +25,14 @@ Substitute actual week and meeting numbers for N and M.
 - **Timestamps**: If the transcript includes timestamps, reference them at key moments so readers can locate the corresponding point in a recording. Always wrap timestamps in square brackets — single points as `[14:32]` and ranges as `[01:10:15–01:12:08]`. Square brackets are reserved for transcript-navigation timestamps only. Deadlines, scheduled dates, and other future times mentioned by speakers should be written as plain text (e.g., "by March 15", "next Monday at 10:00").
 - **Direct quotes vs paraphrasing**: Use direct quotes when the speaker's exact wording carries meaning — strong opinions, definitions, commitments, or memorable phrasing. Paraphrase for routine discussion.
 - **Depth calibration**: Scale the report's depth proportionally to the meeting's length and substance. A 15-minute standup should not produce the same volume as a 2-hour planning session.
-- **Off-topic digressions** (tools, mentoring, industry news, etc.) should still be captured in the relevant section (usually Discussions).
-- **Recurring meetings**: If the transcript references a prior meeting or is clearly part of a series, note that context in the Executive summary.
+- **Off-topic digressions** (tools, mentoring, industry news, etc.) should still be captured in the relevant section (usually [Discussions](#discussions)).
+- **Recurring meetings**: If the transcript references a prior meeting or is clearly part of a series, note that context in the [Executive summary](#executive-summary).
 
 ## Instructions
 
 Write a comprehensive meeting report based on the provided transcript.
 
-Go through the transcript **line by line for substantive content** and make sure every point, detail, example, quote, and discussion is captured in the appropriate section. In the Decisions, Q&A, and Discussions sections, do not summarize — expand. Include specific examples, analogies, and arguments that speakers used. If speakers disagreed or evolved their position during the discussion, capture that progression. If speakers outright contradicted each other without resolution, note the disagreement explicitly.
+Go through the transcript **line by line for substantive content** and make sure every point, detail, example, quote, and discussion is captured in the appropriate section. In the [Decisions](#decisions), [Q&A](#questions-and-answers), and [Discussions](#discussions) sections, do not summarize — expand. Include specific examples, analogies, and arguments that speakers used. If speakers disagreed or evolved their position during the discussion, capture that progression. If speakers outright contradicted each other without resolution, note the disagreement explicitly.
 
 ## Sections
 
@@ -50,7 +50,7 @@ A structured block at the top of the report:
 - **Duration**: Approximate length of the meeting
 - **Participants**: Number of speakers and their labels (e.g., "4 participants: Speaker A, B, C, D")
 - **Recording**: Link to the meeting recording (if provided, otherwise `<link to the recording>`)
-- **Transcript**: Link to `transcript-by-speaker.txt` in the `meeting-transcripts/` subdirectory
+- **Transcript**: Link to `transcript-by-speaker.txt` in the `transcripts/` subdirectory
 - **Files discussed**: List of files that were explicitly mentioned, reviewed, or discussed during the meeting (by file name or path as referenced in the transcript). Omit if no specific files were discussed.
 
 ### Executive summary
@@ -59,7 +59,7 @@ A structured block at the top of the report:
 
 ### Action points
 
-Concrete next steps with owners (by speaker label) and deadlines (if mentioned). Write each action point as a subsection heading in the format `### S.N. Action point N: Title` followed by a prose paragraph that states the owner, priority (**[blocking]**, **[high]**, **[medium]**, or **[low]**), scheduling details, and any relevant context. If a task was mentioned but no owner was assigned, say so in the prose. Do not place owner or priority on a separate bold-label line before the paragraph. Every action point originates from a decision, discussion, or open question — cross-reference the source item using an anchor link (e.g., "Stems from [Decision 2](#52-decision-2-use-postgresql-for-the-primary-data-store)"). If a single decision spawns multiple action points, each one should link back independently.
+Concrete next steps with owners (by speaker label) and deadlines (if mentioned). Write each action point as a subsection heading in the format `### S.N. Action point N: Title` followed by a prose paragraph that states the owner, priority (**[blocking]**, **[high]**, **[medium]**, or **[low]**), scheduling details, and any relevant context. If a task was mentioned but no owner was assigned, say so in the prose. Do not place owner or priority on a separate bold-label line before the paragraph. Every action point originates from a decision, discussion, or open question — cross-reference the source item using an anchor link (e.g., `"Stems from [Decision 2](#52-decision-2-use-postgresql-for-the-primary-data-store)"`). If a single decision spawns multiple action points, each one should link back independently.
 
 ### Key dates and deadlines
 
@@ -78,14 +78,16 @@ Dates, deadlines, and milestones mentioned during the meeting, even in passing. 
 
 Be exhaustive — capture every distinct decision, no matter how small. Cover all topics raised: naming, data model, scope, task structure, implementation approach, security, testing, deployment, tooling, terminology, ordering, scheduling, and anything else discussed.
 
-**Important**: Only include conclusions that were explicitly agreed upon. Proposals and hypotheticals that were not resolved belong in Open Questions.
+**Important**: Only include conclusions that were explicitly agreed upon. Proposals and hypotheticals that were not resolved belong in [Open questions](#open-questions).
 
 #### Example format
 
+```markdown
 ### 5.1. Decision 1: Use PostgreSQL for the primary data store
 
 **Consensus: unanimous.**
 Speaker A proposed PostgreSQL, citing its JSON support for flexible schemas. Speaker B initially suggested MongoDB but agreed after Speaker A demonstrated that PostgreSQL's JSONB columns would cover the same use case without adding a second database. Speaker C noted: "We already have operational expertise with Postgres, so this keeps the ops burden low." *(See [Action point 3](#73-action-point-3-deploy-database-migrations))*
+```
 
 ### Open questions
 
@@ -119,6 +121,6 @@ After completing the report, review the transcript one more time and verify:
 - Every speaker who contributed substantively is referenced at least once
 - Every topic transition in the transcript is accounted for in a section
 - No decisions were inferred — all are explicitly stated or agreed upon
-- Proposals and hypotheticals are in Open Questions, not Decisions
+- Proposals and hypotheticals are in [Open questions](#open-questions), not [Decisions](#decisions)
 
 If any gaps are found, go back and fill them in. Do not include this checklist in the final report.
