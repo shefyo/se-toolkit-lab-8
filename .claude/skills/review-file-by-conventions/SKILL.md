@@ -1,6 +1,6 @@
 ---
 name: review-file-by-conventions
-description: "Review a file for convention violations. Supports lab/tasks/ files (conceptual + convention review), wiki/ files, contributing/conventions/ files, and instructors/meetings/ meeting-report.md files (cross-checked against the transcript and files discussed). Writes the review report to instructors/file-reviews/."
+description: "Review a file for convention violations. Supports lab/tasks/ files (conceptual + convention review), wiki/ files, contributing/conventions/ files, and instructors/meetings/ meeting-report.md files (cross-checked against the transcript and files discussed). Writes the review report to instructors/file-reviews/ (or meeting-report-review.md alongside the source for meeting reports)."
 argument-hint: "<path>"
 ---
 
@@ -50,7 +50,9 @@ Review a single file for problems — first conceptual and pedagogical issues (f
 
 ## Output format
 
-Write the report to `instructors/file-reviews/<repo-root-path>`, where `<repo-root-path>` is the file's path from the repository root (e.g., `instructors/file-reviews/lab/tasks/setup.md` for `lab/tasks/setup.md`, `instructors/file-reviews/instructors/meetings/week-2/meeting-1/meeting-report.md` for `instructors/meetings/week-2/meeting-1/meeting-report.md`). Create intermediate directories if they do not exist.
+Write the report to:
+- **For `instructors/meetings/` files:** `meeting-report-review.md` in the same directory as the source file (e.g., `instructors/meetings/week-2/meeting-1/meeting-report-review.md` for `instructors/meetings/week-2/meeting-1/meeting-report.md`).
+- **For all other files:** `instructors/file-reviews/<repo-root-path>`, where `<repo-root-path>` is the file's path from the repository root (e.g., `instructors/file-reviews/lab/tasks/setup.md` for `lab/tasks/setup.md`). Create intermediate directories if they do not exist.
 
 The report must be self-contained so another session or agent can act on it without extra context. Structure:
 
