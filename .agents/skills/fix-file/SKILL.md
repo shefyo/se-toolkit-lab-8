@@ -38,7 +38,7 @@ Fix convention violations in a file using the report produced by `/review-file`.
     - `~~` strikethrough for fixed items — wrap the entire line content: `1. ~~**Line 45** — …~~`
     - No change for skipped items — leave as-is.
 11. **Update the Summary table.** Recount all remaining (non-strikethrough) findings in the report and update the `| Category | Count |` table under `## Summary`:
-    - Decrement the count for each category that had a finding fixed.
+    - Decrement the count for each category that had a finding fixed. Convention findings are split by severity (`Convention [High]`, `Convention [Medium]`, `Convention [Low]`), so update the correct severity row.
     - Recalculate the **Total** row if present.
     - Keep the existing category rows and table structure — do not add or remove rows.
     - Rewrite the **Overall** assessment paragraph to reflect the current state (remaining issues only). If no issues remain, write: `**Overall**: No remaining issues.`

@@ -33,8 +33,8 @@ Review a single file for problems — first conceptual and pedagogical issues (f
      - [`contributing/conventions/meetings/meeting-report.md`](../../../contributing/conventions/meetings/meeting-report.md) — meeting report format rules (Sections 3–4) and the five review categories (Section 5)
 4. (**For `instructors/meetings/` files only**) Derive the transcript path by replacing `report.md` with `transcripts/transcript-by-speaker.txt` in the report path (e.g., `instructors/meetings/week-2/meeting-1/transcripts/transcript-by-speaker.txt`). Read the transcript. If the report's **Metadata → Files discussed** section lists any files, read each of them.
 5. **Conceptual review** (only for `lab/tasks/` files): Analyse the file against each dimension (D1–D10) from Section 13 of [`contributing/conventions/writing/tasks.md`](../../../contributing/conventions/writing/tasks.md). For each problem found, record: the dimension, the line number(s) or section, a short description, severity (`[High]`, `[Medium]`, or `[Low]`), and a suggested fix.
-6. **Meeting report review** (only for `instructors/meetings/` files): Analyse the report against the five categories in Section 5 of [`contributing/conventions/meetings/meeting-report.md`](../../../contributing/conventions/meetings/meeting-report.md). For each finding, cite the relevant transcript line or report line number.
-7. **Convention review** (for `lab/tasks/`, `wiki/`, `contributing/conventions/`, and `AGENTS.md` files only): Go through the target file **line by line**. Check it against **every** convention in the applicable convention files. Flag each violation with its line number.
+6. **Meeting report review** (only for `instructors/meetings/` files): Analyse the report against the five categories in Section 5 of [`contributing/conventions/meetings/meeting-report.md`](../../../contributing/conventions/meetings/meeting-report.md). For each finding, cite the relevant transcript line or report line number, and assign severity (`[High]`, `[Medium]`, or `[Low]`).
+7. **Convention review** (for `lab/tasks/`, `wiki/`, `contributing/conventions/`, and `AGENTS.md` files only): Go through the target file **line by line**. Check it against **every** convention in the applicable convention files. Flag each violation with its line number and assign severity (`[High]`, `[Medium]`, or `[Low]`).
 8. Scan for `<!-- TODO ... -->` comments. Report each one with its line number and the comment text.
 9. Scan for empty sections: a heading immediately followed by another heading, a `<!-- TODO ... -->` comment, or end of file, with no real content lines in between. Report each empty section with its line number and heading text.
 
@@ -59,8 +59,8 @@ The report must be self-contained so another session or agent can act on it with
 
 1. **Header** — file path reviewed, date, convention files used, transcript path (for meeting reports only).
 2. **Conceptual findings** (only for `lab/tasks/` files) — grouped by dimension (D1–D10). Under each dimension, list findings as numbered items with severity, line number(s) or section, description, and suggested fix. If a dimension has no findings, write "No issues found."
-3. **Meeting report findings** (only for `instructors/meetings/` files) — grouped by review category (5.1 Transcript coverage, 5.2 Accuracy, 5.3 Files discussed, 5.4 Format compliance, 5.5 Internal consistency). Under each category, list findings as numbered items with the relevant transcript or report line number, description, and suggested fix. If a category has no findings, write "No issues found."
-4. **Convention findings** (for `lab/tasks/`, `wiki/`, `contributing/conventions/`, and `AGENTS.md` files only) — grouped by convention number or section (e.g., "4.2. Terminal commands", "Section 3. Task document structure", "Section 2. Agent-neutral content"). Under each group, list findings as numbered items with line numbers. If a group has no findings, write "No issues found."
+3. **Meeting report findings** (only for `instructors/meetings/` files) — grouped by review category (5.1 Transcript coverage, 5.2 Accuracy, 5.3 Files discussed, 5.4 Format compliance, 5.5 Internal consistency). Under each category, list findings as numbered items with severity (`[High]`, `[Medium]`, or `[Low]`), the relevant transcript or report line number, description, and suggested fix. If a category has no findings, write "No issues found."
+4. **Convention findings** (for `lab/tasks/`, `wiki/`, `contributing/conventions/`, and `AGENTS.md` files only) — grouped by convention number or section (e.g., "4.2. Terminal commands", "Section 3. Task document structure", "Section 2. Agent-neutral content"). Under each group, list findings as numbered items with severity (`[High]`, `[Medium]`, or `[Low]`) and line numbers. If a group has no findings, write "No issues found."
 5. **TODOs** — list every `<!-- TODO ... -->` comment with its line number and text. If none, write "No TODOs found."
 6. **Empty sections** — list every heading that has no content (only a TODO comment, another heading, or EOF follows). Include line number and heading text. If none, write "No empty sections found."
 7. **Summary** — a `| Category | Count |` table followed by an `**Overall**:` assessment paragraph. Include one row per category that applies to the file type, plus a bold **Total** row:
@@ -70,10 +70,12 @@ The report must be self-contained so another session or agent can act on it with
    ```
    | Category | Count |
    |---|---|
-   | Conceptual — High | N |
-   | Conceptual — Medium | N |
-   | Conceptual — Low | N |
-   | Convention violations | N |
+   | Conceptual [High] | N |
+   | Conceptual [Medium] | N |
+   | Conceptual [Low] | N |
+   | Convention [High] | N |
+   | Convention [Medium] | N |
+   | Convention [Low] | N |
    | TODOs | N |
    | Empty sections | N |
    | **Total** | **N** |
@@ -84,7 +86,9 @@ The report must be self-contained so another session or agent can act on it with
    ```
    | Category | Count |
    |---|---|
-   | Convention violations | N |
+   | Convention [High] | N |
+   | Convention [Medium] | N |
+   | Convention [Low] | N |
    | TODOs | N |
    | Empty sections | N |
    | **Total** | **N** |
@@ -95,7 +99,9 @@ The report must be self-contained so another session or agent can act on it with
    ```
    | Category | Count |
    |---|---|
-   | Meeting report findings | N |
+   | Meeting report [High] | N |
+   | Meeting report [Medium] | N |
+   | Meeting report [Low] | N |
    | TODOs | N |
    | Empty sections | N |
    | **Total** | **N** |
