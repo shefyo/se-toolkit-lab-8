@@ -150,8 +150,8 @@ This section explains what each configuration artifact exists for and why it is 
 
 ### 2.3. Editor and linting
 
-- `.vscode/settings.json` — Configures auto-save, format-on-save, language-specific formatters, and Markdown preview behavior. Ensures all contributors use consistent editor settings. See [VS Code settings](#5-vs-code-settings-vscodesettingsjson) for the canonical template.
-- `.vscode/extensions.json` — Lists recommended `VS Code` extensions grouped by purpose. Students install them via `Extensions` > `Filter` > `Recommended`. See [VS Code recommended extensions](#6-vs-code-recommended-extensions-vscodeextensionsjson) for the canonical template.
+- `.vscode/settings.json` — Configures auto-save, format-on-save, language-specific formatters, and Markdown preview behavior. Ensures all contributors use consistent editor settings. See [VS Code settings](#5-vs-code-settings-vscodesettingsjson) for the canonical configuration.
+- `.vscode/extensions.json` — Lists recommended `VS Code` extensions grouped by purpose. Students install them via `Extensions` > `Filter` > `Recommended`. See [VS Code recommended extensions](#6-vs-code-recommended-extensions-vscodeextensionsjson) for the canonical list.
 - `.markdownlint.jsonc` — Relaxes Markdown linting rules for educational content (allows inline HTML, disables line length limit, permits flexible code fence styles).
 
 ### 2.4. Development environment
@@ -246,39 +246,17 @@ These files are generated at build or runtime and must not be committed (exclude
 
 ## 4. GitHub templates
 
-> The templates below are the canonical starting point. The actual files in `.github/` may include lab-specific additions.
+> The descriptions below define the canonical starting point. The actual files in `.github/` may include lab-specific additions.
 
 ### 4.1. Issue templates
 
 #### 4.1.1. `01-task.yml` — Lab Task
 
-```yaml
-name: Lab Task
-description: Track work for a specific lab task
-title: "[Task] <short title>"
-labels: ["task"]
-body:
-  - type: textarea
-    id: description
-    attributes:
-      label: Description
-      description: Summarize what this task is about in your own words.
-      placeholder: |
-        Make X work with Y ...
-    validations:
-      required: true
-  - type: textarea
-    id: steps
-    attributes:
-      label: Plan
-      description: What do you plan to do to complete this task?
-      placeholder: |
-        - [ ] Step 1
-        - [ ] Step 2
-        ...
-    validations:
-      required: true
-```
+A structured form for tracking lab task work. Configuration:
+
+- Title prefix: `[Task] <short title>`. Label: `task`.
+- `description` textarea (required) — Summarize what the task is about in own words.
+- `steps` textarea (required) — Plan with a checklist of steps to complete.
 
 #### 4.1.2. `02-bug-report.yml` — Bug Report
 
@@ -291,50 +269,36 @@ Same structure as `01-task.yml`. Required fields:
 
 #### 4.1.3. `config.yml`
 
-```yaml
-blank_issues_enabled: false
-```
+Set `blank_issues_enabled: false` to enforce use of templates.
 
 ### 4.2. PR template (`pull_request_template.md`)
 
-```markdown
-## Summary
+The PR template must include:
 
-- Closes #<issue-number>
-
-----
-
-## Checklist
-
-- [ ] I made this PR to the `main` branch **of my fork (NOT the course instructors' repo)**.
-- [ ] I see `base: main` <- `compare: <branch>` above the PR title.
-- [ ] I edited the line `- Closes #<issue-number>`.
-- [ ] I wrote clear commit messages.
-- [ ] I reviewed my own diff before requesting review.
-- [ ] I understand the changes I'm submitting.
-```
+- A `## Summary` section with `- Closes #<issue-number>`.
+- A `## Checklist` section verifying that the student:
+  - Made the PR to the `main` branch of their fork (not the instructor repo).
+  - Sees `base: main` ← `compare: <branch>` above the PR title.
+  - Edited the `Closes #<issue-number>` line.
+  - Wrote clear commit messages.
+  - Reviewed their own diff before requesting review.
+  - Understands the changes being submitted.
 
 ---
 
 ## 5. VS Code settings (`.vscode/settings.json`)
 
-> The template below is the canonical starting point. The actual file in `.vscode/` may include lab-specific additions.
+> The settings below define the canonical starting point. The actual file in `.vscode/` may include lab-specific additions.
 
-```json
-{
-  "git.autofetch": true,
-  "files.autoSave": "afterDelay",
-  "files.autoSaveDelay": 500,
-  "editor.formatOnSave": true,
-  "[markdown]": {
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
-  },
-  "markdown.extension.toc.levels": "2..6",
-  "workbench.sideBar.location": "right",
-  "markdown.preview.scrollEditorWithPreview": false,
-  "markdown.preview.scrollPreviewWithEditor": false
-}
-```
+Configure the following settings:
+
+- `git.autofetch: true` — Automatically fetch remote changes.
+- `files.autoSave: "afterDelay"` with `files.autoSaveDelay: 500` — Auto-save after 500 ms.
+- `editor.formatOnSave: true` — Format files on save.
+- `[markdown]` default formatter: `DavidAnson.vscode-markdownlint`.
+- `markdown.extension.toc.levels: "2..6"` — Exclude `h1` from auto-generated TOC.
+- `workbench.sideBar.location: "right"` — Move sidebar to the right.
+- Disable `markdown.preview.scrollEditorWithPreview` and `markdown.preview.scrollPreviewWithEditor`.
 
 Add language-specific formatter settings as needed (e.g., Python with Ruff, JS with Prettier).
 
@@ -342,38 +306,17 @@ Add language-specific formatter settings as needed (e.g., Python with Ruff, JS w
 
 ## 6. VS Code recommended extensions (`.vscode/extensions.json`)
 
-> The template below is the canonical starting point. The actual file in `.vscode/` may include lab-specific additions.
+> The extension list below defines the canonical starting point. The actual file in `.vscode/` may include lab-specific additions.
 
-Provide a curated list of recommended extensions so students can install them all at once:
+Group recommended extensions by purpose:
 
-```json
-{
-  "recommendations": [
-    // Language support (adjust per lab): Python, Node.js, Go, Rust, etc.
-
-    // Git
-    "eamodio.gitlens",
-
-    // Remote development (if lab uses SSH/VMs/containers)
-    "ms-vscode-remote.remote-ssh",
-
-    // Markdown authoring and preview
-    "DavidAnson.vscode-markdownlint",
-    "yzhang.markdown-all-in-one",
-
-    // GitHub integration
-    "github.vscode-pull-request-github",
-
-    // File format support (include what the lab uses)
-    "tamasfe.even-better-toml",
-
-    // Useful utilities
-    "usernamehw.errorlens",
-    "gruntfuggly.todo-tree",
-    "ms-vsliveshare.vsliveshare"
-  ]
-}
-```
+- **Language support** — Adjust per lab: Python, Node.js, Go, Rust, etc.
+- **Git** — `eamodio.gitlens`.
+- **Remote development** — `ms-vscode-remote.remote-ssh` (if lab uses SSH/VMs/containers).
+- **Markdown** — `DavidAnson.vscode-markdownlint`, `yzhang.markdown-all-in-one`.
+- **GitHub integration** — `github.vscode-pull-request-github`.
+- **File format support** — Include what the lab uses (e.g., `tamasfe.even-better-toml`).
+- **Utilities** — `usernamehw.errorlens`, `gruntfuggly.todo-tree`, `ms-vsliveshare.vsliveshare`.
 
 ### 6.1. Rules for extensions
 
@@ -393,30 +336,7 @@ Choose a task runner appropriate for the lab's ecosystem:
 - **Node.js**: `package.json` scripts (run via `npm run <task>`)
 - **Go / Rust / other**: `Makefile` or `Taskfile.yml` (run via `make <task>` or `task <task>`)
 
-Example with `pyproject.toml` + `poethepoet`:
-
-```toml
-[tool.poe.tasks.dev]
-help = "Run server after static analysis"
-sequence = ["check", "start"]
-
-[tool.poe.tasks.test]
-help = "Run pytest"
-cmd = "pytest"
-```
-
-Example with `package.json`:
-
-```json
-{
-  "scripts": {
-    "dev": "npm run check && npm run start",
-    "start": "node src/index.js",
-    "check": "npm run format && npm run lint",
-    "test": "jest"
-  }
-}
-```
+Define at minimum these standard tasks: `dev` (run checks then start), `start` (start the server), `check` (format + lint), `test` (run test suite). Add `format` and `lint` as separate tasks when the lab includes static analysis.
 
 ### 7.1. Rules for task runner
 
@@ -437,34 +357,15 @@ Example with `package.json`:
 If the lab involves deployment:
 
 1. Provide `.env.example` and `.env.docker.example` as templates.
-2. Students copy them to `.env.secret` and `.env.docker.secret` (which are `.gitignore`d via the `*.secret` pattern in `.gitignore`).
-3. Use `docker-compose.yml` with environment variable substitution from the `.env.docker.secret` file:
-
-   ```yaml
-   services:
-     app:
-       build: .
-       ports:
-         - ${APP_HOST_ADDRESS}:${APP_HOST_PORT}:${APP_CONTAINER_PORT}
-       environment:
-         - PORT=${APP_CONTAINER_PORT}
-     caddy:
-       image: caddy:2-alpine
-       depends_on:
-         - app
-       ports:
-         - ${CADDY_HOST_ADDRESS}:${CADDY_HOST_PORT}:${CADDY_CONTAINER_PORT}
-       volumes:
-         - ./caddy/Caddyfile:/etc/caddy/Caddyfile
-   ```
-
+2. Students copy them to `.env.secret` and `.env.docker.secret` (which are `.gitignore`d via the `*.secret` pattern).
+3. Use `docker-compose.yml` with environment variable substitution from `.env.docker.secret` (e.g., `${APP_HOST_PORT}`). Parameterize all ports, host addresses, and credentials.
 4. Include a reverse proxy service (e.g., Caddy) in `docker-compose.yml`.
 5. Use a multi-stage `Dockerfile` for production builds (builder stage + slim runtime).
 6. Deployment task flow: SSH into VM → clone repo → create `.env.docker.secret` → `docker compose up --build -d`.
 7. Distinguish local vs remote env differences:
    - Local: `APP_HOST_ADDRESS=127.0.0.1` (localhost only).
    - Remote: `CADDY_HOST_ADDRESS=0.0.0.0` (accessible from outside).
-8. **Use an institutional container registry** (e.g., Harbor cache proxy) for base images to avoid Docker Hub rate limits ("too many requests" errors). Reference the registry in `docker-compose.yml` image fields instead of pulling directly from Docker Hub.
+8. **Use an institutional container registry** (e.g., Harbor cache proxy) for base images to avoid Docker Hub rate limits. Reference the registry in `docker-compose.yml` image fields instead of pulling directly from Docker Hub.
 
 ---
 
@@ -490,23 +391,9 @@ Agent tool directories (`.claude/`, `.qwen/`) are symlinks to `.agents/` so all 
 
 ### 9.2. `AGENTS.md` structure
 
-`AGENTS.md` is the single source of truth for agent instructions. It follows the same structure as `CLAUDE.md`:
+`AGENTS.md` is the single source of truth for agent instructions. Structure it with:
 
-```markdown
-# Lab authoring conventions
-
-## When editing `lab/tasks/`
-
-Read before making changes:
-
-- [`contributing/conventions/writing/common.md`](...) — writing conventions
-- [`contributing/conventions/writing/tasks.md`](...) — task structure
-
-## When editing `wiki/`
-...
-```
-
-- Use `##` sections keyed to the action (e.g., `When editing X`).
+- `##` sections keyed to the action (e.g., `When editing X`).
 - Each section lists the relevant convention files to read before making changes.
 - `CLAUDE.md` and `QWEN.md` are symlinks — never edit them directly; edit `AGENTS.md`.
 
