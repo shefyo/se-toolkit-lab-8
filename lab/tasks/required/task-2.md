@@ -82,7 +82,7 @@ Title: `[Task] Analytics Endpoints`
    [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   uv run poe test
+   uv run poe test-unit
    ```
 
    You should see 17 analytics tests failing and 3 interaction tests passing:
@@ -193,12 +193,12 @@ Query logic:
 
 ### 1.6. Run the tests (all should pass)
 
-1. To run the full test suite,
+1. To run the unit tests,
 
    [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   uv run poe test
+   uv run poe test-unit
    ```
 
    All 20 tests should pass:
@@ -218,7 +218,7 @@ Query logic:
    [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   uv run pytest backend/tests/unit/test_analytics.py::TestScores -v
+   uv run poe test-unit -k TestScores -v
    ```
 
    <h4><code>NotImplementedError</code></h4>
@@ -269,6 +269,14 @@ Query logic:
 
 5. Verify that each returns a `200` response with a `JSON` array.
 
+6. To run the end-to-end tests against the deployed API,
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   uv run poe test-e2e
+   ```
+
 ### 1.9. Finish the task
 
 1. [Create a PR](../../../wiki/git-workflow.md#create-a-pr-to-the-main-branch-in-your-fork) with your changes.
@@ -283,7 +291,7 @@ Query logic:
 ## 2. Acceptance criteria
 
 - [ ] Issue has the correct title.
-- [ ] `uv run poe test` passes all 20 tests (17 analytics + 3 interaction).
+- [ ] `uv run poe test-unit` passes all 20 tests (17 analytics + 3 interaction).
 - [ ] `GET /analytics/scores?lab=<lab>` returns `200` with a `JSON` array of 4 bucket objects.
 - [ ] `GET /analytics/pass-rates?lab=<lab>` returns `200` with a `JSON` array of task objects.
 - [ ] `GET /analytics/timeline?lab=<lab>` returns `200` with a `JSON` array of date objects.
