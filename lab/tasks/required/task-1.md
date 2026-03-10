@@ -273,7 +273,10 @@ The code stubs in `backend/app/etl.py` contain detailed TODOs.
 
 3. Authorize with your [`API_KEY`](../../../wiki/dotenv-docker-secret.md#api_key).
 
-4. Trigger the pipeline: expand `POST /pipeline/sync`, click `Try it out`, then `Execute`.
+4. Trigger the pipeline. Complete the following steps:
+   1. Expand `POST /pipeline/sync`.
+   2. Click `Try it out`.
+   3. Click `Execute`.
 
    You should see a `200` response with a `JSON` body:
 

@@ -64,8 +64,8 @@ No issues found.
 
 ### 4.1. Instructions wording
 
-1. **[Low]** Line 291: Three actions chained in one instruction: "expand `POST /pipeline/sync`, click `Try it out`, then `Execute`." Convention 4.1 requires splitting compound instructions into separate numbered steps. Borderline case since these actions form a single Swagger UI interaction flow.
-   **Suggested fix:** Split into sub-steps, or keep as-is if considered a single logical action.
+1. ~~**[Low]** Line 291: Three actions chained in one instruction: "expand `POST /pipeline/sync`, click `Try it out`, then `Execute`." Convention 4.1 requires splitting compound instructions into separate numbered steps. Borderline case since these actions form a single Swagger UI interaction flow.
+   **Suggested fix:** Split into sub-steps, or keep as-is if considered a single logical action.~~
 
 ### 4.2. Terminal commands
 
@@ -199,9 +199,9 @@ No empty sections found.
 | Conceptual [Low] | 1 |
 | Convention [High] | 0 |
 | Convention [Medium] | 0 |
-| Convention [Low] | 1 |
+| Convention [Low] | 0 |
 | TODOs | 0 |
 | Empty sections | 0 |
-| **Total** | **2** |
+| **Total** | **1** |
 
-**Overall:** The remaining issues are one conceptual (author decision required) plus one low-severity convention finding. One borderline compound instruction in step 1.4.3 could optionally be split (4.1 finding). All high and medium violations have been fixed.
+**Overall:** One remaining conceptual finding (D11, author decision required). All convention violations have been fixed.
