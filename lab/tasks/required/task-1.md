@@ -257,6 +257,9 @@ The code stubs in `backend/app/etl.py` contain detailed TODOs.
 > - "Call out assumptions and edge cases."
 > - "After coding, summarize why this implementation is correct."
 
+> [!NOTE]
+> The implementation must pass `POST /pipeline/sync` — proceed to [step 1.4.3](#143-run-and-test-locally) to verify.
+
 #### 1.4.3. Run and test locally
 
 1. To deploy your changes locally,

@@ -51,8 +51,8 @@ No issues found.
 
 ### D11. Controlled AI steps
 
-1. **[Low]** Lines 252–253: The prompt includes subjective phrasing ("explain each function step by step as if teaching a junior engineer") that may produce variable outputs across AI tools. The review checklist (lines 257–265) partially constrains the result but is a post-hoc review, not a concrete verifiable checkpoint.
-   **Suggested fix:** Add a concrete checkpoint at the end of step 1.4.2 (e.g., "The implementation must pass `POST /pipeline/sync` — proceed to step 1.4.3 to verify"), which the task already provides implicitly but could state explicitly to close the feedback loop.
+1. ~~**[Low]** Lines 252–253: The prompt includes subjective phrasing ("explain each function step by step as if teaching a junior engineer") that may produce variable outputs across AI tools. The review checklist (lines 257–265) partially constrains the result but is a post-hoc review, not a concrete verifiable checkpoint.
+   **Suggested fix:** Add a concrete checkpoint at the end of step 1.4.2 (e.g., "The implementation must pass `POST /pipeline/sync` — proceed to step 1.4.3 to verify"), which the task already provides implicitly but could state explicitly to close the feedback loop.~~
 
 ### D12. Autochecker verifiability
 
@@ -196,12 +196,12 @@ No empty sections found.
 | --- | --- |
 | Conceptual [High] | 0 |
 | Conceptual [Medium] | 0 |
-| Conceptual [Low] | 1 |
+| Conceptual [Low] | 0 |
 | Convention [High] | 0 |
 | Convention [Medium] | 0 |
 | Convention [Low] | 0 |
 | TODOs | 0 |
 | Empty sections | 0 |
-| **Total** | **1** |
+| **Total** | **0** |
 
-**Overall:** One remaining conceptual finding (D11, author decision required). All convention violations have been fixed.
+**Overall**: No remaining issues.
