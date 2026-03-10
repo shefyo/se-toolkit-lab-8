@@ -15,8 +15,8 @@ No issues found.
 
 ### D2. Step-by-step completeness
 
-1. **[Medium]** Line 250: "Start the `Qwen code` coding agent in the terminal inside the project directory" provides no link or reference to setup/installation instructions for the tool. A student unfamiliar with `Qwen code` would not know what command to run or how to launch it.
-   **Suggested fix:** Add a link to a wiki page explaining how to install and start the agent (e.g., `[Start the \`Qwen code\` coding agent](../../../wiki/qwen-code.md#start-the-agent)`), or inline the startup command.
+1. ~~**[Medium]** Line 250: "Start the `Qwen code` coding agent in the terminal inside the project directory" provides no link or reference to setup/installation instructions for the tool. A student unfamiliar with `Qwen code` would not know what command to run or how to launch it.
+   **Suggested fix:** Add a link to a wiki page explaining how to install and start the agent (e.g., `[Start the \`Qwen code\` coding agent](../../../wiki/qwen-code.md#start-the-agent)`), or inline the startup command.~~
 
 2. **[Low]** Lines 336, 340, 344: Steps say "try `GET /items/`", "Try `GET /learners/`", "Try `GET /interactions/`" using the vague verb "try", unlike [step 1.4.3](lab/tasks/required/task-1.md#143-run-and-test-locally) (line 291) which uses explicit Swagger UI instructions ("expand ..., click `Try it out`, then `Execute`").
    **Suggested fix:** Use consistent phrasing such as "expand `GET /items/`, click `Try it out`, then `Execute`", or reference the interaction pattern established in step 1.4.3.
@@ -40,8 +40,8 @@ No issues found.
 
 ### D7. Practical usability
 
-1. **[Medium]** Line 250: No setup instructions or wiki link for the `Qwen code` coding agent. Students who haven't installed or configured the tool would be blocked without external help. (Same root cause as D2 finding #1, manifesting as a usability gap.)
-   **Suggested fix:** Add a prerequisite link or reference to a wiki page with installation and launch instructions.
+1. ~~**[Medium]** Line 250: No setup instructions or wiki link for the `Qwen code` coding agent. Students who haven't installed or configured the tool would be blocked without external help. (Same root cause as D2 finding #1, manifesting as a usability gap.)
+   **Suggested fix:** Add a prerequisite link or reference to a wiki page with installation and launch instructions.~~
 
 ### D8. LLM-independence
 
@@ -209,13 +209,13 @@ No TODOs found.
 | Category | Count |
 | --- | --- |
 | Conceptual [High] | 0 |
-| Conceptual [Medium] | 3 |
+| Conceptual [Medium] | 1 |
 | Conceptual [Low] | 3 |
 | Convention [High] | 0 |
 | Convention [Medium] | 0 |
 | Convention [Low] | 2 |
 | TODOs | 0 |
 | Empty sections | 0 |
-| **Total** | **8** |
+| **Total** | **6** |
 
 **Overall:** The remaining issues are all conceptual (author decisions required) plus two low-severity convention findings. The main conceptual concern is that step 1.4.2 relies entirely on an AI coding agent without providing a non-AI alternative or explicitly stating that AI is required (D8). Step 1.2 includes branch creation instructions that the template reserves for a dedicated step (Section 1 finding), and one borderline compound instruction in step 1.4.3 could optionally be split (4.1 finding). All high and medium convention violations have been fixed.

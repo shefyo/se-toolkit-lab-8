@@ -247,7 +247,7 @@ The code stubs in `backend/app/etl.py` contain detailed TODOs.
 
 #### 1.4.2. Implement the pipeline
 
-1. Start the `Qwen code` coding agent in the terminal inside the project directory.
+1. [Start the `Qwen Code` coding agent](../../../wiki/qwen.md#open-a-chat-with-qwen-code) in the terminal inside the project directory.
 2. Give it a prompt that asks for planning, implementation, and explanation:
 
    > "Read the TODO comments in `backend/app/etl.py` and implement all five functions one by one. Use the existing models in `backend/app/models/` and the settings in `backend/app/settings.py`. The API uses HTTP Basic Auth. First give me a short numbered plan, then implement a function, deploy locally, then test, report to me what exactly you've done and explain each function step by step as if teaching a junior engineer. Then confirm with me and proceed to the next function."
