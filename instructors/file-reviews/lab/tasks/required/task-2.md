@@ -15,10 +15,10 @@ No issues found.
 
 ### D2. Step-by-step completeness
 
-1. **[Medium]** Lines 260–268 ([step 1.8, sub-step 1](lab/tasks/required/task-2.md#18-deploy-and-verify)): The code block contains three commands from different tools — `cd` (shell navigation), `git fetch && git checkout && git pull` (version control), and `docker compose up` (container management) — grouped under a single compound intention "To pull your branch and restart the services on your VM." Per task convention Section 3 and common convention 4.1, commands from different tools must be separate numbered steps, each with its own "To..." intention and code block.
+1. **[Medium]** Lines 260–268 ([step 1.8, sub-step 1](../../../../../lab/tasks/required/task-2.md#18-deploy-and-verify)): The code block contains three commands from different tools — `cd` (shell navigation), `git fetch && git checkout && git pull` (version control), and `docker compose up` (container management) — grouped under a single compound intention "To pull your branch and restart the services on your VM." Per task convention Section 3 and common convention 4.1, commands from different tools must be separate numbered steps, each with its own "To..." intention and code block.
    **Suggested fix:** Split into separate numbered steps: (1) navigate to the project directory, (2) pull the branch, (3) restart Docker services. Each step gets its own "To..." intention, wiki link, and code block.
 
-2. **[Low]** Lines 260–268 ([step 1.8, sub-step 1](lab/tasks/required/task-2.md#18-deploy-and-verify)): The step runs commands "on your VM" via the `VS Code Terminal` but does not instruct the student to SSH into the VM first, nor reference a prior step or wiki section for connecting. This prerequisite may be covered in earlier tasks but is not referenced here.
+2. **[Low]** Lines 260–268 ([step 1.8, sub-step 1](../../../../../lab/tasks/required/task-2.md#18-deploy-and-verify)): The step runs commands "on your VM" via the `VS Code Terminal` but does not instruct the student to SSH into the VM first, nor reference a prior step or wiki section for connecting. This prerequisite may be covered in earlier tasks but is not referenced here.
    **Suggested fix:** Add an SSH connection step before the deploy commands, or add a cross-task reference to the step where SSH was established (e.g., `[Connect to your VM](./task-1.md#...)`).
 
 ### D3. Student navigation
@@ -27,18 +27,18 @@ No issues found.
 
 ### D4. Checkpoints and feedback loops
 
-1. **[Medium]** Lines 295–301 ([step 1.8, sub-step 8](lab/tasks/required/task-2.md#18-deploy-and-verify)): The step runs end-to-end tests (`uv run poe test-e2e`) but shows no expected output or checkpoint. Students cannot verify whether the test run succeeded or how many tests should pass.
-   **Suggested fix:** Add expected output after the command showing the expected number of passing tests, similar to the unit test checkpoint in [step 1.6](lab/tasks/required/task-2.md#16-run-the-tests-all-should-pass).
+1. **[Medium]** Lines 295–301 ([step 1.8, sub-step 8](../../../../../lab/tasks/required/task-2.md#18-deploy-and-verify)): The step runs end-to-end tests (`uv run poe test-e2e`) but shows no expected output or checkpoint. Students cannot verify whether the test run succeeded or how many tests should pass.
+   **Suggested fix:** Add expected output after the command showing the expected number of passing tests, similar to the unit test checkpoint in [step 1.6](../../../../../lab/tasks/required/task-2.md#16-run-the-tests-all-should-pass).
 
-2. **[Medium]** Lines 260–268 ([step 1.8, sub-step 1](lab/tasks/required/task-2.md#18-deploy-and-verify)): The Docker deployment command (`docker compose ... up --build -d`) has no checkpoint. Students cannot verify whether the containers started correctly before proceeding to Swagger UI.
+2. **[Medium]** Lines 260–268 ([step 1.8, sub-step 1](../../../../../lab/tasks/required/task-2.md#18-deploy-and-verify)): The Docker deployment command (`docker compose ... up --build -d`) has no checkpoint. Students cannot verify whether the containers started correctly before proceeding to Swagger UI.
    **Suggested fix:** Add a checkpoint after the command, e.g., "You should see the containers starting. Run `docker compose ps` to verify all services are running."
 
-3. **[Medium]** Lines 260–268 ([step 1.8, sub-step 1](lab/tasks/required/task-2.md#18-deploy-and-verify)): Infrastructure step (Docker on VM) has no troubleshooting block. Convention 4.19 in tasks.md requires collapsible troubleshooting for environment-dependent steps.
+3. **[Medium]** Lines 260–268 ([step 1.8, sub-step 1](../../../../../lab/tasks/required/task-2.md#18-deploy-and-verify)): Infrastructure step (Docker on VM) has no troubleshooting block. Convention 4.19 in tasks.md requires collapsible troubleshooting for environment-dependent steps.
    **Suggested fix:** Add a `<details><summary><b>Troubleshooting (click to open)</b></summary>` block covering common VM deployment failures (port conflicts, stale containers, missing `.env.docker.secret`).
 
 ### D5. Acceptance criteria alignment
 
-1. **[Low]** Lines 295–301, 316–323 ([step 1.8](lab/tasks/required/task-2.md#18-deploy-and-verify) and [Acceptance criteria](lab/tasks/required/task-2.md#2-acceptance-criteria)): Step 1.8 runs end-to-end tests but no acceptance criterion covers e2e test results. If e2e tests are expected to pass, add a criterion; if they are optional verification, clarify this in the step text.
+1. **[Low]** Lines 295–301, 316–323 ([step 1.8](../../../../../lab/tasks/required/task-2.md#18-deploy-and-verify) and [Acceptance criteria](../../../../../lab/tasks/required/task-2.md#2-acceptance-criteria)): Step 1.8 runs end-to-end tests but no acceptance criterion covers e2e test results. If e2e tests are expected to pass, add a criterion; if they are optional verification, clarify this in the step text.
    **Suggested fix:** Either add `- [ ] \`uv run poe test-e2e\` passes all tests.` to the acceptance criteria, or add a note in step 1.8 clarifying that e2e tests are a verification step only.
 
 ### D6. Difficulty and progression
@@ -47,7 +47,7 @@ No issues found.
 
 ### D7. Practical usability
 
-1. **[Medium]** Lines 260–268 ([step 1.8, sub-step 1](lab/tasks/required/task-2.md#18-deploy-and-verify)): The deploy step could silently fail (`docker compose up -d` returns immediately) with no checkpoint or troubleshooting guidance. Students may proceed to Swagger UI and encounter confusing errors without understanding the root cause.
+1. **[Medium]** Lines 260–268 ([step 1.8, sub-step 1](../../../../../lab/tasks/required/task-2.md#18-deploy-and-verify)): The deploy step could silently fail (`docker compose up -d` returns immediately) with no checkpoint or troubleshooting guidance. Students may proceed to Swagger UI and encounter confusing errors without understanding the root cause.
    **Suggested fix:** See D4 findings 2–3.
 
 ### D8. LLM-independence
@@ -60,12 +60,12 @@ No issues found.
 
 ### D10. Conceptual gaps and misconceptions
 
-1. **[Low]** Line 143 ([step 1.5.1, query logic item 4](lab/tasks/required/task-2.md#151-scores-histogram)): The `CASE WHEN` SQL syntax is referenced without explanation or link. Students unfamiliar with SQL case expressions may not know how to write them.
+1. **[Low]** Line 143 ([step 1.5.1, query logic item 4](../../../../../lab/tasks/required/task-2.md#151-scores-histogram)): The `CASE WHEN` SQL syntax is referenced without explanation or link. Students unfamiliar with SQL case expressions may not know how to write them.
    **Suggested fix:** Add a brief NOTE or link to SQL `CASE WHEN` documentation.
 
 ### D11. Controlled AI steps
 
-1. **[Low]** Lines 114–119 ([step 1.5, TIP block](lab/tasks/required/task-2.md#15-implement-the-endpoints)): The AI tip provides an approximate prompt ("give it a prompt like:") rather than an exact or templated prompt. Convention 4.20 in tasks.md recommends exact prompts or templates with `<placeholders>` for reproducibility. Low severity since AI use is optional.
+1. **[Low]** Lines 114–119 ([step 1.5, TIP block](../../../../../lab/tasks/required/task-2.md#15-implement-the-endpoints)): The AI tip provides an approximate prompt ("give it a prompt like:") rather than an exact or templated prompt. Convention 4.20 in tasks.md recommends exact prompts or templates with `<placeholders>` for reproducibility. Low severity since AI use is optional.
    **Suggested fix:** Rephrase to "use this prompt:" and present the prompt in a fenced code block.
 
 ### D12. Autochecker verifiability

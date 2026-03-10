@@ -15,7 +15,7 @@ No issues found.
 
 ### D2. Step-by-step completeness
 
-1. **[Low]** Line 85: "Open the [coding agent](...) in the `frontend/` directory" — the phrase "in the `frontend/` directory" is ambiguous (working directory vs. target directory). The wiki link points to `#what-is-a-coding-agent` (concept definition) rather than an operational section like `#open-a-chat-with-qwen-code`. Suggest: link to the operational wiki section and clarify the working directory context.
+1. **[Low]** Line 85: "Open the [coding agent](../../../../../wiki/coding-agents.md#what-is-a-coding-agent) in the `frontend/` directory" — the phrase "in the `frontend/` directory" is ambiguous (working directory vs. target directory). The wiki link points to `#what-is-a-coding-agent` (concept definition) rather than an operational section like `#open-a-chat-with-qwen-code`. Suggest: link to the operational wiki section and clarify the working directory context.
 
 ### D3. Student navigation
 
@@ -23,8 +23,8 @@ No issues found.
 
 ### D4. Checkpoints and feedback loops
 
-1. **[Low]** Lines 48–72 ([step 1.3](lab/tasks/required/task-3.md#13-install-the-chart-library)): No checkpoint after `npm install chart.js react-chartjs-2`. Students have no visual confirmation that the packages were installed successfully. Suggest: add expected terminal output showing packages added (e.g., "You should see output similar to: `added N packages`").
-2. **[Low]** Lines 128–165 ([step 1.6](lab/tasks/required/task-3.md#16-run-the-type-checker)): No expected output shown for a successful `npm run typecheck`. Students unfamiliar with `TypeScript` may not know what "passing" looks like. Suggest: add a note such as "If there are no type errors, the command produces no output and exits silently."
+1. **[Low]** Lines 48–72 ([step 1.3](../../../../../lab/tasks/required/task-3.md#13-install-the-chart-library)): No checkpoint after `npm install chart.js react-chartjs-2`. Students have no visual confirmation that the packages were installed successfully. Suggest: add expected terminal output showing packages added (e.g., "You should see output similar to: `added N packages`").
+2. **[Low]** Lines 128–165 ([step 1.6](../../../../../lab/tasks/required/task-3.md#16-run-the-type-checker)): No expected output shown for a successful `npm run typecheck`. Students unfamiliar with `TypeScript` may not know what "passing" looks like. Suggest: add a note such as "If there are no type errors, the command produces no output and exits silently."
 
 ### D5. Acceptance criteria alignment
 
@@ -52,7 +52,7 @@ No issues found.
 
 ### D11. Controlled AI steps
 
-1. **[Low]** Lines 118–127 ([step 1.5](lab/tasks/required/task-3.md#15-add-navigation)): The AI path ("You can use an AI agent") has no specific prompt template, unlike step 1.4 which provides an exact prompt. The three sub-steps provide some constraint but less control than a prompt template. Suggest: add a prompt template for the AI path, similar to step 1.4.
+1. **[Low]** Lines 118–127 ([step 1.5](../../../../../lab/tasks/required/task-3.md#15-add-navigation)): The AI path ("You can use an AI agent") has no specific prompt template, unlike step 1.4 which provides an exact prompt. The three sub-steps provide some constraint but less control than a prompt template. Suggest: add a prompt template for the AI path, similar to step 1.4.
 
 ### D12. Autochecker verifiability
 

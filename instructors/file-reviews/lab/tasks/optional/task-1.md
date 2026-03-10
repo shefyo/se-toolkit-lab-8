@@ -25,9 +25,9 @@ No issues found.
 
 ### D4. Checkpoints and feedback loops
 
-1. **[Medium]** Lines 34–43 ([Step 1.2](lab/tasks/optional/task-1.md#12-enable-grafana-in-docker-compose)) — No checkpoint after uncommenting the `Grafana` service block. The student cannot verify the uncommenting was done correctly before starting `Docker`. A syntax error or incomplete uncomment would surface only after `docker compose up` fails. Suggested fix: add a brief checkpoint (e.g., "The `grafana` service should appear without `#` characters at the start of each line").
-2. **[Medium]** Lines 45–54 ([Step 1.3](lab/tasks/optional/task-1.md#13-start-grafana)) — This step starts `Docker` containers (infrastructure) but has no collapsible troubleshooting block. Common failures include port 3000 already in use and containers exiting immediately. Suggested fix: add a `<details><summary><b>Troubleshooting (click to open)</b></summary>` block covering these two symptoms.
-3. **[Low]** Lines 87–128 ([Step 1.5](lab/tasks/optional/task-1.md#15-build-a-dashboard)) — No checkpoint after building the dashboard. The student has no way to confirm the dashboard looks correct before saving. Suggested fix: add a brief description or screenshot of what a finished two-panel dashboard should look like.
+1. **[Medium]** Lines 34–43 ([Step 1.2](../../../../../lab/tasks/optional/task-1.md#12-enable-grafana-in-docker-compose)) — No checkpoint after uncommenting the `Grafana` service block. The student cannot verify the uncommenting was done correctly before starting `Docker`. A syntax error or incomplete uncomment would surface only after `docker compose up` fails. Suggested fix: add a brief checkpoint (e.g., "The `grafana` service should appear without `#` characters at the start of each line").
+2. **[Medium]** Lines 45–54 ([Step 1.3](../../../../../lab/tasks/optional/task-1.md#13-start-grafana)) — This step starts `Docker` containers (infrastructure) but has no collapsible troubleshooting block. Common failures include port 3000 already in use and containers exiting immediately. Suggested fix: add a `<details><summary><b>Troubleshooting (click to open)</b></summary>` block covering these two symptoms.
+3. **[Low]** Lines 87–128 ([Step 1.5](../../../../../lab/tasks/optional/task-1.md#15-build-a-dashboard)) — No checkpoint after building the dashboard. The student has no way to confirm the dashboard looks correct before saving. Suggested fix: add a brief description or screenshot of what a finished two-panel dashboard should look like.
 
 ### D5. Acceptance criteria alignment
 
@@ -47,7 +47,7 @@ No issues found.
 
 ### D9. Git workflow coherence
 
-1. **[Medium]** Lines 138–140 ([Step 1.7](lab/tasks/optional/task-1.md#17-finish-the-task)) — The step is titled "Finish the task" but contains only "Close the issue." Per convention 4.11, "Finish the task" is reserved for the PR + review ending (create PR, get review, merge). The current body matches the no-code ending pattern (close issue with evidence) but uses the wrong heading. Suggested fix: either (a) add `Git workflow` step 1.1, PR creation, and review steps, or (b) rename the step and restructure to match the close-issue-with-evidence pattern.
+1. **[Medium]** Lines 138–140 ([Step 1.7](../../../../../lab/tasks/optional/task-1.md#17-finish-the-task)) — The step is titled "Finish the task" but contains only "Close the issue." Per convention 4.11, "Finish the task" is reserved for the PR + review ending (create PR, get review, merge). The current body matches the no-code ending pattern (close issue with evidence) but uses the wrong heading. Suggested fix: either (a) add `Git workflow` step 1.1, PR creation, and review steps, or (b) rename the step and restructure to match the close-issue-with-evidence pattern.
 2. **[Medium]** Lines 34–43 — The task modifies `docker-compose.yml` (a tracked file) in step 1.2 but does not include a "Follow the `Git workflow`" step and does not ask students to commit or push. This leaves a modified file uncommitted on the VM. Suggested fix: either add the `Git workflow` step and a PR ending, or add a note explaining that this change is local-only and intentionally not committed.
 
 ### D10. Conceptual gaps and misconceptions
