@@ -20,6 +20,8 @@ Review a single file for problems — first conceptual and pedagogical issues (f
    - **For `lab/tasks/` files:**
      - [`contributing/conventions/writing/tasks.md`](../../../contributing/conventions/writing/tasks.md) — Section 13 defines the ten review dimensions (D1–D10) for conceptual review; Section 3 and Section 12 define task structure and design principles for convention review
      - [`contributing/conventions/writing/common.md`](../../../contributing/conventions/writing/common.md) — writing conventions (4.1–4.23)
+   - **For `lab/tasks/setup.md` and `lab/tasks/setup-simple.md` (in addition to the above):**
+     - [`contributing/conventions/writing/setup.md`](../../../contributing/conventions/writing/setup.md) — setup file structure and conventions
    - **For `wiki/` files:**
      - [`contributing/conventions/writing/common.md`](../../../contributing/conventions/writing/common.md) — writing conventions (4.1–4.23)
      - [`contributing/conventions/writing/wiki.md`](../../../contributing/conventions/writing/wiki.md) — wiki file structure and section patterns
@@ -43,7 +45,7 @@ Review a single file for problems — first conceptual and pedagogical issues (f
 - Be strict: flag every violation, no matter how small.
 - Do not fix anything — only report.
 - If a convention does not apply to the file (e.g., the file has no Docker commands), skip that category and note "Not applicable."
-- For `lab/tasks/setup.md`: skip task-only conventions (Section 3 template, acceptance criteria format). Apply all `common.md` conventions.
+- For `lab/tasks/setup.md` and `lab/tasks/setup-simple.md`: skip task-only conventions (Section 3 template, acceptance criteria format). Apply all [`contributing/conventions/writing/common.md`](../../../contributing/conventions/writing/common.md) conventions and all [`contributing/conventions/writing/setup.md`](../../../contributing/conventions/writing/setup.md) conventions.
 - For `contributing/conventions/conventions.md` itself: apply its own rules — the file is self-referential and must comply with the conventions it defines.
 - When referring to a section in the reviewed file, link to it using a markdown link whose URL is the reviewed file's path followed by `#` and the heading anchor. Do not use bare local anchors (`#...`) that would resolve to the review file itself.
 

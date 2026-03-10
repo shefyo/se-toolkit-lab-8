@@ -21,6 +21,8 @@ Fix convention violations in a file using the report produced by `/review-file`.
    - **For `lab/tasks/` files:**
      - [`contributing/conventions/writing/common.md`](../../../contributing/conventions/writing/common.md)
      - [`contributing/conventions/writing/tasks.md`](../../../contributing/conventions/writing/tasks.md)
+   - **For `lab/tasks/setup.md` and `lab/tasks/setup-simple.md` (in addition to the above):**
+     - [`contributing/conventions/writing/setup.md`](../../../contributing/conventions/writing/setup.md)
    - **For `wiki/` files:**
      - [`contributing/conventions/writing/common.md`](../../../contributing/conventions/writing/common.md)
      - [`contributing/conventions/writing/wiki.md`](../../../contributing/conventions/writing/wiki.md)
