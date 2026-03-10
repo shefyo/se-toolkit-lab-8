@@ -13,10 +13,10 @@ Remove addressed (strikethrough-marked) problem entries from a file-review repor
    - Paths under `wiki/` (e.g., `wiki/web-development.md`)
    - Paths under `contributing/conventions/` (e.g., `contributing/conventions/writing/common.md`)
    - The repository root `AGENTS.md` file
-   - Meeting report files matching the pattern `instructors/meetings/week-N/meeting-M/meeting-report.md`
+   - Meeting report files matching the pattern `instructors/meetings/week-N/meeting-M/report.md`
    If the path is missing or does not match one of these patterns, ask the user.
 2. Derive the review file path:
-   - **For `instructors/meetings/` files:** `meeting-report-review.md` in the same directory as the source file (e.g., `instructors/meetings/week-2/meeting-1/meeting-report-review.md` for `instructors/meetings/week-2/meeting-1/meeting-report.md`).
+   - **For `instructors/meetings/` files:** `report-review.md` in the same directory as the source file (e.g., `instructors/meetings/week-2/meeting-1/report-review.md` for `instructors/meetings/week-2/meeting-1/report.md`).
    - **For all other files:** `instructors/file-reviews/<repo-root-path>`, where `<repo-root-path>` is the target file's path from the repository root (e.g., `instructors/file-reviews/lab/tasks/required/task-1.md`).
    If the review file does not exist, tell the user to run `/review-file <path>` first and stop.
 3. Read the review file.

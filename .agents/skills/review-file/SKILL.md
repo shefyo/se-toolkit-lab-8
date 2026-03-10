@@ -1,10 +1,10 @@
 ---
 name: review-file
-description: "Review a file for convention violations. Supports lab/tasks/ files (conceptual + convention review), wiki/ files, contributing/conventions/ files, AGENTS.md, and instructors/meetings/ meeting-report.md files (cross-checked against the transcript and files discussed). Writes the review report to instructors/file-reviews/ (or meeting-report-review.md alongside the source for meeting reports)."
+description: "Review a file for convention violations. Supports lab/tasks/ files (conceptual + convention review), wiki/ files, contributing/conventions/ files, AGENTS.md, and instructors/meetings/ report.md files (cross-checked against the transcript and files discussed). Writes the review report to instructors/file-reviews/ (or report-review.md alongside the source for meeting reports)."
 argument-hint: "<path>"
 ---
 
-Review a single file for problems — first conceptual and pedagogical issues (for task files) or transcript cross-check (for meeting reports), then convention violations. Accepted locations: `lab/tasks/`, `wiki/`, `contributing/conventions/`, `AGENTS.md`, and `instructors/meetings/` (meeting-report.md files only).
+Review a single file for problems — first conceptual and pedagogical issues (for task files) or transcript cross-check (for meeting reports), then convention violations. Accepted locations: `lab/tasks/`, `wiki/`, `contributing/conventions/`, `AGENTS.md`, and `instructors/meetings/` (report.md files only).
 
 ## Steps
 
@@ -13,7 +13,7 @@ Review a single file for problems — first conceptual and pedagogical issues (f
    - Paths under `wiki/` (e.g., `wiki/web-development.md`)
    - Paths under `contributing/conventions/` (e.g., `contributing/conventions/writing/common.md`)
    - The repository root `AGENTS.md` file
-   - Meeting report files matching the pattern `instructors/meetings/week-N/meeting-M/meeting-report.md` (e.g., `instructors/meetings/week-2/meeting-1/meeting-report.md`)
+   - Meeting report files matching the pattern `instructors/meetings/week-N/meeting-M/report.md` (e.g., `instructors/meetings/week-2/meeting-1/report.md`)
    If the path is missing or does not match one of these patterns, ask the user.
 2. Read the target file.
 3. Read the convention files that apply to the target file:
@@ -29,9 +29,9 @@ Review a single file for problems — first conceptual and pedagogical issues (f
      - [`contributing/conventions/conventions.md`](../../../contributing/conventions/conventions.md) — conventions for writing conventions
    - **For `AGENTS.md`:**
      - [`contributing/conventions/agents/agents.md`](../../../contributing/conventions/agents/agents.md) — AGENTS.md conventions (agent-neutral content, format and structure)
-   - **For `instructors/meetings/` meeting-report.md files:**
+   - **For `instructors/meetings/` report.md files:**
      - [`contributing/conventions/meetings/meeting-report.md`](../../../contributing/conventions/meetings/meeting-report.md) — meeting report format rules (Sections 3–4) and the five review categories (Section 5)
-4. (**For `instructors/meetings/` files only**) Derive the transcript path by replacing `meeting-report.md` with `transcripts/transcript-by-speaker.txt` in the report path (e.g., `instructors/meetings/week-2/meeting-1/transcripts/transcript-by-speaker.txt`). Read the transcript. If the report's **Metadata → Files discussed** section lists any files, read each of them.
+4. (**For `instructors/meetings/` files only**) Derive the transcript path by replacing `report.md` with `transcripts/transcript-by-speaker.txt` in the report path (e.g., `instructors/meetings/week-2/meeting-1/transcripts/transcript-by-speaker.txt`). Read the transcript. If the report's **Metadata → Files discussed** section lists any files, read each of them.
 5. **Conceptual review** (only for `lab/tasks/` files): Analyse the file against each dimension (D1–D10) from Section 13 of [`contributing/conventions/writing/tasks.md`](../../../contributing/conventions/writing/tasks.md). For each problem found, record: the dimension, the line number(s) or section, a short description, severity (`[High]`, `[Medium]`, or `[Low]`), and a suggested fix.
 6. **Meeting report review** (only for `instructors/meetings/` files): Analyse the report against the five categories in Section 5 of [`contributing/conventions/meetings/meeting-report.md`](../../../contributing/conventions/meetings/meeting-report.md). For each finding, cite the relevant transcript line or report line number.
 7. **Convention review** (for `lab/tasks/`, `wiki/`, `contributing/conventions/`, and `AGENTS.md` files only): Go through the target file **line by line**. Check it against **every** convention in the applicable convention files. Flag each violation with its line number.
@@ -52,7 +52,7 @@ Review a single file for problems — first conceptual and pedagogical issues (f
 ## Output format
 
 Write the report to:
-- **For `instructors/meetings/` files:** `meeting-report-review.md` in the same directory as the source file (e.g., `instructors/meetings/week-2/meeting-1/meeting-report-review.md` for `instructors/meetings/week-2/meeting-1/meeting-report.md`).
+- **For `instructors/meetings/` files:** `report-review.md` in the same directory as the source file (e.g., `instructors/meetings/week-2/meeting-1/report-review.md` for `instructors/meetings/week-2/meeting-1/report.md`).
 - **For all other files:** `instructors/file-reviews/<repo-root-path>`, where `<repo-root-path>` is the file's path from the repository root (e.g., `instructors/file-reviews/lab/tasks/setup.md` for `lab/tasks/setup.md`). Create intermediate directories if they do not exist.
 
 The report must be self-contained so another session or agent can act on it without extra context. Structure:
