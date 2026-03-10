@@ -77,7 +77,15 @@ Title: `[Task] Analytics Endpoints`
 
 1. [Check that the current directory is `se-toolkit-lab-5`](../../../wiki/shell.md#check-the-current-directory-is-directory-name).
 
-2. To run the unit tests,
+2. To copy the [`.env.tests.unit.example`](../../../.env.tests.unit.example) file to the [`.env.tests.unit.secret`](../../../wiki/dotenv-tests-unit-secret.md#what-is-envtestsunitsecret) file,
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   cp .env.tests.unit.example .env.tests.unit.secret
+   ```
+
+3. To run the unit tests,
 
    [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -269,7 +277,22 @@ Query logic:
 
 5. Verify that each returns a `200` response with a `JSON` array.
 
-6. To run the end-to-end tests against the deployed API,
+6. To copy the [`.env.tests.e2e.example`](../../../.env.tests.e2e.example) file to the [`.env.tests.e2e.secret`](../../../wiki/dotenv-tests-e2e-secret.md#what-is-envtestse2esecret) file,
+
+   [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   cp .env.tests.e2e.example .env.tests.e2e.secret
+   ```
+
+7. [Open the file](../../../wiki/vs-code.md#open-the-file): `.env.tests.e2e.secret`.
+
+   Set the values:
+
+   - [`API_BASE_URL`](../../../wiki/dotenv-tests-e2e-secret.md#api_base_url) — the URL of your deployed API (e.g., `http://<your-vm-ip-address>:42002`; replace [`<your-vm-ip-address>`](../../../wiki/vm.md#your-vm-ip-address)).
+   - [`API_KEY`](../../../wiki/dotenv-tests-e2e-secret.md#api_key) — must match [`API_KEY`](../../../wiki/dotenv-docker-secret.md#api_key) in [`.env.docker.secret`](../../../wiki/dotenv-docker-secret.md#what-is-envdockersecret).
+
+8. To run the end-to-end tests against the deployed API,
 
    [run in the `VS Code Terminal`](../../../wiki/vs-code.md#run-a-command-in-the-vs-code-terminal):
 
