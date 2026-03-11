@@ -159,10 +159,10 @@ We refer to your fork as `fork` and to the original repo as `upstream`.
    AUTOCHECKER_PASSWORD=<your-github-username><your-telegram-alias>
    ```
 
-   Set your API key (remember it — you'll need it for the agent):
+   Set `LMS_API_KEY` — this is the **backend API key** that protects your LMS endpoints (used for `Authorization: Bearer` in Swagger and the frontend). It is **not** the LLM key — that comes later in Task 1.
 
    ```text
-   API_KEY=set-it-to-something-and-remember-it
+   LMS_API_KEY=set-it-to-something-and-remember-it
    ```
 
    Save and exit: `Ctrl+X`, then `y`, then `Enter`.
@@ -216,7 +216,7 @@ The database starts empty. You need to run the ETL pipeline to populate it with 
 
    You should see the Swagger UI page.
 
-2. [Authorize in Swagger](../../wiki/swagger.md#authorize-in-swagger-ui) with the `API_KEY` you set in `.env.docker.secret`.
+2. [Authorize in Swagger](../../wiki/swagger.md#authorize-in-swagger-ui) with the `LMS_API_KEY` you set in `.env.docker.secret`.
 
 3. Run the ETL sync by calling `POST /pipeline/sync` in Swagger UI.
 
@@ -272,4 +272,4 @@ A coding agent can help you write code, explain concepts, and debug issues.
 
 ----
 
-Congrats! Your system is deployed with data. Now go to the [tasks](../../README.md#tasks).
+🎉 Congrats! Your system is deployed with data. Now go to the [tasks](../../README.md#tasks).
