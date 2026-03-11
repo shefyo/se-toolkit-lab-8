@@ -25,7 +25,7 @@ No issues found.
 
 ### D5. Acceptance criteria quality
 
-No issues found.
+1. **[Low]** Lines 57–58, 75–76, 94, 101, 117 — Acceptance criteria across multiple tasks include specific CLI invocations with exact flags and query strings (e.g., `uv run poe cli metrics --query 'rate(http_requests_total[1m])'`), as well as specific expected answers (`victorialogs`, `rate()`). Convention 8.5 says "Do not invent specific technology choices, file paths, or implementation details beyond what is needed to illustrate the plan." **Suggested fix:** Abstract the criteria to describe expected behaviour without prescribing exact CLI syntax or specific answer values — leave those details for the task files.
 
 ### D6. Outcome-to-task alignment
 
@@ -33,15 +33,21 @@ No issues found.
 
 ### D7. Structural compliance
 
-No issues found.
+1. **[High]** Lines 51, 71, 90, 112 — All four task summaries are written as single paragraphs. Convention 8.4 requires "five to ten sentences split across two to four short paragraphs." **Suggested fix:** Break each summary into two to four paragraphs on natural topic boundaries (e.g., setup and exploration in one paragraph, implementation details in the next).
+
+2. **[Medium]** Line 71 — [Task 2 summary](../lab-plan.md#task-2--build-the-observability-cli) contains only 4 sentences. Convention 8.4 requires five to ten sentences. **Suggested fix:** Add one to six sentences to expand on what the student does (e.g., describe argument handling, the reference pattern, or how the two subcommands differ).
 
 ### D8. Practical feasibility
 
-1. ~~**[Medium]** — [Task 3](../../lab-plan.md#task-3--implement-the-agentic-loop), lines 67–79. The task requires calling an LLM API, but the plan does not mention how students will access it (provided API key, free-tier service, locally-running model). If a paid account is needed, this conflicts with the "no paid accounts" principle (convention Section 9.8). **Suggested fix:** Add a note in the lab story or Task 3 summary specifying how the LLM is provisioned (e.g., "a local Ollama instance included in the Docker Compose file" or "an API key provided via the course portal").~~
+1. **[Low]** Line 33 — Task 3 depends on the Qwen API, an external free-tier service with a rate limit of 1000 requests per day. Convention D8 checks for dependencies on "external services with rate limits, approval queues, or uptime risks." The plan acknowledges the rate limit but does not address a downtime or deprecation scenario. **Suggested fix:** Mention a fallback strategy (e.g., a local model or mock LLM responses) if the API becomes unavailable.
 
 ### D9. Student experience level fit
 
-1. **[Low]** — [Task 3](../../lab-plan.md#task-3--implement-the-agentic-loop), lines 67–79. Task 3 assumes familiarity with LLM tool-calling schemas and message-history accumulation, but neither Task 1 nor Task 2 introduces these concepts. The seed project provides scaffolding, which helps, but a student with no prior LLM experience may still find the jump from CLI building to agentic-loop implementation steep. **Suggested fix:** Add a sentence in the Task 3 summary noting that the wiki or task file will introduce the tool-calling concept before asking students to implement it, or add a [Remember]/[Understand] outcome specifically about tool-calling mechanics.
+No issues found.
+
+### D10. Main goals clarity
+
+1. **[Low]** Line 9 — Grammatical error: "you can let an agent to debug" should be "you can let an agent debug" (bare infinitive after "let"). **Suggested fix:** Remove "to" before "debug."
 
 ---
 
@@ -59,11 +65,11 @@ No empty sections found.
 
 | Category | Count |
 |---|---|
-| Lab plan [High] | 0 |
-| Lab plan [Medium] | 0 |
-| Lab plan [Low] | 1 |
+| Lab plan [High] | 1 |
+| Lab plan [Medium] | 1 |
+| Lab plan [Low] | 3 |
 | TODOs | 0 |
 | Empty sections | 0 |
-| **Total** | **1** |
+| **Total** | **5** |
 
-**Overall:** The lab plan is well-structured with clear learning outcomes, proper Bloom's taxonomy coverage, a coherent workplace narrative, and well-sequenced tasks that build naturally from exploration through implementation to agentic reasoning. The one remaining finding notes a potential cognitive jump into LLM tool-calling without prior introduction (D9).
+**Overall:** The lab plan is well structured with strong learning outcomes, clear Bloom's taxonomy coverage across five levels, and a coherent story that mirrors the required tasks. The most important issue is that all four task summaries are single paragraphs instead of the required two to four paragraphs, and Task 2's summary is one sentence short of the five-sentence minimum. Fixing the paragraph structure and expanding Task 2's summary would bring the plan into full structural compliance. The remaining findings (overly specific acceptance criteria, external API risk, and a minor grammar error) are low severity.
