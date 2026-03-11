@@ -33,7 +33,7 @@ No issues found.
 
 ### D7. Structural compliance
 
-1. **[High]** Lines 51, 71, 90, 112 — All four task summaries are written as single paragraphs. Convention 8.4 requires "five to ten sentences split across two to four short paragraphs." **Suggested fix:** Break each summary into two to four paragraphs on natural topic boundaries (e.g., setup and exploration in one paragraph, implementation details in the next).
+1. ~~**[High]** Lines 51, 71, 90, 112 — All four task summaries are written as single paragraphs. Convention 8.4 requires "five to ten sentences split across two to four short paragraphs." **Suggested fix:** Break each summary into two to four paragraphs on natural topic boundaries (e.g., setup and exploration in one paragraph, implementation details in the next).~~
 
 2. **[Medium]** Line 71 — [Task 2 summary](../lab-plan.md#task-2--build-the-observability-cli) contains only 4 sentences. Convention 8.4 requires five to ten sentences. **Suggested fix:** Add one to six sentences to expand on what the student does (e.g., describe argument handling, the reference pattern, or how the two subcommands differ).
 
@@ -47,7 +47,7 @@ No issues found.
 
 ### D10. Main goals clarity
 
-1. **[Low]** Line 9 — Grammatical error: "you can let an agent to debug" should be "you can let an agent debug" (bare infinitive after "let"). **Suggested fix:** Remove "to" before "debug."
+1. ~~**[Low]** Line 9 — Grammatical error: "you can let an agent to debug" should be "you can let an agent debug" (bare infinitive after "let"). **Suggested fix:** Remove "to" before "debug."~~
 
 ---
 
@@ -65,11 +65,11 @@ No empty sections found.
 
 | Category | Count |
 |---|---|
-| Lab plan [High] | 1 |
+| Lab plan [High] | 0 |
 | Lab plan [Medium] | 1 |
-| Lab plan [Low] | 3 |
+| Lab plan [Low] | 2 |
 | TODOs | 0 |
 | Empty sections | 0 |
-| **Total** | **5** |
+| **Total** | **3** |
 
-**Overall:** The lab plan is well structured with strong learning outcomes, clear Bloom's taxonomy coverage across five levels, and a coherent story that mirrors the required tasks. The most important issue is that all four task summaries are single paragraphs instead of the required two to four paragraphs, and Task 2's summary is one sentence short of the five-sentence minimum. Fixing the paragraph structure and expanding Task 2's summary would bring the plan into full structural compliance. The remaining findings (overly specific acceptance criteria, external API risk, and a minor grammar error) are low severity.
+**Overall:** The paragraph structure of all four task summaries has been fixed and the grammar error in Main goals has been corrected. Three findings remain: Task 2's summary is one sentence short of the five-sentence minimum (Medium), acceptance criteria across multiple tasks include overly specific CLI syntax and expected answers (Low), and no fallback strategy is mentioned for the Qwen API dependency (Low). All remaining issues require author content decisions.
