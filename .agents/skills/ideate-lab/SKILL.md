@@ -13,6 +13,7 @@ Ideate a new lab for a given topic and write the plan to `instructors/lab-plan.m
    - [`contributing/configuration.md`](../../../contributing/configuration.md) — repository structure, artifact inventory, GitHub templates, VS Code config, agent config, and pre-publish checklist
    - [`contributing/conventions/writing/lab.md`](../../../contributing/conventions/writing/lab.md) — README structure, lab story, narrative, and checklist
    - [`contributing/conventions/writing/tasks.md`](../../../contributing/conventions/writing/tasks.md) — task structure and design principles
+   - [`contributing/conventions/writing/lab-plan.md`](../../../contributing/conventions/writing/lab-plan.md) — lab plan structure, learning outcomes, task descriptions, and checklist
 3. Using the topic, design the lab:
    a. **Title** — a short, descriptive lab title.
    b. **Learning outcomes** — four to six outcomes. Map each outcome to a Bloom's taxonomy level (Remember, Understand, Apply, Analyze, Evaluate, or Create). Outcomes must be concrete and observable, starting with an action verb matching the level (e.g., "Explain", "Implement", "Compare", "Design"). Include at least one outcome at Apply level or above.
@@ -28,10 +29,7 @@ Ideate a new lab for a given topic and write the plan to `instructors/lab-plan.m
 
 ## Rules
 
-- Learning outcomes must cover at least two distinct Bloom's taxonomy levels.
-- Required tasks must reference each other sequentially (task 2 builds on task 1, task 3 builds on task 2).
-- Optional tasks must be completable without depending on other optional tasks.
-- Do not invent specific technology choices or file paths beyond what is needed to illustrate the plan.
+Follow all conventions in [`contributing/conventions/writing/lab-plan.md`](../../../contributing/conventions/writing/lab-plan.md). Verify the [Checklist](../../../contributing/conventions/writing/lab-plan.md#10-checklist) before finishing.
 
 ## Output
 

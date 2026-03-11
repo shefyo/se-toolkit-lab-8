@@ -1,0 +1,321 @@
+# Lab plan conventions — applies to `instructors/lab-plan.md` only
+
+<h2>Table of contents</h2>
+
+- [1. Purpose](#1-purpose)
+- [2. File location](#2-file-location)
+- [3. Document structure](#3-document-structure)
+- [4. Header and metadata](#4-header-and-metadata)
+- [5. Learning outcomes](#5-learning-outcomes)
+  - [5.1. Bloom's taxonomy mapping](#51-blooms-taxonomy-mapping)
+  - [5.2. "In simple words" restatement](#52-in-simple-words-restatement)
+- [6. Lab story](#6-lab-story)
+- [7. Task descriptions](#7-task-descriptions)
+  - [7.1. Required tasks](#71-required-tasks)
+  - [7.2. Optional tasks](#72-optional-tasks)
+  - [7.3. Purpose statement](#73-purpose-statement)
+  - [7.4. Summary](#74-summary)
+  - [7.5. Acceptance criteria](#75-acceptance-criteria)
+- [8. Formatting](#8-formatting)
+- [9. Review dimensions](#9-review-dimensions)
+  - [9.1. D1. Learning outcome quality](#91-d1-learning-outcome-quality)
+  - [9.2. D2. Bloom's taxonomy coverage](#92-d2-blooms-taxonomy-coverage)
+  - [9.3. D3. Lab story coherence](#93-d3-lab-story-coherence)
+  - [9.4. D4. Task sequencing and dependencies](#94-d4-task-sequencing-and-dependencies)
+  - [9.5. D5. Acceptance criteria quality](#95-d5-acceptance-criteria-quality)
+  - [9.6. D6. Outcome-to-task alignment](#96-d6-outcome-to-task-alignment)
+  - [9.7. D7. Structural compliance](#97-d7-structural-compliance)
+- [10. Checklist](#10-checklist)
+
+Use this file when creating or reviewing a lab plan (`instructors/lab-plan.md`).
+
+For lab creation conventions (README, git workflow, narrative), see [lab.md](lab.md).
+For task design conventions, see [tasks.md](tasks.md).
+
+---
+
+## 1. Purpose
+
+A lab plan is an internal design document that outlines the learning outcomes, narrative, and task structure for a new lab. It is written before task files and serves as the blueprint for the lab's content.
+
+Lab plans are not student-facing. They live under `instructors/` and are used by lab authors and reviewers.
+
+---
+
+## 2. File location
+
+The lab plan is a single file at `instructors/lab-plan.md`.
+
+---
+
+## 3. Document structure
+
+```markdown
+# Lab plan — <Title>
+
+**Topic:** <topic>
+**Date:** <YYYY-MM-DD>
+
+## Learning outcomes
+
+By the end of this lab, students should be able to:
+
+- [<Bloom's level>] <Outcome 1>
+- [<Bloom's level>] <Outcome 2>
+- ...
+
+In simple words:
+
+> 1. <First-person statement 1>
+> 2. <First-person statement 2>
+> ...
+
+## Lab story
+
+<Narrative paragraph — 2 to 4 sentences>
+
+A senior engineer explains the assignment:
+
+> 1. <High-level description of required task 1>
+> 2. <High-level description of required task 2>
+> 3. <High-level description of required task 3>
+
+## Required tasks
+
+### Task 1 — <Title>
+
+**Purpose:** <one sentence>
+
+<Summary — 2 to 4 sentences>
+
+**Acceptance criteria:**
+
+- <criterion 1>
+- <criterion 2>
+- ...
+
+---
+
+### Task 2 — <Title>
+
+**Purpose:** <one sentence>
+
+<Summary>
+
+**Acceptance criteria:**
+
+- ...
+
+---
+
+### Task 3 — <Title>
+
+**Purpose:** <one sentence>
+
+<Summary>
+
+**Acceptance criteria:**
+
+- ...
+
+---
+
+## Optional task
+
+### Task 1 — <Title>
+
+**Purpose:** <one sentence>
+
+<Summary>
+
+**Acceptance criteria:**
+
+- ...
+```
+
+---
+
+## 4. Header and metadata
+
+- The H1 title follows the format `# Lab plan — <Title>`.
+- `**Topic:**` is a short phrase describing the subject area (e.g., "REST API testing", "container security").
+- `**Date:**` is the creation date in ISO format (`YYYY-MM-DD`).
+
+---
+
+## 5. Learning outcomes
+
+List four to six outcomes under the heading `## Learning outcomes`.
+
+Each outcome must be concrete and observable — it describes something the student can demonstrably do, not something they "understand" in an unverifiable way.
+
+### 5.1. Bloom's taxonomy mapping
+
+Prefix each outcome with its Bloom's taxonomy level in square brackets. Valid levels:
+
+- `[Remember]` — recall facts and basic concepts (identify, list, name, define)
+- `[Understand]` — explain ideas or concepts (explain, describe, summarize, classify)
+- `[Apply]` — use information in new situations (implement, execute, use, solve)
+- `[Analyze]` — draw connections among ideas (compare, contrast, differentiate, examine)
+- `[Evaluate]` — justify a decision or course of action (assess, argue, defend, judge)
+- `[Create]` — produce new or original work (design, construct, develop, formulate)
+
+Rules:
+
+- Start each outcome with an action verb matching the Bloom's level.
+- The outcomes must cover at least two distinct Bloom's levels.
+- At least one outcome must be at `[Apply]` level or above.
+
+### 5.2. "In simple words" restatement
+
+After the outcomes list, include an `In simple words:` line followed by a blockquote with a numbered list. Each item restates one outcome as a first-person sentence (e.g., "I can deploy a containerised service.").
+
+The numbered items must match the outcomes one-to-one in the same order.
+
+---
+
+## 6. Lab story
+
+The lab story is a realistic workplace scenario of two to four sentences. Frame it as a task a student encounters after joining a team, company, or project.
+
+After the narrative paragraph, include:
+
+```markdown
+A senior engineer explains the assignment:
+
+> 1. <High-level description of required task 1>
+> 2. <High-level description of required task 2>
+> 3. <High-level description of required task 3>
+```
+
+The senior engineer's numbered list must mirror the three required tasks — one item per task, in order.
+
+For lab story conventions shared with the README (tone, blockquote style, cross-lab continuity), see [Lab story and narrative](lab.md#3-lab-story-and-narrative).
+
+---
+
+## 7. Task descriptions
+
+The lab plan contains exactly three required tasks and one optional task.
+
+### 7.1. Required tasks
+
+Required tasks appear under `## Required tasks` as `### Task 1 — <Title>` through `### Task 3 — <Title>`.
+
+Required tasks must build on each other sequentially — task 2 depends on the output or knowledge from task 1, and task 3 depends on task 2.
+
+Separate each task with a horizontal rule (`---`).
+
+### 7.2. Optional tasks
+
+One optional task appears under `## Optional task` (singular heading) as `### Task 1 — <Title>`.
+
+Optional tasks must be independent — completable without depending on other optional tasks.
+
+### 7.3. Purpose statement
+
+Each task includes a `**Purpose:**` line containing exactly one sentence that explains why the task matters — what the student will learn or achieve.
+
+### 7.4. Summary
+
+Each task includes a summary paragraph of two to four sentences describing what the student does. The summary should be specific enough to guide task file creation but not so detailed that it prescribes every step.
+
+### 7.5. Acceptance criteria
+
+Each task includes an `**Acceptance criteria:**` section with three to five bullet items. Criteria must be concrete and verifiable — a reviewer or autochecker can determine pass/fail without subjective judgment.
+
+Do not use checkbox format (`- [ ]`) in lab plans. Checkboxes are reserved for task files where reviewers check items during PR review. Lab plans use plain bullet lists (`-`).
+
+Do not invent specific technology choices, file paths, or implementation details beyond what is needed to illustrate the plan.
+
+---
+
+## 8. Formatting
+
+- Use `---` horizontal rules between tasks within a section.
+- All sentences end with `.`.
+- Do not use Markdown tables.
+- Do not include a table of contents in the lab plan document — it is short enough to navigate without one.
+
+---
+
+## 9. Review dimensions
+
+Use these dimensions when reviewing a lab plan for conceptual and structural problems. For each finding, record: the dimension, the section or line number(s), a short description, severity (`[High]`, `[Medium]`, or `[Low]`), and a suggested fix.
+
+Severity guide:
+
+- **High** — the plan has a structural gap that would lead to a flawed lab (missing outcomes, misaligned tasks, unverifiable criteria).
+- **Medium** — the plan has an issue that would cause confusion during lab creation (vague purpose, weak criteria, unclear sequencing).
+- **Low** — minor improvement that would make the plan clearer but does not affect lab quality.
+
+### 9.1. D1. Learning outcome quality
+
+- Is each outcome concrete and observable, starting with an action verb?
+- Does each outcome describe something the student can demonstrably do?
+- Are there vague outcomes like "understand X" or "learn about X" without a measurable verb?
+
+### 9.2. D2. Bloom's taxonomy coverage
+
+- Does each outcome have a valid Bloom's level prefix (`[Remember]`, `[Understand]`, `[Apply]`, `[Analyze]`, `[Evaluate]`, or `[Create]`)?
+- Does the action verb match the declared level?
+- Are at least two distinct Bloom's levels used?
+- Is at least one outcome at `[Apply]` level or above?
+
+### 9.3. D3. Lab story coherence
+
+- Does the narrative frame a realistic workplace scenario?
+- Does the senior engineer's numbered list mirror the three required tasks?
+- Is the story connected to the lab's domain and topic?
+
+### 9.4. D4. Task sequencing and dependencies
+
+- Do required tasks build on each other sequentially (task 2 depends on task 1, task 3 depends on task 2)?
+- Is the optional task independent of other optional tasks?
+- Does complexity increase across required tasks (observe → build → extend)?
+
+### 9.5. D5. Acceptance criteria quality
+
+- Does each task have three to five acceptance criteria?
+- Is each criterion concrete and verifiable (pass/fail without subjective judgment)?
+- Are there open-ended or vague criteria (e.g., "student understands X", "code is clean")?
+- Do criteria avoid inventing unnecessary implementation details?
+
+### 9.6. D6. Outcome-to-task alignment
+
+- Do the three required tasks collectively cover all listed learning outcomes?
+- Are there outcomes that no task addresses?
+- Are there tasks that do not contribute to any listed outcome?
+
+### 9.7. D7. Structural compliance
+
+- Does the document follow the template in [Document structure](#3-document-structure)?
+- Is the header format correct (`# Lab plan — <Title>`, `**Topic:**`, `**Date:**`)?
+- Are there four to six learning outcomes?
+- Does the "In simple words" list match outcomes one-to-one?
+- Are purpose statements exactly one sentence?
+- Are summaries two to four sentences?
+- Are `---` rules present between tasks?
+
+---
+
+## 10. Checklist
+
+- [ ] Title follows the format `# Lab plan — <Title>`.
+- [ ] `**Topic:**` and `**Date:**` metadata are present.
+- [ ] Four to six learning outcomes are listed.
+- [ ] Each outcome has a `[<Bloom's level>]` prefix with a matching action verb.
+- [ ] At least two distinct Bloom's levels are used.
+- [ ] At least one outcome is at `[Apply]` level or above.
+- [ ] "In simple words" list has one item per outcome in the same order.
+- [ ] Lab story is two to four sentences with a realistic workplace scenario.
+- [ ] Senior engineer's numbered list mirrors the three required tasks.
+- [ ] Exactly three required tasks and one optional task are present.
+- [ ] Required tasks build on each other sequentially.
+- [ ] The optional task is independent.
+- [ ] Each task has a one-sentence `**Purpose:**`.
+- [ ] Each task has a two-to-four-sentence summary.
+- [ ] Each task has three to five concrete, verifiable acceptance criteria.
+- [ ] Acceptance criteria use plain bullets (`-`), not checkboxes (`- [ ]`).
+- [ ] `---` rules separate tasks within a section.
+- [ ] All sentences end with `.`.
