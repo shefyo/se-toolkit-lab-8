@@ -6,28 +6,30 @@
 - [2. File location](#2-file-location)
 - [3. Document structure](#3-document-structure)
 - [4. Header and metadata](#4-header-and-metadata)
-- [5. Learning outcomes](#5-learning-outcomes)
-  - [5.1. Bloom's taxonomy mapping](#51-blooms-taxonomy-mapping)
-  - [5.2. "In simple words" restatement](#52-in-simple-words-restatement)
-- [6. Lab story](#6-lab-story)
-- [7. Task descriptions](#7-task-descriptions)
-  - [7.1. Required tasks](#71-required-tasks)
-  - [7.2. Optional tasks](#72-optional-tasks)
-  - [7.3. Purpose statement](#73-purpose-statement)
-  - [7.4. Summary](#74-summary)
-  - [7.5. Acceptance criteria](#75-acceptance-criteria)
-- [8. Formatting](#8-formatting)
-- [9. Review dimensions](#9-review-dimensions)
-  - [9.1. D1. Learning outcome quality](#91-d1-learning-outcome-quality)
-  - [9.2. D2. Bloom's taxonomy coverage](#92-d2-blooms-taxonomy-coverage)
-  - [9.3. D3. Lab story coherence](#93-d3-lab-story-coherence)
-  - [9.4. D4. Task sequencing and dependencies](#94-d4-task-sequencing-and-dependencies)
-  - [9.5. D5. Acceptance criteria quality](#95-d5-acceptance-criteria-quality)
-  - [9.6. D6. Outcome-to-task alignment](#96-d6-outcome-to-task-alignment)
-  - [9.7. D7. Structural compliance](#97-d7-structural-compliance)
-  - [9.8. D8. Practical feasibility](#98-d8-practical-feasibility)
-  - [9.9. D9. Student experience level fit](#99-d9-student-experience-level-fit)
-- [10. Checklist](#10-checklist)
+- [5. Main goals](#5-main-goals)
+- [6. Learning outcomes](#6-learning-outcomes)
+  - [6.1. Bloom's taxonomy mapping](#61-blooms-taxonomy-mapping)
+  - [6.2. "In simple words" restatement](#62-in-simple-words-restatement)
+- [7. Lab story](#7-lab-story)
+- [8. Task descriptions](#8-task-descriptions)
+  - [8.1. Required tasks](#81-required-tasks)
+  - [8.2. Optional tasks](#82-optional-tasks)
+  - [8.3. Purpose statement](#83-purpose-statement)
+  - [8.4. Summary](#84-summary)
+  - [8.5. Acceptance criteria](#85-acceptance-criteria)
+- [9. Formatting](#9-formatting)
+- [10. Review dimensions](#10-review-dimensions)
+  - [10.1. D1. Learning outcome quality](#101-d1-learning-outcome-quality)
+  - [10.2. D2. Bloom's taxonomy coverage](#102-d2-blooms-taxonomy-coverage)
+  - [10.3. D3. Lab story coherence](#103-d3-lab-story-coherence)
+  - [10.4. D4. Task sequencing and dependencies](#104-d4-task-sequencing-and-dependencies)
+  - [10.5. D5. Acceptance criteria quality](#105-d5-acceptance-criteria-quality)
+  - [10.6. D6. Outcome-to-task alignment](#106-d6-outcome-to-task-alignment)
+  - [10.7. D7. Structural compliance](#107-d7-structural-compliance)
+  - [10.8. D8. Practical feasibility](#108-d8-practical-feasibility)
+  - [10.9. D9. Student experience level fit](#109-d9-student-experience-level-fit)
+  - [10.10. D10. Main goals clarity](#1010-d10-main-goals-clarity)
+- [11. Checklist](#11-checklist)
 
 Use this file when creating or reviewing a lab plan (`instructors/lab-plan.md`).
 
@@ -57,6 +59,11 @@ The lab plan is a single file at `instructors/lab-plan.md`.
 
 **Topic:** <topic>
 **Date:** <YYYY-MM-DD>
+
+## Main goals
+
+- <Goal 1>
+- <Goal 2>
 
 ## Learning outcomes
 
@@ -145,13 +152,21 @@ A senior engineer explains the assignment:
 
 ---
 
-## 5. Learning outcomes
+## 5. Main goals
+
+The `## Main goals` section appears immediately after the metadata and before learning outcomes. It contains a bullet list of two to three high-level goals that describe the instructor's intent — what the lab should convey or demystify for students.
+
+Goals are informal and aspirational. They are not the same as learning outcomes — they capture the motivating "why" behind the lab, not measurable student abilities.
+
+---
+
+## 6. Learning outcomes
 
 List four to six outcomes under the heading `## Learning outcomes`.
 
 Each outcome must be concrete and observable — it describes something the student can demonstrably do, not something they "understand" in an unverifiable way.
 
-### 5.1. Bloom's taxonomy mapping
+### 6.1. Bloom's taxonomy mapping
 
 Prefix each outcome with its Bloom's taxonomy level in square brackets. Valid levels:
 
@@ -168,7 +183,7 @@ Rules:
 - The outcomes must cover at least two distinct Bloom's levels.
 - At least one outcome must be at `[Apply]` level or above.
 
-### 5.2. "In simple words" restatement
+### 6.2. "In simple words" restatement
 
 After the outcomes list, include an `In simple words:` line followed by a blockquote with a numbered list. Each item restates one outcome as a first-person sentence (e.g., "I can deploy a containerised service.").
 
@@ -176,7 +191,7 @@ The numbered items must match the outcomes one-to-one in the same order.
 
 ---
 
-## 6. Lab story
+## 7. Lab story
 
 The lab story is a realistic workplace scenario of two to four sentences. Frame it as a task a student encounters after joining a team, company, or project.
 
@@ -196,11 +211,11 @@ For lab story conventions shared with the README (tone, blockquote style, cross-
 
 ---
 
-## 7. Task descriptions
+## 8. Task descriptions
 
 The lab plan contains exactly three required tasks and one optional task.
 
-### 7.1. Required tasks
+### 8.1. Required tasks
 
 Required tasks appear under `## Required tasks` as `### Task 1 — <Title>` through `### Task 3 — <Title>`.
 
@@ -208,21 +223,21 @@ Required tasks must build on each other sequentially — task 2 depends on the o
 
 Separate each task with a horizontal rule (`---`).
 
-### 7.2. Optional tasks
+### 8.2. Optional tasks
 
 One optional task appears under `## Optional task` (singular heading) as `### Task 1 — <Title>`.
 
 Optional tasks must be independent — completable without depending on other optional tasks.
 
-### 7.3. Purpose statement
+### 8.3. Purpose statement
 
 Each task includes a `**Purpose:**` line containing exactly one sentence that explains why the task matters — what the student will learn or achieve.
 
-### 7.4. Summary
+### 8.4. Summary
 
 Each task includes a summary paragraph of four to seven sentences describing what the student does. The summary should be specific enough to guide task file creation but not so detailed that it prescribes every step.
 
-### 7.5. Acceptance criteria
+### 8.5. Acceptance criteria
 
 Each task includes an `**Acceptance criteria:**` section with three to five bullet items. Criteria must be concrete and verifiable — a reviewer or autochecker can determine pass/fail without subjective judgment.
 
@@ -232,7 +247,7 @@ Do not invent specific technology choices, file paths, or implementation details
 
 ---
 
-## 8. Formatting
+## 9. Formatting
 
 - Use `---` horizontal rules between tasks within a section.
 - All sentences end with `.`.
@@ -241,7 +256,7 @@ Do not invent specific technology choices, file paths, or implementation details
 
 ---
 
-## 9. Review dimensions
+## 10. Review dimensions
 
 Use these dimensions when reviewing a lab plan for conceptual and structural problems. For each finding, record: the dimension, the section or line number(s), a short description, severity (`[High]`, `[Medium]`, or `[Low]`), and a suggested fix.
 
@@ -251,62 +266,63 @@ Severity guide:
 - **Medium** — the plan has an issue that would cause confusion during lab creation (vague purpose, weak criteria, unclear sequencing).
 - **Low** — minor improvement that would make the plan clearer but does not affect lab quality.
 
-### 9.1. D1. Learning outcome quality
+### 10.1. D1. Learning outcome quality
 
 - Is each outcome concrete and observable, starting with an action verb?
 - Does each outcome describe something the student can demonstrably do?
 - Are there vague outcomes like "understand X" or "learn about X" without a measurable verb?
 
-### 9.2. D2. Bloom's taxonomy coverage
+### 10.2. D2. Bloom's taxonomy coverage
 
 - Does each outcome have a valid Bloom's level prefix (`[Remember]`, `[Understand]`, `[Apply]`, `[Analyze]`, `[Evaluate]`, or `[Create]`)?
 - Does the action verb match the declared level?
 - Are at least two distinct Bloom's levels used?
 - Is at least one outcome at `[Apply]` level or above?
 
-### 9.3. D3. Lab story coherence
+### 10.3. D3. Lab story coherence
 
 - Does the narrative frame a realistic workplace scenario?
 - Does the senior engineer's numbered list mirror the three required tasks?
 - Is the story connected to the lab's domain and topic?
 
-### 9.4. D4. Task sequencing and dependencies
+### 10.4. D4. Task sequencing and dependencies
 
 - Do required tasks build on each other sequentially (task 2 depends on task 1, task 3 depends on task 2)?
 - Is the optional task independent of other optional tasks?
 - Does complexity increase across required tasks (observe → build → extend)?
 
-### 9.5. D5. Acceptance criteria quality
+### 10.5. D5. Acceptance criteria quality
 
 - Does each task have three to five acceptance criteria?
 - Is each criterion concrete and verifiable (pass/fail without subjective judgment)?
 - Are there open-ended or vague criteria (e.g., "student understands X", "code is clean")?
 - Do criteria avoid inventing unnecessary implementation details?
 
-### 9.6. D6. Outcome-to-task alignment
+### 10.6. D6. Outcome-to-task alignment
 
 - Do the three required tasks collectively cover all listed learning outcomes?
 - Are there outcomes that no task addresses?
 - Are there tasks that do not contribute to any listed outcome?
 
-### 9.7. D7. Structural compliance
+### 10.7. D7. Structural compliance
 
 - Does the document follow the template in [Document structure](#3-document-structure)?
 - Is the header format correct (`# Lab plan — <Title>`, `**Topic:**`, `**Date:**`)?
+- Is the `## Main goals` section present with two to three bullet items?
 - Are there four to six learning outcomes?
 - Does the "In simple words" list match outcomes one-to-one?
 - Are purpose statements exactly one sentence?
 - Are summaries four to seven sentences?
 - Are `---` rules present between tasks?
 
-### 9.8. D8. Practical feasibility
+### 10.8. D8. Practical feasibility
 
 - Can each task be completed within a single lab session (roughly two to three hours for all required tasks combined)?
 - Are the required tools, services, and environments realistically available to students (no paid accounts, no complex infrastructure)?
 - Are there tasks that depend on external services with rate limits, approval queues, or uptime risks?
 - Is the scope of each task well-bounded, or could it expand unpredictably during implementation?
 
-### 9.9. D9. Student experience level fit
+### 10.9. D9. Student experience level fit
 
 - Can a student with basic programming knowledge and limited prior exposure to the topic complete the required tasks?
 - Does task 1 provide enough scaffolding (examples, reference commands, expected output) to onboard students who are new to the domain?
@@ -314,12 +330,20 @@ Severity guide:
 - Is the cognitive jump between consecutive tasks manageable, or does difficulty spike abruptly?
 - Does the optional task clearly signal that it targets students who want a deeper challenge?
 
+### 10.10. D10. Main goals clarity
+
+- Does the `## Main goals` section exist between the metadata and learning outcomes?
+- Are there two to three goals?
+- Does each goal describe the instructor's intent — what the lab should convey — rather than a measurable student ability?
+- Are goals distinct from the learning outcomes (aspirational "why" vs. observable "what")?
+
 ---
 
-## 10. Checklist
+## 11. Checklist
 
 - [ ] Title follows the format `# Lab plan — <Title>`.
 - [ ] `**Topic:**` and `**Date:**` metadata are present.
+- [ ] `## Main goals` section contains two to three bullet items describing instructor intent.
 - [ ] Four to six learning outcomes are listed.
 - [ ] Each outcome has a `[<Bloom's level>]` prefix with a matching action verb.
 - [ ] At least two distinct Bloom's levels are used.
