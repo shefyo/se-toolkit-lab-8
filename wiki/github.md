@@ -351,6 +351,10 @@ A [label](https://docs.github.com/en/issues/using-labels-and-milestones-to-track
 
 ## Settings
 
+- [Enable issues](#enable-issues)
+- [Add a collaborator](#add-a-collaborator)
+- [Protect a branch](#protect-a-branch)
+
 ### Enable issues
 
 1. [Go to your fork](#go-to-your-fork).
