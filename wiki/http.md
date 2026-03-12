@@ -4,6 +4,7 @@
 
 - [What is `HTTP`](#what-is-http)
 - [Communication using `HTTP`](#communication-using-http)
+- [`HTTPS`](#https)
 - [`HTTP` request](#http-request)
   - [`HTTP` request method](#http-request-method)
 - [`HTTP` request header](#http-request-header)
@@ -44,6 +45,11 @@ sequenceDiagram
 
     Note over Client,Server: Communication happens via HTTP protocol
 ```
+
+## `HTTPS`
+
+`HTTPS` (`HTTP Secure`) is the encrypted version of `HTTP`.
+It encrypts the communication between a [web client](./web-infrastructure.md#web-client) and a [web server](./web-infrastructure.md#web-server) using `TLS`, preventing third parties from reading or tampering with the data in transit.
 
 ## `HTTP` request
 
