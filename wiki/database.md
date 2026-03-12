@@ -29,14 +29,7 @@ Examples of database servers: [`PostgreSQL`](./postgresql.md#postgresql-server),
 
 ## `PostgreSQL`
 
-[`PostgreSQL`](./postgresql.md#what-is-postgresql) is a popular open-source relational database server.
-
-Docs:
-
-- [Official PostgreSQL docs](https://www.postgresql.org/docs/)
-
-<!-- TODO move to postgres.md -->
-<!-- TODO update docker-postgres to reference postgres.md -->
+See [`PostgreSQL`](./postgresql.md#what-is-postgresql).
 
 ## `pgAdmin`
 
