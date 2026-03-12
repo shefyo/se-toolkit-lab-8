@@ -60,6 +60,14 @@
 
 ## What is `GitHub`
 
+`GitHub` is a web-based platform for hosting [`Git`](./git.md#what-is-git) repositories and collaborating on software projects.
+
+It extends `Git` with features such as [issues](#issue) for tracking tasks and bugs, [pull requests](#pull-request) for proposing and reviewing changes, and [`GitHub Actions`](#github-actions) for automating workflows.
+
+Docs:
+
+- [GitHub Docs](https://docs.github.com)
+
 ## The `GitHub` site
 
 The `GitHub` site has this [URL](./computer-networks.md#url): <https://github.com>.
