@@ -20,11 +20,11 @@
   - [Login with password](#login-with-password)
 - [`SSH` shell](#ssh-shell)
   - [Check whether you run an `SSH` shell](#check-whether-you-run-an-ssh-shell)
+- [`scp`](#scp)
 - [Troubleshooting](#troubleshooting)
   - [`Permission denied (publickey)`](#permission-denied-publickey)
   - [`Bad owner or permissions`](#bad-owner-or-permissions)
   - [`Connection timed out`](#connection-timed-out)
-- [`scp`](#scp)
 
 ## What is `SSH`
 
@@ -299,6 +299,18 @@ Commands you run in it execute on the remote machine, not on your local computer
    - is an [IP address](./computer-networks.md#ip-address), you run in an `SSH` shell.
    - `-`, you run on your local [machine](./computer-networks.md#machine) (computer).
 
+## `scp`
+
+`scp` (`Secure Copy`) copies [files](./file-system.md#file) between [machines](./computer-networks.md#machine) over [`SSH`](#what-is-ssh).
+
+Common pattern:
+
+```terminal
+scp -r <local-path> <user>@<host>:<remote-path>
+```
+
+The `-r` flag copies directories recursively.
+
 ## Troubleshooting
 
 <!-- no toc -->
@@ -357,15 +369,3 @@ Commands you run in it execute on the remote machine, not on your local computer
    ```
 
 5. Try to stop, delete, and create a new VM if there are still problems.
-
-## `scp`
-
-`scp` (`Secure Copy`) copies files between machines over [`SSH`](#what-is-ssh).
-
-Common pattern:
-
-```terminal
-scp -r <local-path> <user>@<host>:<remote-path>
-```
-
-The `-r` flag copies directories recursively.
