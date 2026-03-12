@@ -27,6 +27,10 @@ It handles memory allocation, process scheduling, file systems, and device I/O, 
 
 ## Operating systems
 
+- [`Linux`](#linux)
+- [`macOS`](#macos)
+- [`Windows`](#windows)
+
 ### `Linux`
 
 `Linux` is an open-source operating system commonly used for servers and [virtual machines](./vm.md).
@@ -93,6 +97,8 @@ A PID (Process ID) is a unique numerical identifier assigned by the operating sy
 PIDs are used by various system commands to interact with specific processes, such as terminating them, checking their status, or monitoring their resource usage.
 
 PIDs let the operating system handle multitasking.
+
+<!-- TODO command line -->
 
 ## Service
 
