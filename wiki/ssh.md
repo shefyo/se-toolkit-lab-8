@@ -61,14 +61,14 @@ See [Start the `ssh-agent`](#start-the-ssh-agent) for setup instructions.
 
 Set up [`SSH`](#what-is-ssh) to connect to a [remote host](./computer-networks.md#remote-host).
 
-Steps:
+Complete these steps:
 
 <!-- no toc -->
 1. [Check your current shell](./vs-code.md#check-the-current-shell-in-the-vs-code-terminal).
-2. [Create a new `SSH` key](#create-a-new-ssh-key)
-3. [Find the `SSH` key files](#find-the-ssh-key-files)
-4. [Start the `ssh-agent`](#start-the-ssh-agent)
-5. [Verify the `SSH` setup](#verify-the-ssh-setup)
+2. [Create a new `SSH` key](#create-a-new-ssh-key).
+3. [Find the `SSH` key files](#find-the-ssh-key-files).
+4. [Start the `ssh-agent`](#start-the-ssh-agent).
+5. [Verify the `SSH` setup](#verify-the-ssh-setup).
 
 ### Create a new `SSH` key
 
@@ -76,7 +76,7 @@ Generate a key pair: a **private key** (secret) and a **public key** (safe to sh
 
 We'll use the `ed25519` algorithm, which is the modern standard for security and performance.
 
-Steps:
+Complete these steps:
 
 1. To generate the key pair,
 
