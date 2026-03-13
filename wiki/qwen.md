@@ -8,6 +8,8 @@
   - [Set up the `Qwen Code Companion` extension for `VS Code`](#set-up-the-qwen-code-companion-extension-for-vs-code)
   - [Set up the `GitHub Copilot Chat` extension for `VS Code`](#set-up-the-github-copilot-chat-extension-for-vs-code)
 - [Check the `Qwen Code` credentials file](#check-the-qwen-code-credentials-file)
+  - [Check the `Qwen Code` credentials file in the `VS Code Terminal`](#check-the-qwen-code-credentials-file-in-the-vs-code-terminal)
+  - [Check the `Qwen Code` credentials file in the `VS Code Editor`](#check-the-qwen-code-credentials-file-in-the-vs-code-editor)
 - [Open a chat with `Qwen Code`](#open-a-chat-with-qwen-code)
   - [Open a chat with `Qwen Code` using the CLI](#open-a-chat-with-qwen-code-using-the-cli)
   - [Open a chat with `Qwen Code` using the `Qwen Code Companion` extension for `VS Code`](#open-a-chat-with-qwen-code-using-the-qwen-code-companion-extension-for-vs-code)
@@ -84,6 +86,21 @@ See [Set up `Qwen Code`](#set-up-qwen-code).
 8. [Open a chat with `Qwen Code` using the `GitHub Copilot Chat` extension for `VS Code`](#open-a-chat-with-qwen-code-using-the-github-copilot-chat-extension-for-vs-code).
 
 ## Check the `Qwen Code` credentials file
+
+- Method 1: [Check the `Qwen Code` credentials file in the `VS Code Terminal`](#check-the-qwen-code-credentials-file-in-the-vs-code-editor).
+- Method 2: [Check the `Qwen Code` credentials file in the `VS Code Editor`](#check-the-qwen-code-credentials-file-in-the-vs-code-editor).
+
+### Check the `Qwen Code` credentials file in the `VS Code Terminal`
+
+To print the content of the credentials file,
+
+[run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+```terminal
+cat ~/.qwen/oauth_creds.json | jq .
+```
+
+### Check the `Qwen Code` credentials file in the `VS Code Editor`
 
 [Open in `VS Code` the file](./vs-code.md#open-the-file):
 `~/.qwen/oauth_creds.json`.
