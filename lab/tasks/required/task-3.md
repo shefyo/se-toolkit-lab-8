@@ -62,13 +62,13 @@ Fix the failing question, re-run, move on to the next one.
 
 ### Debugging workflow
 
-| Symptom | Likely cause | Fix |
-|---------|-------------|-----|
-| Agent doesn't use a tool when it should | Tool description too vague for the LLM | Improve the tool's description in the schema |
-| Tool called but returns an error | Bug in tool implementation | Fix the tool code, test it in isolation |
-| Tool called with wrong arguments | LLM misunderstands the schema | Clarify parameter descriptions |
-| Agent times out | Too many tool calls or slow LLM | Reduce max iterations, try a faster model |
-| Answer is close but doesn't match | Phrasing doesn't contain expected keyword | Adjust system prompt to be more precise |
+| Symptom                                 | Likely cause                              | Fix                                          |
+| --------------------------------------- | ----------------------------------------- | -------------------------------------------- |
+| Agent doesn't use a tool when it should | Tool description too vague for the LLM    | Improve the tool's description in the schema |
+| Tool called but returns an error        | Bug in tool implementation                | Fix the tool code, test it in isolation      |
+| Tool called with wrong arguments        | LLM misunderstands the schema             | Clarify parameter descriptions               |
+| Agent times out                         | Too many tool calls or slow LLM           | Reduce max iterations, try a faster model    |
+| Answer is close but doesn't match       | Phrasing doesn't contain expected keyword | Adjust system prompt to be more precise      |
 
 ## Deliverables
 

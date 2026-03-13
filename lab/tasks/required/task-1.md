@@ -38,11 +38,11 @@ Your agent needs an LLM that supports the OpenAI-compatible chat completions API
 
 **Recommended models** (free, reliable tool calling):
 
-| Model | Tool calling | Notes |
-|-------|-------------|-------|
-| `meta-llama/llama-4-scout:free` | Strong | Best free option |
-| `meta-llama/llama-3.3-70b-instruct:free` | Strong | Reliable fallback |
-| `qwen/qwen-2.5-72b-instruct:free` | Good | Alternative |
+| Model                                    | Tool calling | Notes             |
+| ---------------------------------------- | ------------ | ----------------- |
+| `meta-llama/llama-4-scout:free`          | Strong       | Best free option  |
+| `meta-llama/llama-3.3-70b-instruct:free` | Strong       | Reliable fallback |
+| `qwen/qwen-2.5-72b-instruct:free`        | Good         | Alternative       |
 
 Register in OpenRouter and get an API key from them. This will be your LLM_API_KEY in `.env.agent.secret` (gitignored by the `*.secret` pattern). An example file is provided:
 

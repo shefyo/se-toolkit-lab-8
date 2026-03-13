@@ -427,6 +427,7 @@ The database starts empty. You need to run the ETL pipeline to populate it with 
 
 > [!IMPORTANT]
 > If the dashboard shows no data or errors, make sure:
+>
 > - The ETL sync completed successfully (step 1.13)
 > - You entered the correct API key in the frontend
 > - Try selecting a different lab in the dropdown (e.g., `lab-04`)
