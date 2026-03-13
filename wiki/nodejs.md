@@ -9,6 +9,10 @@
   - [Install `Node.js` using `nvm`](#install-nodejs-using-nvm)
   - [Install `Node.js` using the commands from the official site](#install-nodejs-using-the-commands-from-the-official-site)
 - [Check that `Node.js` works](#check-that-nodejs-works)
+- [`pnpm`](#pnpm)
+  - [Install `pnpm`](#install-pnpm)
+    - [Install `pnpm` via the official installer script](#install-pnpm-via-the-official-installer-script)
+    - [Install `pnpm` via `Nix`](#install-pnpm-via-nix)
 - [`npm`](#npm)
   - [`package.json`](#packagejson)
   - [`node_modules`](#node_modules)
@@ -129,8 +133,72 @@ Docs:
    v25.7.0
    ```
 
-<!-- TODO pnpm -->
 <!-- TODO install npm with nix because when installing on the VM using nvm libatomic is missing -->
+
+## `pnpm`
+
+`pnpm` is a fast, disk-efficient package manager for [`Node.js`](#what-is-nodejs).
+It installs and manages project dependencies declared in [`package.json`](#packagejson).
+
+Docs:
+
+- [`pnpm` documentation](https://pnpm.io/)
+
+### Install `pnpm`
+
+- Method 1: [Install `pnpm` via the official installer script](#install-pnpm-via-the-official-installer-script)
+- Method 2: [Install `pnpm` via `Nix`](#install-pnpm-via-nix)
+
+#### Install `pnpm` via the official installer script
+
+```terminal
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+```
+
+#### Install `pnpm` via `Nix`
+
+1. [Install `Nix`](./nix.md#install-nix) if it's not yet installed.
+
+2. To install [`pnpm`](#pnpm) from [`nixpkgs`](./nix.md#nixpkgs),
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   nix profile add nixpkgs#pnpm
+   ```
+
+3. To set up `pnpm`,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   pnpm setup
+   ```
+
+4. To update the current shell environment with `pnpm` variables set in the [shell profile](./shell.md#shell-profile),
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   source ~/.bashrc
+   ```
+
+   Alternatively, [open a new `VS Code Terminal`](./vs-code.md#open-a-new-vs-code-terminal).
+   The new terminal will use the new shell profile.
+
+5. To check that [`pnpm`](#pnpm) is available,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   pnpm --version
+   ```
+
+   The output should be similar to this:
+
+   ```terminal
+   10.28.0
+   ```
 
 ## `npm`
 
