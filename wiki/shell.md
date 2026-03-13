@@ -43,6 +43,11 @@ On [`Windows`](./operating-system.md#windows), the shell must be opened in [WSL]
 
 ## Shell variants
 
+<!-- no toc -->
+- [`bash`](#bash)
+- [`Git Bash` (`Windows`)](#git-bash-windows)
+- [`zsh`](#zsh)
+
 ### `bash`
 
 `Bash` (short for "Bourne Again SHell") is an interactive command interpreter and scripting language developed for `Unix`-like operating systems (e.g., [`Linux`](./linux.md#what-is-linux)).
