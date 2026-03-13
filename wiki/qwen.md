@@ -10,6 +10,8 @@
 - [Check the `Qwen Code` credentials file](#check-the-qwen-code-credentials-file)
   - [Check the `Qwen Code` credentials file in the `VS Code Terminal`](#check-the-qwen-code-credentials-file-in-the-vs-code-terminal)
   - [Check the `Qwen Code` credentials file in the `VS Code Editor`](#check-the-qwen-code-credentials-file-in-the-vs-code-editor)
+- [Set up the `Qwen Code` (remote machine)](#set-up-the-qwen-code-remote-machine)
+  - [Set up the `Qwen Code` CLI (remote machine)](#set-up-the-qwen-code-cli-remote-machine)
 - [Open a chat with `Qwen Code`](#open-a-chat-with-qwen-code)
   - [Open a chat with `Qwen Code` using the CLI](#open-a-chat-with-qwen-code-using-the-cli)
   - [Open a chat with `Qwen Code` using the `Qwen Code Companion` extension for `VS Code`](#open-a-chat-with-qwen-code-using-the-qwen-code-companion-extension-for-vs-code)
@@ -108,6 +110,61 @@ cat ~/.qwen/oauth_creds.json | jq .
 This file contains the `Qwen Code` authentication credentials.
 
 The file must be non-empty.
+
+## Set up the `Qwen Code` (remote machine)
+
+- Method 1: [Set up the `Qwen Code` CLI (remote machine)](#set-up-the-qwen-code-cli-remote-machine).
+
+### Set up the `Qwen Code` CLI (remote machine)
+
+1. [Set up the `Qwen Code` CLI on your local machine](#set-up-qwen-code-local-machine).
+
+2. [Check the `Qwen Code` credentials file](#check-the-qwen-code-credentials-file).
+
+3. To copy the credentials file to your VM,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   scp ~/.qwen/oauth_creds.json se-toolkit-vm:~/.qwen/oauth_creds.json
+   ```
+
+4. [Connect to the VM](./ssh.md#connect-to-the-vm).
+
+5. To install [`pnpm`](./nodejs.md#pnpm),
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   nix profile add nixpkgs#pnpm
+   ```
+
+6. To set up `pnpm`,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   pnpm setup
+   ```
+
+7. To update the current shell environment with `pnpm` variables set in the [shell profile](./shell.md#profile),
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   source ~/.bashrc
+   ```
+
+8. To install [`Qwen Code`](#what-is-qwen-code),
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   pnpm add -g @qwen-code/qwen-code
+   ```
+
+9. You should now be able to [open a chat with `Qwen Code` using the CLI](#open-a-chat-with-qwen-code-using-the-cli).
+
 
 ## Open a chat with `Qwen Code`
 
