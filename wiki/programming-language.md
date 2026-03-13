@@ -24,6 +24,13 @@ Docs:
 
 ## Popular programming languages
 
+<!-- no toc -->
+- [`Python`](#python)
+- [`JavaScript`](#javascript)
+- [`SQL`](#sql)
+- [`Rust`](#rust)
+- [`Go`](#go)
+
 ### `Python`
 
 `Python` is a general-purpose programming language known for its readable syntax and large standard library. It is widely used for [web APIs](./web-api.md#what-is-a-web-api), data science, automation, and scripting.
@@ -45,6 +52,13 @@ Docs:
 `Go` is a statically typed programming language developed by Google. It is designed for building scalable network services and [command-line tools](./cli.md#what-is-a-cli), with built-in support for concurrency.
 
 ## Less popular yet cool programming languages
+
+<!-- no toc -->
+- [`TypeScript`](#typescript)
+- [`Haskell`](#haskell)
+- [`Bash`](#bash)
+- [`OCaml`](#ocaml)
+- [`Nix`](#nix)
 
 ### `TypeScript`
 
