@@ -163,7 +163,7 @@
 
 1. (Optional) [Read about `Git`](../../wiki/git.md#what-is-git).
 2. [Install `Git`](https://git-scm.com/install/) if it's not installed.
-3. (Optional) [Configure `Git`](../../wiki/git.md#configure-git).
+3. [Configure `Git`](../../wiki/git.md#configure-git).
 
 ### 1.5. (UPD) Open in `VS Code` the `software-engineering-toolkit` directory (LOCAL)
 
