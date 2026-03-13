@@ -74,7 +74,7 @@
                       '#**/node_modules' \
                       '#*/skills' \
                       '#tmp' \
-                      '#instructors/{file-reviews,meetings,scripts}'
+                      '#instructors/{file-reviews,meetings,scripts,lab-plan.md}'
                   '';
                   help = "Lint all Markdown files";
                 }
