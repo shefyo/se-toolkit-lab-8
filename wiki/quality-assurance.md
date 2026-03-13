@@ -22,7 +22,12 @@
 
 <!-- TODO it's not only verification and not only about software but also about processes -->
 
-Quality assurance is the practice of verifying that software works correctly. It combines two approaches: [static analysis](#static-analysis), which inspects code without running it, and [dynamic analysis](#dynamic-analysis), which executes code with specific inputs and checks the outputs.
+Quality assurance is the practice of ensuring that the software works as intended.
+
+It combines two approaches to identify problems with the code:
+
+- [static analysis](#static-analysis), which inspects code without running it
+- [dynamic analysis](#dynamic-analysis), which executes code with specific inputs and checks the outputs
 
 Together, these techniques catch bugs early, prevent regressions when code changes, and document the intended behavior of a program.
 
@@ -72,10 +77,10 @@ Testing verifies that code produces expected outputs for given inputs. Each test
 
 Tests are usually grouped by scope — how much of the system each test exercises. Narrower tests run faster and pinpoint failures precisely; broader tests verify that components work together.
 
-Approaches:
+Common methods:
 
-- [Unit test](#unit-test)
-- [End-to-end test](#end-to-end-test)
+- [Unit testing](#unit-test)
+- [End-to-end testing](#end-to-end-test)
 - [Boundary value analysis](#boundary-value-analysis)
 
 Examples:
