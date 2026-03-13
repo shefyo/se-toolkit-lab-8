@@ -9,7 +9,6 @@
   - [`HTTP` request method](#http-request-method)
 - [`HTTP` request header](#http-request-header)
   - [`HTTP` request payload](#http-request-payload)
-  - [Query parameter](#query-parameter)
 - [`HTTP` response](#http-response)
 - [`HTTP` response status code](#http-response-status-code)
 - [Common `HTTP` response status codes](#common-http-response-status-codes)
@@ -77,10 +76,6 @@ Common methods:
 ### `HTTP` request payload
 
 <!-- TODO -->
-
-### Query parameter
-
-Query parameters are key-value pairs appended to a [URL](./computer-networks.md#url) after a `?` character, used to send data to the server with a request.
 
 ## `HTTP` response
 
