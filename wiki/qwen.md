@@ -178,9 +178,11 @@ The file must be non-empty.
 
 1. [Set up the `Qwen Code` CLI (remote machine)](#set-up-the-qwen-code-cli-remote-machine).
 
-   Proceed with the following steps on the remote machine.
+   Keep working in the opened `VS Code Terminal`.
+   You complete the following steps on your VM.
 
-2. To clone the `qwen-code-oai-proxy` repository,
+2. To [clone the repo using the `VS Code Terminal`](./git-vscode.md#clone-the-repo-using-the-vs-code-terminal):
+   <https://github.com/inno-se-toolkit/qwen-code-oai-proxy>
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
