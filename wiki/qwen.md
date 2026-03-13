@@ -126,31 +126,9 @@ The file must be non-empty.
 
 1. [Connect to the VM](./ssh.md#connect-to-the-vm).
 
-2. To install [`pnpm`](./nodejs.md#pnpm),
+2. [Install `pnpm`](./nodejs.md#install-pnpm).
 
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   nix profile add nixpkgs#pnpm
-   ```
-
-3. To set up `pnpm`,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   pnpm setup
-   ```
-
-4. To update the current shell environment with `pnpm` variables set in the [shell profile](./shell.md#shell-profile),
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   source ~/.bashrc
-   ```
-
-5. To install [`Qwen Code`](#what-is-qwen-code),
+3. To install [`Qwen Code`](#what-is-qwen-code),
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -158,11 +136,11 @@ The file must be non-empty.
    pnpm add -g @qwen-code/qwen-code
    ```
 
-6. [Open a chat with `Qwen Code` using the CLI](#open-a-chat-with-qwen-code-using-the-cli).
+4. [Open a chat with `Qwen Code` using the CLI](#open-a-chat-with-qwen-code-using-the-cli).
 
-7. Write `/auth` in the chat to [authenticate via Qwen OAuth](https://github.com/QwenLM/qwen-code?tab=readme-ov-file#authentication).
+5. Write `/auth` in the chat to [authenticate via Qwen OAuth](https://github.com/QwenLM/qwen-code?tab=readme-ov-file#authentication).
 
-8. Open the link in a browser to complete the authentication procedure.
+6. Open the link in a browser to complete the authentication procedure.
 
 ### Set up the `Qwen Code` API (remote machine)
 
