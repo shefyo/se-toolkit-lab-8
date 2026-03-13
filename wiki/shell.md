@@ -7,8 +7,8 @@
   - [`Linix` shell](#linix-shell)
 - [Shell variants](#shell-variants)
   - [`bash`](#bash)
-  - [`Git Bash` (`Windows`)](#git-bash-windows)
   - [`zsh`](#zsh)
+  - [`Git Bash` (`Windows`)](#git-bash-windows)
 - [Shell profile](#shell-profile)
   - [Reload the shell profile](#reload-the-shell-profile)
 - [Shell prompt](#shell-prompt)
@@ -63,15 +63,22 @@ On [`Windows`](./operating-system.md#windows), the shell must be opened in [WSL]
 
 See also: [`Bash`](./bash.md).
 
-### `Git Bash` (`Windows`)
-
-`Git Bash` is a terminal shipped with `Git for Windows`.
-It provides a Unix-like shell environment on Windows.
-
 ### `zsh`
 
 `zsh` is the default shell on modern `macOS` and is also common on Linux.
 Most `bash` commands in this course work in `zsh` as well.
+
+### `Git Bash` (`Windows`)
+
+`Git Bash` is a terminal shipped with `Git for Windows`.
+It provides a `Unix`-like shell environment on `Windows`.
+
+> [!IMPORTANT]
+> Don't use it in the `VS Code Terminal`.
+>
+> The terminal commands in the lab may not work outside of [`bash`](#bash) and [`zsh`](#zsh).
+>
+> [Switch to the `Linux` shell](./vs-code.md#windows-only-switch-to-the-linux-shell-for-the-vs-code-terminal).
 
 ## Shell profile
 
