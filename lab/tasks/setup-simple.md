@@ -295,7 +295,7 @@ Your agent needs an LLM to answer questions. [Qwen Code](../../wiki/qwen.md#what
      -H "Content-Type: application/json" \
      -H "Authorization: Bearer <your-QWEN_API_KEY>" \
      -d '{"model":"qwen3-coder-plus","messages":[{"role":"user","content":"What is 2+2?"}]}' \
-     | python -m json.tool
+     | jq .
    ```
 
 <details><summary><b>Alternative: OpenRouter (click to open)</b></summary>
