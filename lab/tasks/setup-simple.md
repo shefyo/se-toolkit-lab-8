@@ -240,6 +240,10 @@ The autochecker tests your agent against your **deployed backend on your VM**. Y
    docker compose --env-file .env.docker.secret up --build -d
    ```
 
+   > <h3>Troubleshooting</h3>
+   >
+   > The same troubleshooting advices as when [starting the services locally](#13-start-the-services-locally).
+
 6. Populate the database:
 
    ```terminal
