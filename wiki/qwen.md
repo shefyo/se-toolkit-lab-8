@@ -3,8 +3,8 @@
 <h2>Table of contents</h2>
 
 - [What is `Qwen Code`](#what-is-qwen-code)
-- [Set up the `Qwen Code` (local machine)](#set-up-the-qwen-code-local-machine)
-  - [Set up the `Qwen Code` CLI (local machine)](#set-up-the-qwen-code-cli-local-machine)
+- [Set up the `Qwen Code` (LOCAL)](#set-up-the-qwen-code-local)
+  - [Set up the `Qwen Code` CLI (LOCAL)](#set-up-the-qwen-code-cli-local)
   - [Set up the `Qwen Code Companion` extension for `VS Code`](#set-up-the-qwen-code-companion-extension-for-vs-code)
   - [Set up the `GitHub Copilot Chat` extension for `VS Code`](#set-up-the-github-copilot-chat-extension-for-vs-code)
 - [Check the `Qwen Code` credentials file](#check-the-qwen-code-credentials-file)
@@ -35,17 +35,18 @@
 
 See:
 
-- [Set up the `Qwen Code` (local machine)](#set-up-the-qwen-code-local-machine).
-- [Set up the `Qwen Code` (remote machine)](#set-up-the-qwen-code-remote-machine).
+- [Set up the `Qwen Code` (LOCAL)](#set-up-the-qwen-code-local).
+- [Set up the `Qwen Code` CLI (REMOTE)](#set-up-the-qwen-code-cli-remote).
+- [Set up the `Qwen Code` API (REMOTE)](#set-up-the-qwen-code-api-remote).
 
-## Set up the `Qwen Code` (local machine)
+## Set up the `Qwen Code` (LOCAL)
 
 <!-- no toc -->
-- Method 1: [Set up the `Qwen Code` CLI (local machine)](#set-up-the-qwen-code-cli-local-machine).
+- Method 1: [Set up the `Qwen Code` CLI (LOCAL)](#set-up-the-qwen-code-cli-local).
 - Method 2: [Set up the `Qwen Code Companion` extension for `VS Code`](#set-up-the-qwen-code-companion-extension-for-vs-code).
 - Method 3: [Set up the `GitHub Copilot Chat` extension for `VS Code`](#set-up-the-github-copilot-chat-extension-for-vs-code).
 
-### Set up the `Qwen Code` CLI (local machine)
+### Set up the `Qwen Code` CLI (LOCAL)
 
 > [!NOTE]
 > See [CLI](./cli.md#what-is-a-cli)
