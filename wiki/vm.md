@@ -14,7 +14,7 @@
 - [Go to the VM page](#go-to-the-vm-page)
 - [Get the IP address of the VM](#get-the-ip-address-of-the-vm)
 - [Connect to the VM](#connect-to-the-vm)
-- [Delete VM](#delete-vm)
+- [Delete the VM](#delete-the-vm)
 - [Troubleshooting](#troubleshooting)
   - [`ping` times out](#ping-times-out)
 
@@ -154,7 +154,7 @@ Complete these steps to create a VM:
    3. If you use the `ms-vscode-remote.remote-ssh` extension in `VS Code`, the status bar should show that you are connected to a remote host.
 7. Otherwise, see [troubleshooting](#troubleshooting).
 
-## Delete VM
+## Delete the VM
 
 1. [Go to the VM page](#go-to-the-vm-page).
 2. Click `DELETE`.
