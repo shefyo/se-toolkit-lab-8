@@ -13,8 +13,6 @@
   - [Find the `SSH` key files](#find-the-ssh-key-files)
   - [Start the `ssh-agent`](#start-the-ssh-agent)
   - [Verify the `SSH` setup](#verify-the-ssh-setup)
-- [Add the host to `SSH`](#add-the-host-to-ssh)
-- [Connect to the VM](#connect-to-the-vm)
 - [Login](#login)
   - [Login without password](#login-without-password)
   - [Login with password](#login-with-password)
@@ -32,10 +30,9 @@
 
 You can use it to connect to [your virtual machine](./vm.md#your-vm).
 
-All commands below assume a Unix shell: `Bash` (`Linux`, `WSL`) or `Zsh` (`macOS`).
-
 > [!IMPORTANT]
-> **Windows users:** Use `WSL` (Windows Subsystem for Linux). Do not use `PowerShell`, `cmd.exe`, or `Git Bash` — the commands below are not guaranteed to work there.
+> **Windows users:** Use [`WSL`](./operating-system.md#wsl) (Windows Subsystem for Linux).
+> Do not use `PowerShell`, `cmd.exe`, or `Git Bash` — the commands below are not guaranteed to work there.
 
 ## `SSH` key pair
 
@@ -113,6 +110,8 @@ Complete these steps:
   
    *Note:* If you set a passphrase, use `ssh-agent` to avoid retyping it on every connection.
 
+<!-- TODO what does it mean to use ssh-agent -->
+
 ### Find the `SSH` key files
 
 `SSH` keys are generated in pairs. You must know which file is which.
@@ -176,71 +175,6 @@ Because you used a custom name, your keys are named `se_toolkit_key` (private) a
 
 3. If you see `The agent has no identities`, run the [start `ssh-agent` step](#start-the-ssh-agent) again.
 
-## Add the host to `SSH`
-
-> [!NOTE]
-> See [host](./computer-networks.md#host).
-
-1. Make sure you have [set up `SSH`](#set-up-ssh).
-2. Get [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address).
-3. [Open the file](./vs-code.md#open-the-file):
-   `~/.ssh/config`
-4. Add this text at the end of the file.
-
-   - `Linux`, `Windows`:
-
-     ```text
-  
-     Host se-toolkit-vm
-        HostName <your-vm-ip-address>
-        User root
-        IdentityFile ~/.ssh/se_toolkit_key
-        AddKeysToAgent yes
-     ```
-
-   - `macOS`:
-
-     ```text
-  
-     Host se-toolkit-vm
-        HostName <your-vm-ip-address>
-        User root
-        IdentityFile ~/.ssh/se_toolkit_key
-        AddKeysToAgent yes
-        UseKeychain yes
-     ```
-
-5. Replace [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address) in the `~/.ssh/config` file.
-
-## Connect to the VM
-
-You can connect using the alias that you [added to your `SSH` config](#add-the-host-to-ssh).
-
-1. To connect to the VM,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   ssh se-toolkit-vm
-   ```
-
-2. If this is your first time connecting:
-
-   1. You will see a message:
-      `The authenticity of host ... can't be established.`
-
-   2. Type `yes` and press `Enter`.
-
-3. After a successful login, you should see the [shell prompt](./shell.md#shell-prompt):
-
-   ```terminal
-   root@<your-vm-name>:~#
-   ```
-
-   See [`<your-vm-name>`](./vm.md#your-vm-name).
-
-4. You are in the [home directory (`~`)](./file-system.md#home-directory-).
-
 ## Login
 
 `SSH` supports two authentication methods: [key-based](#login-without-password) (no password prompt) and [password-based](#login-with-password).
@@ -253,7 +187,7 @@ This is the recommended method and is what [Set up `SSH`](#set-up-ssh) configure
 
 1. [Set up `SSH`](#set-up-ssh).
 2. Ensure your public key is added to the remote host.
-3. [Connect to the VM](#connect-to-the-vm).
+3. [Connect to the VM](./vm-root.md#connect-to-the-vm).
 
 You will not be asked for a password.
 
@@ -276,7 +210,7 @@ Password-based authentication asks you to type the remote user's password.
 
 ## `SSH` shell
 
-An `SSH` shell is the interactive [shell](./shell.md#what-is-a-shell) session you get after [connecting to the VM](#connect-to-the-vm) over `SSH`.
+An `SSH` shell is the interactive [shell](./shell.md#what-is-a-shell) session you get after [connecting to the VM](./vm-root.md#connect-to-the-vm) over `SSH`.
 
 Commands you run in it execute on the remote machine, not on your local computer.
 

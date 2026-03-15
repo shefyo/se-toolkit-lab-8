@@ -143,11 +143,11 @@ Complete these steps to create a VM:
 
 ## Connect to the VM
 
-1. (If not completed) [Add your VM to the `SSH` config](./ssh.md#add-the-host-to-ssh).
+1. (If not completed) [Add your VM to the `SSH` config](./vm-root.md#add-the-host-to-ssh).
 2. Disable `VPN`.
 3. Connect your computer to the [`Wi-Fi` network](./computer-networks.md#wi-fi-network) `UniversityStudent`.
 4. Open [`VS Code`](./vs-code.md).
-5. [Connect to the VM](./ssh.md#connect-to-the-vm).
+5. [Connect to the VM](./vm-root.md#connect-to-the-vm).
 6. If the connection is successful, you should see:
    1. The host fingerprint prompt (first connection only).
    2. A remote [shell prompt](./shell.md#shell-prompt) on the VM (for example, `root@<your-vm-name>:~#`).

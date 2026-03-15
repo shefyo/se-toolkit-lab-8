@@ -31,7 +31,7 @@ Complete these steps:
 
 ### Set up the `Qwen Code` CLI (REMOTE)
 
-1. [Connect to the VM](./ssh.md#connect-to-the-vm).
+1. [Connect to the VM](./vm-root.md#connect-to-the-vm).
 
 2. [Install `Node.js`](./nodejs.md#install-nodejs).
 
