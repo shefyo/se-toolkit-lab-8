@@ -2,7 +2,7 @@
 
 <h2>Table of contents</h2>
 
-- [About setting up login as a non-root user](#about-setting-up-login-as-a-non-root-user)
+- [About setting up login as the non-root user `<user>`](#about-setting-up-login-as-the-non-root-user-user)
 - [Connect to your VM as the user `root` (LOCAL)](#connect-to-your-vm-as-the-user-root-local)
 - [Create the non-root user `<user>` (REMOTE)](#create-the-non-root-user-user-remote)
 - [Set up the `SSH` key authentication for the user `<user>` (REMOTE)](#set-up-the-ssh-key-authentication-for-the-user-user-remote)
@@ -11,16 +11,15 @@
 - [Update the local `SSH` config (LOCAL)](#update-the-local-ssh-config-local)
 - [Restart `sshd` (REMOTE)](#restart-sshd-remote)
 
-## About setting up login as a non-root user
-
-Setting up login as a non-root user creates a regular user account with [`sudo`](./linux.md#sudo-group) privileges and reconfigures [`SSH`](./ssh.md#what-is-ssh) to prevent direct `root` login. This is the first step in [VM hardening](./vm-hardening.md#what-is-vm-hardening).
-
-Docs:
-
-- [CIS Benchmarks](https://www.cisecurity.org/cis-benchmarks)
+## About setting up login as the non-root user `<user>`
 
 > [!NOTE]
 > Replace [`<user>`](./operating-system.md#user-placeholder) with the actual [username](./operating-system.md#username).
+
+Setting up login as the non-root user `<user>`:
+
+- creates a regular user account with [`sudo`](./linux.md#sudo-group) privileges
+- reconfigures [`SSH`](./ssh.md#what-is-ssh) to prevent login as [the user `root`](./linux.md#the-user-root)
 
 Complete these steps:
 
@@ -50,7 +49,7 @@ Complete these steps:
 > [!NOTE]
 > Replace [`<user>`](./operating-system.md#user-placeholder) with the actual [username](./operating-system.md#username).
 
-1. To create a new user `<user>`,
+1. To create the user `<user>`,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -71,7 +70,7 @@ Complete these steps:
 > [!NOTE]
 > Replace [`<user>`](./operating-system.md#user-placeholder) with the actual [username](./operating-system.md#username).
 
-1. To create the `.ssh` directory for the user `<user>`,
+1. To create the `.ssh/` directory for the user `<user>`,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -79,7 +78,7 @@ Complete these steps:
    mkdir -p /home/<user>/.ssh
    ```
 
-2. To copy the authorized keys from the user `root`,
+2. To copy the authorized keys from [the user `root`](./linux.md#the-user-root),
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -87,7 +86,7 @@ Complete these steps:
    cp /root/.ssh/authorized_keys /home/<user>/.ssh/
    ```
 
-3. To set the correct ownership on the `.ssh` directory,
+3. To set the correct ownership on the `.ssh/` directory,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -99,7 +98,7 @@ Complete these steps:
    >
    > See [Change the owner and group (recursive)](./linux-administration.md#change-the-owner-and-group-recursive).
 
-4. To set the correct permissions on the `.ssh` directory,
+4. To set the correct permissions on the `.ssh/` directory,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -138,16 +137,14 @@ Complete these steps:
    ssh -i ~/.ssh/se_toolkit_key <user>@<your-vm-ip-address>
    ```
 
-   Replace the placeholders:
-
-   - [`<user>`](./operating-system.md#user-placeholder)
-   - [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address)
+   Replace the placeholder [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address).
 
 3. Confirm the connection did not prompt for a password.
 
 ## Harden the `SSH` config (REMOTE)
 
 <!-- TODO check there's this file at all with this content -->
+<!-- TODO keep root login but make it non-default? -->
 
 1. [Connect to your VM as the user `<user>`](#connect-to-your-vm-by-ssh-as-the-user-user-local) if not yet connected.
 
@@ -171,19 +168,23 @@ Complete these steps:
    PasswordAuthentication no
    ```
 
-5. Save and exit (`Ctrl+O`, `Enter`, `Ctrl+X`).
+5. Save (`Ctrl+O`, `Enter`).
+
+6. Exit (`Ctrl+X`).
 
 ## Update the local `SSH` config (LOCAL)
 
 > [!NOTE]
 > Replace [`<user>`](./operating-system.md#user-placeholder) with the actual [username](./operating-system.md#username).
 
-1. [Open the file](./vs-code.md#open-the-file):
+1. [Open the file](./vs-co6de.md#open-the-file):
    `~/.ssh/config`
 
-2. Find the `se-toolkit-vm` entry and change `User root` to `User <user>`.
+2. Find the `se-toolkit-vm` entry.
 
-   Replace the placeholder [`<user>`](./operating-system.md#user-placeholder).
+3. Change `User root` to `User <user>`.
+
+   Replace the placeholder `<user>`.
 
    The result should look like this:
 
@@ -236,7 +237,7 @@ Complete these steps:
    ssh se-toolkit-vm
    ```
 
-4. Confirm you are logged in as `<user>`, not `root`.
+4. Confirm you are logged in as the user `<user>`, not [the user `root`](./linux.md#the-user-root).
 
 > [!IMPORTANT]
 > Keep your current `SSH` session open until you confirm the new connection works. If the new connection fails, use the existing session to fix the config.
