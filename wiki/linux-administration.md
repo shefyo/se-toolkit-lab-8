@@ -5,6 +5,7 @@
 - [What is `Linux` administration](#what-is-linux-administration)
 - [Change permissions](#change-permissions)
   - [`chmod`](#chmod)
+    - [Set the permissions](#set-the-permissions)
   - [`chown`](#chown)
     - [Change the owner and group (non-recursive)](#change-the-owner-and-group-non-recursive)
     - [Change the owner and group (recursive)](#change-the-owner-and-group-recursive)
@@ -32,7 +33,7 @@ Commands for changing permissions:
 
 `chmod` changes the permissions of a file or directory.
 
-To set permissions on a file or directory,
+#### Set the permissions
 
 [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
