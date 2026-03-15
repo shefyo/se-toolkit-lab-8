@@ -28,6 +28,7 @@
 - [4.26. Example IP address](#426-example-ip-address)
 - [4.27. Troubleshooting sections](#427-troubleshooting-sections)
 - [4.28. JSON command output](#428-json-command-output)
+- [4.29. Referring to users of a machine](#429-referring-to-users-of-a-machine)
 
 ## 4.1. Instructions wording
 
@@ -489,3 +490,26 @@ Always pipe commands that produce `JSON` output to `jq` for readable formatting.
 Good: `curl http://localhost:3000/api/items | jq`
 
 Bad: `curl http://localhost:3000/api/items`
+
+## 4.29. Referring to users of a machine
+
+When referring to a user of a machine in prose, use the pattern "the user `<username>`":
+
+- The administrator user: `the user \`root\``
+- A non-root user placeholder: `the user \`<user>\``
+
+Link on first mention in a section (see [Links and cross-references](#48-links-and-cross-references)):
+
+From a wiki file:
+
+```markdown
+[the user `root`](./linux.md#the-user-root)
+[the user `<user>`](./operating-system.md#user-placeholder)
+```
+
+From a task file:
+
+```markdown
+[the user `root`](../../../wiki/linux.md#the-user-root)
+[the user `<user>`](../../../wiki/operating-system.md#user-placeholder)
+```
