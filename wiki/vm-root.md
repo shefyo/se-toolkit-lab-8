@@ -24,15 +24,17 @@ After connecting as the user `root`, see [Set up login as the non-root user `<us
 > See [host](./computer-networks.md#host).
 
 1. Make sure you have [set up `SSH`](./ssh.md#set-up-ssh).
+
 2. Get [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address).
+
 3. [Open the file](./vs-code.md#open-the-file):
    `~/.ssh/config`
+
 4. Add this text at the end of the file.
 
    - `Linux`, `Windows`:
 
      ```text
-
      Host se-toolkit-vm
         HostName <your-vm-ip-address>
         User root
@@ -43,7 +45,6 @@ After connecting as the user `root`, see [Set up login as the non-root user `<us
    - `macOS`:
 
      ```text
-
      Host se-toolkit-vm
         HostName <your-vm-ip-address>
         User root
