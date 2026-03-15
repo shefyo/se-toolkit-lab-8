@@ -76,9 +76,13 @@ You can connect using the alias that you [added to your `SSH` config](#add-the-h
 3. After a successful login, you should see the [shell prompt](./shell.md#shell-prompt):
 
    ```terminal
-   root@<your-vm-name>:~#
+   <user>@<your-vm-name>:~#
    ```
 
-   See [`<your-vm-name>`](./vm.md#your-vm-name).
+   The `<user>` is the same as you specified in your `~/.ssh/config` for the `Host se-toolkit-vm`.
+
+   See:
+   - [`<user>`](./operating-system.md#user-placeholder)
+   - [`<your-vm-name>`](./vm.md#your-vm-name)
 
 4. You are in the [home directory (`~`)](./file-system.md#home-directory-).
