@@ -1,0 +1,162 @@
+# `Linux` administration
+
+<h2>Table of contents</h2>
+
+- [What is `Linux` administration](#what-is-linux-administration)
+- [Change permissions](#change-permissions)
+  - [`chmod`](#chmod)
+  - [`chown`](#chown)
+    - [Change the owner and group (non-recursive)](#change-the-owner-and-group-non-recursive)
+    - [Change the owner and group (recursive)](#change-the-owner-and-group-recursive)
+- [Get my current user](#get-my-current-user)
+- [The `sudo` command](#the-sudo-command)
+- [Create a non-root user](#create-a-non-root-user)
+- [Inspect ports](#inspect-ports)
+  - [See listening TCP ports](#see-listening-tcp-ports)
+  - [Inspect a specific port](#inspect-a-specific-port)
+
+## What is `Linux` administration
+
+`Linux` administration involves managing [users](./linux.md#user), [groups](./linux.md#group), [permissions](./linux.md#permissions), and system resources on a [`Linux`](./linux.md#what-is-linux) system.
+
+## Change permissions
+
+Changing [permissions](./linux.md#permissions) controls who can read, write, or execute a file or directory, and who owns it.
+
+Commands for changing permissions:
+
+- [`chmod`](#chmod)
+- [`chown`](#chown)
+
+### `chmod`
+
+`chmod` changes the permissions of a file or directory.
+
+To set permissions on a file or directory,
+
+[run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+```terminal
+chmod <mode> <fd-path>
+```
+
+Replace:
+
+- `<mode>` placeholder with the [mode](./linux.md#mode)
+- [`<fd-path>` placeholder](./file-system.md#fd-path-placeholder)
+
+### `chown`
+
+`chown` changes the owner and group of a file or directory.
+
+#### Change the owner and group (non-recursive)
+
+To change the owner and group of a file or a directory,
+
+[run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+```terminal
+chown <user>:<group> <fd-path>
+```
+
+Replace the placeholders:
+
+- [`<user>`](./operating-system.md#user-placeholder)
+
+#### Change the owner and group (recursive)
+
+To change the owner and group recursively for a directory and its contents, add the `-R` flag:
+
+```terminal
+chown -R <user>:<group> <fd-path>
+```
+
+## Get my current user
+
+1. To get the current user,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   whoami
+   ```
+
+## The `sudo` command
+
+`sudo` runs a command with elevated permissions.
+
+To run a command with elevated permissions,
+
+[run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+```terminal
+sudo <command>
+```
+
+## Create a non-root user
+
+`root` is useful for initial setup, but daily work should be done with a regular user.
+
+For `Ubuntu`/`Debian` systems:
+
+1. To create a new user,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   sudo adduser <user>
+   ```
+
+2. To allow the user to run administrative commands,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   sudo usermod -aG sudo <user>
+   ```
+
+3. To switch to that user,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   su - <user>
+   ```
+
+4. To verify the current user,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   whoami
+   id
+   ```
+
+If you plan to log in via `SSH` as that user, copy `authorized_keys` to the new user's home and fix permissions before logging out from `root`.
+
+## Inspect ports
+
+Use the following commands to inspect [ports](./computer-networks.md#port) on a [host](./computer-networks.md#host).
+
+- [See listening TCP ports](#see-listening-tcp-ports)
+- [Inspect a specific port](#inspect-a-specific-port)
+
+### See listening TCP ports
+
+To see all listening TCP ports,
+
+[run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+```terminal
+ss -ltn
+```
+
+### Inspect a specific port
+
+To inspect a specific port,
+
+[run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+```terminal
+ss -ltn 'sport = :42000'
+```
