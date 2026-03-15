@@ -95,7 +95,7 @@ sudo <command>
 
 ## Create a non-root user
 
-`root` is useful for initial setup, but daily work should be done with a regular user.
+[The user `root`](./linux.md#the-user-root) is useful for initial setup, but daily work should be done with a regular user.
 
 For `Ubuntu`/`Debian` systems:
 

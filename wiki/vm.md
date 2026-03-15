@@ -113,7 +113,7 @@ Complete these steps to create a VM:
        1. [Find the `SSH` key files](./ssh.md#find-the-ssh-key-files).
        2. Copy the **full content** of the public key file.
        3. Paste the content into the input field.
-10. Note that the user's name on the VM is [`root`](./linux.md#the-root-user).
+10. Note that the user's name on the VM is [`root`](./linux.md#the-user-root).
 11. Click `->` to go to the page 3.
 12. Go to `NETWORK ADAPTER 1`.
 13. Click `Not Connected`.

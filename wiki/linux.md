@@ -4,7 +4,7 @@
 
 - [What is `Linux`](#what-is-linux)
 - [User](#user)
-  - [The `root` user](#the-root-user)
+  - [The user `root`](#the-user-root)
   - [A non-root user](#a-non-root-user)
 - [Group](#group)
   - [`sudo` group](#sudo-group)
@@ -26,7 +26,7 @@ See:
 
 See [User](./operating-system.md#user).
 
-### The `root` user
+### The user `root`
 
 `root` is the administrator [user](#user).
 
@@ -48,7 +48,7 @@ See [Group](./operating-system.md#group).
 
 The `sudo` [group](#group) is a special group on `Ubuntu`/`Debian` systems whose members are allowed to run commands with elevated [permissions](#permissions) using the [`sudo` command](./linux-administration.md#the-sudo-command).
 
-Adding a [user](#user) to the `sudo` group grants them administrator access without using the [`root` user](#the-root-user) directly.
+Adding a [user](#user) to the `sudo` group grants them administrator access without using [the user `root`](#the-user-root) directly.
 
 ## Permissions
 
