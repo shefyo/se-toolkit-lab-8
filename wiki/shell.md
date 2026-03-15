@@ -12,6 +12,8 @@
 - [Shell profile](#shell-profile)
   - [Reload the shell profile](#reload-the-shell-profile)
 - [Shell prompt](#shell-prompt)
+- [Shell session](#shell-session)
+  - [Exit the shell session](#exit-the-shell-session)
 - [Shell command](#shell-command)
 - [Current working directory](#current-working-directory)
   - [Show the current working directory (full path)](#show-the-current-working-directory-full-path)
@@ -113,6 +115,29 @@ username@hostname:~/directory$
 > [!NOTE]
 > The `$` at the end indicates a regular user.
 > A `#` indicates the [root](./linux.md#the-root-user) (admin) user.
+
+## Shell session
+
+A shell session is the active period of a running [shell](#what-is-a-shell).
+It starts when you open a terminal or connect via [`SSH`](./ssh.md#what-is-ssh), and ends when you exit.
+
+For its duration, the session preserves state such as the current [working directory](#current-working-directory) and command history.
+
+### Exit the shell session
+
+1. To exit the shell session that you started in the [`VS Code Terminal`](./vs-code.md#vs-code-terminal),
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   exit
+   ```
+
+> [!NOTE]
+> Pressing `Ctrl+D` also exits the session.
+
+> [!NOTE]
+> If you are in an [`SSH` shell](./ssh.md#ssh-shell), `exit` closes the connection and returns to your local shell.
 
 ## Shell command
 
