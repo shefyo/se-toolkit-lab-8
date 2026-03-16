@@ -60,7 +60,7 @@ Students on `Windows` can use [`WSL`](#wsl) to run a `Linux` environment.
 
 #### `WSL`
 
-`WSL` (Windows Subsystem for `Linux`) is a feature of `Windows` that lets you run a `Linux` environment directly on `Windows`, without a virtual machine.
+`WSL` (Windows Subsystem for `Linux`) is a feature of `Windows` that lets you run a [`Linux`](#linux) environment directly on `Windows`, without a [virtual machine](./vm.md#what-is-a-vm).
 
 Docs:
 
