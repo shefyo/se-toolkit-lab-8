@@ -370,6 +370,7 @@ You can connect using the alias that you [added to your `SSH` config](#add-the-h
         User <user>
         IdentityFile ~/.ssh/se_toolkit_key
         AddKeysToAgent yes
+        PasswordAuthentication no
      ```
 
    - `macOS`:
@@ -380,6 +381,7 @@ You can connect using the alias that you [added to your `SSH` config](#add-the-h
         User <user>
         IdentityFile ~/.ssh/se_toolkit_key
         AddKeysToAgent yes
+        PasswordAuthentication no
         UseKeychain yes
      ```
 
