@@ -62,8 +62,7 @@ Open: <https://t.me/auchebot>.
 > [!NOTE]
 > Replace [`<user>`](./operating-system.md#user-placeholder) with the actual [username](./operating-system.md#username).
 >
-> Add the [`SSH` public key](./ssh.md#ssh-public-key) for [the `Autochecker` agent](#the-autochecker-agent) so that it can connect to your VM as the user `<user>`
-> to have access to files owned by you.
+> Add the [`SSH` public key](./ssh.md#ssh-public-key) for [the `Autochecker` agent](#the-autochecker-agent) so that it can access your VM as the user `<user>`.
 
 1. [Connect to your VM as the user `<user>`](./vm-access.md#connect-to-your-vm-by-ssh-as-the-user-user-local) if not yet connected.
 
