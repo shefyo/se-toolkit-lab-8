@@ -55,11 +55,11 @@ Docs:
 
 ## LLM provider API
 
-An LLM provider API is an [HTTP API](./web-api.md#http-api) exposed by an LLM provider (e.g., `OpenAI`, `Anthropic`, [`OpenRouter`](#openrouter)) that allows applications and tools to send requests to their [LLMs](#what-is-an-llm) programmatically.
+An LLM provider API is an [`HTTP` API](./web-api.md#http-api) exposed by an LLM provider (e.g., `OpenAI`, `Anthropic`, [`OpenRouter`](#openrouter)) that allows applications and tools to send [requests](./http.md#http-request) to their [LLMs](#what-is-an-llm) programmatically.
 
-[Coding agents](./coding-agents.md#what-is-a-coding-agent) use an LLM provider API to send [prompts](#prompt) and receive generated responses, authenticating each [request](#request-to-llm-provider-api) with an API key.
+[Coding agents](./coding-agents.md#what-is-a-coding-agent) use an LLM provider API to send [prompts](#prompt) and receive generated responses, [authenticating](./http-auth.md#http-authentication) each [request](#request-to-llm-provider-api) with an [API key](./web-api.md#api-key).
 
-<!-- TODO links - authentication, api key, responses -->
+<!-- TODO links - authentication, responses -->
 
 Docs:
 
@@ -68,12 +68,16 @@ Docs:
 
 ### `OpenAI`-compatible API
 
-An `OpenAI`-compatible API follows the same request and response format as the `OpenAI` API, allowing the same client code to work with different [LLM providers](#llm-provider-api) by changing only the base URL and API key.
+An `OpenAI`-compatible API is an [LLM provider API](#llm-provider-api) that follows the same request and response format as the `OpenAI` API.
+
+The `OpenAI`-compatible API allows the same client code to work with different [LLM providers](#llm-provider-api) by changing only the [base URL](./web-api.md#base-url) and [API key](./web-api.md#api-key).
 
 Most [coding agents](./coding-agents.md#what-is-a-coding-agent) support `OpenAI`-compatible APIs, which lets you point them at providers like [`OpenRouter`](#openrouter) instead of `OpenAI` directly.
 
 Docs:
 
+- [`OpenAI` API](https://openai.com/api/)
+- [OpenAI API reference](https://developers.openai.com/api/reference/overview)
 - [OpenRouter: OpenAI compatibility](https://openrouter.ai/docs/community/frameworks)
 
 ### Request to LLM provider API
