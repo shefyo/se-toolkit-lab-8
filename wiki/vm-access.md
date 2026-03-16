@@ -6,7 +6,7 @@
 - [Set up `SSH` (LOCAL)](#set-up-ssh-local)
   - [Create a new `SSH` key (LOCAL)](#create-a-new-ssh-key-local)
   - [Find the `SSH` key files (LOCAL)](#find-the-ssh-key-files-local)
-  - [Get the public `SSH` key (LOCAL)](#get-the-public-ssh-key-local)
+  - [Get the `SSH` public key (LOCAL)](#get-the-ssh-public-key-local)
   - [Start the `ssh-agent` (LOCAL)](#start-the-ssh-agent-local)
   - [Add the `SSH` key to the `ssh-agent` (LOCAL)](#add-the-ssh-key-to-the-ssh-agent-local)
   - [Verify the `SSH` setup (LOCAL)](#verify-the-ssh-setup-local)
@@ -63,7 +63,7 @@ Complete these steps:
 1. [Check your current shell](./vs-code.md#check-the-current-shell-in-the-vs-code-terminal).
 2. [Create a new `SSH` key (LOCAL)](#create-a-new-ssh-key-local)
 3. [Find the `SSH` key files (LOCAL)](#find-the-ssh-key-files-local)
-4. [Get the public `SSH` key (LOCAL)](#get-the-public-ssh-key-local)
+4. [Get the `SSH` public key (LOCAL)](#get-the-ssh-public-key-local)
 5. [Start the `ssh-agent` (LOCAL)](#start-the-ssh-agent-local)
 6. [Add the `SSH` key to the `ssh-agent` (LOCAL)](#add-the-ssh-key-to-the-ssh-agent-local)
 7. [Verify the `SSH` setup (LOCAL)](#verify-the-ssh-setup-local)
@@ -113,7 +113,7 @@ Complete these steps:
 >
 > Never share the private key.
 
-### Get the public `SSH` key (LOCAL)
+### Get the `SSH` public key (LOCAL)
 
 1. To view the content of the public key file,
 
