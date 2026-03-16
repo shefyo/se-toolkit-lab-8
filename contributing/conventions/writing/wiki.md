@@ -158,6 +158,7 @@ This provides: what it is, where to find it, official docs, and how to use it.
 - [ ] Ordered lists use `1. 2. 3.` (not `1. 1. 1.`).
 - [ ] Compound instructions are split into separate steps.
 - [ ] All sentences end with `.`.
+- [ ] Each sentence is on its own line.
 - [ ] Options and steps are clearly differentiated.
 - [ ] Tool/concept names are wrapped in backticks: `` `VS Code` ``, `` `Git` ``, `` `Docker` ``.
 - [ ] `Git workflow` is referenced from tasks that produce code changes.

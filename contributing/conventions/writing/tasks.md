@@ -801,6 +801,7 @@ See [Autochecker-verifiable outcomes](#421-autochecker-verifiable-outcomes).
 - [ ] Infrastructure steps include a collapsible troubleshooting block (not "ask the TA").
 - [ ] Compound instructions are split into separate steps.
 - [ ] All sentences end with `.`.
+- [ ] Each sentence is on its own line.
 - [ ] Options and steps are clearly differentiated.
 - [ ] Tool/concept names are wrapped in backticks: `` `VS Code` ``, `` `Git` ``, `` `Docker` ``.
 - [ ] `Git workflow` is referenced from tasks that produce code changes.

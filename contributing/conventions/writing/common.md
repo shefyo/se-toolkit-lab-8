@@ -44,6 +44,7 @@
 
 - **Split compound instructions.** Never write "Do A and do B." Instead, split into two numbered steps.
 - **Finish complete sentences with a `.`**
+- **Write each sentence on its own line.** This makes diffs cleaner and lets individual sentences be referenced by line number.
 
 ## 4.2. Terminal commands
 
