@@ -697,17 +697,20 @@ Method 2 (file at the absolute [`<file-path>`](./file-system.md#file-path-placeh
 
 #### Open the file or the directory using `code`
 
-1. Open a new terminal (e.g., [open a new `VS Code Terminal`](#open-a-new-vs-code-terminal)).
+1. To open the file or the directory,
 
-2. Run in the terminal
+   [run in the `VS Code Terminal`](#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    code <fd-path>
    ```
 
-   See [`<fd-path>`](./file-system.md#file-path).
+   Replace the placeholder [`<fd-path>`](./file-system.md#fd-path-placeholder)
+   with the path to the file or the directory that you want to open.
 
-   **Note:** the file or the directory will be created if it doesn't yet exist.
+   > 🟦 **Note**
+   >
+   > The file or the directory will be created if it doesn't yet exist.
 
    > <h3>Troubleshooting</h3>
    >
@@ -715,7 +718,7 @@ Method 2 (file at the absolute [`<file-path>`](./file-system.md#file-path-placeh
    >
    > [Add `VS Code` to `PATH`](#macos-only-add-vs-code-to-path).
 
-3. [(`Windows` only) Reopen the directory in `WSL`](#windows-only-reopen-the-directory-in-wsl) if you open the directory.
+2. [(`Windows` only) Reopen the directory in `WSL`](#windows-only-reopen-the-directory-in-wsl) if you open the directory.
 
 #### Open the file or the directory using the context menu
 
