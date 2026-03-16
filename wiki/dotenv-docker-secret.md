@@ -40,14 +40,16 @@
 
 ## What is `.env.docker.secret`
 
-`.env.docker.secret` is an [`.env` file](./environments.md#env-file) that stores [environment variables](./environments.md#environment-variable) for [`Docker Compose`](./docker-compose.md#what-is-docker-compose).
+`.env.docker.secret` is a [`.env` file](./environments.md#env-file) that stores [environment variables](./environments.md#environment-variable) for [`Docker Compose`](./docker-compose.md#what-is-docker-compose).
 
 The values are substituted into [`docker-compose.yml`](../docker-compose.yml) when running commands with the `--env-file` flag (e.g., `docker compose --env-file .env.docker.secret up --build`).
 
-Default values: [`.env.docker.example`](../.env.docker.example)
+Therefore, use the values from the `.env.docker.secret` file stored on the [machine](./computer-networks.md#machine) where you deployed via `Docker Compose`.
+
+The default values are in [`.env.docker.example`](../.env.docker.example).
 
 > [!NOTE]
-> It was added to [`.gitignore`](./git.md#gitignore) because you may specify there
+> `.env.docker.secret` was added to [`.gitignore`](./git.md#gitignore) because you may specify there
 > [secrets](./environments.md#secrets) such as the [API key](#api_key) or the [address of your VM](./vm.md#your-vm-ip-address).
 
 > [!TIP]
