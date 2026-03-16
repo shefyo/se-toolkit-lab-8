@@ -38,10 +38,9 @@ An agent that can check [your VM](./vm.md#your-vm) setup.
 Complete these steps:
 
 <!-- no toc -->
-1. [Open the `Autochecker` bot](#open-the-autochecker-bot)
+1. [Open the `Autochecker` bot](#open-the-autochecker-bot).
 2. [Log in to the `Autochecker` bot](#log-in-to-the-autochecker-bot).
-3. [Set up your VM for the `Autochecker` agent](#set-up-your-vm-for-the-autochecker-agent).
-4. [Add the `SSH` public key for the `Autochecker` agent (REMOTE)](#add-the-ssh-public-key-for-the-autochecker-agent-remote).
+3. [Add the `SSH` public key for the `Autochecker` agent (REMOTE)](#add-the-ssh-public-key-for-the-autochecker-agent-remote).
 
 ### Open the `Autochecker` bot
 
