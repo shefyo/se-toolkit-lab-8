@@ -9,8 +9,6 @@
   - [Set up the `Qwen Code Companion` extension for `VS Code`](#set-up-the-qwen-code-companion-extension-for-vs-code)
   - [Set up the `GitHub Copilot Chat` extension for `VS Code`](#set-up-the-github-copilot-chat-extension-for-vs-code)
 - [Check the `Qwen Code` credentials file](#check-the-qwen-code-credentials-file)
-  - [Check the `Qwen Code` credentials file in the `VS Code Terminal`](#check-the-qwen-code-credentials-file-in-the-vs-code-terminal)
-  - [Check the `Qwen Code` credentials file in the `VS Code Editor`](#check-the-qwen-code-credentials-file-in-the-vs-code-editor)
 - [Open a chat with `Qwen Code`](#open-a-chat-with-qwen-code)
   - [Open a chat with `Qwen Code` using the CLI](#open-a-chat-with-qwen-code-using-the-cli)
   - [Open a chat with `Qwen Code` using the `Qwen Code Companion` extension for `VS Code`](#open-a-chat-with-qwen-code-using-the-qwen-code-companion-extension-for-vs-code)
@@ -105,11 +103,6 @@ Path: `~/.qwen/oauth_creds.json`.
 > [!NOTE]
 > See [`Qwen Code` credentials file](#qwen-code-credentials-file).
 
-- Method 1: [Check the `Qwen Code` credentials file in the `VS Code Terminal`](#check-the-qwen-code-credentials-file-in-the-vs-code-editor).
-- Method 2: [Check the `Qwen Code` credentials file in the `VS Code Editor`](#check-the-qwen-code-credentials-file-in-the-vs-code-editor).
-
-### Check the `Qwen Code` credentials file in the `VS Code Terminal`
-
 1. To print the content of the credentials file,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
@@ -118,12 +111,17 @@ Path: `~/.qwen/oauth_creds.json`.
    cat ~/.qwen/oauth_creds.json | jq .
    ```
 
-### Check the `Qwen Code` credentials file in the `VS Code Editor`
+   The output should look like this:
 
-1. [Open in `VS Code` the file](./vs-code.md#open-the-file-or-the-directory-using-code):
-   `~/.qwen/oauth_creds.json`.
-
-   The file must be non-empty.
+   ```json
+   {
+     "access_token": "...",
+     "token_type": "Bearer",
+     "refresh_token": "...",
+     "resource_url": "portal.qwen.ai",
+     "expiry_date": 1773502586930
+   }
+   ```
 
 ## Open a chat with `Qwen Code`
 
