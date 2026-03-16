@@ -30,7 +30,7 @@ Actions:
 
 1. Open in a browser: `http://<your-vm-ip-address>:<caddy-port>/docs`. Replace:
 
-   - [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address)
+   - [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address-placeholder)
    - [`<caddy-port>`](./caddy.md#caddy-port)
 
 ## Authorize in `Swagger UI`

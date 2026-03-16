@@ -213,11 +213,11 @@ Complete these steps:
         UseKeychain yes
      ```
 
+   Replace the placeholder [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address-placeholder).
+
    > 🟩 **Tip**
    >
    > If `~/.ssh/config` already contains a `Host se-toolkit-vm` entry, skip this step.
-
-3. Replace [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address) in the `~/.ssh/config` file.
 
 ## Connect to the VM (LOCAL)
 
@@ -348,7 +348,7 @@ Complete these steps:
    ssh -i ~/.ssh/se_toolkit_key <user>@<your-vm-ip-address>
    ```
 
-   Replace the placeholder [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address).
+   Replace the placeholder [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address-placeholder).
 
 3. Confirm the connection did not prompt for a password.
 

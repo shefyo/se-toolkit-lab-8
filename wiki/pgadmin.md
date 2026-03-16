@@ -48,7 +48,7 @@ The port number is the value of [`PGADMIN_HOST_PORT`](./dotenv-docker-secret.md#
 1. Open `http://<address>:<pgadmin-port>` in a browser. Replace:
    - `<address>` with:
      - [`localhost`](./computer-networks.md#localhost) if you deployed on your local machine.
-     - [`<your-vm-ip-address>`](vm.md#your-vm-ip-address) if you deployed on [your VM](./vm.md#your-vm);
+     - [`<your-vm-ip-address>`](vm.md#your-vm-ip-address-placeholder) if you deployed on [your VM](./vm.md#your-vm);
    - [`<pgadmin-port>`](#pgadmin-port).
 2. Log in with the credentials from `.env.docker.secret`:
    - `Email`: the value of `PGADMIN_EMAIL` (default: `admin@example.com`).

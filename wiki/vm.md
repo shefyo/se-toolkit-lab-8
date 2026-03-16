@@ -5,7 +5,7 @@
 - [What is a VM](#what-is-a-vm)
 - [Your VM](#your-vm)
 - [`<your-vm-name>` placeholder](#your-vm-name-placeholder)
-- [`<your-vm-ip-address>`](#your-vm-ip-address)
+  - [`<your-vm-ip-address>` placeholder](#your-vm-ip-address-placeholder)
 - [Connect to the correct network](#connect-to-the-correct-network)
 - [Go to the VMs site](#go-to-the-vms-site)
 - [Create a VM](#create-a-vm)
@@ -37,7 +37,7 @@ See [VM image](./vm-info.md) for the information about your VM.
 
 The name you chose when [creating the VM](#create-a-vm-using-the-subscription) (without `<` and `>`).
 
-## `<your-vm-ip-address>`
+### `<your-vm-ip-address>` placeholder
 
 The [IP address](./computer-networks.md#ip-address) (without `<` and `>`) of [your VM](#your-vm) in the `UniversityStudent` [network](./computer-networks.md#what-is-a-network).
 
@@ -127,7 +127,7 @@ Complete these steps:
 1. [Go to the VM page](#go-to-the-vm-page).
 2. Go to the `quick glance` sidebar (on the right).
 3. Go to `IP Address(es)`.
-4. You should see there `StudentsCourses01` - [`<your-vm-ip-address>`](#your-vm-ip-address).
+4. You should see there `StudentsCourses01` - [`<your-vm-ip-address>`](#your-vm-ip-address-placeholder).
 
    Example: `StudentsCourses01` - `192.0.2.1`
 
