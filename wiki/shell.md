@@ -114,7 +114,7 @@ username@hostname:~/directory$
 
 > [!NOTE]
 > The `$` at the end indicates a regular user.
-> A `#` indicates the [root](./linux.md#the-root-user) (admin) user.
+> A `#` indicates [the user `root`](./linux.md#the-user-root) (admin).
 
 ## Shell session
 
