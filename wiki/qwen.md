@@ -110,22 +110,20 @@ Path: `~/.qwen/oauth_creds.json`.
 
 ### Check the `Qwen Code` credentials file in the `VS Code Terminal`
 
-To print the content of the credentials file,
+1. To print the content of the credentials file,
 
-[run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
-```terminal
-cat ~/.qwen/oauth_creds.json | jq .
-```
+   ```terminal
+   cat ~/.qwen/oauth_creds.json | jq .
+   ```
 
 ### Check the `Qwen Code` credentials file in the `VS Code Editor`
 
-[Open in `VS Code` the file](./vs-code.md#open-the-file):
-`~/.qwen/oauth_creds.json`.
+1. [Open in `VS Code` the file](./vs-code.md#open-the-file-or-the-directory-using-code):
+   `~/.qwen/oauth_creds.json`.
 
-This file contains the `Qwen Code` authentication credentials.
-
-The file must be non-empty.
+   The file must be non-empty.
 
 ## Open a chat with `Qwen Code`
 
