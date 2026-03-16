@@ -18,7 +18,7 @@
 
 The `Qwen Code` API is an [OpenAI-compatible API](./llm.md#openai-compatible-api) that uses the [`Qwen Code` credentials file](./qwen.md#qwen-code-credentials-file) to provide access to the [`Qwen` API](./qwen.md#qwen-api).
 
-The `Qwen Code` API is deployed using [`qwen-code-oai-proxy`](https://github.com/inno-se-toolkit/qwen-code-oai-proxy).
+The `Qwen Code` API is deployed using [`qwen-code-api`](https://github.com/inno-se-toolkit/qwen-code-api).
 
 ## Set up the `Qwen Code` API (REMOTE)
 
@@ -61,12 +61,12 @@ Complete these steps:
 
 1. To [clone using the `VS Code Terminal` the repo](./git-vscode.md#clone-the-repo-using-the-vs-code-terminal)
 
-   <https://github.com/inno-se-toolkit/qwen-code-oai-proxy>,
+   <https://github.com/inno-se-toolkit/qwen-code-api>,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   git clone https://github.com/inno-se-toolkit/qwen-code-oai-proxy ~/qwen-code-oai-proxy
+   git clone https://github.com/inno-se-toolkit/qwen-code-api ~/qwen-code-api
    ```
 
 ### Enter the `Qwen Code` API repository directory (REMOTE)
@@ -76,7 +76,7 @@ Complete these steps:
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   cd ~/qwen-code-oai-proxy
+   cd ~/qwen-code-api
    ```
 
 ### Prepare the environment in the `Qwen Code` API repository (REMOTE)
@@ -122,7 +122,7 @@ Complete these steps:
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   cd ~/qwen-code-oai-proxy
+   cat ~/qwen-code-api/.env | grep HOST_PORT
    ```
 
 3. To get the value of `QWEN_API_KEY` in `.env`,
@@ -130,7 +130,7 @@ Complete these steps:
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   cat .env | grep QWEN_API_KEY
+   cat ~/qwen-code-api/.env | grep QWEN_API_KEY
    ```
 
 ### Check that the `Qwen Code` API is accessible (REMOTE or LOCAL)
