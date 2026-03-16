@@ -149,14 +149,14 @@ Because you used a custom name, your keys are named `se_toolkit_key` (private) a
 > [!NOTE]
 > See [host](./computer-networks.md#host).
 
-1. Get [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address).
+1. [Get `<your-vm-ip-address>`](./vm.md#get-the-ip-address-of-the-vm).
 
-2. [Open the file](./vs-code.md#open-the-file):
+2. [Open the file using `code`](./vs-code.md#open-the-file-or-the-directory-using-code):
    `~/.ssh/config`
 
-3. Add this text at the end of the file.
+3. Add this text at the end of the file:
 
-   - `Linux`, `Windows`:
+   - `Linux`, `Windows` (`WSL`):
 
      ```text
      Host se-toolkit-vm
