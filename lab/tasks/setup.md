@@ -223,7 +223,7 @@
 
 If you can't [connect to your VM](../../wiki/vm.md#connect-to-the-vm), complete these steps:
 
-1. [Set up `SSH`](../../wiki/ssh.md#set-up-ssh).
+1. [Set up `SSH`](../../wiki/vm-access.md#set-up-ssh).
 2. [Create a VM using the subscription](../../wiki/vm.md#create-a-vm-using-the-subscription).
 
 ### 1.9. Set up `Python` (LOCAL)

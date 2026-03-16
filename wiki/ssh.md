@@ -8,11 +8,6 @@
   - [`SSH` private key](#ssh-private-key)
 - [`SSH` daemon](#ssh-daemon)
 - [`ssh-agent`](#ssh-agent)
-- [Set up `SSH`](#set-up-ssh)
-  - [Create a new `SSH` key](#create-a-new-ssh-key)
-  - [Find the `SSH` key files](#find-the-ssh-key-files)
-  - [Start the `ssh-agent`](#start-the-ssh-agent)
-  - [Verify the `SSH` setup](#verify-the-ssh-setup)
 - [Login](#login)
   - [Login without password](#login-without-password)
   - [Login with password](#login-with-password)
@@ -71,109 +66,7 @@ You do not need to configure it — your [VM](./vm.md#your-vm) already has it ru
 
 When `ssh-agent` holds your key, you do not need to type a passphrase every time you connect.
 
-See [Start the `ssh-agent`](#start-the-ssh-agent) for setup instructions.
-
-## Set up `SSH`
-
-Set up [`SSH`](#what-is-ssh) to connect to a [remote host](./computer-networks.md#remote-host).
-
-Complete these steps:
-
-<!-- no toc -->
-1. [Check your current shell](./vs-code.md#check-the-current-shell-in-the-vs-code-terminal).
-2. [Create a new `SSH` key](#create-a-new-ssh-key).
-3. [Find the `SSH` key files](#find-the-ssh-key-files).
-4. [Start the `ssh-agent`](#start-the-ssh-agent).
-5. [Verify the `SSH` setup](#verify-the-ssh-setup).
-
-### Create a new `SSH` key
-
-Generate a key pair: a **private key** (secret) and a **public key** (safe to share).
-
-We'll use the `ed25519` algorithm, which is the modern standard for security and performance.
-
-Complete these steps:
-
-1. To generate the key pair,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   ssh-keygen -t ed25519 -C "se-toolkit-student" -f ~/.ssh/se_toolkit_key
-   ```
-
-   *Note:* You can replace `"se-toolkit-student"` with your email or another label.
-
-   *Note:* `-f ~/.ssh/se_toolkit_key` sets a custom file path and name.
-
-2. **Passphrase:** When asked `Enter passphrase`, you may type a secure password or press `Enter` for no passphrase.
-  
-   *Note:* If you set a passphrase, use `ssh-agent` to avoid retyping it on every connection.
-
-<!-- TODO what does it mean to use ssh-agent -->
-
-### Find the `SSH` key files
-
-`SSH` keys are generated in pairs. You must know which file is which.
-
-Because you used a custom name, your keys are named `se_toolkit_key` (private) and `se_toolkit_key.pub` (public).
-
-1. To verify the keys were created,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   ls ~/.ssh/se_toolkit_key*
-   ```
-
-2. You should see two files listed.
-
-   The file ending in `.pub` contains the public key.
-
-   Another file contains the private key.
-
-3. To view the content of the public key file,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   cat ~/.ssh/se_toolkit_key.pub
-   ```
-
-   You should see something similar to this:
-
-   ```terminal
-   ssh-ed25519 AKdk38D3faWJnlFfalFJSKEFGG/vmLQ62Z+vpWCe5e/c2n37cnNc39N3c8qb7cBS+e3d se-toolkit-student
-   ```
-
-> [!IMPORTANT]
-> Never share the private key.
-> This is your secret identity.
-
-### Start the `ssh-agent`
-
-1. To start the agent and load your key,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   eval "$(ssh-agent -s)"
-   ssh-add ~/.ssh/se_toolkit_key
-   ```
-
-### Verify the `SSH` setup
-
-1. To list the loaded keys,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   ssh-add -l
-   ```
-
-2. You should see your key fingerprint in the output.
-
-3. If you see `The agent has no identities`, run the [start `ssh-agent` step](#start-the-ssh-agent) again.
+See [Start the `ssh-agent`](./vm-access.md#start-the-ssh-agent) for setup instructions.
 
 ## Login
 
@@ -183,11 +76,11 @@ Because you used a custom name, your keys are named `se_toolkit_key` (private) a
 
 Key-based authentication uses your private key to prove your identity. The remote host checks whether the matching public key is listed as authorized.
 
-This is the recommended method and is what [Set up `SSH`](#set-up-ssh) configures.
+This is the recommended method and is what [Set up `SSH`](./vm-access.md#set-up-ssh) configures.
 
-1. [Set up `SSH`](#set-up-ssh).
+1. [Set up `SSH`](./vm-access.md#set-up-ssh).
 2. Ensure your public key is added to the remote host.
-3. [Connect to the VM](./vm-root.md#connect-to-the-vm).
+3. [Connect to the VM](./vm-access.md#connect-to-the-vm).
 
 You will not be asked for a password.
 
@@ -210,7 +103,7 @@ Password-based authentication asks you to type the remote user's password.
 
 ## `SSH` shell
 
-An `SSH` shell is the interactive [shell](./shell.md#what-is-a-shell) session you get after [connecting to the VM](./vm-root.md#connect-to-the-vm) over `SSH`.
+An `SSH` shell is the interactive [shell](./shell.md#what-is-a-shell) session you get after [connecting to the VM](./vm-access.md#connect-to-the-vm) over `SSH`.
 
 Commands you run in it execute on the remote machine, not on your local computer.
 

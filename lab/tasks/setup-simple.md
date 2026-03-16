@@ -215,7 +215,7 @@ The database starts empty. You need to run the ETL pipeline to populate it with 
 
 The autochecker tests your agent against your **deployed backend on your VM**. You need to deploy the same services there.
 
-1. [Connect to the VM](../../wiki/vm-root.md#connect-to-the-vm).
+1. [Connect to the VM](../../wiki/vm-access.md#connect-to-the-vm).
 
 2. Clone your fork on the VM:
 

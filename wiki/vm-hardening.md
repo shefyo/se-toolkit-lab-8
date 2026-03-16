@@ -17,7 +17,7 @@ Docs:
 
 Steps:
 
-1. [Set up login as the non-root user `<user>`](./vm-non-root.md#about-setting-up-login-as-a-non-root-user)
+1. [Set up the VM access](./vm-access.md#about-the-vm-access)
 2. [Set up additional protection](#set-up-additional-protection)
 
 ## Set up additional protection
