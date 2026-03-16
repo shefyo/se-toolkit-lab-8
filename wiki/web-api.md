@@ -4,6 +4,7 @@
 
 - [What is a web API](#what-is-a-web-api)
 - [Endpoint](#endpoint)
+- [Resource](#resource)
 - [Base URL](#base-url)
 - [API key](#api-key)
   - [`<api-key>` placeholder](#api-key-placeholder)
@@ -25,6 +26,12 @@ Docs:
 An endpoint is a specific entry point of a [web API](#what-is-a-web-api), identified by a path (`/status`, `/items`, ...).
 
 In a [`REST` API](./rest-api.md#what-is-a-rest-api), the [`HTTP` method](./http.md#http-request-method) is also part of the identity — `GET /status` and `POST /status` are different endpoints.
+
+## Resource
+
+A resource is an entity or piece of data that a [web API](#what-is-a-web-api) exposes to [clients](./web-infrastructure.md#web-client).
+
+Each resource is identified by a path in an [endpoint](#endpoint) — for example, `/items` refers to a collection of items and `/items/{id}` refers to a single item.
 
 ## Base URL
 
