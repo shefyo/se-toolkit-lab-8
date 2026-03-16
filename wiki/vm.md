@@ -4,7 +4,7 @@
 
 - [What is a VM](#what-is-a-vm)
 - [Your VM](#your-vm)
-- [`<your-vm-name>`](#your-vm-name)
+- [`<your-vm-name>` placeholder](#your-vm-name-placeholder)
 - [`<your-vm-ip-address>`](#your-vm-ip-address)
 - [Connect to the correct network](#connect-to-the-correct-network)
 - [Go to the VMs site](#go-to-the-vms-site)
@@ -33,7 +33,7 @@ You probably won't have access to the VMs after the course finishes.
 
 See [VM image](./vm-info.md) for the information about your VM.
 
-## `<your-vm-name>`
+## `<your-vm-name>` placeholder
 
 The name you chose when [creating the VM](#create-a-vm-using-the-subscription) (without `<` and `>`).
 
@@ -96,7 +96,7 @@ Complete these steps:
 7. Click `Linux Ubuntu 24.04 Software Engineering Toolkit`.
 8. Click `->` to go to the page 2.
 9. Fill in the fields:
-    - `NAME`: Write the name of your VM (we'll refer to it as [`<your-vm-name>`](#your-vm-name) in the instructions).
+    - `NAME`: Write the name of your VM (we'll refer to it as [`<your-vm-name>`](#your-vm-name-placeholder) in the instructions).
     - `NEW PASSWORD`: Write the password.
     - `CONFIRM`: Write the same password.
     - `ADMINISTRATOR SSH KEY`:

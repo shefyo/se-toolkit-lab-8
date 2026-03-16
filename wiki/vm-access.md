@@ -248,7 +248,7 @@ Complete these steps:
    >
    > [`<user>`](./operating-system.md#user-placeholder) is the same as you specified when [adding the VM to the `SSH` config (LOCAL)](#add-the-vm-to-the-ssh-config-local).
    >
-   > [`<your-vm-name>`](./vm.md#your-vm-name) is the same as you specified when [creating the VM](./vm.md#create-a-vm).
+   > [`<your-vm-name>`](./vm.md#your-vm-name-placeholder) is the same as you specified when [creating the VM](./vm.md#create-a-vm).
 
 5. You are in the [home directory (`~`)](./file-system.md#home-directory-).
 
