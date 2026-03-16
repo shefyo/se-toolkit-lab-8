@@ -40,17 +40,11 @@ To form a complete request URL, append an endpoint path to the base URL:
 
 ## API key
 
-An API key is a secret value used to [authenticate](./http-auth.md#http-authentication) a client making requests to a [web API](#what-is-a-web-api). The server rejects requests with a missing or invalid key with [`401 Unauthorized`](./http.md#401-unauthorized).
-
-The API key is sent in the `Authorization` header of every request:
-
-```http
-Authorization: Bearer <api-key>
-```
+An API key is a secret value used to [authenticate](./http-auth.md#http-authentication) a client making requests to a [web API](#what-is-a-web-api).
 
 ### `<api-key>` placeholder
 
-The value of the [API key](#api-key) (without `<` and `>`) that you use to authenticate in the [API](#what-is-a-web-api).
+[API key](#api-key) (without `<` and `>`).
 
 ## API types
 
