@@ -472,7 +472,7 @@ Complete these steps:
 ### `Permission denied (publickey)`
 
 1. Check `IdentityFile` in `~/.ssh/config`.
-2. Ensure the public key was added to the remote host.
+2. Ensure the `SSH` public key was added to the remote host.
 3. Ensure your key is loaded: `ssh-add -l`.
 
 ### `Bad owner or permissions`
@@ -560,7 +560,7 @@ Key-based authentication uses your private key to prove your identity. The remot
 This is the recommended method and is what [Set up `SSH`](./vm-access.md#set-up-ssh) configures.
 
 1. [Set up `SSH`](./vm-access.md#set-up-ssh).
-2. Ensure your public key is added to the remote host.
+2. Ensure your `SSH` public key is added to the remote host.
 3. [Connect to the VM](./vm-access.md#connect-to-the-vm).
 
 You will not be asked for a password.
