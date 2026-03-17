@@ -9,15 +9,15 @@
 - [LLM provider](#llm-provider)
   - [`OpenRouter`](#openrouter)
 - [Free models](#free-models)
-- [LLM provider API](#llm-provider-api)
+  - [LLM provider API](#llm-provider-api)
   - [`OpenAI`-compatible API](#openai-compatible-api)
   - [Request to LLM provider API](#request-to-llm-provider-api)
 - [Token](#token)
 - [Context](#context)
   - [Context window](#context-window)
-- [Context engineering](#context-engineering)
+  - [Context engineering](#context-engineering)
 - [Prompt](#prompt)
-- [Prompt engineering](#prompt-engineering)
+  - [Prompt engineering](#prompt-engineering)
 
 ## What is an LLM
 
@@ -53,7 +53,7 @@ Docs:
 
 - [`OpenRouter`](https://openrouter.ai/) provides [free models](https://openrouter.ai/collections/free-models).
 
-## LLM provider API
+### LLM provider API
 
 An LLM provider API is an [`HTTP` API](./web-api.md#http-api) exposed by an LLM provider (e.g., `OpenAI`, `Anthropic`, [`OpenRouter`](#openrouter)) that allows applications and tools to send [requests](./http.md#http-request) to their [LLMs](#what-is-an-llm) programmatically.
 
@@ -124,7 +124,7 @@ The context window is the maximum amount of text (measured in [tokens](#token)) 
 
 When the context window is full, earlier parts of the conversation are dropped. To avoid this, keep conversations focused and start a new conversation when switching tasks.
 
-## Context engineering
+### Context engineering
 
 Context engineering is the practice of deliberately choosing what information to include in the context to get better results from an LLM.
 
@@ -136,6 +136,6 @@ A prompt is the input text you send to an LLM to guide its response. The quality
 
 See [Prompt engineering](#prompt-engineering).
 
-## Prompt engineering
+### Prompt engineering
 
 Prompt engineering is the practice of writing prompts that produce accurate, relevant, and useful responses.
