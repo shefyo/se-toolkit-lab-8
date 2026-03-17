@@ -43,7 +43,7 @@ Docs:
 >
 > See <https://github.com/nodejs/node/issues/60790>
 >
-> `Nix` will fetch all necessary dependencies for you.
+> `Nix` will fetch this library and other necessary dependencies for you.
 
 ### Install `Node.js` using `nvm`
 
