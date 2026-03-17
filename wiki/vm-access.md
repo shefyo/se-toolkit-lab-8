@@ -254,8 +254,6 @@ Complete these steps:
    >
    > [`<your-vm-name>`](./vm.md#your-vm-name-placeholder) is the same as you specified when [creating the VM](./vm.md#create-a-vm).
 
-5. You are in the [home directory (`~`)](./file-system.md#home-directory-).
-
 <!-- 7. If you use the `ms-vscode-remote.remote-ssh` extension in `VS Code`, the status bar should show that you are connected to a remote host.
    TODO explain how to use -->
 
@@ -466,6 +464,8 @@ Complete these steps:
    > [`<user>`](./operating-system.md#user-placeholder) is the same as you specified when [updating the `SSH` config to connect to the VM as the user `<user>` (LOCAL)](#update-the-ssh-config-to-connect-to-the-vm-as-the-user-user-local).
    >
    > [`<your-vm-name>`](./vm.md#your-vm-name-placeholder) is the same as you specified when [creating the VM](./vm.md#create-a-vm).
+   >
+   > You are in the [home directory (`~`)](./file-system.md#home-directory-).
 
 ## Restrict the `SSH` connection
 
@@ -551,6 +551,7 @@ Complete these steps:
    ```
 
    When asked for a password, write it and press `Enter`.
+
    The shell won't show what you type.
 
 2. If the command prints no output, the config is valid.
