@@ -6,7 +6,7 @@
 - [`SSH` key pair](#ssh-key-pair)
   - [`SSH` public key](#ssh-public-key)
   - [`SSH` private key](#ssh-private-key)
-- [`SSH` daemon](#ssh-daemon)
+- [`sshd`](#sshd)
 - [`ssh-agent`](#ssh-agent)
 - [`SSH` shell](#ssh-shell)
   - [`SSH` shell prompt](#ssh-shell-prompt)
@@ -48,9 +48,9 @@ It stays on your local machine and is never shared. During authentication, `SSH`
 > [!CAUTION]
 > Never share your private key. Anyone who has it can authenticate as you.
 
-## `SSH` daemon
+## `sshd`
 
-The `SSH` daemon (`sshd`) is a program that runs on the [remote host](./computer-networks.md#remote-host) and [listens](./computer-networks.md#listen-on-a-port) for incoming `SSH` connections.
+`sshd` (the `SSH` daemon) is a program that runs on the [remote host](./computer-networks.md#remote-host) and [listens](./computer-networks.md#listen-on-a-port) for incoming `SSH` connections.
 
 You do not need to configure it — your [VM](./vm.md#your-vm) already has it running.
 
