@@ -267,12 +267,65 @@ Complete these steps:
    adduser <user>
    ```
 
-2. To add the user `<user>` to the [`sudo` group](./linux.md#sudo-group),
+   The output should be similar to this:
+
+   ```
+   info: Adding user `<user>' ...
+   info: Selecting UID/GID from range 1000 to 59999 ...
+   info: Adding new group `<user>' (1002) ...
+   info: Adding new user `<user>' (1002) with group `<user> (1002)' ...
+   info: Creating home directory `/home/<user>' ...
+   info: Copying files from `/etc/skel' ...
+   New password:
+   ```
+
+2. When prompted for a password (`New password`, `Retype new password`), enter it.
+
+   > 🟦 **Note**
+   >
+   > The [shell](./shell.md#what-is-a-shell) won't show what you type for security reasons.
+
+3. Keep the default values for these (press `Enter` when prompted):
+
+   ```terminal
+   Full Name []:     
+   Room Number []: 
+   Work Phone []: 
+   Home Phone []: 
+   Other []: 
+   ```
+
+4. When asked `Is the information correct? [Y/n]`, write `y` and press `Enter`.
+
+   The output should be similar to this:
+
+   ```terminal
+   info: Adding new user `<user>' to supplemental / extra groups `users' ...
+   info: Adding user `<user>' to group `users' ...
+   ```
+
+5. To add the user `<user>` to the [`sudo` group](./linux.md#sudo-group),
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    usermod -aG sudo <user>
+   ```
+
+   There should be no output.
+
+6. To check that the user `<user>` was added to the `sudo` group,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   groups <user>
+   ```
+
+   The output should be similar to this:
+
+   ```terminal
+   <user> : <user> sudo users
    ```
 
 ## Set up the `SSH` key authentication for the user `<user>` (REMOTE)
