@@ -697,7 +697,9 @@ Method 2 (file at the absolute [`<file-path>`](./file-system.md#file-path-placeh
 
 #### Open the file or the directory using `code`
 
-1. To open the file or the directory,
+1. [Open a new `VS Code Terminal`](#open-a-new-vs-code-terminal).
+
+2. To open the file or the directory,
 
    [run in the `VS Code Terminal`](#run-a-command-in-the-vs-code-terminal):
 
@@ -718,7 +720,7 @@ Method 2 (file at the absolute [`<file-path>`](./file-system.md#file-path-placeh
    >
    > [Add `VS Code` to `PATH`](#macos-only-add-vs-code-to-path).
 
-2. [(`Windows` only) Reopen the directory in `WSL`](#windows-only-reopen-the-directory-in-wsl) if you open the directory.
+3. [(`Windows` only) Reopen the directory in `WSL`](#windows-only-reopen-the-directory-in-wsl) if you open the directory.
 
 #### Open the file or the directory using the context menu
 
