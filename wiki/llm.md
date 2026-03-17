@@ -12,6 +12,8 @@
   - [LLM provider API](#llm-provider-api)
   - [LLM provider APIs](#llm-provider-apis)
   - [`OpenAI`-compatible API](#openai-compatible-api)
+    - [`OpenAI` API](#openai-api)
+    - [`OpenRouter` API](#openrouter-api)
   - [Request to LLM provider API](#request-to-llm-provider-api)
   - [Free models](#free-models)
 - [Token](#token)
@@ -71,16 +73,26 @@ An [LLM provider](#llm-provider) API allows [applications](./software-types.md#a
 
 ### `OpenAI`-compatible API
 
-An `OpenAI`-compatible API is an [LLM provider API](#llm-provider-api) that follows the same request and response format as the `OpenAI` API.
+An `OpenAI`-compatible API is an [LLM provider API](#llm-provider-api) that follows the same [request](./http.md#http-request) and [response](./http.md#http-response) format as the `OpenAI` API (an [`HTTP` API](./web-api.md#http-api)).
 
-The `OpenAI`-compatible API allows the same client code to work with different [LLM providers](#llm-provider-api) by changing only the [base URL](./web-api.md#base-url) and [API key](./web-api.md#api-key).
+The same [client](./web-infrastructure.md#web-client) code can work with different `OpenAI`-compatible [LLM provider APIs](#llm-provider-api) by changing only the [base URL](./web-api.md#base-url) and the [API key](./web-api.md#api-key).
 
-Most [coding agents](./coding-agents.md#what-is-a-coding-agent) support `OpenAI`-compatible APIs, which lets you point them at providers like [`OpenRouter`](#openrouter) instead of `OpenAI` directly.
+Most [coding agents](./coding-agents.md#what-is-a-coding-agent) support `OpenAI`-compatible APIs.
+
+#### `OpenAI` API
+
+An [`HTTP` API](./web-api.md#http-api) that provides access to `OpenAI` [models](#model).
 
 Docs:
 
 - [`OpenAI` API](https://openai.com/api/)
 - [OpenAI API reference](https://developers.openai.com/api/reference/overview)
+
+#### `OpenRouter` API
+
+Docs:
+
+- <https://openrouter.ai/>
 - [OpenRouter: OpenAI compatibility](https://openrouter.ai/docs/community/frameworks)
 
 ### Request to LLM provider API
