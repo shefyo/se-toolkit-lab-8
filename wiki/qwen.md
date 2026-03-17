@@ -18,7 +18,7 @@
   - [Refer to a file](#refer-to-a-file)
   - [Use a skill](#use-a-skill)
   - [View available models](#view-available-models)
-- [Quit the chat with `Qwen Code`](#quit-the-chat-with-qwen-code)
+  - [Quit the chat with `Qwen Code`](#quit-the-chat-with-qwen-code)
 - [Lab instructions for `Qwen Code`](#lab-instructions-for-qwen-code)
 
 ## What is `Qwen Code`
@@ -214,7 +214,7 @@ Example: `@main.py`.
 
    In the `Select Model` dialogue, you should see the available [models](./llm.md#model).
 
-## Quit the chat with `Qwen Code`
+### Quit the chat with `Qwen Code`
 
 1. Write `/quit`.
 2. Press `Enter`.
