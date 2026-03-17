@@ -12,7 +12,7 @@
   - [Verify the `SSH` setup (LOCAL)](#verify-the-ssh-setup-local)
 - [Check that the VM is accessible (LOCAL)](#check-that-the-vm-is-accessible-local)
 - [Add the VM to the `SSH` config (LOCAL)](#add-the-vm-to-the-ssh-config-local)
-- [Connect to the VM (LOCAL)](#connect-to-the-vm-local)
+- [Connect to the VM as the user `root` (LOCAL)](#connect-to-the-vm-as-the-user-root-local)
 - [Create the non-root user `<user>` (REMOTE)](#create-the-non-root-user-user-remote)
 - [Set up the `SSH` key authentication for the user `<user>` (REMOTE)](#set-up-the-ssh-key-authentication-for-the-user-user-remote)
 - [Update the `SSH` config (LOCAL)](#update-the-ssh-config-local)
@@ -45,7 +45,7 @@ Complete these steps:
 1. [Set up `SSH` (LOCAL)](#set-up-ssh-local).
 2. [Create a VM](./vm.md#create-a-vm).
 3. [Add the VM to the `SSH` config (LOCAL)](#add-the-vm-to-the-ssh-config-local).
-4. [Connect to the VM (LOCAL)](#connect-to-the-vm-local).
+4. [Connect to the VM as the user `root` (LOCAL)](#connect-to-the-vm-as-the-user-root-local)
 5. [Create the non-root user `<user>` (REMOTE)](#create-the-non-root-user-user-remote).
 6. [Set up the `SSH` key authentication for the user `<user>` (REMOTE)](#set-up-the-ssh-key-authentication-for-the-user-user-remote).
 7. [Update the `SSH` config (LOCAL)](#update-the-ssh-config-local).
@@ -220,7 +220,7 @@ Complete these steps:
    >
    > If `~/.ssh/config` already contains a `Host se-toolkit-vm` entry, skip this step.
 
-## Connect to the VM (LOCAL)
+## Connect to the VM as the user `root` (LOCAL)
 
 1. [Connect to the correct network](./vm.md#connect-to-the-correct-network).
 
