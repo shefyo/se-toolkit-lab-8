@@ -1,4 +1,4 @@
-# Qwen Code
+# `Qwen Code`
 
 <h2>Table of contents</h2>
 
