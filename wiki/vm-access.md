@@ -424,8 +424,6 @@ Complete these steps:
 
 4. Save (`Ctrl+O`, `Enter`).
 
-5. [Exit the shell session](./shell.md#exit-the-shell-session).
-
 ## Restart `sshd` (REMOTE)
 
 1. [Connect to the VM](#connect-to-the-vm-local).
