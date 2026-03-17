@@ -21,7 +21,7 @@
     - [1.6.1. (UPD) Copy your fork URL](#161-upd-copy-your-fork-url)
     - [1.6.2. (UPD) Clone your fork](#162-upd-clone-your-fork)
   - [1.7. (UPD) Open the cloned repo and set up `VS Code` (LOCAL)](#17-upd-open-the-cloned-repo-and-set-up-vs-code-local)
-  - [1.8. Continue creating a VM](#18-continue-creating-a-vm)
+  - [1.8. Set up a new VM](#18-set-up-a-new-vm)
   - [1.9. Set up `Python` (LOCAL)](#19-set-up-python-local)
     - [1.9.1. Install `uv`](#191-install-uv)
     - [1.9.2. (UPD) Set up `Python` in `VS Code`](#192-upd-set-up-python-in-vs-code)
@@ -91,7 +91,7 @@
 > [!TIP]
 > Subscription approval may take time.
 > Continue with the next steps while you wait — you will
-> [finish creating the VM](#18-continue-creating-a-vm) later.
+> [set up a new VM](#18-set-up-a-new-vm) later.
 
 ### 1.3. Set up your fork (LOCAL)
 
@@ -216,17 +216,14 @@ See [tools](../../wiki/software-types.md#tool).
 >
 > Reload the `VS Code` window: press `Ctrl+Shift+P`, type `Reload Window`, and press `Enter`.
 
-### 1.8. Continue creating a VM
+### 1.8. Set up a new VM
 
 > [!TIP]
 > You don't need to create a new [`SSH` key pair](../../wiki/ssh.md#ssh-key-pair) if the old one exists.
 >
 > You can use the key pair that you created before for the new VM.
 
-If you can't [connect to your VM](../../wiki/vm.md#connect-to-the-vm), complete these steps:
-
-1. [Set up `SSH`](../../wiki/vm-access.md#set-up-ssh).
-2. [Create a VM using the subscription](../../wiki/vm.md#create-a-vm-using-the-subscription).
+1. If you can't [connect to your VM as the user `admin`](../../wiki/vm-access.md#connect-to-the-vm-as-the-user-user-local), [set up a new VM](../../wiki/vm.md#set-up-a-new-vm).
 
 ### 1.9. Set up `Python` (LOCAL)
 
