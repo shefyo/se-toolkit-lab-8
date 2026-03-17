@@ -130,13 +130,11 @@ Complete these steps:
 
 1. [Connect to the correct network](#connect-to-the-correct-network).
 2. [Go to the VMs site](#go-to-the-vms-site).
-3. Open the `VIRTUALS MACHINES` tab ([https://vm.innopolis.university/#Workspaces/VMExtension/VirtualMachines](https://vm.innopolis.university/#Workspaces/VMExtension/VirtualMachines)).
-4. Look at the `NAME`.
-5. Find `<your-vm-name>`.
-6. The `STATUS` should be `Running`.
-7. Click `<your-vm-name>`.
-8. Click `DASHBOARD`.
-9. You should be on the VM page.
+3. Click `VIRTUALS MACHINES`.
+4. Look at the `NAME` column.
+5. Click `<your-vm-name>`.
+6. Click `DASHBOARD`.
+7. You should be on the VM page.
 
 ## Get the IP address of the VM
 
