@@ -25,7 +25,8 @@
 
 [`Qwen Code`](https://github.com/QwenLM/qwen-code) is a [coding agent](./coding-agents.md#what-is-a-coding-agent) that:
 
-- [provides 1000 free requests per day](https://github.com/QwenLM/qwen-code#why-qwen-code) to the [`Qwen3-Coder`](https://github.com/QwenLM/Qwen3-Coder) model (see [Model](./llm.md#model)).
+- [provides 1000 free requests per day](https://github.com/QwenLM/qwen-code#why-qwen-code) to `Qwen` [models](./llm.md#model) (see [View available models](#view-available-models)).
+
 - is available in Russia.
 
 See:
