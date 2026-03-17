@@ -254,9 +254,6 @@ Complete these steps:
    >
    > [`<your-vm-name>`](./vm.md#your-vm-name-placeholder) is the same as you specified when [creating the VM](./vm.md#create-a-vm).
 
-<!-- 7. If you use the `ms-vscode-remote.remote-ssh` extension in `VS Code`, the status bar should show that you are connected to a remote host.
-   TODO explain how to use -->
-
 ## Set up the `SSH` connection to the VM as the user `<user>`
 
 Complete these steps:
@@ -588,6 +585,9 @@ Complete these steps:
    Received disconnect from <your-vm-ip-address> port 22:2: Too many authentication failures
    Disconnected from <your-vm-ip-address> port 22
    ```
+
+<!-- 7. If you use the `ms-vscode-remote.remote-ssh` extension in `VS Code`, the status bar should show that you are connected to a remote host.
+   TODO explain how to use -->
 
 ## Troubleshooting
 
