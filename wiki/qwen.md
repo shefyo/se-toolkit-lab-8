@@ -17,6 +17,7 @@
 - [Chat with `Qwen Code`](#chat-with-qwen-code)
   - [Refer to a file](#refer-to-a-file)
   - [Use a skill](#use-a-skill)
+  - [View available models](#view-available-models)
 - [Quit the chat with `Qwen Code`](#quit-the-chat-with-qwen-code)
 - [Lab instructions for `Qwen Code`](#lab-instructions-for-qwen-code)
 
@@ -200,6 +201,14 @@ Example: `@main.py`.
 
    See [Refer to a file](#refer-to-a-file).
 5. Press `Enter`.
+
+### View available models
+
+1. [Open a chat with `Qwen Code`](#open-a-chat-with-qwen-code).
+2. Write `/model`.
+3. Press `Enter`.
+
+   In the `Select Model` dialogue, you should see the available [models](./llm.md#model).
 
 ## Quit the chat with `Qwen Code`
 
