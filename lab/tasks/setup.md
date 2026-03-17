@@ -28,7 +28,7 @@
   - [1.10. Set up `Node.js` (LOCAL)](#110-set-up-nodejs-local)
     - [1.10.1. Install `Node.js`](#1101-install-nodejs)
     - [1.10.2. (UPD) Install `pnpm`](#1102-upd-install-pnpm)
-  - [1.11. (UPD) Set up the `Qwen Code` (LOCAL)](#111-upd-set-up-the-qwen-code-local)
+  - [1.11. (UPD) Set up `Qwen Code` (LOCAL)](#111-upd-set-up-qwen-code-local)
   - [1.12. (UPD) Set up the `Qwen Code` API (VM)](#112-upd-set-up-the-qwen-code-api-vm)
   - [1.13. Set up the `Autochecker` bot (`Telegram`)](#113-set-up-the-autochecker-bot-telegram)
   - [1.14. Check the setup using the `Autochecker` bot (`Telegram`)](#114-check-the-setup-using-the-autochecker-bot-telegram)
@@ -257,20 +257,20 @@ If you can't [connect to your VM](../../wiki/vm.md#connect-to-the-vm), complete 
 
 [Install `pnpm`](../../wiki/nodejs.md#install-pnpm).
 
-### 1.11. (UPD) Set up the `Qwen Code` (LOCAL)
+### 1.11. (UPD) Set up `Qwen Code` (LOCAL)
 
-[`Qwen Code`](../../wiki/qwen.md#what-is-qwen-code) is a [coding agent](../../wiki/coding-agents.md#what-is-a-coding-agent) that can answer questions about the repository and help you complete the lab tasks.
+[`Qwen Code`](../../wiki/qwen-code.md#what-is-qwen-code) is a [coding agent](../../wiki/coding-agents.md#what-is-a-coding-agent) that can answer questions about the repository and help you complete the lab tasks.
 
 <div style="display:flex;flex-wrap:wrap;gap:10px">
   <img alt="Qwen request" src="../images/tasks/setup/qwen-request.png" style="width:300px"></img>
   <img alt="Qwen response" src="../images/tasks/setup/qwen-response.png" style="width:300px"></img>
 </div>
 
-[Set up the `Qwen Code`](../../wiki/qwen.md#set-up-the-qwen-code-local-machine).
+1. [Set up `Qwen Code`](../../wiki/qwen-code.md#set-up-qwen-code-local).
 
 ### 1.12. (UPD) Set up the `Qwen Code` API (VM)
 
-[Set up the `Qwen Code` API on your VM](../../wiki/qwen.md#set-up-the-qwen-code-api-remote).
+1. [Set up the `Qwen Code` API on your VM](../../wiki/qwen-code-api.md#set-up-the-qwen-code-api-remote).
 
 ### 1.13. Set up the `Autochecker` bot (`Telegram`)
 
