@@ -6,10 +6,7 @@
 - [Model](#model)
   - [Choose a model](#choose-a-model)
   - [Local inference](#local-inference)
-- [LLM provider](#llm-provider)
-  - [`OpenRouter`](#openrouter)
-- [Free models](#free-models)
-  - [LLM provider API](#llm-provider-api)
+- [LLM provider API](#llm-provider-api)
   - [LLM provider APIs](#llm-provider-apis)
   - [`OpenAI`-compatible API](#openai-compatible-api)
     - [`OpenAI` API](#openai-api)
@@ -49,17 +46,9 @@ Docs:
 
 - [What Can I Run?](https://apxml.com/models)
 
-## LLM provider
+## LLM provider API
 
-### `OpenRouter`
-
-## Free models
-
-- [`OpenRouter`](https://openrouter.ai/) provides [free models](https://openrouter.ai/collections/free-models).
-
-### LLM provider API
-
-An [LLM provider](#llm-provider) API allows [applications](./software-types.md#application) to:
+An LLM provider API allows [applications](./software-types.md#application) to:
 
 - send [prompts](#prompt) to the provider's [LLMs](#what-is-an-llm)
 
