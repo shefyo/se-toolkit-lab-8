@@ -50,6 +50,9 @@ Path: `~/.qwen/oauth_creds.json`.
 
 ## Set up the `Qwen Code` (LOCAL)
 
+> [!NOTE]
+> See [`Qwen Code`](#what-is-qwen-code).
+
 <!-- no toc -->
 - Method 1: [Set up the `Qwen Code` CLI (LOCAL)](#set-up-the-qwen-code-cli-local).
 - Method 2: [Set up the `Qwen Code Companion` extension for `VS Code`](#set-up-the-qwen-code-companion-extension-for-vs-code).
