@@ -104,7 +104,7 @@ Complete these steps:
 ### Create a VM using the subscription
 
 1. [Connect to the correct network](#connect-to-the-correct-network).
-2. [Set up `SSH` (LOCA'L)](./vm-access.md#set-up-ssh-local) if it's not yet set up.
+2. [Set up `SSH` (LOCAL)](./vm-access.md#set-up-ssh-local) if it's not yet set up.
 3. [Go to the VMs site](#go-to-the-vms-site).
 4. Click `+ NEW`.
 5. Click `STANDALONE VIRTUAL MACHINE`.
@@ -117,7 +117,7 @@ Complete these steps:
     - `NEW PASSWORD`: Write the password.
     - `CONFIRM`: Write the same password.
     - `ADMINISTRATOR SSH KEY`:
-       1. [Get the public `SSH` key (LOCAL)](./vm-access.md#get-the-public-ssh-key-local).
+       1. [Get the `SSH` public key (LOCAL)](./vm-access.md#get-the-ssh-public-key-local).
        2. Copy the **full content** of the public key file.
        3. Paste the content into the input field.
 11. Note that the user's name on the VM is [`root`](./linux.md#the-user-root).
