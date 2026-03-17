@@ -9,11 +9,11 @@
   - [Get the `SSH` public key (LOCAL)](#get-the-ssh-public-key-local)
   - [Add the `SSH` key to the `ssh-agent` (LOCAL)](#add-the-ssh-key-to-the-ssh-agent-local)
 - [Check that the VM is accessible (LOCAL)](#check-that-the-vm-is-accessible-local)
-- [Add the VM to the `SSH` config (LOCAL)](#add-the-vm-to-the-ssh-config-local)
+- [Update the `SSH` config to connect as the user `root` (LOCAL)](#update-the-ssh-config-to-connect-as-the-user-root-local)
 - [Connect to the VM as the user `root` (LOCAL)](#connect-to-the-vm-as-the-user-root-local)
 - [Create the non-root user `<user>` (REMOTE)](#create-the-non-root-user-user-remote)
 - [Set up the `SSH` key authentication for the user `<user>` (REMOTE)](#set-up-the-ssh-key-authentication-for-the-user-user-remote)
-- [Update the `SSH` config (LOCAL)](#update-the-ssh-config-local)
+- [Update the `SSH` config to connect as the user `<user>` (LOCAL)](#update-the-ssh-config-to-connect-as-the-user-user-local)
 - [Connect to the VM as the user `<user>` (LOCAL)](#connect-to-the-vm-as-the-user-user-local)
 - [Restrict the `SSH` connection](#restrict-the-ssh-connection)
   - [Restrict the `SSH` config (LOCAL)](#restrict-the-ssh-config-local)
@@ -45,11 +45,11 @@ Complete these steps:
 <!-- no toc -->
 1. [Set up `SSH` (LOCAL)](#set-up-ssh-local).
 2. [Create a VM](./vm.md#create-a-vm).
-3. [Add the VM to the `SSH` config (LOCAL)](#add-the-vm-to-the-ssh-config-local).
+3. [Update the `SSH` config to connect as the user `root` (LOCAL)](#update-the-ssh-config-to-connect-as-the-user-root-local).
 4. [Connect to the VM as the user `root` (LOCAL)](#connect-to-the-vm-as-the-user-root-local)
 5. [Create the non-root user `<user>` (REMOTE)](#create-the-non-root-user-user-remote).
 6. [Set up the `SSH` key authentication for the user `<user>` (REMOTE)](#set-up-the-ssh-key-authentication-for-the-user-user-remote).
-7. [Update the `SSH` config (LOCAL)](#update-the-ssh-config-local).
+7. [Update the `SSH` config to connect as the user `<user>` (LOCAL)](#update-the-ssh-config-to-connect-as-the-user-user-local).
 8. [Connect to the VM as the user `<user>` (LOCAL)](#connect-to-the-vm-as-the-user-user-local).
 9. [Restrict the `SSH` connection](#restrict-the-ssh-connection).
 
@@ -191,7 +191,7 @@ Complete these steps:
    >
    > [`Connection timed out`](#connection-timed-out).
 
-## Add the VM to the `SSH` config (LOCAL)
+## Update the `SSH` config to connect as the user `root` (LOCAL)
 
 1. [Open the file using `code`](./vs-code.md#open-the-file-or-the-directory-using-code):
    `~/.ssh/config`.
@@ -390,7 +390,7 @@ Complete these steps:
 
    <!-- TODO why these permissions are correct? -->
 
-## Update the `SSH` config (LOCAL)
+## Update the `SSH` config to connect as the user `<user>` (LOCAL)
 
 > [!NOTE]
 > Replace [`<user>`](./operating-system.md#user-placeholder) with the actual [username](./operating-system.md#username).
@@ -454,7 +454,7 @@ Complete these steps:
 
    > 🟦 **Note**
    >
-   > [`<user>`](./operating-system.md#user-placeholder) is the same as you specified when [adding the VM to the `SSH` config (LOCAL)](#add-the-vm-to-the-ssh-config-local).
+   > [`<user>`](./operating-system.md#user-placeholder) is the same as you specified when [updating the `SSH` config to connect as the user `<user>` (LOCAL)](#update-the-ssh-config-to-connect-as-the-user-root-local).
    >
    > [`<your-vm-name>`](./vm.md#your-vm-name-placeholder) is the same as you specified when [creating the VM](./vm.md#create-a-vm).
 
