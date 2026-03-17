@@ -7,9 +7,7 @@
   - [Create a new `SSH` key (LOCAL)](#create-a-new-ssh-key-local)
   - [Find the `SSH` key files (LOCAL)](#find-the-ssh-key-files-local)
   - [Get the `SSH` public key (LOCAL)](#get-the-ssh-public-key-local)
-  - [Start the `ssh-agent` (LOCAL)](#start-the-ssh-agent-local)
   - [Add the `SSH` key to the `ssh-agent` (LOCAL)](#add-the-ssh-key-to-the-ssh-agent-local)
-  - [Verify the `SSH` setup (LOCAL)](#verify-the-ssh-setup-local)
 - [Check that the VM is accessible (LOCAL)](#check-that-the-vm-is-accessible-local)
 - [Add the VM to the `SSH` config (LOCAL)](#add-the-vm-to-the-ssh-config-local)
 - [Connect to the VM as the user `root` (LOCAL)](#connect-to-the-vm-as-the-user-root-local)
@@ -65,9 +63,7 @@ Complete these steps:
 2. [Create a new `SSH` key (LOCAL)](#create-a-new-ssh-key-local).
 3. [Find the `SSH` key files (LOCAL)](#find-the-ssh-key-files-local).
 4. [Get the `SSH` public key (LOCAL)](#get-the-ssh-public-key-local).
-5. [Start the `ssh-agent` (LOCAL)](#start-the-ssh-agent-local).
-6. [Add the `SSH` key to the `ssh-agent` (LOCAL)](#add-the-ssh-key-to-the-ssh-agent-local).
-7. [Verify the `SSH` setup (LOCAL)](#verify-the-ssh-setup-local).
+5. [Add the `SSH` key to the `ssh-agent` (LOCAL)](#add-the-ssh-key-to-the-ssh-agent-local).
 
 ### Create a new `SSH` key (LOCAL)
 
@@ -130,7 +126,7 @@ Complete these steps:
    ssh-ed25519 AKdk38D3faWJnlFfalFJSKEFGG/vmLQ62Z+vpWCe5e/c2n37cnNc39N3c8qb7cBS+e3d se-toolkit-student
    ```
 
-### Start the `ssh-agent` (LOCAL)
+### Add the `SSH` key to the `ssh-agent` (LOCAL)
 
 1. To start the agent,
 
@@ -140,9 +136,7 @@ Complete these steps:
    eval "$(ssh-agent -s)"
    ```
 
-### Add the `SSH` key to the `ssh-agent` (LOCAL)
-
-1. To add the key to the `ssh-agent`,
+2. To add the key to the `ssh-agent`,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -150,9 +144,7 @@ Complete these steps:
    ssh-add ~/.ssh/se_toolkit_key
    ```
 
-### Verify the `SSH` setup (LOCAL)
-
-1. To list the loaded keys,
+3. To list the loaded keys,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -166,11 +158,7 @@ Complete these steps:
 >
 > **`The agent has no identities`.**
 >
-> Complete these steps:
->
-> - [Start the `ssh-agent` (LOCAL)](#start-the-ssh-agent-local).
-> - [Add the `SSH` key to the `ssh-agent` (LOCAL)](#add-the-ssh-key-to-the-ssh-agent-local).
-> - [Verify the `SSH` setup (LOCAL)](#verify-the-ssh-setup-local).
+> [Add the `SSH` key to the `ssh-agent` (LOCAL)](#add-the-ssh-key-to-the-ssh-agent-local) again.
 
 ## Check that the VM is accessible (LOCAL)
 
