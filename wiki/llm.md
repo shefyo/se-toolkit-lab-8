@@ -38,11 +38,13 @@ Docs:
 
 A model is a specific trained version of an [LLM](#llm), identified by a name (e.g., `Qwen3-Coder`, `claude-sonnet-4-6`).
 
-Different models vary in capability, speed, and cost. [Coding agents](./coding-agents.md#choose-and-use-a-coding-agent) let you choose which model to use.
+Different models vary in [modality](#modality), capability, speed, and cost.
 
 ### Choose a model
 
-Choose a model for the task at hand.
+Choose a [model](#model) for the task at hand.
+
+Check which [modalities](#modality) it supports to make sure it can handle the inputs your task requires.
 
 ## Inference
 
