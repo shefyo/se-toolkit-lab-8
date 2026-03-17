@@ -251,11 +251,11 @@ If you can't [connect to your VM](../../wiki/vm.md#connect-to-the-vm), complete 
 
 #### 1.10.1. Install `Node.js`
 
-[Install `Node.js`](../../wiki/nodejs.md#install-nodejs).
+1. [Install `Node.js`](../../wiki/nodejs.md#install-nodejs).
 
 #### 1.10.2. (UPD) Install `pnpm`
 
-[Install `pnpm`](../../wiki/nodejs.md#install-pnpm).
+1. [Install `pnpm`](../../wiki/nodejs.md#install-pnpm).
 
 ### 1.11. (UPD) Set up `Qwen Code` (LOCAL)
 
