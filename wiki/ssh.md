@@ -9,6 +9,7 @@
 - [`SSH` daemon](#ssh-daemon)
 - [`ssh-agent`](#ssh-agent)
 - [`SSH` shell](#ssh-shell)
+  - [`SSH` shell prompt](#ssh-shell-prompt)
   - [Check whether you run an `SSH` shell](#check-whether-you-run-an-ssh-shell)
 - [`scp`](#scp)
 
@@ -66,6 +67,23 @@ See [Start the `ssh-agent`](./vm-access.md#start-the-ssh-agent) for setup instru
 An `SSH` shell is the interactive [shell](./shell.md#what-is-a-shell) session you get after [connecting to the VM](./vm-access.md#connect-to-the-vm) over `SSH`.
 
 Commands you run in it execute on the remote machine, not on your local computer.
+
+### `SSH` shell prompt
+
+A typical [`SSH` shell](./ssh.md#ssh-shell) prompt looks like:
+
+```terminal
+<user>@<host>:<directory-path>$
+```
+
+See:
+
+- [`<user>`](./operating-system.md#user-placeholder)
+- [`<host>`](./computer-networks.md#host-placeholder)
+
+> [!NOTE]
+> The `$` at the end indicates a regular user.
+> A `#` indicates [the user `root`](./linux.md#the-user-root) (admin).
 
 ### Check whether you run an `SSH` shell
 
