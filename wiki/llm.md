@@ -13,6 +13,7 @@
   - [LLM provider APIs](#llm-provider-apis)
   - [`OpenAI`-compatible API](#openai-compatible-api)
   - [Request to LLM provider API](#request-to-llm-provider-api)
+  - [Free models](#free-models)
 - [Token](#token)
 - [Context](#context)
   - [Context window](#context-window)
@@ -109,6 +110,10 @@ Example request body:
 Docs:
 
 - [OpenAI: Chat completions](https://platform.openai.com/docs/guides/chat-completions)
+
+### Free models
+
+- [`OpenRouter`](#openrouter) provides [free models](https://openrouter.ai/collections/free-models).
 
 ## Token
 
