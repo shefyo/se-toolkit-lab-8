@@ -3,6 +3,8 @@
 <h2>Table of contents</h2>
 
 - [What is `Qwen Code` API](#what-is-qwen-code-api)
+- [`Qwen Code` API host port](#qwen-code-api-host-port)
+  - [`<qwen-code-api-host-port>` placeholder](#qwen-code-api-host-port-placeholder)
 - [`Qwen Code` API base URL](#qwen-code-api-base-url)
   - [`<qwen-code-api-base-url>` placeholder](#qwen-code-api-base-url-placeholder)
 - [Set up the `Qwen Code` API (REMOTE)](#set-up-the-qwen-code-api-remote)
@@ -21,6 +23,14 @@
 The `Qwen Code` API is an [OpenAI-compatible API](./llm.md#openai-compatible-api) that uses the [`Qwen Code` credentials file](./qwen-code.md#qwen-code-credentials-file) to provide access to the [`Qwen` API](./qwen-code.md#qwen-api).
 
 The `Qwen Code` API is deployed using [`qwen-code-api`](https://github.com/inno-se-toolkit/qwen-code-api).
+
+## `Qwen Code` API host port
+
+The value of [`QWEN_CODE_API_HOST_PORT`](./qwen-code-api-dotenv-secret.md#qwen_code_api_host_port) from [`qwen-code-api/.env.secret`](./qwen-code-api-dotenv-secret.md#about-qwen-code-apienvsecret).
+
+### `<qwen-code-api-host-port>` placeholder
+
+The `Qwen Code` API host port (without `<` and  `>`).
 
 ## `Qwen Code` API base URL
 
