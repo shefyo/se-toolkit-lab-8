@@ -32,7 +32,8 @@
 - [`caddy`](#caddy)
   - [`CADDY_CONTAINER_PORT`](#caddy_container_port)
   - [`CADDY_HOST_ADDRESS`](#caddy_host_address)
-  - [`CADDY_HOST_PORT`](#caddy_host_port)
+- [LMS](#lms)
+  - [`LMS_API_HOST_PORT`](#lms_api_host_port)
 - [Constants](#constants)
   - [`CONST_POSTGRESQL_SERVICE_NAME`](#const_postgresql_service_name)
   - [`CONST_POSTGRESQL_SERVER_NAME`](#const_postgresql_server_name)
@@ -220,9 +221,13 @@ The [IP address](./computer-networks.md#ip-address) exposed on the [host](./comp
 
 Default: `0.0.0.0`
 
-### `CADDY_HOST_PORT`
+## LMS
 
-The [port number](./computer-networks.md#port-number) exposed on the [host](./computer-networks.md#host) for accessing [`Caddy`](./caddy.md#what-is-caddy).
+Variables for the [LMS API](./lms-api.md#about-the-lms-api).
+
+### `LMS_API_HOST_PORT`
+
+The [port number](./computer-networks.md#port-number) exposed on the [host](./computer-networks.md#host) for accessing the [LMS API](./lms-api.md#about-the-lms-api) via [`Caddy`](./lms-api.md#caddy).
 
 Default: `42002`
 
