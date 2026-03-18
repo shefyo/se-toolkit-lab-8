@@ -20,7 +20,10 @@ Default values are in `qwen-code-api/.env.example`.
 
 The [port](./computer-networks.md#port) at which the [`Qwen Code` API](./qwen-code-api.md#what-is-qwen-code-api) is available on the [host](./computer-networks.md#host) where it is deployed.
 
+Default: `42005`
+
 ## `QWEN_CODE_API_KEY`
 
 The [`Qwen Code` API key](./qwen-code-api.md#qwen-code-api-key).
 
+Default: `my-secret-qwen-key`
