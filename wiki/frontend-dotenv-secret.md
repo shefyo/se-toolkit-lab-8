@@ -27,12 +27,6 @@ Default values: [`frontend/.env.example`](../frontend/.env.example)
 
 ## `VITE_API_TARGET`
 
-The URL of the back-end API that the `Vite` dev server proxies requests to.
+The [LMS API URL](./lms-api.md#lms-api-url) that the `Vite` dev server [proxies](./web-infrastructure.md#reverse-proxy) requests to.
 
 Default: `http://127.0.0.1:42002`
-
-The default points to the [`Caddy`](./caddy.md#what-is-caddy) reverse proxy running via [`Docker Compose`](./docker-compose.md#what-is-docker-compose) on your local machine.
-
-Change this to `http://<your-vm-ip-address>:<lms-api-host-port>` if the API runs on the VM.
-
-See [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address-placeholder) and [`CADDY_HOST_PORT`](./dotenv-docker-secret.md#caddy_host_port) in [`.env.docker.secret`](./dotenv-docker-secret.md#what-is-envdockersecret).
