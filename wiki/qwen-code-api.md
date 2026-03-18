@@ -34,9 +34,24 @@ The `Qwen Code` API host port (without `<` and  `>`).
 
 ## `Qwen Code` API base URL
 
-- (REMOTE) When running the request on the VM: `http://localhost:<qwen-code-api-host-port>/v1`
+- (REMOTE) When running the request on the VM and the [LMS API is not deployed on the VM](./lms-api-setup.md#deploy-the-lms-remote):
+  
+  `http://localhost:<qwen-code-api-host-port>/v1`
 
-- (LOCAL) When running the request on the local machine: `http://<lms-api-url>:<lms-api-host-port>/utils/qwen-code-api/v1`
+- (REMOTE) When running the request on the VM and the [LMS API is deployed on the VM](./lms-api-setup.md#deploy-the-lms-remote):
+  
+  `http://localhost:<lms-api-host-port>/utils/qwen-code-api/v1`
+
+- (LOCAL) When running the request on the local machine and the [LMS API is deployed on the VM](./lms-api-setup.md):
+  
+  `http://<lms-api-url>:<lms-api-host-port>/utils/qwen-code-api/v1`
+  
+See:
+
+- [`localhost`](./computer-networks.md#localhost)
+- [`<qwen-code-api-host-port>`](#qwen-code-api-host-port-placeholder)
+- [`<lms-api-host-port>`](./lms-api.md#lms-api-host-port-placeholder)
+- [`<lms-api-url>`](./lms-api.md#lms-api-url-placeholder)
 
 ### `<qwen-code-api-base-url>` placeholder
 
