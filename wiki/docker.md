@@ -52,23 +52,9 @@ A container is an isolated runtime for an application and its dependencies.
 
 ### Containers and host
 
-<img alt="Containers and host" src="./images/docker/hierarchy.png" style="width:400px"></img> ([source](https://rest-apis-flask.teclado.com/docs/docker_intro/what_is_docker_container/))
+<img alt="Containers and host" src="./images/docker/hierarchy.png" style="width:400px"></img>
 
-```text
-┌─────────────────────────────────────────────────────────────────┐
-│  Docker host                                                    │
-│                                                                 │
-│  ┌──────────────────────────┐  ┌──────────────────────────┐     │
-│  │ container                │  │ container                │     │
-│  │                          │  │                          │     │
-│  │  web app                 │  │  database                │     │
-│  │  Python 3.11, libraries  │  │  Postgres, libraries     │     │
-│  │  OS files                │  │  OS files                │     │
-│  └──────────────────────────┘  └──────────────────────────┘     │
-│                                                                 │
-│ ┄┄┄┄┄┄┄┄┄┄┄┄┄┄ Linux kernel (shared) ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄ │
-└─────────────────────────────────────────────────────────────────┘
-```
+[[source](https://rest-apis-flask.teclado.com/docs/docker_intro/what_is_docker_container/)]
 
 ### Container ID
 
