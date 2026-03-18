@@ -37,11 +37,15 @@ Default: `your-llm-api-key-here`
 
 The base URL of the [OpenAI-compatible API](./llm.md#openai-compatible-api) endpoint.
 
-- For the [`Qwen Code` API](./qwen-code-api.md#what-is-qwen-code-api) on your VM: `<lms-api-url>/utils/qwen-code-api/v1`
+- For the [`Qwen Code` API](./qwen-code-api.md#what-is-qwen-code-api) on your VM:
+  
+  `<lms-api-url>/utils/qwen-code-api/v1`.
 
   See [`<lms-api-url>`](./lms-api.md#lms-api-url-placeholder).
 
-- For the [`OpenRouter` API](./llm.md#openrouter-api): `https://openrouter.ai/api/v1`
+- For the [`OpenRouter` API](./llm.md#openrouter-api):
+  
+  `https://openrouter.ai/api/v1`.
 
 Default: `<lms-api-url>/utils/qwen-code-api/v1`
 
@@ -49,10 +53,14 @@ Default: `<lms-api-url>/utils/qwen-code-api/v1`
 
 The name of the [LLM model](./llm.md#model) to use via the [LLM provider API](./llm.md#llm-provider-api).
 
-- For the [`Qwen Code` API](./qwen-code-api.md#what-is-qwen-code-api) on your VM: `coder-model`
+- For the [`Qwen Code` API](./qwen-code-api.md#what-is-qwen-code-api) on your VM:
+  
+  `coder-model`.
   
   See [View available models](./qwen-code.md#view-available-models).
 
-- For the [`OpenRouter` API](./llm.md#openrouter-api): `meta-llama/llama-3.3-70b-instruct:free`
+- For the [`OpenRouter` API](./llm.md#openrouter-api):
+  
+  `meta-llama/llama-3.3-70b-instruct:free`.
 
 Default: `coder-model`
