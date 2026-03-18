@@ -12,6 +12,7 @@
   - [Port conflict (`port is already allocated`)](#port-conflict-port-is-already-allocated)
   - [Containers exit immediately](#containers-exit-immediately)
   - [Image pull fails](#image-pull-fails)
+  - [DNS resolution errors (`getaddrinfo EAI_AGAIN`)](#dns-resolution-errors-getaddrinfo-eai_again)
 
 ## About the LMS API deployment
 
@@ -140,6 +141,8 @@ The deployment starts four [services](./docker-compose.md#service) defined in [`
 > [**Containers exit immediately**](#containers-exit-immediately)
 >
 > [**Image pull fails**](#image-pull-fails)
+>
+> [**DNS resolution errors (`getaddrinfo EAI_AGAIN`)**](#dns-resolution-errors-getaddrinfo-eai_again)
 
 ## Populate the database (LOCAL)
 
@@ -225,3 +228,20 @@ docker compose --env-file .env.docker.secret up --build -d
 ### Image pull fails
 
 1. [Connect to the correct network](./vm.md#connect-to-the-correct-network).
+
+### DNS resolution errors (`getaddrinfo EAI_AGAIN`)
+
+If the build hangs or you see DNS errors like `getaddrinfo EAI_AGAIN registry.npmjs.org`, [`Docker`](./docker.md#what-is-docker) cannot resolve domain names. This is a university network DNS issue. Add Google DNS to `Docker`:
+
+[Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+```terminal
+sudo tee /etc/docker/daemon.json <<'EOF'
+{
+  "dns": ["8.8.8.8", "8.8.4.4"]
+}
+EOF
+sudo systemctl restart docker
+```
+
+Then run the `docker compose up` command again.
