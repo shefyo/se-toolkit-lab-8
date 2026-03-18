@@ -7,6 +7,7 @@
   - [Software engineering methods](#software-engineering-methods)
   - [Learning through practice](#learning-through-practice)
 - [Value propositions](#value-propositions)
+- [Technical requirements](#technical-requirements)
 
 ## What is the SET course
 
@@ -45,3 +46,6 @@ The course offers:
 - Working scaffolding for a typical full-stack web application.
 - Tasks with guardrails. Tasks are almost guaranteed to be doable.
 
+## Technical requirements
+
+- Each student should have a personal VM.
