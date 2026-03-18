@@ -8,19 +8,21 @@
   - [Why containers are useful](#why-containers-are-useful)
   - [Containers and host](#containers-and-host)
   - [Container ID](#container-id)
-- [Set up `Docker`](#set-up-docker)
-  - [Install `Docker`](#install-docker)
-  - [Start `Docker`](#start-docker)
-  - [Remove all containers](#remove-all-containers)
-- [Remove the container running at the port](#remove-the-container-running-at-the-port)
+- [`DockerHub`](#dockerhub)
+  - [`<your-dockerhub-username>`](#your-dockerhub-username)
 - [Common `Docker` commands](#common-docker-commands)
   - [`docker run`](#docker-run)
     - [`docker run` typical pattern](#docker-run-typical-pattern)
     - [`docker run` useful flags](#docker-run-useful-flags)
   - [`docker ps`](#docker-ps)
     - [`docker ps` useful variants](#docker-ps-useful-variants)
-- [`DockerHub`](#dockerhub)
-  - [`<your-dockerhub-username>`](#your-dockerhub-username)
+- [Set up `Docker`](#set-up-docker)
+  - [Install `Docker`](#install-docker)
+  - [Start `Docker`](#start-docker)
+  - [Remove all containers](#remove-all-containers)
+- [Remove the container running at the port](#remove-the-container-running-at-the-port)
+- [Troubleshooting](#troubleshooting)
+  - [`Bind for <host>:<port> failed: port is already allocated`](#bind-for-hostport-failed-port-is-already-allocated)
 
 ## What is `Docker`
 
@@ -72,6 +74,50 @@ a3f5b9c2d1e4   my-app    ...
 ```
 
 `a3f5b9c2d1e4` is the container ID (a short prefix of the full 64-character string).
+
+## `DockerHub`
+
+`DockerHub` is a public container registry where you can store and pull [Docker images](#image).
+
+You can push a locally built image to `DockerHub` so that other machines (such as a VM) can pull and run it without building from source.
+
+Docs:
+
+- [`DockerHub`](https://hub.docker.com/)
+
+### `<your-dockerhub-username>`
+
+Your [`DockerHub`](#dockerhub) username (without `<` and `>`).
+
+## Common `Docker` commands
+
+- [`docker run`](#docker-run)
+- [`docker ps`](#docker-ps)
+
+### `docker run`
+
+`docker run` starts a container from an image.
+
+#### `docker run` typical pattern
+
+```terminal
+docker run --name <container-name> -p <host-port>:<container-port> <image-name>
+```
+
+#### `docker run` useful flags
+
+- `-d` - run in background (detached mode).
+- `--rm` - remove container after it exits.
+- `-e KEY=VALUE` - pass environment variable.
+
+### `docker ps`
+
+`docker ps` shows running containers.
+
+#### `docker ps` useful variants
+
+- `docker ps` - only running containers.
+- `docker ps -a` - all containers (including stopped).
 
 ## Set up `Docker`
 
@@ -140,11 +186,6 @@ If you installed `Docker Desktop`:
 
 ## Remove the container running at the port
 
-If `docker compose up` fails with an error like `Bind for <host>:<port> failed: port is already allocated`,
-probably a container from a previous run is still occupying that port.
-
-Complete these steps:
-
 1. To find the [container](#container) occupying the port,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
@@ -189,46 +230,14 @@ Complete these steps:
    Total reclaimed space: ...
    ```
 
-## Common `Docker` commands
+## Troubleshooting
 
-- [`docker run`](#docker-run)
-- [`docker ps`](#docker-ps)
+<!-- no toc -->
+- [`Bind for <host>:<port> failed: port is already allocated`](#bind-for-hostport-failed-port-is-already-allocated)
 
-### `docker run`
+### `Bind for <host>:<port> failed: port is already allocated`
 
-`docker run` starts a container from an image.
+If `docker compose up` fails with an error like `Bind for <host>:<port> failed: port is already allocated`,
+probably a container from a previous run is still occupying that port.
 
-#### `docker run` typical pattern
-
-```terminal
-docker run --name <container-name> -p <host-port>:<container-port> <image-name>
-```
-
-#### `docker run` useful flags
-
-- `-d` - run in background (detached mode).
-- `--rm` - remove container after it exits.
-- `-e KEY=VALUE` - pass environment variable.
-
-### `docker ps`
-
-`docker ps` shows running containers.
-
-#### `docker ps` useful variants
-
-- `docker ps` - only running containers.
-- `docker ps -a` - all containers (including stopped).
-
-## `DockerHub`
-
-`DockerHub` is a public container registry where you can store and pull [Docker images](#image).
-
-You can push a locally built image to `DockerHub` so that other machines (such as a VM) can pull and run it without building from source.
-
-Docs:
-
-- [`DockerHub`](https://hub.docker.com/)
-
-### `<your-dockerhub-username>`
-
-Your [`DockerHub`](#dockerhub) username (without `<` and `>`).
+1. [Remove the container running at the port (REMOTE or LOCAL)](#remove-the-container-running-at-the-port-remote-or-local)
