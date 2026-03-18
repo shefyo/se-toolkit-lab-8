@@ -3,11 +3,12 @@
 <h2>Table of contents</h2>
 
 - [About the LMS API deployment](#about-the-lms-api-deployment)
-- [Clone the repository (REMOTE)](#clone-the-repository-remote)
-- [Configure the environment (REMOTE)](#configure-the-environment-remote)
-- [Start the services (REMOTE)](#start-the-services-remote)
-- [Populate the database (LOCAL)](#populate-the-database-local)
-- [Verify the deployment (LOCAL)](#verify-the-deployment-local)
+- [Deploy the LMS API on the VM](#deploy-the-lms-api-on-the-vm)
+  - [Clone the repository (REMOTE)](#clone-the-repository-remote)
+  - [Configure the environment (REMOTE)](#configure-the-environment-remote)
+  - [Start the services (REMOTE)](#start-the-services-remote)
+  - [Populate the database (LOCAL)](#populate-the-database-local)
+  - [Verify the deployment (LOCAL)](#verify-the-deployment-local)
 - [Troubleshooting](#troubleshooting)
   - [Port conflict (`port is already allocated`)](#port-conflict-port-is-already-allocated)
   - [Containers exit immediately](#containers-exit-immediately)
@@ -25,7 +26,16 @@ The deployment starts four [services](./docker-compose.md#service) defined in [`
 - [`pgadmin`](./docker-compose-yml.md#pgadmin-service)
 - [`caddy`](./docker-compose-yml.md#caddy-service).
 
-## Clone the repository (REMOTE)
+## Deploy the LMS API on the VM
+
+1. [Connect to the VM as the user `<user>` (LOCAL)](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
+2. [Clone the repository (REMOTE)](#clone-the-repository-remote).
+3. [Configure the environment (REMOTE)](#configure-the-environment-remote).
+4. [Start the services (REMOTE)](#start-the-services-remote).
+5. [Populate the database (LOCAL)](#populate-the-database-local).
+6. [Verify the deployment (LOCAL)](#verify-the-deployment-local).
+
+### Clone the repository (REMOTE)
 
 1. [Connect to your VM](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
 
@@ -55,7 +65,7 @@ The deployment starts four [services](./docker-compose.md#service) defined in [`
    cd se-toolkit-lab-6
    ```
 
-## Configure the environment (REMOTE)
+### Configure the environment (REMOTE)
 
 1. To create the [environment file](./environments.md#env-file) for [`Docker`](./docker.md#what-is-docker),
 
@@ -106,7 +116,7 @@ The deployment starts four [services](./docker-compose.md#service) defined in [`
    2. Press `Enter`.
    3. Press `Ctrl+X`.
 
-## Start the services (REMOTE)
+### Start the services (REMOTE)
 
 1. To start all services in the background,
 
@@ -144,7 +154,7 @@ The deployment starts four [services](./docker-compose.md#service) defined in [`
 >
 > [**DNS resolution errors (`getaddrinfo EAI_AGAIN`)**](#dns-resolution-errors-getaddrinfo-eai_again)
 
-## Populate the database (LOCAL)
+### Populate the database (LOCAL)
 
 The [database](./database.md#what-is-a-database) starts empty.
 You need to run the ETL pipeline to populate it with data from the [`Autochecker` API](./autochecker-api.md#about-the-autochecker-api).
@@ -179,7 +189,7 @@ You need to run the ETL pipeline to populate it with data from the [`Autochecker
 
    You should get a non-empty array of items.
 
-## Verify the deployment (LOCAL)
+### Verify the deployment (LOCAL)
 
 1. [Open `Swagger UI`](./swagger.md#open-swagger-ui).
 
