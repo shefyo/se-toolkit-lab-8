@@ -1,180 +1,126 @@
-# The System Agent
+# Intent-Based Natural Language Routing
 
-In Task 2 you built an agent that reads documentation. But documentation can be outdated — the real system is the source of truth. In this task you will give your agent a new tool (`query_api`) so it can talk to your deployed backend, and teach it to answer two new kinds of questions: static system facts (framework, ports, status codes) and data-dependent queries (item count, scores).
+The bot currently only responds to slash commands. In this task, you make it understand plain text — the user types a question in natural language, and the bot uses an LLM to figure out what data to fetch and how to answer.
 
-## What you will add
+## What you will build
 
-You will add a `query_api` tool to the agent you built in Task 2. The agentic loop stays the same — you are just adding one more tool the LLM can call. The agent can now send requests to your deployed backend in addition to reading files.
+An intent router that accepts plain text messages, sends them to an LLM along with tool definitions (your backend API endpoints), and composes a response from the results.
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant agent.py
-    participant LLM
-    participant Backend as Backend API
-
-    User->>agent.py: CLI arg (question)
-    agent.py->>LLM: question + tool definitions
-    loop Agentic loop (max 10 tool calls)
-        LLM-->>agent.py: tool_calls
-        alt read_file / list_files
-            agent.py->>agent.py: read local file or directory
-        else query_api
-            agent.py->>Backend: HTTP request (LMS_API_KEY)
-            Backend-->>agent.py: {status_code, body}
-        end
-        agent.py->>LLM: tool result
-    end
-    LLM-->>agent.py: text answer (no tool calls)
-    agent.py-->>User: stdout {answer, source, tool_calls}
+```terminal
+$ python bot/bot.py --test "which lab has the lowest pass rate?"
+Based on the data, Lab 03 has the lowest average pass rate at 62.3%.
+Here's the breakdown by task:
+- Backend API: 58.1% (145 attempts)
+- Security Hardening: 66.5% (132 attempts)
 ```
 
-## CLI interface
+This builds directly on Lab 6 — you reuse the pattern of giving an LLM a set of tools and letting it decide which to call. The difference: in Lab 6 you built a CLI agent, here the agent is embedded inside a user-facing Telegram bot.
 
-Same rules as Task 2. The only change: `source` is now optional (system questions may not have a wiki source).
-
-```bash
-uv run agent.py "How many items are in the database?"
-```
-
-```json
-{
-  "answer": "There are 120 items in the database.",
-  "tool_calls": [
-    {"tool": "query_api", "args": {"method": "GET", "path": "/items/"}, "result": "{\"status_code\": 200, ...}"}
-  ]
-}
-```
-
-## New tool: `query_api`
-
-Call your deployed backend API. Register it as a function-calling schema alongside your existing tools.
-
-- **Parameters:** `method` (string — GET, POST, etc.), `path` (string — e.g., `/items/`), `body` (string, optional — JSON request body).
-- **Returns:** JSON string with `status_code` and `body`.
-- **Authentication:** use `LMS_API_KEY` from `.env.docker.secret` (the backend key, not the LLM key).
-
-Update your system prompt so the LLM knows when to use wiki tools vs `query_api` vs `read_file` on source code.
-
-> **Note:** Two distinct keys: `LMS_API_KEY` (in `.env.docker.secret`) protects your backend endpoints. `LLM_API_KEY` (in `.env.agent.secret`) authenticates with your LLM provider. Don't mix them up.
-
-## Environment variables
-
-Your agent must read all configuration from **environment variables**, not hardcoded values. The `.env.agent.secret` and `.env.docker.secret` files are local conveniences — the autochecker will inject its own values when evaluating your agent.
-
-| Variable             | Purpose                                                      | Source                          |
-| -------------------- | ------------------------------------------------------------ | ------------------------------- |
-| `LLM_API_KEY`        | LLM provider API key                                         | `.env.agent.secret`             |
-| `LLM_API_BASE`       | LLM API endpoint URL                                         | `.env.agent.secret`             |
-| `LLM_MODEL`          | Model name                                                   | `.env.agent.secret`             |
-| `LMS_API_KEY`        | Backend API key for `query_api` auth                         | `.env.docker.secret`            |
-| `AGENT_API_BASE_URL` | Base URL for `query_api` (default: `http://localhost:42002`) | Optional, defaults to localhost |
-
-> [!IMPORTANT]
-> The autochecker runs your agent with different LLM credentials and a different backend URL. If you hardcode any of these values, your agent will fail the autochecker evaluation.
-
-## Pass the benchmark
-
-Once `query_api` works, run the evaluation benchmark locally and iterate until your agent passes.
-
-```bash
-uv run run_eval.py
-```
-
-The script runs your agent against 10 local questions across all classes (wiki lookup, system facts, data queries, bug diagnosis, reasoning). On failure it shows a feedback hint.
+## How it works
 
 ```
-  ✓ [1/10] According to the project wiki, what steps are needed to protect a branch?
-  ✓ [2/10] What Python web framework does this project use?
-  ✓ [3/10] How many items are in the database?
-
-  ✗ [4/10] Query the /analytics/completion-rate endpoint for lab-99...
-    feedback: Try GET /analytics/completion-rate?lab=lab-99. Read the error, then find the buggy line.
-
-3/10 passed
+User: "which lab has the worst results?"
+Bot:  → sends message + tool definitions to LLM
+      → LLM decides: call get_pass_rates for each lab
+      → bot executes the API calls
+      → LLM summarizes the results
+      → bot sends formatted response to user
 ```
 
-Fix the failing question, re-run, move on to the next one.
+The LLM receives:
+1. The user's message
+2. A list of available tools (your backend API endpoints as function schemas)
+3. The system prompt explaining the bot's role
 
-### Benchmark questions (open set)
+The LLM responds with tool calls. Your bot executes them against the real backend, feeds the results back, and the LLM produces the final answer.
 
-These are the 10 questions `run_eval.py` tests locally. There are two grading modes:
+## Tool definitions
 
-- **Keyword match** — the answer must contain one or more of the listed keywords.
-- **LLM judge** — the autochecker sends your answer to an LLM grader with a rubric. Used for open-ended reasoning questions where keywords alone are not enough. `run_eval.py` falls back to a basic length check locally; the bot uses the full LLM judge.
+Define your backend endpoints as tools the LLM can call. Example tool schema:
 
-Your agent must also use the listed tool(s) — calling the wrong tool fails the check even if the answer text is correct.
+```python
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_items",
+            "description": "Get the list of labs and tasks in the LMS",
+            "parameters": {"type": "object", "properties": {}, "required": []},
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_pass_rates",
+            "description": "Get per-task average scores and attempt counts for a lab",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "lab": {"type": "string", "description": "Lab identifier, e.g. 'lab-01'"}
+                },
+                "required": ["lab"],
+            },
+        },
+    },
+    # ... more tools for your other endpoints
+]
+```
 
-| # | Question | Grading | Expected | Tools required |
-|---|----------|---------|----------|----------------|
-| 0 | According to the project wiki, what steps are needed to protect a branch on GitHub? | keyword | `branch`, `protect` | `read_file` |
-| 1 | What does the project wiki say about connecting to your VM via SSH? Summarize the key steps. | keyword | `ssh` / `key` / `connect` | `read_file` |
-| 2 | What Python web framework does this project's backend use? Read the source code to find out. | keyword | `FastAPI` | `read_file` |
-| 3 | List all API router modules in the backend. What domain does each one handle? | keyword | `items`, `interactions`, `analytics`, `pipeline` | `list_files` |
-| 4 | How many items are currently stored in the database? Query the running API to find out. | keyword | a number > 0 | `query_api` |
-| 5 | What HTTP status code does the API return when you request `/items/` without an authentication header? | keyword | `401` / `403` | `query_api` |
-| 6 | Query `/analytics/completion-rate` for a lab with no data (e.g., `lab-99`). What error do you get, and what is the bug in the source code? | keyword | `ZeroDivisionError` / `division by zero` | `query_api`, `read_file` |
-| 7 | The `/analytics/top-learners` endpoint crashes for some labs. Query it, find the error, and read the source code to explain what went wrong. | keyword | `TypeError` / `None` / `NoneType` / `sorted` | `query_api`, `read_file` |
-| 8 | Read `docker-compose.yml` and the backend `Dockerfile`. Explain the full journey of an HTTP request from the browser to the database and back. | **LLM judge** | must trace ≥4 hops: Caddy → FastAPI → auth → router → ORM → PostgreSQL | `read_file` |
-| 9 | Read the ETL pipeline code. Explain how it ensures idempotency — what happens if the same data is loaded twice? | **LLM judge** | must identify the `external_id` check and explain that duplicates are skipped | `read_file` |
+## Scenarios to cover
 
-> [!NOTE]
-> The autochecker tests your agent with 10 additional hidden questions not present in `run_eval.py`. These include multi-step challenges that require chaining tools (e.g., query an API error, then read the source code to diagnose the bug). You need a genuinely working agent — not hard-coded answers.
+Your intent router should handle these categories:
 
-> [!NOTE]
-> **How the autochecker scores your agent:**
->
-> - Locally, `run_eval.py` checks answers with simple keyword matching.
-> - The autochecker bot uses the same keyword checks, but for open-ended reasoning questions (e.g., "explain the request lifecycle") it uses **LLM-based judging** with a rubric — a stricter and more accurate evaluation.
-> - The bot also verifies that your agent used the **correct tools** (e.g., `query_api` for data questions, `read_file` for code questions).
-> - You need to pass a minimum threshold overall (local + hidden questions combined).
+**Direct data queries (single API call):**
 
-### Debugging workflow
+| User message | Expected behavior |
+|---|---|
+| "what labs are available?" | Calls `get_items`, lists labs |
+| "show me scores for lab 4" | Calls `get_pass_rates(lab="lab-04")`, formats results |
+| "who are the top 5 students?" | Calls `get_top_learners(limit=5)`, formats leaderboard |
+| "which group is doing best in lab 3?" | Calls `get_groups(lab="lab-03")`, ranks groups |
 
-| Symptom                                         | Likely cause                                                    | Fix                                                                                                                 |
-| ----------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| Agent doesn't use a tool when it should         | Tool description too vague for the LLM                          | Improve the tool's description in the schema                                                                        |
-| Tool called but returns an error                | Bug in tool implementation                                      | Fix the tool code, test it in isolation                                                                             |
-| Tool called with wrong arguments                | LLM misunderstands the schema                                   | Clarify parameter descriptions                                                                                      |
-| Agent times out                                 | Too many tool calls or slow LLM                                 | Reduce max iterations, try a faster model                                                                           |
-| Agent crashes with `AttributeError: 'NoneType'` | LLM returns `content: null` when it makes tool calls            | Use `(msg.get("content") or "")` instead of `msg.get("content", "")` — the field is present but `null`, not missing |
-| Agent reads the same file in a loop             | File is too large and gets truncated, LLM can't find the answer | Increase the content limit sent back to the LLM                                                                     |
-| Answer is close but doesn't match               | Phrasing doesn't contain expected keyword                       | Adjust system prompt to be more precise                                                                             |
+**Multi-step reasoning (multiple API calls):**
+
+| User message | Expected behavior |
+|---|---|
+| "which lab has the lowest pass rate?" | Gets lab list, then pass rates for each, compares |
+| "compare group A and group B" | Gets group data, filters, compares |
+
+**Fallback / ambiguous:**
+
+| User message | Expected behavior |
+|---|---|
+| "hello" | Friendly greeting + hint about capabilities |
+| "asdfgh" | "I didn't understand. Here's what I can help with..." |
+| "lab 4" | Clarify: "What about lab 4? I can show scores, pass rates..." |
+
+## Inline buttons
+
+Add inline keyboard buttons or a reply keyboard so users can discover available actions without typing. For example, after `/start`, show buttons for common queries.
 
 ## Deliverables
 
-### 1. Plan (`plans/task-3.md`)
+### 1. Intent router (`bot/handlers/intent.py` or similar)
 
-Before writing code, create `plans/task-3.md`. Describe how you will define the `query_api` tool schema, handle authentication, and update the system prompt.
+Accepts plain text (no `/` prefix), sends to LLM with tool definitions, executes tool calls, returns formatted response. Must work in `--test` mode.
 
-After running the benchmark once, add your initial score, first failures, and iteration strategy.
+### 2. Tool definitions
 
-### 2. Tool and agent updates (update `agent.py`)
+Backend API endpoints defined as function schemas the LLM can choose from. At least 3 tools covering different endpoints.
 
-Add `query_api` as a function-calling schema, implement it with authentication, and update the system prompt. Then iterate until the benchmark passes.
+### 3. Fallback handling
 
-### 3. Documentation (update `AGENT.md`)
+Unknown or ambiguous input returns a helpful message listing capabilities — not a crash or empty response.
 
-Update `AGENT.md` to document the `query_api` tool, its authentication, how the LLM decides between wiki and system tools, lessons learned from the benchmark, and your final eval score. At least 200 words.
+### 4. Inline buttons
 
-### 4. Tests (2 more tests)
-
-Add 2 regression tests for system agent tools. Example questions:
-
-- `"What framework does the backend use?"` → expects `read_file` in tool_calls.
-- `"How many items are in the database?"` → expects `query_api` in tool_calls.
+Keyboard markup (inline or reply) for common actions. Must be present in the source code.
 
 ## Acceptance criteria
 
-- [ ] `plans/task-3.md` exists with the implementation plan and benchmark diagnosis.
-- [ ] `agent.py` defines `query_api` as a function-calling schema.
-- [ ] `query_api` authenticates with `LMS_API_KEY` from environment variables.
-- [ ] The agent reads all LLM config (`LLM_API_KEY`, `LLM_API_BASE`, `LLM_MODEL`) from environment variables.
-- [ ] The agent reads `AGENT_API_BASE_URL` from environment variables (defaults to `http://localhost:42002`).
-- [ ] The agent answers static system questions correctly (framework, ports, status codes).
-- [ ] The agent answers data-dependent questions with plausible values.
-- [ ] `run_eval.py` passes all 10 local questions.
-- [ ] `AGENT.md` documents the final architecture and lessons learned (at least 200 words).
-- [ ] 2 tool-calling regression tests exist and pass.
-- [ ] The agent passes the autochecker bot benchmark.
-- [ ] [Git workflow](../../../wiki/git-workflow.md): issue `[Task] The System Agent`, branch, PR with `Closes #...`, partner approval, merge.
+- [ ] `--test "what labs are available"` (no `/` prefix) returns a non-empty answer (at least 20 characters).
+- [ ] `--test "which lab has the lowest pass rate"` returns an answer mentioning a specific lab.
+- [ ] `--test "asdfgh"` returns a helpful message, not a crash or empty response.
+- [ ] Source code contains keyboard/button setup (`InlineKeyboardMarkup`, `ReplyKeyboardMarkup`, or equivalent).
+- [ ] Source code defines tool/function schemas for the LLM (at least 3 tools).
+- [ ] Changes follow the Git workflow (issue, branch, PR, review, merge).

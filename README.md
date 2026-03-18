@@ -83,8 +83,10 @@ In simple words, you should be able to say:
 
 ### Required
 
-*Task descriptions will be added here.*
+1. [Plan and Scaffold](./lab/tasks/required/task-1.md#plan-and-scaffold)
+2. [Backend Integration](./lab/tasks/required/task-2.md#backend-integration)
+3. [Intent-Based Natural Language Routing](./lab/tasks/required/task-3.md#intent-based-natural-language-routing)
 
 ### Optional (recommended)
 
-*Optional tasks will be added here.*
+1. [Deploy and Polish](./lab/tasks/optional/task-1.md#deploy-and-polish)

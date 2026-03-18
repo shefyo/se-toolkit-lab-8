@@ -1,120 +1,109 @@
-# Call an LLM from Code
+# Plan and Scaffold
 
-Build a CLI that connects to an LLM and answers questions. This is the foundation for the agent you will build in the next tasks.
+Use your coding agent to create a development plan and project skeleton for the Telegram bot. This is the foundation — you will implement the actual features in Tasks 2–3.
 
 ## What you will build
 
-A `Python` CLI program (`agent.py`) that takes a question, sends it to an LLM, and returns a structured JSON answer. No tools or agentic loop yet — just the basic plumbing: parse input, call the LLM, format output. You will add tools and the agentic loop in Tasks 2–3.
+A `bot/` directory inside your repo containing the scaffolded project: entry point, handler layer, configuration, dependencies, and a `--test` mode for offline verification.
 
-```mermaid
-sequenceDiagram
-    box Local machine
-        participant User
-        participant agent.py
-    end
-    box VM
-        participant Proxy as qwen-code-oai-proxy
-    end
-    box Qwen Cloud
-        participant LLM as Qwen 3 Coder
-    end
-
-    User->>agent.py: CLI arg (question)
-    agent.py->>Proxy: POST /v1/chat/completions
-    Proxy->>LLM: proxy request
-    LLM-->>Proxy: response
-    Proxy-->>agent.py: response
-    agent.py-->>User: stdout {answer, tool_calls}
+```
+se-toolkit-lab-7/
+├── bot/                    ← NEW
+│   ├── bot.py              ← entry point
+│   ├── handlers/           ← command handlers (separated from Telegram transport)
+│   ├── services/           ← API client, LLM client
+│   ├── config.py           ← environment variable loading
+│   ├── requirements.txt    ← bot dependencies
+│   └── PLAN.md             ← development plan
+├── backend/                ← existing
+├── frontend/               ← existing
+└── docker-compose.yml      ← existing
 ```
 
-**Input** — a question as the first command-line argument:
+The entry point must support a `--test` flag for offline command verification:
 
-```bash
-uv run agent.py "What does REST stand for?"
+```terminal
+python bot/bot.py --test "/start"
 ```
 
-**Output** — a single JSON line to stdout:
+This prints the bot's response to stdout and exits — no Telegram connection needed. The autochecker uses this to verify your bot's behavior.
 
-```json
-{"answer": "Representational State Transfer.", "tool_calls": []}
+## How to approach this task
+
+1. Give the prioritized requirements (below) to your coding agent.
+2. Ask it to produce a development plan.
+3. Ask it to scaffold the project structure.
+4. Verify the scaffold works: `python bot/bot.py --test "/start"` should print something and exit 0.
+
+## Prioritized requirements
+
+Give these to your coding agent as context:
+
+**P0 — Must have (Tasks 1–2):**
+- Testable handler layer — handlers callable without Telegram
+- CLI test mode: `python bot/bot.py --test "/command"` prints response to stdout
+- `/start` — welcome message
+- `/help` — lists available commands
+- `/health` — calls backend, reports status
+- At least 2 data commands fetching real data from the LMS backend
+
+**P1 — Should have (Task 3):**
+- Natural language intent routing — plain text messages interpreted by LLM
+- Inline keyboard buttons for common commands
+- Graceful error handling
+
+**P2 — Nice to have:**
+- Multi-step reasoning (chaining API calls)
+- Response caching
+- Conversation context
+
+## Test mode specification
+
+The `--test` flag is how the autochecker verifies your bot without Telegram:
+
+```terminal
+# Slash commands
+python bot/bot.py --test "/start"
+python bot/bot.py --test "/help"
+python bot/bot.py --test "/health"
+
+# Natural language (Task 3)
+python bot/bot.py --test "what labs are available"
 ```
 
-**Rules:**
-
-- `answer` and `tool_calls` fields are required in the output.
-- `tool_calls` is an empty array for this task (you will populate it in Task 2).
-- Only valid JSON goes to stdout. All debug/progress output goes to **stderr**.
-- The agent must respond within 60 seconds.
-- Exit code 0 on success.
-
-## How to get access to an LLM?
-
-Your agent needs an LLM that supports the OpenAI-compatible chat completions API. You are free to use any provider.
-
-**Recommended: [Set up the Qwen Code API on your VM](../../../wiki/qwen-code-api.md#set-up-the-qwen-code-api-remote)**
-
-[Qwen Code](../../../wiki/qwen.md#what-is-qwen-code) provides **1000 free requests per day**, works from Russia, and requires no credit card.
-
-Follow the [setup instructions](../setup-simple.md#17-set-up-llm-access-qwen-code-api) to deploy it on your VM.
-
-| Model              | Tool calling | Notes                                        |
-| ------------------ | ------------ | -------------------------------------------- |
-| `qwen3-coder-plus` | Strong       | Recommended, default in `.env.agent.example` |
-| `coder-model`      | Strong       | Qwen 3.5 Plus                                |
-
-<details><summary><b>Alternative: OpenRouter (click to open)</b></summary>
-
-[OpenRouter](https://openrouter.ai) offers free models with no credit card required.
-
-| Model                                    | Tool calling | Notes            |
-| ---------------------------------------- | ------------ | ---------------- |
-| `meta-llama/llama-3.3-70b-instruct:free` | Strong       | Good alternative |
-| `qwen/qwen3-coder:free`                  | Good         | Alternative      |
-
-> [!WARNING]
-> **OpenRouter free-tier limitations:**
->
-> - Free models have a **50 requests per day** limit per account.
-> - Free models can be **temporarily unavailable** due to upstream provider load (`429` errors).
-> - The autochecker runs 10 questions against your agent — free-tier rate limits may cause failures.
-> - If you use OpenRouter, plan your testing carefully: use `run_eval.py --index N` to test one question at a time.
-
-</details>
-
-Create the agent environment file:
-
-```bash
-cp .env.agent.example .env.agent.secret
-```
-
-Edit `.env.agent.secret` and fill in `LLM_API_KEY`, `LLM_API_BASE`, and `LLM_MODEL`. Your agent reads from this file.
-
-> **Note:** This is **not** the same as `LMS_API_KEY` in `.env.docker.secret`. That one protects your backend LMS endpoints. `LLM_API_KEY` authenticates with your LLM provider.
+**Behavior:**
+- Prints the bot's response text to **stdout**
+- Reads configuration from `.env.agent.secret` (backend URL, API keys)
+- Exits with code **0** on success, non-zero on error
+- Does **not** connect to Telegram (no `BOT_TOKEN` required in test mode)
 
 ## Deliverables
 
-### 1. Plan (`plans/task-1.md`)
+### 1. Development plan (`bot/PLAN.md`)
 
-Before writing code, create `plans/task-1.md`. Describe which LLM provider and model you will use, and how you will structure the agent.
+A plan produced with your coding agent's help. Should describe the approach for all three tasks (scaffold, backend integration, intent routing). At least 100 words.
 
-### 2. Agent (`agent.py`)
+### 2. Bot entry point (`bot/bot.py`)
 
-Create `agent.py` in the project root. The system prompt can be minimal for now — you will expand it in later tasks when you add tools and domain knowledge.
+The main entry file. Must support `--test` mode. In this task, handlers can return placeholder text — real implementation comes in Task 2.
 
-### 3. Documentation (`AGENT.md`)
+### 3. Handler module (`bot/handlers/` or `bot/handlers.py`)
 
-Create `AGENT.md` in the project root documenting how the agent works, which LLM provider you chose, and how to run it.
+Handlers separated from the Telegram transport layer. The `--test` mode calls handlers directly without Telegram.
 
-### 4. Tests (1 test)
+### 4. Dependencies (`bot/requirements.txt`)
 
-Create 1 regression test that runs `agent.py` as a subprocess, parses the stdout JSON, and checks that `answer` and `tool_calls` are present.
+Bot-specific Python dependencies. Must install without errors.
+
+### 5. Bot token in env example (`.env.agent.example`)
+
+Add `BOT_TOKEN` to the existing `.env.agent.example` file.
 
 ## Acceptance criteria
 
-- [ ] `plans/task-1.md` exists with the implementation plan (committed before code).
-- [ ] `agent.py` exists in the project root.
-- [ ] `uv run agent.py "..."` outputs valid JSON with `answer` and `tool_calls`.
-- [ ] The API key is stored in `.env.agent.secret` (not hardcoded).
-- [ ] `AGENT.md` documents the solution architecture.
-- [ ] 1 regression test exists and passes.
-- [ ] [Git workflow](../../../wiki/git-workflow.md): issue `[Task] Call an LLM from Code`, branch, PR with `Closes #...`, partner approval, merge.
+- [ ] `bot/PLAN.md` exists and has at least 100 words.
+- [ ] `.env.agent.example` contains `BOT_TOKEN`.
+- [ ] `bot/requirements.txt` exists and installs without errors.
+- [ ] Handler module exists separately from the bot entry point.
+- [ ] `python bot/bot.py --test "/start"` exits with code 0 and prints non-empty output.
+- [ ] Changes follow the Git workflow (issue, branch, PR, review, merge).

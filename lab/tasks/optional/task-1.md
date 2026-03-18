@@ -1,48 +1,37 @@
-# Advanced Agent Features
+# Deploy and Polish
 
-Extend your agent with advanced capabilities that improve reliability or expand what it can answer.
+Deploy the bot on your VM alongside the backend and add finishing touches.
 
-## Extension options
+## What you will do
 
-Choose **one or more** extensions. Each should measurably improve your agent — higher pass rate, lower latency, or better failure handling.
-
-### Retry logic with backoff
-
-LLM APIs have rate limits. Implement automatic retry with exponential backoff when the API returns 429 (Too Many Requests) or 5xx errors.
-
-### Caching layer
-
-Cache tool results in memory so that if the LLM calls `read_file("backend/app/main.py")` twice in the same run, the second call returns instantly.
-
-### Direct database tool (`query_db`)
-
-Add a `query_db` tool that runs **read-only** SQL queries against PostgreSQL directly. This lets the agent answer data questions without going through the API. Use a read-only connection to prevent accidental writes.
-
-### Multi-step reasoning
-
-Before executing tools, have the agent output a plan (what it needs to find out and which tools to use). Then execute the plan step by step. This improves accuracy on complex questions.
+Add the bot as a Docker service in your existing `docker-compose.yml`, verify it responds in Telegram, and document the deployment.
 
 ## Deliverables
 
-### 1. Plan (`plans/optional-1.md`)
+### 1. Bot Dockerfile (`bot/Dockerfile`)
 
-Document which extension(s) you chose, why, and the expected improvement.
+A Dockerfile that builds and runs the bot. Should install dependencies from `bot/requirements.txt` and run the bot entry point.
 
-### 2. Implementation (update `agent.py`)
+### 2. Bot service in Docker Compose (`docker-compose.yml`)
 
-Implement your chosen extension(s).
+Add a `bot` service to the existing `docker-compose.yml`. The bot should:
+- Connect to the backend via Docker network (service name, not `localhost`)
+- Read `BOT_TOKEN` and LLM credentials from environment
+- Restart unless stopped
 
-### 3. Tests
+### 3. Deployment verification
 
-Write tests that demonstrate the extension works correctly.
+The bot container runs alongside the backend on your VM. Both services are healthy.
 
-### 4. Documentation (update `AGENT.md`)
+### 4. README update
 
-Update `AGENT.md` to describe the extension(s) you implemented.
+Add a "Deploy" section to the repo README explaining how to deploy the bot (env vars, docker compose, verification).
 
 ## Acceptance criteria
 
-- [ ] At least one extension is implemented and working.
-- [ ] Tests demonstrate the extension works correctly.
-- [ ] `AGENT.md` is updated to describe the extension.
-- [ ] [Git workflow](../../../wiki/git-workflow.md): issue `[Task] Advanced Agent Features`, branch, PR with `Closes #...`, partner approval, merge.
+- [ ] `docker-compose.yml` includes a bot service.
+- [ ] Bot container is running on the VM (`docker ps` shows it).
+- [ ] Backend is still healthy alongside the bot (`curl -sf http://localhost:42002/docs` returns 200).
+- [ ] `git remote get-url origin` on the VM matches the student's GitHub repo.
+- [ ] README contains a section with "deploy" in the heading.
+- [ ] Bot responds to messages in Telegram (TA-verified during demo).

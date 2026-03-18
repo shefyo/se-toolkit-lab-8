@@ -1,107 +1,94 @@
-# The Documentation Agent
+# Backend Integration
 
-In Task 1 you built a CLI that calls an LLM, but it still cannot look at your actual code or read your documentation. That is the difference between a chatbot and an **agent**: an agent has **tools** — functions it can call to interact with the real world, then reason about the results. We'll start by giving your agent two tools (`read_file`, `list_files`) to navigate the project wiki.
+Connect your bot to the LMS backend with real data commands. After this task, the bot fetches live data from your deployed backend and formats it for the user.
 
-## You will build the agentic loop 🤖
+## What you will build
 
-An agentic loop: your code sends the question to the LLM, the LLM decides which tool to call, your code executes it, feeds the result back, and the LLM decides what to do next — call another tool or give the final answer.
+Working implementations of `/start`, `/help`, `/health`, and at least 2 data commands that call the LMS backend API. All verifiable via `--test` mode.
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant agent.py
-    participant LLM
+```terminal
+$ python bot/bot.py --test "/health"
+Backend is healthy. 42 items available.
 
-    User->>agent.py: CLI arg (question)
-    agent.py->>LLM: question + tool definitions
-    loop Agentic loop (max 10 tool calls)
-        LLM-->>agent.py: tool_calls
-        agent.py->>agent.py: execute tool (read_file / list_files)
-        agent.py->>LLM: tool result
-    end
-    LLM-->>agent.py: text answer (no tool calls)
-    agent.py-->>User: stdout {answer, source, tool_calls}
+$ python bot/bot.py --test "/labs"
+Available labs:
+- Lab 01 — Products, Architecture & Roles
+- Lab 02 — Run, Fix, and Deploy
+- Lab 03 — Backend API
+...
 ```
 
-1. Send the user's question + tool definitions to the LLM.
-2. If the LLM responds with `tool_calls` → execute each tool, append results as `tool` role messages, go to step 1.
-3. If the LLM responds with a text message (no tool calls) → that's the final answer. Extract the answer and source, output JSON and exit.
-4. If you hit 10 tool calls → stop looping, use whatever answer you have.
+## Available backend endpoints
 
-Your system prompt should tell the LLM to use `list_files` to discover wiki files, then `read_file` to find the answer, and include the source reference (file path + section anchor).
+Your LMS backend (running on `localhost:42002` via Caddy) provides these endpoints. All require `Authorization: Bearer YOUR_LMS_API_KEY`.
 
-## CLI interface
+| Endpoint | What it returns |
+|----------|----------------|
+| `GET /items/` | Course structure (labs, tasks) |
+| `GET /learners/` | Enrolled students |
+| `GET /interactions/` | Submission logs |
+| `GET /analytics/scores?lab=lab-01` | Score distribution (4 buckets) |
+| `GET /analytics/pass-rates?lab=lab-01` | Per-task average scores |
+| `GET /analytics/timeline?lab=lab-01` | Submissions per day |
+| `GET /analytics/groups?lab=lab-01` | Per-group performance |
+| `GET /analytics/top-learners?lab=lab-01&limit=5` | Top N learners |
+| `GET /analytics/completion-rate?lab=lab-01` | Completion percentage |
+| `POST /pipeline/sync` | Trigger ETL sync |
 
-Same rules as Task 1. Two additions: `source` field and populated `tool_calls`.
+> [!TIP]
+> Explore these endpoints in Swagger UI at `http://localhost:42002/docs` to understand the response format before implementing bot commands.
 
-```bash
-uv run agent.py "How do you resolve a merge conflict?"
+## Suggested data commands
+
+Pick at least 2 from this list (or define your own):
+
+| Command | Backend endpoint | What it shows |
+|---------|-----------------|---------------|
+| `/labs` | `GET /items/` | List of available labs |
+| `/scores <lab>` | `GET /analytics/pass-rates?lab=` | Per-task pass rates |
+| `/timeline <lab>` | `GET /analytics/timeline?lab=` | Submissions over time |
+| `/groups <lab>` | `GET /analytics/groups?lab=` | Per-group performance |
+| `/top [lab] [N]` | `GET /analytics/top-learners?lab=&limit=` | Top N learners |
+| `/learners` | `GET /learners/` | Enrolled learner count/list |
+| `/sync` | `POST /pipeline/sync` | Trigger ETL, show result |
+
+## Error handling
+
+When the backend is unreachable or returns an error, the bot must show a user-friendly message — not a Python traceback. Example:
+
+```terminal
+$ python bot/bot.py --test "/health"
+Backend is not responding. Check that the services are running.
 ```
-
-```json
-{
-  "answer": "Edit the conflicting file, choose which changes to keep, then stage and commit.",
-  "source": "wiki/git-workflow.md#resolving-merge-conflicts",
-  "tool_calls": [
-    {"tool": "list_files", "args": {"path": "wiki"}, "result": "git-workflow.md\n..."},
-    {"tool": "read_file", "args": {"path": "wiki/git-workflow.md"}, "result": "..."}
-  ]
-}
-```
-
-- `source` (string, required) — the wiki section reference (e.g., `wiki/git-workflow.md#resolving-merge-conflicts`).
-- `tool_calls` (array, required) — all tool calls made. Each entry has `tool`, `args`, and `result`.
-- Maximum 10 tool calls per question.
-
-## Required tools
-
-Implement two tools and register them as function-calling schemas in your LLM request.
-
-### `read_file`
-
-Read a file from the project repository.
-
-- **Parameters:** `path` (string) — relative path from project root.
-- **Returns:** file contents as a string, or an error message if the file doesn't exist.
-- **Security:** must not read files outside the project directory (no `../` traversal).
-
-### `list_files`
-
-List files and directories at a given path.
-
-- **Parameters:** `path` (string) — relative directory path from project root.
-- **Returns:** newline-separated listing of entries.
-- **Security:** must not list directories outside the project directory.
 
 ## Deliverables
 
-### 1. Plan (`plans/task-2.md`)
+### 1. `/start` command
 
-Before writing code, create `plans/task-2.md`. Describe how you will define tool schemas, implement the agentic loop, and handle path security.
+Returns a welcome message with the bot's name or description. Must contain the word "welcome" or the bot's name (case-insensitive).
 
-### 2. Tools and agentic loop (update `agent.py`)
+### 2. `/help` command
 
-Update `agent.py` to define `read_file` and `list_files` as function-calling schemas, implement the agentic loop, and return JSON with `answer`, `source`, and `tool_calls` fields.
+Lists all available commands with descriptions. Must include at least 4 `/command` entries.
 
-### 3. Documentation (update `AGENT.md`)
+### 3. `/health` command
 
-Update `AGENT.md` to document the tools, the agentic loop, and your system prompt strategy.
+Calls `GET /items/` on the backend. Reports healthy/unhealthy status. Hits the real backend on `localhost:42002`.
 
-### 4. Tests (2 more tests)
+### 4. At least 2 data commands
 
-Add 2 regression tests for the documentation agent. Example questions:
+Each calls a different backend endpoint and returns formatted data. The response must be non-empty when the database has data (ETL has been synced).
 
-- `"How do you resolve a merge conflict?"` → expects `read_file` in tool_calls, `wiki/git-workflow.md` in source.
-- `"What files are in the wiki?"` → expects `list_files` in tool_calls.
+### 5. Error handling
+
+When the backend is down, commands return a user-friendly error message — no `Traceback` in stderr.
 
 ## Acceptance criteria
 
-- [ ] `plans/task-2.md` exists with the implementation plan (committed before code).
-- [ ] `agent.py` defines `read_file` and `list_files` as tool schemas.
-- [ ] The agentic loop executes tool calls and feeds results back to the LLM.
-- [ ] `tool_calls` in the output is populated when tools are used.
-- [ ] The `source` field correctly identifies the wiki section that answers the question.
-- [ ] Tools do not access files outside the project directory.
-- [ ] `AGENT.md` documents the tools and agentic loop.
-- [ ] 2 tool-calling regression tests exist and pass.
-- [ ] [Git workflow](../../../wiki/git-workflow.md): issue `[Task] The Documentation Agent`, branch, PR with `Closes #...`, partner approval, merge.
+- [ ] `--test "/start"` returns text containing "welcome" or the bot name (case-insensitive).
+- [ ] `--test "/help"` output lists at least 4 commands (lines matching `/command`).
+- [ ] `--test "/health"` returns a status indicator ("healthy", "ok", "available", or similar).
+- [ ] First data command returns non-empty structured output (at least 2 lines).
+- [ ] Second data command returns non-empty output.
+- [ ] When backend is stopped, `--test "/health"` returns a user-friendly message with no `Traceback` in stderr.
+- [ ] Changes follow the Git workflow (issue, branch, PR, review, merge).
