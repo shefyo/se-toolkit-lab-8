@@ -11,7 +11,7 @@
 - [Set up `Docker`](#set-up-docker)
   - [Install `Docker`](#install-docker)
   - [Start `Docker`](#start-docker)
-  - [Clean up `Docker`](#clean-up-docker)
+  - [Remove all containers](#remove-all-containers)
 - [Common `Docker` commands](#common-docker-commands)
   - [`docker run`](#docker-run)
     - [`docker run` typical pattern](#docker-run-typical-pattern)
@@ -92,7 +92,7 @@ Complete these steps:
 
 1. [Install `Docker`](#install-docker).
 2. [Start `Docker`](#start-docker).
-3. [Clean up `Docker`](#clean-up-docker).
+3. [Remove all containers](#remove-all-containers).
 
 ### Install `Docker`
 
@@ -106,7 +106,7 @@ If you installed `Docker Desktop`:
 2. Skip login.
 3. Wait until you see `Engine running`.
 
-### Clean up `Docker`
+### Remove all containers
 
 > [!NOTE]
 > If there are permission errors, replace `docker` with `sudo docker`.
