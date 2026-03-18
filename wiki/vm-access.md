@@ -289,8 +289,8 @@ Complete these steps:
    ```
    info: Adding user `<user>' ...
    info: Selecting UID/GID from range 1000 to 59999 ...
-   info: Adding new group `<user>' (1002) ...
-   info: Adding new user `<user>' (1002) with group `<user> (1002)' ...
+   info: Adding new group `<user-group>' (1002) ...
+   info: Adding new user `<user>' (1002) with group `<user-group> (1002)' ...
    info: Creating home directory `/home/<user>' ...
    info: Copying files from `/etc/skel' ...
    New password:
@@ -342,8 +342,12 @@ Complete these steps:
    The output should be similar to this:
 
    ```terminal
-   <user> : <user> sudo users
+   <user> : <user-group> sudo users
    ```
+
+   > 🟦 **Note**
+   >
+   > See [`<user-group>`](./operating-system.md#user-group-placeholder).
 
 ### Set up the `SSH` key authentication for the user `<user>` (REMOTE)
 
@@ -371,10 +375,12 @@ Complete these steps:
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   chown -R <user>:<user> /home/<user>/.ssh
+   chown -R <user>:<user-group> /home/<user>/.ssh
    ```
 
    > 🟦 **Note**
+   >
+   > See [`<user-group>`](./operating-system.md#user-group-placeholder).
    >
    > See [Change the owner and group (recursive)](./linux-administration.md#change-the-owner-and-group-recursive).
 
