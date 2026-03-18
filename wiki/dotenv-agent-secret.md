@@ -4,7 +4,7 @@
 
 - [About `.env.agent.secret`](#about-envagentsecret)
 - [`LLM_API_KEY`](#llm_api_key)
-- [`LLM_API_BASE`](#llm_api_base)
+- [`LLM_API_BASE_URL`](#llm_api_base_url)
 - [`LLM_API_MODEL`](#llm_api_model)
 
 ## About `.env.agent.secret`
@@ -33,7 +33,7 @@ The [API key](./web-api.md#api-key) for your [LLM provider API](./llm.md#llm-pro
 
 Default: `your-llm-api-key-here`
 
-## `LLM_API_BASE`
+## `LLM_API_BASE_URL`
 
 The base URL of the [OpenAI-compatible API](./llm.md#openai-compatible-api) endpoint.
 
