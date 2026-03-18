@@ -224,3 +224,14 @@ Complete these steps:
         Active: active (running) since Wed 2026-03-18 21:53:57 MSK; 1min 48s ago
    ...
    ```
+
+6. (Optional) To stop the service,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   sudo systemctl stop fail2ban
+   ```
+
+   The output should be empty.
+
