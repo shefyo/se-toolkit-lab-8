@@ -42,7 +42,7 @@ The `Qwen Code` API host port (without `<` and  `>`).
   
   `http://localhost:<lms-api-host-port>/utils/qwen-code-api/v1`
 
-- (LOCAL) When running the request on the local machine and the [LMS API is deployed on the VM](./lms-api-setup.md):
+- (LOCAL) When running the request on the local machine and the [LMS API is deployed on the VM](./lms-api-setup.md#deploy-the-lms-remote):
   
   `http://<lms-api-url>:<lms-api-host-port>/utils/qwen-code-api/v1`
   
