@@ -30,7 +30,7 @@
     - [1.10.2. (UPD) Install `pnpm`](#1102-upd-install-pnpm)
   - [1.11. (UPD) Set up `Qwen Code` (LOCAL)](#111-upd-set-up-qwen-code-local)
   - [1.12. (UPD) Set up the `Qwen Code` API (VM)](#112-upd-set-up-the-qwen-code-api-vm)
-  - [1.13. Deploy the LMS API (REMOTE)](#113-deploy-the-lms-api-remote)
+  - [1.13. (UPD) Deploy the LMS API (REMOTE)](#113-upd-deploy-the-lms-api-remote)
   - [1.14. Set up the `Autochecker` bot (`Telegram`)](#114-set-up-the-autochecker-bot-telegram)
   - [1.15. Check the setup using the `Autochecker` bot (`Telegram`)](#115-check-the-setup-using-the-autochecker-bot-telegram)
 - [2. Optional steps](#2-optional-steps)
@@ -270,7 +270,7 @@ See [tools](../../wiki/software-types.md#tool).
 
 1. [Set up the `Qwen Code` API on your VM](../../wiki/qwen-code-api.md#set-up-the-qwen-code-api-remote).
 
-### 1.13. Deploy the LMS API (REMOTE)
+### 1.13. (UPD) Deploy the LMS API (REMOTE)
 
 1. [Deploy the LMS API to your VM](../../wiki/lms-api-deployment.md#about-the-lms-api-deployment).
 
