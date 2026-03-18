@@ -60,12 +60,31 @@ Complete these steps:
    sudo ufw allow 22
    ```
 
+2. When prompted for a password:
+
+   1. Type the password for the user `<user>`.
+
+      See [Set the password for the user `<user>` (REMOTE)](./vm-access.md#set-the-password-for-the-user-user-remote).
+
+      > 🟦 **Note**
+      >
+      > The shell won't show what you type.
+
+   2. Press `Enter`.
+
+   The output should look like this:
+
+   ```terminal
+   Rules updated
+   Rules updated (v6)
+   ```
+
    > 🟪 **Important**
    >
    > Always allow `SSH` (port 22) before enabling `ufw`.
    > Otherwise, you will lock yourself out of your VM.
 
-2. To allow the [LMS API port](./lms-api.md#lms-api-port),
+3. To allow the [LMS API port](./lms-api.md#lms-api-port),
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -75,7 +94,14 @@ Complete these steps:
 
    Replace the placeholder [`<lms-api-host-port>`](./lms-api.md#lms-api-port-placeholder).
 
-3. To enable the [firewall](./computer-networks.md#firewall),
+   The output should look like this:
+
+   ```terminal
+   Rules updated
+   Rules updated (v6)
+   ```
+
+4. To enable the [firewall](./computer-networks.md#firewall),
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -83,12 +109,37 @@ Complete these steps:
    sudo ufw enable
    ```
 
-4. To check the status,
+5. When prompted `Command may disrupt existing ssh connections. Proceed with operation (y|n)?`:
+  
+   1. Type `y`.
+
+   2. Press `Enter`.
+
+   The output should look like this:
+
+   ```terminal
+   Firewall is active and enabled on system startup
+   ```
+
+6. To check the status,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    sudo ufw status
+   ```
+
+   The output should look like this:
+
+   ```terminal
+   Status: active
+
+   To                         Action      From
+   --                         ------      ----
+   22                         ALLOW       Anywhere                  
+   42002                      ALLOW       Anywhere                  
+   22 (v6)                    ALLOW       Anywhere (v6)             
+   42002 (v6)                 ALLOW       Anywhere (v6) 
    ```
 
 ### Set up `fail2ban` (REMOTE)
@@ -104,12 +155,32 @@ Complete these steps:
    sudo apt update
    ```
 
+   The output should look like this:
+
+   ```terminal
+   ...
+   Reading package lists... Done
+   Building dependency tree... Done
+   Reading state information... Done
+   16 packages can be upgraded. Run 'apt list --upgradable' to see them.
+   ```
+
 2. To install `fail2ban`,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    sudo apt install -y fail2ban
+   ```
+
+   The output should look like this:
+
+   ```terminal
+   ...
+   
+   No user sessions are running outdated binaries.
+
+   No VM guests are running outdated hypervisor (qemu) binaries on this host.
    ```
 
 3. To enable the service,
@@ -120,6 +191,13 @@ Complete these steps:
    sudo systemctl enable fail2ban
    ```
 
+   The output should look like this:
+
+   ```terminal
+   Synchronizing state of fail2ban.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+   Executing: /usr/lib/systemd/systemd-sysv-install enable fail2ban
+   ```
+
 4. To start the service,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
@@ -128,10 +206,21 @@ Complete these steps:
    sudo systemctl start fail2ban
    ```
 
+   The output should be empty.
+
 5. To check the status,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    sudo systemctl status fail2ban
+   ```
+
+   The output should look like this:
+
+   ```terminal
+   ● fail2ban.service - Fail2Ban Service
+        Loaded: loaded (/usr/lib/systemd/system/fail2ban.service; enabled; preset: enabled)
+        Active: active (running) since Wed 2026-03-18 21:53:57 MSK; 1min 48s ago
+   ...
    ```
