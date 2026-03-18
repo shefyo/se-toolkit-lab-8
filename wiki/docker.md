@@ -12,6 +12,7 @@
   - [Install `Docker`](#install-docker)
   - [Start `Docker`](#start-docker)
   - [Remove all containers](#remove-all-containers)
+- [Remove the container running at the port](#remove-the-container-running-at-the-port)
 - [Common `Docker` commands](#common-docker-commands)
   - [`docker run`](#docker-run)
     - [`docker run` typical pattern](#docker-run-typical-pattern)
@@ -137,6 +138,57 @@ If you installed `Docker Desktop`:
    ```
 
 3. To delete unused [volumes](./docker-compose.md#volume),
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   docker volume prune -f --all
+   ```
+
+   The output should be similar to this:
+
+   ```terminal
+   ...
+   Total reclaimed space: ...
+   ```
+
+## Remove the container running at the port
+
+If `docker compose up` fails with an error like `Bind for <host>:<port> failed: port is already allocated`,
+probably a container from a previous run is still occupying that port.
+
+Complete these steps:
+
+1. To find the [container](#container) occupying the port,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   docker ps --filter "publish=<port>"
+   ```
+
+   Replace the placeholder `<port>` with the port number from the error message.
+
+   You should see output similar to this:
+
+   ```terminal
+   CONTAINER ID     IMAGE     COMMAND   ...   PORTS
+   <container-id>   my-app    ...       ...   <host>:<port>->8000/tcp
+   ```
+
+   The `<container-id>` is a hash like `a3f5b9c2d1e4`.
+
+2. To force-remove the container,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   docker rm -f <container-id>
+   ```
+
+   Replace the placeholder `<container-id>` with the [container ID](#container-id) from the previous step.
+
+3. To remove the [volume](./docker-compose.md#volume) left by the removed container,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
