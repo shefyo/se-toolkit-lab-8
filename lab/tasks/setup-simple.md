@@ -277,7 +277,21 @@ The autochecker tests your bot against your **deployed backend on your VM**. You
 
    Set `AUTOCHECKER_EMAIL`, `AUTOCHECKER_PASSWORD`, and `LMS_API_KEY` (use the same values as locally).
 
-6. Start the services:
+6. Configure Docker DNS (required on most university VMs):
+
+   ```terminal
+   sudo tee /etc/docker/daemon.json <<'EOF'
+   {
+     "dns": ["8.8.8.8", "8.8.4.4"]
+   }
+   EOF
+   sudo systemctl restart docker
+   ```
+
+   > [!NOTE]
+   > Without this, Docker builds will fail with `getaddrinfo EAI_AGAIN` errors because the university network DNS can't resolve external registries like `registry.npmjs.org`.
+
+7. Start the services:
 
    ```terminal
    docker compose --env-file .env.docker.secret up --build -d
@@ -287,7 +301,7 @@ The autochecker tests your bot against your **deployed backend on your VM**. You
    >
    > The same troubleshooting advice as when [starting the services locally](#14-start-the-services-locally).
 
-7. Populate the database:
+8. Populate the database:
 
    ```terminal
    curl -X POST http://localhost:42002/pipeline/sync \
@@ -296,7 +310,7 @@ The autochecker tests your bot against your **deployed backend on your VM**. You
      -d '{}'
    ```
 
-8. Verify the deployment:
+9. Verify the deployment:
 
    ```terminal
    curl -s http://localhost:42002/items/ -H "Authorization: Bearer <your-LMS_API_KEY>" | head -c 200
