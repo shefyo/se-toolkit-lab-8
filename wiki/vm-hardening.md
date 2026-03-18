@@ -142,6 +142,22 @@ Complete these steps:
    42002 (v6)                 ALLOW       Anywhere (v6) 
    ```
 
+7. (Optional) To disable the firewall:
+
+   1. [Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+      ```terminal
+      sudo ufw disable
+      ```
+
+   2. [Type the password for the user `<user>`](./vm-access.md#type-the-password-for-the-user-user-remote).
+  
+   The output should look like this:
+
+   ```terminal
+   Firewall is active and enabled on system startup
+   ```
+
 ### Set up `fail2ban` (REMOTE)
 
 > [!NOTE]
