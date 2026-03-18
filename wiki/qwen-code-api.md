@@ -14,7 +14,7 @@
   - [Enter the `Qwen Code` API repository directory (REMOTE)](#enter-the-qwen-code-api-repository-directory-remote)
   - [Prepare the environment in the `Qwen Code` API repository (REMOTE)](#prepare-the-environment-in-the-qwen-code-api-repository-remote)
   - [Start the `Qwen Code` API (REMOTE)](#start-the-qwen-code-api-remote)
-  - [Check that the `Qwen Code` API is accessible (REMOTE)](#check-that-the-qwen-code-api-is-accessible-remote)
+  - [Check that the `Qwen Code` API is accessible](#check-that-the-qwen-code-api-is-accessible)
 
 ## What is `Qwen Code` API
 
@@ -159,7 +159,7 @@ Complete these steps:
    docker compose up --build -d
    ```
 
-### Check that the `Qwen Code` API is accessible (REMOTE)
+### Check that the `Qwen Code` API is accessible
 
 1. To send an [`HTTP` request](./http.md#http-request) to the [`Qwen Code` API](#what-is-qwen-code-api),
 
@@ -173,10 +173,9 @@ Complete these steps:
      | jq .
    ```
 
-   Replace placeholders:
+   Replace the placeholders:
 
    - [`<qwen-code-api-base-url>`](#qwen-code-api-base-url-placeholder)
-   - `<qwen-code-api-host-port>` with the value of [`QWEN_CODE_API_HOST_PORT`](./qwen-code-api-dotenv-secret.md#qwen_code_api_host_port) from [`qwen-code-api/.env.secret` (REMOTE)](./qwen-code-api-dotenv-secret.md#about-qwen-code-apienvsecret)
    - `<qwen-code-api-key>` with the value of [`QWEN_CODE_API_KEY`](./qwen-code-api-dotenv-secret.md#qwen_code_api_key) from [`qwen-code-api/.env.secret` (REMOTE)](./qwen-code-api-dotenv-secret.md#about-qwen-code-apienvsecret)
    - `<qwen-model>` with one of the [available models](./qwen-code.md#view-available-models)
 
