@@ -13,10 +13,6 @@
   - [`APP_HOST_PORT`](#app_host_port)
   - [`APP_ENABLE_INTERACTIONS`](#app_enable_interactions)
   - [`APP_ENABLE_LEARNERS`](#app_enable_learners)
-- [`autochecker`](#autochecker)
-  - [`AUTOCHECKER_API_URL`](#autochecker_api_url)
-  - [`AUTOCHECKER_EMAIL`](#autochecker_email)
-  - [`AUTOCHECKER_PASSWORD`](#autochecker_password)
 - [`postgres`](#postgres)
   - [`POSTGRES_DB`](#postgres_db)
   - [`POSTGRES_USER`](#postgres_user)
@@ -30,14 +26,21 @@
   - [`PGADMIN_HOST_PORT`](#pgadmin_host_port)
 - [`caddy`](#caddy)
   - [`CADDY_CONTAINER_PORT`](#caddy_container_port)
+- [`Qwen Code` API](#qwen-code-api)
+  - [`QWEN_CODE_API_URL`](#qwen_code_api_url)
 - [LMS](#lms)
   - [`LMS_API_HOST_ADDRESS`](#lms_api_host_address)
   - [`LMS_API_HOST_PORT`](#lms_api_host_port)
   - [`LMS_API_KEY`](#lms_api_key)
+- [`autochecker`](#autochecker)
+  - [`AUTOCHECKER_API_URL`](#autochecker_api_url)
+  - [`AUTOCHECKER_API_LOGIN`](#autochecker_api_login)
+  - [`AUTOCHECKER_API_PASSWORD`](#autochecker_api_password)
 - [Constants](#constants)
   - [`CONST_POSTGRESQL_SERVICE_NAME`](#const_postgresql_service_name)
   - [`CONST_POSTGRESQL_SERVER_NAME`](#const_postgresql_server_name)
   - [`CONST_POSTGRESQL_DEFAULT_PORT`](#const_postgresql_default_port)
+  - [`CONST_PGADMIN_CONTAINER_PORT`](#const_pgadmin_container_port)
 
 ## What is `.env.docker.secret`
 
@@ -111,28 +114,6 @@ A [feature flag](./environments.md#feature-flag) for enabling the `/learners` en
 
 Default: `true`
 
-## `autochecker`
-
-Variables for the [autochecker](./autochecker.md) ETL pipeline.
-
-### `AUTOCHECKER_API_URL`
-
-The base URL of the autochecker API.
-
-Default: `https://auche.namaz.live`
-
-### `AUTOCHECKER_EMAIL`
-
-The email used to authenticate with the autochecker API. Use your university email.
-
-Default: `you@innopolis.university`
-
-### `AUTOCHECKER_PASSWORD`
-
-The password used to authenticate with the autochecker API. Composed of your `<github-username><telegram-alias>` (no spaces, no `@`).
-
-Default: `your-github-username-and-tg-alias`
-
 ## `postgres`
 
 Variables for the [`postgres` service](./docker-compose-yml.md#postgres-service).
@@ -185,9 +166,9 @@ Default: `admin`
 
 ### `PGADMIN_HOST_ADDRESS`
 
-The [IP address](./computer-networks.md#ip-address) exposed on the [host](./computer-networks.md#host). [`0.0.0.0`](./computer-networks.md#0000) accepts connections from any network interface.
+The [IP address](./computer-networks.md#ip-address) exposed on the [host](./computer-networks.md#host). [`127.0.0.1`](./computer-networks.md#127001) restricts access to the local machine only.
 
-Default: `0.0.0.0`
+Default: `127.0.0.1`
 
 ### `PGADMIN_HOST_PORT`
 
@@ -205,7 +186,15 @@ The [port number](./computer-networks.md#port-number) that [`Caddy`](./caddy.md#
 
 Default: `80`
 
-Default: `0.0.0.0`
+## `Qwen Code` API
+
+Variable for the [`Qwen Code` API](./qwen-code-api.md#what-is-qwen-code-api) used by the [`caddy` service](./docker-compose-yml.md#caddy-service).
+
+### `QWEN_CODE_API_URL`
+
+The URL of the [`Qwen Code` API](./qwen-code-api.md#what-is-qwen-code-api) that [`Caddy`](./caddy.md#what-is-caddy) reverse-proxies requests to.
+
+Default: `http://qwen-code-api:8080`
 
 ## LMS
 
@@ -214,6 +203,8 @@ Variables for the [LMS API](./lms-api.md#about-the-lms-api).
 ### `LMS_API_HOST_ADDRESS`
 
 The [IP address](./computer-networks.md#ip-address) exposed on the [host](./computer-networks.md#host). [`0.0.0.0`](./computer-networks.md#0000) accepts connections from any network interface.
+
+Default: `0.0.0.0`
 
 ### `LMS_API_HOST_PORT`
 
@@ -227,13 +218,37 @@ The [LMS API key](./lms-api.md#lms-api-key).
 
 Default: `my-secret-api-key`
 
+## `autochecker`
+
+Variables for the [autochecker](./autochecker.md#what-is-the-autochecker) ETL pipeline.
+
+### `AUTOCHECKER_API_URL`
+
+The base URL of the autochecker API.
+
+Default: `https://auche.namaz.live`
+
+### `AUTOCHECKER_API_LOGIN`
+
+The login used to authenticate with the autochecker API.
+
+Default: [`<autochecker-api-login>`](./autochecker-api.md#autochecker-api-login-placeholder)
+
+### `AUTOCHECKER_API_PASSWORD`
+
+The password used to authenticate with the autochecker API.
+
+Default: [`<autochecker-api-password>`](./autochecker-api.md#autochecker-api-password-placeholder)
+
 ## Constants
 
-Values that should not be changed. They are defined here for convenient referencing in [`docker-compose.yml`](../docker-compose.yml).
+Values that should not be changed.
+They are defined here for convenient referencing in [`docker-compose.yml`](../docker-compose.yml).
 
 ### `CONST_POSTGRESQL_SERVICE_NAME`
 
-The [`Docker Compose` service name](./docker-compose.md#service-name) for [`PostgreSQL`](./database.md#postgresql). Other [services](./docker-compose.md#service) use this name to connect to the database via [`Docker Compose` networking](./docker-compose.md#docker-compose-networking).
+The [`Docker Compose` service name](./docker-compose.md#service-name) for [`PostgreSQL`](./database.md#postgresql).
+Other [services](./docker-compose.md#service) use this name to connect to the database via [`Docker Compose` networking](./docker-compose.md#docker-compose-networking).
 
 Default: `postgres`
 
@@ -248,3 +263,9 @@ Default: `postgres-lab-6`
 The default [port number](./computer-networks.md#port-number) [`PostgreSQL`](./database.md#postgresql) [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
 
 Default: `5432`
+
+### `CONST_PGADMIN_CONTAINER_PORT`
+
+The [port number](./computer-networks.md#port-number) that [`pgAdmin`](./pgadmin.md#what-is-pgadmin) is [listening on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
+
+Default: `80`
