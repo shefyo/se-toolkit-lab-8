@@ -8,9 +8,9 @@
 
 ## About `qwen-code-api/.env.secret`
 
-`qwen-code-api/.env` is a [`.env` file](./environments.md#env-file) that is on [your VM](./vm) and stores [environment variables](./environments.md#environment-variable) for the [`Qwen Code` API](./qwen-code-api.md#what-is-qwen-code-api) deployed there.
+`qwen-code-api/.env.secret` is a [`.env` file](./environments.md#env-file) that stores [environment variables](./environments.md#environment-variable) for the [`Qwen Code` API](./qwen-code-api.md#what-is-qwen-code-api).
 
-Default values: `qwen-code-api/.env.example`.
+Default values are in `qwen-code-api/.env.example`.
 
 > [!NOTE]
 > The file `qwen-code-api/.env.secret` was added to `qwen-code-api/.gitignore` because you may specify there
