@@ -80,9 +80,7 @@ services:
     environment:
       - CADDY_CONTAINER_PORT=${CADDY_CONTAINER_PORT:?'CADDY_CONTAINER_PORT is required'}
       - APP_CONTAINER_PORT=${APP_CONTAINER_PORT:?'APP_CONTAINER_PORT is required'}
-      - QWEN_CODE_API_HOST_PORT=${QWEN_CODE_API_HOST_PORT:?'QWEN_CODE_API_HOST_PORT is required'}
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - QWEN_CODE_API_URL=${QWEN_CODE_API_URL:?'QWEN_CODE_API_URL is required'}
     ports:
       - ${LMS_API_HOST_ADDRESS:?'LMS_API_HOST_ADDRESS is required'}:${LMS_API_HOST_PORT:?'LMS_API_HOST_PORT is required'}:${CADDY_CONTAINER_PORT}
     volumes:
