@@ -40,6 +40,9 @@ Even if password authentication is disabled, `fail2ban` remains useful:
 
 ## Harden the VM
 
+> [!NOTE]
+> Replace [`<user>`](./operating-system.md#user-placeholder) with the actual [username](./operating-system.md#username).
+
 Complete these steps:
 
 <!-- no toc -->
