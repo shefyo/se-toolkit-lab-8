@@ -7,7 +7,7 @@
   - [`ufw`](#ufw)
   - [`fail2ban`](#fail2ban)
 - [Harden the VM](#harden-the-vm)
-  - [Set up `ufw` firewall (REMOTE)](#set-up-ufw-firewall-remote)
+  - [Set up `ufw` (REMOTE)](#set-up-ufw-remote)
   - [Set up `fail2ban` (REMOTE)](#set-up-fail2ban-remote)
 
 ## About the VM hardening
@@ -44,10 +44,10 @@ Complete these steps:
 
 <!-- no toc -->
 1. [Connect to the VM as the user `<user>` (LOCAL)](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
-2. [Set up `ufw` firewall (REMOTE)](#set-up-ufw-firewall-remote).
+2. [Set up `ufw` (REMOTE)](#set-up-ufw-remote).
 3. [Set up `fail2ban` (REMOTE)](#set-up-fail2ban-remote).
 
-### Set up `ufw` firewall (REMOTE)
+### Set up `ufw` (REMOTE)
 
 > [!NOTE]
 > See [`ufw`](#ufw).
