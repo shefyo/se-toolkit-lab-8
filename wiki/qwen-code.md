@@ -72,7 +72,7 @@ Path: `~/.qwen/oauth_creds.json`.
 
 3. [Open a chat with `Qwen Code` using the CLI](#open-a-chat-with-qwen-code-using-the-cli).
 
-4. Write `/auth` in the chat to [authenticate via Qwen OAuth](https://github.com/QwenLM/qwen-code?tab=readme-ov-file#authentication).
+4. Type `/auth` in the chat to [authenticate via Qwen OAuth](https://github.com/QwenLM/qwen-code?tab=readme-ov-file#authentication).
 
 5. [Check the `Qwen Code` credentials file](#check-the-qwen-code-credentials-file).
 
@@ -83,7 +83,7 @@ Path: `~/.qwen/oauth_creds.json`.
 
 2. [Open a chat with `Qwen Code` using the `Qwen Code Companion` extension for `VS Code`](#open-a-chat-with-qwen-code-using-the-qwen-code-companion-extension-for-vs-code).
 
-3. Write `/login` in the chat to [authenticate via Qwen OAuth](https://github.com/QwenLM/qwen-code?tab=readme-ov-file#authentication).
+3. Type `/login` in the chat to [authenticate via Qwen OAuth](https://github.com/QwenLM/qwen-code?tab=readme-ov-file#authentication).
 
 4. Complete the authentication procedure.
 
@@ -209,7 +209,7 @@ Example: `@main.py`.
 ### View available models
 
 1. [Open a chat with `Qwen Code`](#open-a-chat-with-qwen-code).
-2. Write `/model`.
+2. Type `/model`.
 3. Press `Enter`.
 
    In the `Select Model` dialogue, you should see the available [models](./llm.md#model).
@@ -222,7 +222,7 @@ Example: `@main.py`.
 
 ### Quit the chat with `Qwen Code`
 
-1. Write `/quit`.
+1. Type `/quit`.
 2. Press `Enter`.
 
 ## Lab instructions for `Qwen Code`
