@@ -66,6 +66,7 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL:?'PGADMIN_EMAIL is required'}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD:?'PGADMIN_PASSWORD is required'}
+      - SCRIPT_NAME=/utils/pgadmin
     ports:
       - ${PGADMIN_HOST_ADDRESS:?'PGADMIN_HOST_ADDRESS is required'}:${PGADMIN_HOST_PORT:?'PGADMIN_HOST_PORT is required'}:80
     depends_on:
@@ -79,6 +80,9 @@ services:
     environment:
       - CADDY_CONTAINER_PORT=${CADDY_CONTAINER_PORT:?'CADDY_CONTAINER_PORT is required'}
       - APP_CONTAINER_PORT=${APP_CONTAINER_PORT:?'APP_CONTAINER_PORT is required'}
+      - QWEN_CODE_API_HOST_PORT=${QWEN_CODE_API_HOST_PORT:?'QWEN_CODE_API_HOST_PORT is required'}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     ports:
       - ${LMS_API_HOST_ADDRESS:?'LMS_API_HOST_ADDRESS is required'}:${LMS_API_HOST_PORT:?'LMS_API_HOST_PORT is required'}:${CADDY_CONTAINER_PORT}
     volumes:
