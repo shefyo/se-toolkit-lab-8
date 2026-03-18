@@ -15,6 +15,10 @@
   - [Connect to the VM as the user `root` (LOCAL)](#connect-to-the-vm-as-the-user-root-local)
 - [Set up the `SSH` access to the VM as the user `<user>`](#set-up-the-ssh-access-to-the-vm-as-the-user-user)
   - [Create the non-root user `<user>` (REMOTE)](#create-the-non-root-user-user-remote)
+    - [Add the non-root user `<user>` (REMOTE)](#add-the-non-root-user-user-remote)
+    - [Set the password for the user `<user>` (REMOTE)](#set-the-password-for-the-user-user-remote)
+    - [Provide other information about the user `<user>` (REMOTE)](#provide-other-information-about-the-user-user-remote)
+    - [Add the user `<user>` to the group `sudo` (REMOTE)](#add-the-user-user-to-the-group-sudo-remote)
   - [Set up the `SSH` key authentication for the user `<user>` (REMOTE)](#set-up-the-ssh-key-authentication-for-the-user-user-remote)
   - [Update the `SSH` config to connect to the VM as the user `<user>` (LOCAL)](#update-the-ssh-config-to-connect-to-the-vm-as-the-user-user-local)
   - [Connect to the VM as the user `<user>` (LOCAL)](#connect-to-the-vm-as-the-user-user-local)
@@ -82,7 +86,7 @@ Complete these steps:
    > Note
    > Actually, you generate a key pair: a **private key** (secret) and a **public key** (safe to share).
 
-2. **Passphrase:** When asked `Enter passphrase`, you may type a secure password or press `Enter` for no passphrase.
+2. **Passphrase:** When prompted `Enter passphrase`, you may type a secure password or press `Enter` for no passphrase.
 
    *Note:* If you set a passphrase, use `ssh-agent` to avoid retyping it on every connection.
 
@@ -270,6 +274,15 @@ Complete these steps:
 > [!NOTE]
 > Replace [`<user>`](./operating-system.md#user-placeholder) with the actual [username](./operating-system.md#username).
 
+Complete these steps:
+
+<!-- no toc -->
+1. [Set the password for the user `<user>` (REMOTE)](#set-the-password-for-the-user-user-remote).
+2. [Provide other information about the user `<user>` (REMOTE)](#provide-other-information-about-the-user-user-remote).
+3. [Add the user `<user>` to the group `sudo` (REMOTE)](#add-the-user-user-to-the-group-sudo-remote).
+
+#### Add the non-root user `<user>` (REMOTE)
+
 1. To create the user `<user>`,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
@@ -296,13 +309,21 @@ Complete these steps:
    New password:
    ```
 
-2. When prompted for a password (`New password`, `Retype new password`), enter it.
+#### Set the password for the user `<user>` (REMOTE)
+
+1. When prompted for a password (`New password`, `Retype new password`):
+
+   1. Save it in a password manager to not lose it.
+
+   2. Type it in the [shell](./shell.md#what-is-a-shell) where you were prompted.
 
    > 🟦 **Note**
    >
-   > The [shell](./shell.md#what-is-a-shell) won't show what you type for security reasons.
+   > The shell won't show what you type for security reasons.
 
-3. Keep the default values for these (press `Enter` when prompted):
+#### Provide other information about the user `<user>` (REMOTE)
+
+1. Keep the default values for these (press `Enter` when prompted):
 
    ```terminal
    Full Name []:     
@@ -312,7 +333,7 @@ Complete these steps:
    Other []: 
    ```
 
-4. When asked `Is the information correct? [Y/n]`, write `y` and press `Enter`.
+2. When prompted `Is the information correct? [Y/n]`, write `y` and press `Enter`.
 
    The output should be similar to this:
 
@@ -320,6 +341,8 @@ Complete these steps:
    info: Adding new user `<user>' to supplemental / extra groups `users' ...
    info: Adding user `<user>' to group `users' ...
    ```
+
+#### Add the user `<user>` to the group `sudo` (REMOTE)
 
 1. To add the user `<user>` to the [group `sudo`](./linux.md#the-group-sudo),
 
@@ -542,8 +565,15 @@ Complete these steps:
    sudo nano /etc/ssh/sshd_config
    ```
 
-3. When asked for a password, write it and press `Enter`.
-   The shell won't show what you type.
+3. When prompted for a password:
+
+   1. Type the password for the user `<user>` (see [Set the password for the user `<user>` (REMOTE)](#set-the-password-for-the-user-user-remote)).
+
+      > 🟦 **Note**
+      >
+      > The shell won't show what you type.
+
+   2. Press `Enter`.
 
 4. Find the line `PermitRootLogin yes` and set it to:
 
@@ -569,15 +599,23 @@ Complete these steps:
    sudo sshd -t
    ```
 
-   When asked for a password, write it and press `Enter`.
+2. When prompted for a password:
+
+   1. Type the password for the user `<user>` (see [Set the password for the user `<user>` (REMOTE)](#set-the-password-for-the-user-user-remote)).
+
+      > 🟦 **Note**
+      >
+      > The shell won't show what you type.
+
+   2. Press `Enter`.
 
    The shell won't show what you type.
 
-2. If the command prints no output, the config is valid.
+3. If the command prints no output, the config is valid.
 
    If it prints errors, fix them in `/etc/ssh/sshd_config` before continuing.
 
-3. To restart `sshd`,
+4. To restart `sshd`,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -713,7 +751,7 @@ This is the recommended method and is what [Set up `SSH`](./vm-access.md#set-up-
 2. Ensure your `SSH` public key is added to the remote host.
 3. [Connect to the VM](./vm-access.md#connect-to-the-vm).
 
-You will not be asked for a password.
+You will not be prompted for a password.
 
 ### Login with password
 
