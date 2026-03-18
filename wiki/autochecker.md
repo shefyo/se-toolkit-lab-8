@@ -4,14 +4,10 @@
 
 - [What is the `Autochecker`](#what-is-the-autochecker)
 - [The `Autochecker` bot](#the-autochecker-bot)
+  - [Set up the `Autochecker` bot](#set-up-the-autochecker-bot)
+  - [Check the task using the `Autochecker` bot](#check-the-task-using-the-autochecker-bot)
 - [The `Autochecker` agent](#the-autochecker-agent)
-- [Set up the `Autochecker`](#set-up-the-autochecker)
-  - [Open the `Autochecker` bot](#open-the-autochecker-bot)
-  - [Log in to the `Autochecker` bot](#log-in-to-the-autochecker-bot)
-  - [Add the `SSH` public key for the `Autochecker` agent (REMOTE)](#add-the-ssh-public-key-for-the-autochecker-agent-remote)
-- [Check the task using the `Autochecker` bot](#check-the-task-using-the-autochecker-bot)
-
-<!-- TODO review -->
+  - [Provide the `Autochecker` agent with access to your VM (REMOTE)](#provide-the-autochecker-agent-with-access-to-your-vm-remote)
 
 ## What is the `Autochecker`
 
@@ -28,33 +24,33 @@ The `Autochecker` bot in Telegram.
 
 <https://t.me/auchebot>
 
-## The `Autochecker` agent
-
-An agent that can check [your VM](./vm.md#your-vm) setup.
-
-## Set up the `Autochecker`
+### Set up the `Autochecker` bot
 
 Complete these steps:
 
 <!-- no toc -->
-1. [Open the `Autochecker` bot](#open-the-autochecker-bot).
-2. [Log in to the `Autochecker` bot](#log-in-to-the-autochecker-bot).
-3. [Add the `SSH` public key for the `Autochecker` agent (REMOTE)](#add-the-ssh-public-key-for-the-autochecker-agent-remote).
+1. Open in `Telegram`: <https://t.me/auchebot>.
+2. Send `/start`.
+3. Provide the info:
 
-### Open the `Autochecker` bot
+   - [Your VM IP address](./vm.md#your-vm-ip-address)
+   - etc.
 
-Open in `Telegram`: <https://t.me/auchebot>.
+### Check the task using the `Autochecker` bot
 
-### Log in to the `Autochecker` bot
+1. Open in `Telegram`: <https://t.me/auchebot>.
+2. Click the lab.
+3. Click the task.
 
-1. [Open the `Autochecker` bot](#open-the-autochecker-bot)
-2. Log in.
+## The `Autochecker` agent
 
-### Add the `SSH` public key for the `Autochecker` agent (REMOTE)
+An agent that can check the setup on [your VM](./vm.md#your-vm) and send requests to it.
+
+### Provide the `Autochecker` agent with access to your VM (REMOTE)
 
 > [!NOTE]
 > Replace [`<user>`](./operating-system.md#user-placeholder) with the actual [username](./operating-system.md#username).
->
+
 > Add the [`SSH` public key](./ssh.md#ssh-public-key) for [the `Autochecker` agent](#the-autochecker-agent) so that it can access your VM as the user `<user>`.
 
 1. [Connect to your VM as the user `<user>`](./vm-access.md#connect-to-your-vm-by-ssh-as-the-user-user-local).
@@ -94,9 +90,3 @@ Open in `Telegram`: <https://t.me/auchebot>.
    ```terminal
    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKiL0DDQZw7L0Uf1c9cNlREY7IS6ZkIbGVWNsClqGNCZ se-toolkit-autochecker
    ```
-
-## Check the task using the `Autochecker` bot
-
-1. [Open the `Autochecker` bot](#open-the-autochecker-bot)
-2. Click the lab.
-3. Click the task.
