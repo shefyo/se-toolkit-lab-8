@@ -29,7 +29,7 @@ The `Qwen Code` API is deployed using [`qwen-code-api`](https://github.com/inno-
 
 The [API key](./web-api.md#api-key) that is used to authorize requests to the [`Qwen Code` API](#what-is-qwen-code-api).
 
-You can use almost any (alphanumeric) string as the `Qwen Code` API key.
+The key should follow the [API key format](./web-api.md#api-key-format).
 
 You store the key in [`QWEN_CODE_API_KEY`](./qwen-code-api-dotenv-secret.md#qwen_code_api_key) in [`qwen-code-api/.env.secret`](./qwen-code-api-dotenv-secret.md#qwen_code_api_key).
 
