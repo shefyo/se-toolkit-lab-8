@@ -18,7 +18,7 @@ Default values are in `qwen-code-api/.env.example`.
 
 ## `QWEN_CODE_API_HOST_PORT`
 
-The [port](./computer-networks.md#port) at which the [`Qwen Code` API](./qwen-code-api.md#what-is-qwen-code-api) is available on the [host](./computer-networks.md#host) where it is deployed.
+The [`Qwen Code` API host port](./qwen-code-api.md#qwen-code-api-host-port).
 
 Default: `42005`
 

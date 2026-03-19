@@ -33,11 +33,11 @@ You can use almost any (alphanumeric) string as the `Qwen Code` API key.
 
 ## `Qwen Code` API host port
 
-The value of [`QWEN_CODE_API_HOST_PORT`](./qwen-code-api-dotenv-secret.md#qwen_code_api_host_port) from [`qwen-code-api/.env.secret`](./qwen-code-api-dotenv-secret.md#about-qwen-code-apienvsecret).
+The [port](./computer-networks.md#port) at which the [`Qwen Code` API](./qwen-code-api.md#what-is-qwen-code-api) is available on the [host](./computer-networks.md#host) where it is deployed.
 
 ### `<qwen-code-api-host-port>` placeholder
 
-The `Qwen Code` API host port (without `<` and  `>`).
+The [`Qwen Code` API host port](#qwen-code-api-host-port) (without `<` and  `>`).
 
 ## `Qwen Code` API base URL
 
