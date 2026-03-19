@@ -504,3 +504,32 @@ Code block example:
 ```terminal
 ls .
 ```
+
+## Troubleshooting
+
+### `git` asks for a password
+
+1. [Create a `GitHub` PAT](./github.md#create-a-pat-classic) if you don't have one.
+
+2. Paste it to the [shell](./shell.md#what-is-a-shell).
+
+   > 🟦 **Note**
+   >
+   > The shell won't show what you pasted for security reasons.
+
+### `fatal: destination path <directory-path> already exists and is not an empty directory.`
+
+There is already a possibly outdated version of the [`GitHub` repository](./github.md#github-repository).
+You can remove it.
+
+1. To remove the directory at `<directory-path>`,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal)
+
+   ```terminal
+   rm -r <directory-path>
+   ```
+
+   Replace the placeholder [`<directory-path>`](./file-system.md#directory-path-placeholder) with the path from the error message (without `<` and `>`).
+
+2. Clone again.
