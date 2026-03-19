@@ -8,7 +8,7 @@
 - [`GitHub` username](#github-username)
   - [`<your-github-username>`](#your-github-username)
   - [Find `<your-github-username>`](#find-your-github-username)
-- [Repository](#repository)
+- [`GitHub` repository](#github-repository)
   - [`<repo-name>`](#repo-name)
   - [`<repo-url>`](#repo-url)
   - [`upstream`](#upstream)
@@ -102,7 +102,7 @@ Assume `<your-github-username>` is your [`GitHub` username](#github-username).
 2. Sign in if necessary.
 3. You'll see your username in the top left corner.
 
-## Repository
+## `GitHub` repository
 
 A `GitHub` repository contains not only project files but also additional collaborative features such as:
 
@@ -112,7 +112,7 @@ A `GitHub` repository contains not only project files but also additional collab
 
 ### `<repo-name>`
 
-A [repository](#repository) name.
+A [`GitHub` repository](#github-repository) name.
 
 The name must be unique among repositories of the [repository owner](#repository-owner).
 
@@ -128,11 +128,11 @@ Placeholder values:
 
 ### `upstream`
 
-In [`Git`](./git.md#what-is-git), `upstream` is the conventional name for the [remote](./git.md#what-is-remote) that points to the original [repository](#repository) that was [forked](#fork).
+In [`Git`](./git.md#what-is-git), `upstream` is the conventional name for the [remote](./git.md#what-is-remote) that points to the original [`GitHub` repository](#github-repository) that was [forked](#fork).
 
 ### `origin`
 
-In [`Git`](./git.md#what-is-git), `origin` is the conventional name for the [remote](./git.md#what-is-remote) that points to your own copy of the [repository](#repository) — typically [your fork](#fork).
+In [`Git`](./git.md#what-is-git), `origin` is the conventional name for the [remote](./git.md#what-is-remote) that points to your own copy of the [`GitHub` repository](#github-repository) — typically [your fork](#fork).
 
 For example, if your fork [URL](./computer-networks.md#url) is [`<your-fork-url>`](#your-fork-url), then `origin` points to that URL.
 
@@ -195,7 +195,7 @@ See also:
 
 ## Issue
 
-A `GitHub` issue is a unit of work or discussion related to a `GitHub` [repository](#repository).
+A `GitHub` issue is a unit of work or discussion related to a [`GitHub` repository](#github-repository).
 
 Issues are used to track tasks, bugs, enhancements, feature requests, and other activities related to a project.
 
@@ -243,19 +243,19 @@ Examples of issue forms:
 
 ### Base repository
 
-The base repository is the [repository](#repository) into which the changes are merged.
+The base repository is the [`GitHub` repository](#github-repository) into which the changes are merged.
 
 When creating a [pull request](#pull-request) from a [fork](#fork), the base repository can be the fork itself or the [upstream](#upstream) repository that was forked.
 
 ### Head repository
 
-The head repository is the [repository](#repository) that contains the changes you want to merge.
+The head repository is the [`GitHub` repository](#github-repository) that contains the changes you want to merge.
 
 When creating a [pull request](#pull-request) from a [fork](#fork) for the cours e labs, the head repository is your fork, not the upstream repostory.
 
 ### Default branch
 
-The default branch is the primary branch of a [repository](#repository), typically named `main`.
+The default branch is the primary branch of a [`GitHub` repository](#github-repository), typically named `main`.
 
 New [pull requests](#pull-request) and code merges target the default branch by default.
 
@@ -412,7 +412,7 @@ A [label](https://docs.github.com/en/issues/using-labels-and-milestones-to-track
 
 A personal access token (PAT) is a credential that authenticates you to [`GitHub`](#what-is-github) in place of a password.
 
-PATs are used when accessing `GitHub` over [`HTTPS`](./http.md#https) — for example, when pushing to a [repository](#repository) from the command line or making requests to the [`GitHub` API](#github-api).
+PATs are used when accessing `GitHub` over [`HTTPS`](./http.md#https) — for example, when pushing to a [`GitHub` repository](#github-repository) from the command line or making requests to the [`GitHub` API](#github-api).
 
 ### Create a PAT (classic)
 
@@ -464,7 +464,7 @@ You can use Projects to plan sprints, track bug fixes, manage feature developmen
 
 ## `GitHub Actions`
 
-`GitHub Actions` is a `CI/CD` platform built into `GitHub` that runs automated workflows when events happen in a [repository](#repository) — for example, on every push to `main`.
+`GitHub Actions` is a `CI/CD` platform built into `GitHub` that runs automated workflows when events happen in a [`GitHub` repository](#github-repository) — for example, on every push to `main`.
 
 Workflows are defined as `YAML` files in `.github/workflows/`.
 
@@ -474,7 +474,7 @@ Docs:
 
 ## Secrets
 
-A `GitHub` secret is an encrypted environment variable stored in a [repository](#repository). Secrets are used to store sensitive values like API keys, passwords, and tokens so they are not exposed in workflow files.
+A `GitHub` secret is an encrypted environment variable stored in a [`GitHub` repository](#github-repository). Secrets are used to store sensitive values like API keys, passwords, and tokens so they are not exposed in workflow files.
 
 Secrets are accessed in workflow files as `${{ secrets.SECRET_NAME }}`.
 
