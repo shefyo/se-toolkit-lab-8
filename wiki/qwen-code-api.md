@@ -13,7 +13,17 @@
 
 ## What is `Qwen Code` API
 
-<!-- TODO visualize -->
+```mermaid
+sequenceDiagram
+    participant L as Your app / curl<br/>(Local machine)
+    participant Q as Qwen Code API /v1<br/>(Your VM)
+    participant A as Qwen API<br/>(Alibaba, free)
+
+    L->>Q: POST /v1/chat/completions
+    Q->>A: Forward request
+    A-->>Q: Response
+    Q-->>L: Response
+```
 
 The `Qwen Code` API is an [OpenAI-compatible API](./llm.md#openai-compatible-api) that uses the [`Qwen Code` credentials file](./qwen-code.md#qwen-code-credentials-file) to provide access to the [`Qwen` API](./qwen-code.md#qwen-api).
 
