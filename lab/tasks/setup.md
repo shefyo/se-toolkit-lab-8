@@ -209,7 +209,7 @@ See [tools](../../wiki/software-types.md#tool).
 >
 > **The terminal shell is not `bash` or `zsh`.**
 >
-> Go back to [step 1.4.3](#143-upd-windows-only-switch-to-the-linux-shell-for-the-vs-code-terminal) and set the default shell.
+> 1. [(`Windows` only) Switch to the `Linux` shell for the `VS Code Terminal`](#143-upd-windows-only-switch-to-the-linux-shell-for-the-vs-code-terminal).
 >
 > **Recommended extensions did not install.**
 >
