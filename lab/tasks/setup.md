@@ -63,13 +63,6 @@
 >
 > Tasks are doable when you have the right setup.
 
-> [!NOTE]
-> This lab needs your university email, GitHub alias, and VM IP in the Autochecker bot <https://t.me/auchebot>.
->
-> If you haven't registered, do so now.
->
-> If you want to change something, contact your TA.
-
 ### 1.1. (UPD) Find a partner
 
 1. Find a partner for this lab.
