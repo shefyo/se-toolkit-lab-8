@@ -8,7 +8,6 @@
   - [`<qwen-code-api-host-port>` placeholder](#qwen-code-api-host-port-placeholder)
 - [`Qwen Code` API base URL](#qwen-code-api-base-url)
   - [`<qwen-code-api-base-url>` placeholder](#qwen-code-api-base-url-placeholder)
-- [Set up the `Qwen Code` CLI (REMOTE)](#set-up-the-qwen-code-cli-remote)
 - [Check that the `Qwen Code` API is accessible](#check-that-the-qwen-code-api-is-accessible)
 
 ## What is `Qwen Code` API
@@ -57,30 +56,6 @@ See:
 ### `<qwen-code-api-base-url>` placeholder
 
 [`Qwen Code` API base URL](#qwen-code-api-base-url) (without `<` and `>`).
-
-## Set up the `Qwen Code` CLI (REMOTE)
-
-1. [Connect to the VM](./vm-access.md#connect-to-the-vm).
-
-2. [Install `Node.js`](./nodejs.md#install-nodejs).
-
-3. [Install `pnpm`](./nodejs.md#install-pnpm).
-
-4. To install [`Qwen Code`](./qwen-code.md#what-is-qwen-code),
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   pnpm add -g @qwen-code/qwen-code
-   ```
-
-5. [Open a chat with `Qwen Code` using the CLI](./qwen-code.md#open-a-chat-with-qwen-code-using-the-cli).
-
-6. Type `/auth` in the chat to [authenticate via Qwen OAuth](https://github.com/QwenLM/qwen-code?tab=readme-ov-file#authentication).
-
-7. Open the link in a browser to complete the authentication procedure.
-
-8. [Quit the chat with `Qwen Code`](./qwen-code.md#quit-the-chat-with-qwen-code).
 
 ## Check that the `Qwen Code` API is accessible
 

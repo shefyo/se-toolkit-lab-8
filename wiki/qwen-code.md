@@ -6,9 +6,10 @@
 - [`Qwen` API](#qwen-api)
 - [`Qwen Code` credentials file](#qwen-code-credentials-file)
 - [Set up `Qwen Code` (LOCAL)](#set-up-qwen-code-local)
-  - [Set up the `Qwen Code` CLI (LOCAL)](#set-up-the-qwen-code-cli-local)
+  - [Set up the `Qwen Code` CLI](#set-up-the-qwen-code-cli)
   - [Set up the `Qwen Code Companion` extension for `VS Code`](#set-up-the-qwen-code-companion-extension-for-vs-code)
   - [Set up the `GitHub Copilot Chat` extension for `VS Code`](#set-up-the-github-copilot-chat-extension-for-vs-code)
+- [Set up the `Qwen Code` CLI (REMOTE)](#set-up-the-qwen-code-cli-remote)
 - [Check the `Qwen Code` credentials file](#check-the-qwen-code-credentials-file)
 - [Open a chat with `Qwen Code`](#open-a-chat-with-qwen-code)
   - [Open a chat with `Qwen Code` using the CLI](#open-a-chat-with-qwen-code-using-the-cli)
@@ -55,26 +56,42 @@ Path: `~/.qwen/oauth_creds.json`.
 > See [`Qwen Code`](#what-is-qwen-code).
 
 <!-- no toc -->
-- Method 1: [Set up the `Qwen Code` CLI (LOCAL)](#set-up-the-qwen-code-cli-local).
+- Method 1: [Set up the `Qwen Code` CLI (LOCAL)](#set-up-the-qwen-code-cli).
 - Method 2: [Set up the `Qwen Code Companion` extension for `VS Code`](#set-up-the-qwen-code-companion-extension-for-vs-code).
 - Method 3: [Set up the `GitHub Copilot Chat` extension for `VS Code`](#set-up-the-github-copilot-chat-extension-for-vs-code).
 
-### Set up the `Qwen Code` CLI (LOCAL)
+### Set up the `Qwen Code` CLI
 
 > [!NOTE]
 > See [CLI](./cli.md#what-is-a-cli)
 
+> [!NOTE]
+> These instructions should work:
+>
+> - on your VM (REMOTE)
+> - on your local machine (LOCAL)
+
 1. [Install `Node.js`](./nodejs.md#install-nodejs).
 
-2. Copy the single-line [shell command](./shell.md#shell-command) from the [installation instructions](https://github.com/QwenLM/qwen-code#installation) for [`Qwen Code`](#what-is-qwen-code).
+2. [Install `pnpm`](./nodejs.md#install-pnpm).
 
-   <!-- TODO use pnpm -->
+3. To install [`Qwen Code`](./qwen-code.md#what-is-qwen-code),
 
-3. [Open a chat with `Qwen Code` using the CLI](#open-a-chat-with-qwen-code-using-the-cli).
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
-4. Type `/auth` in the chat to [authenticate via Qwen OAuth](https://github.com/QwenLM/qwen-code?tab=readme-ov-file#authentication).
+   ```terminal
+   pnpm add -g @qwen-code/qwen-code
+   ```
 
-5. [Check the `Qwen Code` credentials file](#check-the-qwen-code-credentials-file).
+4. [Open a chat with `Qwen Code` using the CLI](./qwen-code.md#open-a-chat-with-qwen-code-using-the-cli).
+
+5. Type `/auth` in the chat to [authenticate via Qwen OAuth](https://github.com/QwenLM/qwen-code?tab=readme-ov-file#authentication).
+
+6. Open the link in a browser to complete the authentication procedure.
+
+7. [Quit the chat with `Qwen Code`](./qwen-code.md#quit-the-chat-with-qwen-code).
+
+8. [Check the `Qwen Code` credentials file](#check-the-qwen-code-credentials-file).
 
 ### Set up the `Qwen Code Companion` extension for `VS Code`
 
@@ -111,6 +128,12 @@ Path: `~/.qwen/oauth_creds.json`.
 7. Double click `Qwen 3 Coder Plus` to make the model visible.
 
 8. [Open a chat with `Qwen Code` using the `GitHub Copilot Chat` extension for `VS Code`](#open-a-chat-with-qwen-code-using-the-github-copilot-chat-extension-for-vs-code).
+
+## Set up the `Qwen Code` CLI (REMOTE)
+
+1. [Connect to the VM](./vm-access.md#connect-to-the-vm).
+
+2. [Set up the `Qwen Code` CLI (REMOTE)](#set-up-the-qwen-code-cli).
 
 ## Check the `Qwen Code` credentials file
 
