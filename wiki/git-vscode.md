@@ -83,7 +83,11 @@ Docs:
 
    See [Home directory (`~`)](./file-system.md#home-directory-).
 
-2. If `Git` asks for a password, provide [your `GitHub` PAT](./github.md#create-a-pat-classic).
+   > <h3>Troubleshooting</h3>
+   >
+   > [**`git` asks for a password**](./github.md#git-asks-for-a-password)
+   >
+   > [**`fatal: destination path <directory-path> already exists and is not an empty directory.`**](./github.md#fatal-destination-path-directory-path-already-exists-and-is-not-an-empty-directory)
 
 3. To verify that the repo was cloned,
 

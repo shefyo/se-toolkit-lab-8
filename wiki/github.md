@@ -57,6 +57,9 @@
 - [File preview](#file-preview)
   - [`Markdown` file preview](#markdown-file-preview)
     - [Copy code block](#copy-code-block)
+- [Troubleshooting](#troubleshooting)
+  - [`git` asks for a password](#git-asks-for-a-password)
+  - [`fatal: destination path <directory-path> already exists and is not an empty directory.`](#fatal-destination-path-directory-path-already-exists-and-is-not-an-empty-directory)
 
 ## What is `GitHub`
 
