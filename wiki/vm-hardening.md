@@ -9,6 +9,9 @@
 - [Harden the VM](#harden-the-vm)
   - [Set up `ufw` (REMOTE)](#set-up-ufw-remote)
   - [Set up `fail2ban` (REMOTE)](#set-up-fail2ban-remote)
+- [Disable VM hardening services](#disable-vm-hardening-services)
+  - [Disable `ufw`](#disable-ufw)
+  - [Disable `fail2ban`](#disable-fail2ban)
 
 ## About the VM hardening
 
@@ -135,22 +138,6 @@ Complete these steps:
    42002 (v6)                 ALLOW       Anywhere (v6) 
    ```
 
-6. (Optional) To disable the firewall:
-
-   1. [Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-      ```terminal
-      sudo ufw disable
-      ```
-
-   2. [Type the password for the user `<user>`](./vm-access.md#type-the-password-for-the-user-user-remote).
-  
-   The output should look like this:
-
-   ```terminal
-   Firewall is active and enabled on system startup
-   ```
-
 ### Set up `fail2ban` (REMOTE)
 
 > [!NOTE]
@@ -234,7 +221,32 @@ Complete these steps:
    ...
    ```
 
-6. (Optional) To stop the service,
+## Disable VM hardening services
+
+- [Disable `ufw`](#disable-ufw)
+- [Disable `fail2ban`](#disable-fail2ban)
+
+### Disable `ufw`
+
+1. To disable the firewall:
+
+   1. [Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+      ```terminal
+      sudo ufw disable
+      ```
+
+   2. [Type the password for the user `<user>`](./vm-access.md#type-the-password-for-the-user-user-remote).
+  
+   The output should look like this:
+
+   ```terminal
+   Firewall is active and enabled on system startup
+   ```
+
+### Disable `fail2ban`
+
+1. (Optional) To stop the service,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
