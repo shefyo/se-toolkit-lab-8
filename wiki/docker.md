@@ -241,3 +241,5 @@ If `docker compose up` fails with an error like `Bind for <host>:<port> failed: 
 probably a container from a previous run is still occupying that port.
 
 1. [Remove the container running at the port](#remove-the-container-running-at-the-port).
+
+2. Start the services again.
