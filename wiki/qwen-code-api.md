@@ -9,7 +9,7 @@
 - [`Qwen Code` API base URL](#qwen-code-api-base-url)
   - [`<qwen-code-api-base-url>` placeholder](#qwen-code-api-base-url-placeholder)
 - [Set up the `Qwen Code` CLI (REMOTE)](#set-up-the-qwen-code-cli-remote)
-- [Set up the `Qwen Code` API (REMOTE)](#set-up-the-qwen-code-api-remote)
+- [Deploy the `Qwen Code` API (REMOTE)](#deploy-the-qwen-code-api-remote)
   - [Clone the `Qwen Code` API repository (REMOTE)](#clone-the-qwen-code-api-repository-remote)
   - [Pull the latest changes from the `Qwen Code` API repository (REMOTE)](#pull-the-latest-changes-from-the-qwen-code-api-repository-remote)
   - [Enter the `Qwen Code` API repository directory (REMOTE)](#enter-the-qwen-code-api-repository-directory-remote)
@@ -88,7 +88,7 @@ See:
 
 8. [Quit the chat with `Qwen Code`](./qwen-code.md#quit-the-chat-with-qwen-code).
 
-## Set up the `Qwen Code` API (REMOTE)
+## Deploy the `Qwen Code` API (REMOTE)
 
 Complete these steps:
 
