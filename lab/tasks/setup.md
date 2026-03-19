@@ -29,8 +29,8 @@
     - [1.10.1. Install `Node.js`](#1101-install-nodejs)
     - [1.10.2. (UPD) Install `pnpm`](#1102-upd-install-pnpm)
   - [1.11. (UPD) Set up `Qwen Code` (LOCAL)](#111-upd-set-up-qwen-code-local)
-  - [1.12. (UPD) Set up the `Qwen Code` API (REMOTE)](#112-upd-set-up-the-qwen-code-api-remote)
   - [1.13. (UPD) Deploy the LMS API (REMOTE)](#113-upd-deploy-the-lms-api-remote)
+  - [1.12. (UPD) Set up the `Qwen Code` API (REMOTE)](#112-upd-set-up-the-qwen-code-api-remote)
   - [1.14. Set up the `Autochecker` bot](#114-set-up-the-autochecker-bot)
   - [1.15. Check the setup using the `Autochecker` bot](#115-check-the-setup-using-the-autochecker-bot)
 - [2. Optional steps](#2-optional-steps)
@@ -258,13 +258,13 @@ See [tools](../../wiki/software-types.md#tool).
 
 1. [Set up `Qwen Code`](../../wiki/qwen-code.md#set-up-qwen-code-local).
 
-### 1.12. (UPD) Set up the `Qwen Code` API (REMOTE)
-
-1. [Set up the `Qwen Code` API on your VM](../../wiki/qwen-code-api.md#set-up-the-qwen-code-api-remote).
-
 ### 1.13. (UPD) Deploy the LMS API (REMOTE)
 
 1. [Deploy the LMS API on your VM](../../wiki/lms-api-deployment.md#about-the-lms-api-deployment).
+
+### 1.12. (UPD) Set up the `Qwen Code` API (REMOTE)
+
+1. [Set up the `Qwen Code` API on your VM](../../wiki/qwen-code-api.md#set-up-the-qwen-code-api-remote).
 
 ### 1.14. Set up the `Autochecker` bot
 
