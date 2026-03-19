@@ -104,10 +104,7 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
    >
    > **`permission denied while trying to connect to the Docker daemon socket ...`**
    >
-   > 1. [Add the user `admin` to the group `docker` (REMOTE)](./vm-access.md#add-the-user-user-to-the-group-docker-remote).
-   > 2. [Exit the current shell session (REMOTE)](./shell.md#exit-the-shell-session).
-   > 3. [Connect to the VM as the user `admin` (LOCAL)](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
-   > 4. [Enter the repository directory (REMOTE)](#enter-the-repository-directory-remote).
+   > 1. [Set up `Docker`](./docker.md#set-up-docker-as-the-user-user-remote).
    >
    > [**Port conflict (`port is already allocated`)**](./docker.md#port-conflict-port-is-already-allocated)
    >
