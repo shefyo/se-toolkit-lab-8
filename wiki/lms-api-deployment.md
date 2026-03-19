@@ -9,7 +9,7 @@
   - [Configure the environment (REMOTE)](#configure-the-environment-remote)
   - [Start the services (REMOTE)](#start-the-services-remote)
   - [Populate the database (LOCAL)](#populate-the-database-local)
-  - [Verify the deployment (LOCAL)](#verify-the-deployment-local)
+  - [View the dashboard (LOCAL)](#view-the-dashboard-local)
 
 ## About the LMS API deployment
 
@@ -19,10 +19,13 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
 
 1. [Connect to the VM as the user `admin` (LOCAL)](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
 2. [Clone the repository (REMOTE)](#clone-the-repository-remote).
-3. [Configure the environment (REMOTE)](#configure-the-environment-remote).
-4. [Start the services (REMOTE)](#start-the-services-remote).
-5. [Populate the database (LOCAL)](#populate-the-database-local).
-6. [Verify the deployment (LOCAL)](#verify-the-deployment-local).
+3. [Switch to the necessary `<branch>` (REMOTE)](./git-vscode.md#switch-to-the-branch-using-the-vs-code-terminal).
+4. [Hard reset the `<branch>`](./git-vscode.md#hard-reset-the-branch).
+5. [Configure the environment (REMOTE)](#configure-the-environment-remote).
+6. [Configure `Docker` DNS (REMOTE)](./docker.md#configure-docker-dns).
+7. [Start the services (REMOTE)](#start-the-services-remote).
+8. [Populate the database (LOCAL)](#populate-the-database-local).
+9. [View the dashboard (LOCAL)](#view-the-dashboard-local).
 
 ### Clone the repository (REMOTE)
 
@@ -37,7 +40,7 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   cd se-toolkit-lab-6
+   cd ~/se-toolkit-lab-6
    ```
 
 ### Configure the environment (REMOTE)
@@ -78,15 +81,18 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
 
    Replace the placeholder [`<lms-api-key>`](./lms-api.md#lms-api-key-placeholder).
 
-5. Save and exit:
+   See [API key format](./web-api.md#api-key-format).
+
+5. To write the changes:
 
    1. Press `Ctrl+O`.
    2. Press `Enter`.
-   3. Press `Ctrl+X`.
+
+6. To close the editor, press `Ctrl+X`.
 
 ### Start the services (REMOTE)
 
-1. To start all services in the background,
+1. To start all services in the [background](./operating-system.md#background-process),
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -96,13 +102,31 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
 
    > <h3>Troubleshooting</h3>
    >
+   > **`permission denied while trying to connect to the Docker daemon socket ...`**
+   >
+   > 1. [Add the user `admin` to the group `docker` (REMOTE)](./vm-access.md#add-the-user-user-to-the-group-docker-remote).
+   > 2. [Exit the current shell session (REMOTE)](./shell.md#exit-the-shell-session).
+   > 3. [Connect to the VM as the user `admin` (LOCAL)](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
+   > 4. [Enter the repository directory (REMOTE)](#enter-the-repository-directory-remote).
+   >
    > [**Port conflict (`port is already allocated`)**](./docker.md#port-conflict-port-is-already-allocated)
    >
    > [**Containers exit immediately**](./docker-compose.md#containers-exit-immediately)
    >
    > [**Image pull fails**](./docker.md#image-pull-fails)
    >
-   > [**DNS resolution errors (`getaddrinfo EAI_AGAIN`)**](./docker.md#dns-resolution-errors-getaddrinfo-eai_again)
+   > **`RUN npm install -g pnpm` hangs**
+   >
+   > 1. Press `Ctrl+C`.
+   > 2. See [DNS resolution errors](./docker.md#dns-resolution-errors).
+   >
+   > **`getaddrinfo EAI_AGAIN`**
+   >
+   > 1. See [DNS resolution errors](./docker.md#dns-resolution-errors).
+   >
+   > **`=> ERROR [app builder 3/6] RUN --mount=type=cache,target=/root/.cache/uv`**
+   >
+   > 1. See [DNS resolution errors](./docker.md#dns-resolution-errors).
 
 2. To check that the [containers](./docker.md#container) are running,
 
@@ -139,12 +163,12 @@ You need to run the ETL pipeline to populate it with data from the [`Autochecker
 
 3. [Try the endpoint](./swagger.md#try-an-endpoint-in-swagger-ui) `POST /pipeline/sync`.
 
-   You should get a response showing the number of items and logs loaded:
+   You should get a response showing the number of records loaded:
 
    ```json
    {
-     "items_loaded": 120,
-     "logs_loaded": 5000
+     "new_records": 120,
+     "total_records": 9502
    }
    ```
 
@@ -157,19 +181,17 @@ You need to run the ETL pipeline to populate it with data from the [`Autochecker
 
    You should get a non-empty array of items.
 
-### Verify the deployment (LOCAL)
+### View the dashboard (LOCAL)
 
-1. [Open `Swagger UI`](./swagger.md#open-swagger-ui).
-
-2. Open in a browser: `<lms-api-base-url>/`.
+1. Open in a browser: `<lms-api-base-url>/`.
 
    Replace the placeholder [`<lms-api-base-url>`](./lms-api.md#lms-api-base-url-placeholder).
 
    You should see the [frontend](./lms-frontend.md#about-the-lms-frontend).
 
-3. Enter the [LMS API key](./lms-api.md#lms-api-key) to authenticate in the frontend.
+2. Enter the [LMS API key](./lms-api.md#lms-api-key).
 
-4. Switch to the **Dashboard** tab.
+3. Switch to the **Dashboard** tab.
 
    You should see charts with analytics data:
 
