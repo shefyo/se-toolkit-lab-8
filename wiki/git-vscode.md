@@ -13,6 +13,7 @@
   - [Switch to a new branch using `GitHub`](#switch-to-a-new-branch-using-github)
   - [Switch to a new branch using the `VS Code Terminal`](#switch-to-a-new-branch-using-the-vs-code-terminal)
   - [Switch to a new branch using `GitLens`](#switch-to-a-new-branch-using-gitlens)
+- [Fetch the latest changes using the `VS Code Terminal`](#fetch-the-latest-changes-using-the-vs-code-terminal)
 - [Detect conflicts](#detect-conflicts)
   - [Detect conflicts using the `VS Code Terminal`](#detect-conflicts-using-the-vs-code-terminal)
   - [Detect conflicts using `GitLens`](#detect-conflicts-using-gitlens)
@@ -195,6 +196,29 @@ Docs:
 4. Press `Enter` to confirm.
 5. [Select](./vs-code.md#select-an-option-from-a-list)
    `Create & Switch to Branch`.
+
+## Fetch the latest changes using the `VS Code Terminal`
+
+1. [Switch to the `<branch>`](#switch-to-a-new-branch-using-the-vs-code-terminal).
+
+2. To fetch the latest changes from `<remote>`,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   git fetch <remote> <branch>
+   ```
+
+   Replace the placeholders:
+
+   - [`<remote>`](./git.md#remote-placeholder)
+   - [`<branch>`](./git.md#branch-placeholder)
+
+   Example:
+
+   ```terminal
+   git fetch origin main
+   ```
 
 ## Detect conflicts
 
