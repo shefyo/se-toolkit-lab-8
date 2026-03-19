@@ -134,7 +134,7 @@ Mirrors Lab 6 setup checks + deployment + sync.
 10. Verify dashboard shows data at `http://VM_IP:42002`
 11. Get a Telegram bot token from @BotFather
 
-> Setup instructions are implemented in `lab/tasks/setup-simple.md`.
+> Setup instructions are implemented in `lab/setup/setup-simple.md`.
 
 **Auto-checks (reused from Lab 6):**
 
@@ -528,7 +528,7 @@ Lab 7 forks `se-toolkit-lab-6`. Here's what carries over and what changes.
 - **Base repo:** Fork from `se-toolkit-lab-7` (copied from lab-6). Students
   get working backend + frontend + Docker Compose. Bot code goes in `bot/`
   subdirectory within the same repo.
-- **Setup:** Implemented in `lab/tasks/setup-simple.md`. Includes: stop Lab 6
+- **Setup:** Implemented in `lab/setup/setup-simple.md`. Includes: stop Lab 6
   containers, configure Docker DNS, deploy, ETL sync, SSH key, bot token.
 - **Setup checks:** Reuse Lab 6's `repo_exists`, `repo_is_fork`,
   `repo_has_issues`, `ssh_check`, `backend_running` + new `setup-data`.
