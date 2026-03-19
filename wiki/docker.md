@@ -186,6 +186,18 @@ Complete these steps
    >
    > See [`<user-group>`](./operating-system.md#user-group-placeholder).
 
+3. To apply the new group membership in the current session,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   newgrp docker
+   ```
+
+   > 🟪 **Important**
+   >
+   > Without this step, the group change only takes effect when you [connect to the VM as the user `<user>`](./vm-access.md#connect-to-the-vm-as-the-user-user-local) next time.
+
 ## Configure `Docker` DNS
 
 1. To create the `Docker` directory if it doesn't exist:
@@ -373,7 +385,4 @@ Steps to fix:
 
 ### User not in the `docker` group
 
-1. [Add the user `admin` to the group `docker` (REMOTE)](./vm-access.md#add-the-user-user-to-the-group-docker-remote).
-2. [Exit the current shell session (REMOTE)](./shell.md#exit-the-shell-session).
-3. [Connect to the VM as the user `admin` (LOCAL)](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
-4. [Enter the repository directory (REMOTE)](./vm-access.md#enter-the).
+1. [Add the user `admin` to the group `docker` (REMOTE)](./docker.md#add-the-user-user-to-the-group-docker-remote).
