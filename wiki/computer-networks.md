@@ -9,11 +9,14 @@
 - [Host](#host)
   - [Local host](#local-host)
   - [Remote host](#remote-host)
+- [DNS](#dns)
+  - [Domain name](#domain-name)
 - [Host addresses](#host-addresses)
   - [IP address](#ip-address)
     - [IPv4](#ipv4)
     - [IPv6](#ipv6)
   - [Hostname](#hostname)
+  - [FQDN](#fqdn)
   - [`<host>` placeholder](#host-placeholder)
   - [`localhost`](#localhost)
   - [`127.0.0.1`](#127001)
@@ -78,6 +81,20 @@ A remote [host](#host) is a host that is not the [local host](#localhost) — it
 
 Example: [your VM](./vm.md#your-vm) you connect to via [`SSH`](./ssh.md#what-is-ssh) is a remote host.
 
+## DNS
+
+DNS (Domain Name System) is a system that translates human-readable [domain names](#domain-name) into [IP addresses](#ip-address).
+
+When you type a [domain name](#domain-name) into a browser or use it in a command, DNS resolves it to the [IP address](#ip-address) of the [host](#host) that serves the requested resource.
+
+### Domain name
+
+A domain name is a human-readable address used to identify a [host](#host) on the [Internet](#internet).
+
+It is mapped to an [IP address](#ip-address) through [DNS](#dns).
+
+Example: `example.com`, `innopolis.university`.
+
 ## Host addresses
 
 ### IP address
@@ -111,6 +128,14 @@ A hostname is a human-readable label assigned to a [host](#host) on a [network](
 It is used to identify the host instead of its [IP address](#ip-address).
 
 Examples: [`localhost`](#localhost), `my-server`, [`vm.innopolis.university`](./vm.md#go-to-the-vms-site).
+
+### FQDN
+
+An FQDN (Fully Qualified Domain Name) is the complete [domain name](#domain-name) that specifies the exact location of a [host](#host) in the [DNS](#dns) hierarchy.
+
+Unlike a [hostname](#hostname), which may be a short label like `my-server`, an FQDN includes all levels of the domain hierarchy down to the top-level domain.
+
+Example: `vm.innopolis.university`, `mail.example.com`.
 
 ### `<host>` placeholder
 
