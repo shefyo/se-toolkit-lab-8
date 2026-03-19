@@ -213,7 +213,8 @@ See [tools](../../wiki/software-types.md#tool).
 >
 > **Recommended extensions did not install.**
 >
-> Reload the `VS Code` window: press `Ctrl+Shift+P`, type `Reload Window`, and press `Enter`.
+> 1. [Run using the `Command Palette`](../../wiki/vs-code.md#run-a-command-using-the-command-palette):
+>    `Reload Window`
 
 ### 1.8. Set up a new VM
 
