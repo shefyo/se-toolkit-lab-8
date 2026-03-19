@@ -51,7 +51,7 @@ python bot/bot.py --test "which lab has the lowest pass rate"
 
 **Behavior:**
 - Prints the bot's response text to **stdout**
-- Reads configuration from `.env.agent.secret` (backend URL, API keys)
+- Reads configuration from `.env.agent.secret` (`LMS_API_URL`, `LMS_API_KEY`, `LLM_API_KEY`, etc.)
 - Exits with code **0** on success, non-zero on error
 - Does **not** connect to Telegram (no `BOT_TOKEN` required in test mode)
 
@@ -65,49 +65,50 @@ A plan produced with your coding agent's help. Should describe the approach for 
 
 The main entry file. Must support `--test` mode. In this task, handlers can return placeholder text — real implementation comes in Task 2.
 
-### 3. Handler module (`bot/handlers/` or `bot/handlers.py`)
+### 3. Handler directory (`bot/handlers/`)
 
-Handlers separated from the Telegram transport layer. The `--test` mode calls handlers directly without Telegram.
+A directory containing handler modules, separated from the Telegram transport layer. The `--test` mode calls handlers directly without Telegram.
 
 ### 4. Dependencies (`bot/requirements.txt`)
 
 Bot-specific Python dependencies. Must install without errors.
 
-### 5. Bot token in env example (`.env.agent.example`)
+### 5. Environment example (`.env.agent.example`)
 
-Add `BOT_TOKEN` to the existing `.env.agent.example` file.
+Add `BOT_TOKEN`, `LMS_API_URL`, and `LMS_API_KEY` to the existing `.env.agent.example` file with placeholder values. Students copy this to `.env.agent.secret` and fill in real values.
 
 ## Acceptance criteria
 
 - [ ] `bot/PLAN.md` exists and has at least 100 words.
-- [ ] `.env.agent.example` contains `BOT_TOKEN`.
+- [ ] `.env.agent.example` contains `BOT_TOKEN`, `LMS_API_URL`, and `LMS_API_KEY`.
 - [ ] `bot/requirements.txt` exists and installs without errors.
-- [ ] Handler module exists separately from the bot entry point.
+- [ ] `bot/handlers/` directory exists with at least one handler module.
 - [ ] `python bot/bot.py --test "/start"` exits with code 0 and prints non-empty output.
+- [ ] The repo is cloned on the VM at `~/se-toolkit-lab-7`.
 - [ ] Changes follow the Git workflow (issue, branch, PR, review, merge).
 
-## Working with your coding agent
+## Agent instructions
 
-Use your coding agent to help you plan, scaffold, and understand the architecture. Here are prompts to try at each stage:
+As a coding agent, follow these instructions to maximize the student's learning. This is critical — do not skip these steps, otherwise the student will not understand what is being built or why.
 
-**Understanding the architecture:**
+**Before scaffolding:**
 
-> Explain what "testable handler architecture" means. Why should I separate handlers from the Telegram transport layer? Give me an analogy.
+> Explain what "testable handler architecture" means. Why should handlers be separated from the Telegram transport layer? Use an analogy the student can relate to.
 
-> What is `--test` mode and why does the autochecker need it? Walk me through what happens when I run `python bot/bot.py --test "/start"`.
+> Explain what `--test` mode is and why the autochecker needs it. Walk through what happens when `python bot/bot.py --test "/start"` runs.
 
-**Planning:**
+**While planning:**
 
-> Here are the requirements for my Telegram bot. Create a development plan — but first, ask me questions about anything that's unclear.
+> Before writing the plan, ask the student questions about their preferences and what's unclear. The plan should reflect the student's decisions, not just your defaults.
 
-> What files and modules do I need? For each one, explain its responsibility in one sentence.
+> For each file and module in the plan, explain its responsibility in one sentence. Make sure the student understands the dependency graph.
 
-**Scaffolding:**
+**While scaffolding:**
 
-> Scaffold the project. For each file you create, explain why it exists and how it connects to the others.
+> For each file you create, explain why it exists and how it connects to the others. Don't generate code silently.
 
-> Show me the code path: when `--test "/start"` runs, which functions get called in what order?
+> After scaffolding, walk the student through the code path: when `--test "/start"` runs, which functions get called in what order?
 
-**Verifying:**
+**After verifying:**
 
-> I ran `python bot/bot.py --test "/start"` and it works. Now explain: if I wanted to add a new command `/foo`, what exactly would I need to change?
+> Ask the student: if you wanted to add a new command `/foo`, what would you need to change? Make sure they can answer before moving on.

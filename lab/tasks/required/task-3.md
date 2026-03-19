@@ -105,7 +105,7 @@ Add inline keyboard buttons or a reply keyboard so users can discover available 
 
 ## Deliverables
 
-### 1. Intent router (`bot/handlers/intent.py` or similar)
+### 1. Intent router (`bot/handlers/intent.py`)
 
 Accepts plain text (no `/` prefix), sends to LLM with tool definitions, executes tool calls, returns formatted response. Must work in `--test` mode.
 
@@ -130,28 +130,24 @@ Keyboard markup (inline or reply) for common actions. Must be present in the sou
 - [ ] Source code defines at least 9 tool/function schemas for the LLM.
 - [ ] Changes follow the Git workflow (issue, branch, PR, review, merge).
 
-## Working with your coding agent
+## Agent instructions
 
-This is the most complex task — take it step by step. The key concept is **LLM tool use / function calling**: you give the LLM a list of tools it can call, and it decides which one(s) to use based on the user's message.
+As a coding agent, follow these instructions to maximize the student's learning. This is critical — do not skip these steps.
 
-**Understanding tool use:**
+**Before implementing, teach the concept:**
 
-> Explain LLM function calling / tool use. How does the LLM decide which tool to call? What's the difference between the system prompt and tool definitions?
+> Explain LLM function calling / tool use before writing any code. How does the LLM decide which tool to call? What's the difference between the system prompt and tool definitions? Show a minimal example: one tool, one user message, the full message flow (user → LLM → tool_call → execute → feed back → final answer).
 
-> Show me a minimal example: one tool, one user message, the full message flow (user → LLM → tool_call → execute → feed back → final answer). I want to understand the loop.
+**While designing tools:**
 
-**Designing tools:**
+> For each tool schema, explain why the description matters — it's what the LLM reads to decide which tool to use. Poor descriptions lead to wrong tool selection regardless of how good the prompt is.
 
-> Here are my backend endpoints [paste the table from the task]. Help me design tool schemas for them. What makes a good tool description — why does description quality matter more than prompt engineering?
+> Before implementing the loop, walk through a concrete scenario: if the user says "which lab has the lowest pass rate?", trace the expected reasoning — which tools get called and in what order?
 
-> I have 9 tools defined. Before implementing the loop, walk me through: if the user says "which lab has the lowest pass rate?", what should the LLM's reasoning look like? Which tools would it call and in what order?
+**While debugging:**
 
-**Debugging intent routing:**
-
-> The LLM keeps returning a text answer instead of calling a tool. Help me debug — show me the messages I'm sending and explain what might be wrong.
-
-> Test this: `--test "which lab has the lowest pass rate?"`. The answer is wrong. Help me trace through: what tools were called, what data came back, where did the reasoning go wrong?
+> When something goes wrong (LLM returns text instead of tool calls, wrong tool selected, incorrect answer), don't just fix it. Show the student the actual messages being sent to the LLM, explain what went wrong, and why the fix works. This teaches debugging as a transferable skill.
 
 **Fallback handling:**
 
-> The user typed "asdfgh". What should happen? Implement a fallback that's helpful, not just "I don't understand." Explain why good fallbacks matter for UX.
+> Explain why good fallbacks matter for UX before implementing them. A fallback that says "I don't understand" is worse than one that shows what the bot can do. Show examples of good vs bad fallback messages.

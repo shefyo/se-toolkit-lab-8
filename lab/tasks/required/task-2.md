@@ -103,26 +103,24 @@ When the backend is down, commands return a user-friendly error message — no `
 - [ ] When backend is stopped, `--test "/health"` returns a user-friendly message with no `Traceback` in stderr.
 - [ ] Changes follow the Git workflow (issue, branch, PR, review, merge).
 
-## Working with your coding agent
+## Agent instructions
 
-Build each command incrementally — implement one, test it, understand it, then move to the next.
+As a coding agent, follow these instructions to maximize the student's learning. This is critical — do not skip these steps.
 
-**Before implementing:**
+**Build incrementally.** Implement one command, test it with `--test`, explain what happened, then move to the next. Do not implement all 5 commands at once.
 
-> I need to implement `/health` that calls the backend API. Before writing code, explain: what HTTP status codes should I handle? What could go wrong with the request?
+**Before each command:**
 
-> Show me what `GET /items/` returns so I understand the data structure before formatting it.
+> Before implementing, explain what HTTP call this command will make, what the response looks like, and what could go wrong (network errors, auth failures, empty data).
 
-**Implementing:**
+**While implementing:**
 
-> Implement `/health`. It should call `GET /items/` on `localhost:42002` with Bearer auth and report the status. Explain the `httpx` (or `requests`) call and what each parameter does.
-
-> Now implement `/scores <lab>`. Show me what the API returns first, then help me format it nicely for Telegram.
+> For each command, explain the API client call: what URL, what headers, what the response JSON structure looks like. Show the student the actual API response before formatting it.
 
 **Error handling:**
 
-> I stopped the backend and ran `--test "/health"` — it shows a Python traceback. Help me add error handling, but explain the try/except pattern first. What should the user see instead?
+> When adding error handling, explain the pattern: what exception types to catch, why bare `except:` is bad, what a user-friendly error message looks like vs a traceback. Don't just wrap in try/except silently.
 
-**Testing:**
+**After each command:**
 
-> Run all my commands with `--test` and show me the output. Are there edge cases I'm missing?
+> Run `python bot/bot.py --test "/command"` and show the output. Ask: does this output make sense? Is the formatting readable? Are there edge cases (empty data, invalid lab name)?

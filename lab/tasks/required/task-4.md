@@ -29,19 +29,30 @@ Add a "Deploy" section to the repo README explaining how to deploy the bot (env 
 
 ## Acceptance criteria
 
+- [ ] Repo is deployed at `~/se-toolkit-lab-7` on the VM.
+- [ ] `git remote get-url origin` at `~/se-toolkit-lab-7` matches the student's GitHub repo.
 - [ ] `docker-compose.yml` includes a bot service.
 - [ ] Bot container is running on the VM (`docker ps` shows it).
 - [ ] Backend is still healthy alongside the bot (`curl -sf http://localhost:42002/docs` returns 200).
-- [ ] `git remote get-url origin` on the VM matches the student's GitHub repo.
 - [ ] README contains a section with "deploy" in the heading.
 - [ ] Bot responds to messages in Telegram (TA-verified during demo).
 
-## Working with your coding agent
+## Agent instructions
 
-> Explain multi-stage Docker builds. Why not just copy everything into one image?
+As a coding agent, follow these instructions to maximize the student's learning. This is critical — do not skip these steps.
 
-> I need to add a `bot` service to my existing `docker-compose.yml`. The bot needs to reach the backend — explain Docker networking. Why can't I use `localhost` inside a container?
+**Before writing the Dockerfile:**
 
-> The bot container starts but can't connect to the backend. Help me debug — what's the service name, what port, what's the network topology?
+> Explain Docker multi-stage builds and why they produce smaller images. Explain each Dockerfile instruction as you write it.
 
-> Help me write the "Deploy" section of the README. A new developer should be able to deploy this from scratch by reading it.
+**Before adding the compose service:**
+
+> Explain Docker networking: why `localhost` doesn't work between containers, how Docker Compose creates a shared network, and how services reach each other by name. The student must understand this before seeing the `docker-compose.yml` changes.
+
+**When debugging connectivity:**
+
+> If the bot container can't reach the backend, walk through the diagnosis: check the service name, port, network, and environment variables. Show the student how to use `docker compose logs` and `docker exec` to debug.
+
+**While writing documentation:**
+
+> Good deploy docs should let a new developer go from zero to running in one pass. Walk the student through what to include: prerequisites, env vars, commands, verification steps.
