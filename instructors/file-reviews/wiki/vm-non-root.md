@@ -18,11 +18,11 @@
 
 ### 4.8. Links and cross-references
 
-1. ~~**[Medium] Line 82** — "To copy the authorized keys from the user `root`," — First mention of the user `root` in section [Set up the `SSH` key authentication for the user `<user>` (REMOTE)](../../../wiki/vm-access.md#set-up-the-ssh-key-authentication-for-the-user-user), but it is not linked. Per 4.8 and 4.29, link on first mention: `` [the user `root`](./linux.md#the-root-user) ``.~~
+1. ~~**[Medium] Line 82** — "To copy the authorized keys from the user `root`," — First mention of the user `root` in section [Set up the `SSH` key authentication for the user `<user>` (REMOTE)](../../../wiki/vm-access.md#set-up-the-ssh-key-authentication-for-the-user-user-remote), but it is not linked. Per 4.8 and 4.29, link on first mention: `` [the user `root`](./linux.md#the-root-user) ``.~~
 
-2. ~~**[Low] Line 143** — `<user>` is linked again in the "Replace the placeholders:" list, but it was already linked in the Note at line 129 in the same section ([Connect to your VM by `SSH` as the user `<user>` (LOCAL)](../../../wiki/vm-access.md#connect-to-your-vm-by-ssh-as-the-user-user)). Convention: don't link on second mention. Use plain `` `<user>` ``.~~
+2. ~~**[Low] Line 143** — `<user>` is linked again in the "Replace the placeholders:" list, but it was already linked in the Note at line 129 in the same section ([Connect to your VM by `SSH` as the user `<user>` (LOCAL)](../../../wiki/vm-access.md#connect-to-the-vm-as-the-user-user-local)). Convention: don't link on second mention. Use plain `` `<user>` ``.~~
 
-3. ~~**[Low] Line 184** — `<user>` is linked again in "Replace the placeholder `<user>`…", but it was already linked in the Note at line 179 in the same section ([Update the local `SSH` config (LOCAL)](../../../wiki/vm-access.md#update-the-local-ssh-config)). Convention: don't link on second mention. Use plain `` `<user>` ``.~~
+3. ~~**[Low] Line 184** — `<user>` is linked again in "Replace the placeholder `<user>`…", but it was already linked in the Note at line 179 in the same section ([Update the local `SSH` config (LOCAL)](../../../wiki/vm-access.md#update-the-ssh-config-to-connect-to-the-vm-as-the-user-user-local)). Convention: don't link on second mention. Use plain `` `<user>` ``.~~
 
 ### 4.24. Inline paths
 
@@ -42,15 +42,14 @@
 
 ### wiki.md — 1.3 / 1.4. About section structure
 
-1. **[Low] Lines 22–34** — The [About setting up login as a non-root user](../../../wiki/vm-access.md#about-setting-up-vm-access) section contains a `> [!NOTE]` block (lines 22–23) and a "Complete these steps:" mini-ToC (lines 25–34) beyond the 1–3 sentence definition + `Docs:` structure defined in wiki template 1.3. Consider moving the placeholder note and the steps list to immediately after the About section.
+1. **[Low] Lines 22–34** — The [About setting up login as a non-root user](../../../wiki/vm-access.md#about-the-vm-access) section contains a `> [!NOTE]` block (lines 22–23) and a "Complete these steps:" mini-ToC (lines 25–34) beyond the 1–3 sentence definition + `Docs:` structure defined in wiki template 1.3. Consider moving the placeholder note and the steps list to immediately after the About section.
 
 ---
 
 ## TODOs
 
-1. **Line 114** — `<!-- TODO why these permissions are correct? -->` (inside step 4 of [Set up the `SSH` key authentication…](../../../wiki/vm-access.md#set-up-the-ssh-key-authentication-for-the-user-user))
+1. **Line 114** — `<!-- TODO why these permissions are correct? -->` (inside step 4 of [Set up the `SSH` key authentication…](../../../wiki/vm-access.md#set-up-the-ssh-key-authentication-for-the-user-user-remote))
 2. **Line 124** — `<!-- TODO why these permissions are correct? -->` (inside step 5 of the same section)
-3. **Line 150** — `<!-- TODO check there's this file at all with this content -->` (inside [Harden the `SSH` config (REMOTE)](../../../wiki/vm-access.md#harden-the-ssh-config))
 
 ---
 
