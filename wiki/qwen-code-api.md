@@ -164,6 +164,13 @@ Complete these steps:
 
 ### Check that the `Qwen Code` API is accessible
 
+> [!NOTE]
+>
+> These instructions cover the cases when you run the request:
+>
+> - on your VM (REMOTE)
+> - on your local machine (LOCAL)
+
 1. To send an [`HTTP` request](./http.md#http-request) to the [`Qwen Code` API](#what-is-qwen-code-api),
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
@@ -178,7 +185,7 @@ Complete these steps:
 
    Replace the placeholders:
 
-   - [`<qwen-code-api-base-url>`](#qwen-code-api-base-url-placeholder)
+   - [`<qwen-code-api-base-url>`](#qwen-code-api-base-url-placeholder) (depends on the case (REMOTE or LOCAL))
    - `<qwen-code-api-key>` with the value of [`QWEN_CODE_API_KEY`](./qwen-code-api-dotenv-secret.md#qwen_code_api_key) from [`qwen-code-api/.env.secret`](./qwen-code-api-dotenv-secret.md#about-qwen-code-apienvsecret)
    - `<qwen-model>` with one of the [available models](./qwen-code.md#view-available-models)
 
