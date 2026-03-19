@@ -83,20 +83,13 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
    - [`<autochecker-api-login>`](./autochecker-api.md#autochecker-api-login-placeholder)
    - [`<autochecker-api-password>`](./autochecker-api.md#autochecker-api-password-placeholder)
 
-4. Set [`LMS_API_KEY`](./dotenv-docker-secret.md#lms_api_key) to a value you will remember.
-   This is the [LMS API key](./lms-api.md#lms-api-key).
+4. Set the [LMS API key](./lms-api.md#lms-api-key).
 
    ```text
    LMS_API_KEY=<lms-api-key>
    ```
 
-   > 🟪 **Important**
-   >
-   > [`<lms-api-key>`](.) is the backend API key used for:
-   >
-   > - `Authorization: Bearer <lms-api-key>` in [`Swagger UI`](./swagger.md#what-is-swagger-ui)
-   >
-   > - the [LMS frontend](./lms-frontend.md#about-the-lms-frontend)
+   Replace the placeholder [`<lms-api-key>`](./lms-api.md#lms-api-key-placeholder).
 
 5. Save and exit:
 
