@@ -70,7 +70,9 @@ Directories nest inside one another, forming a tree structure rooted at the [roo
 
 ### Subdirectory
 
-<!-- TODO -->
+A subdirectory is a [directory](#directory) contained within another directory.
+
+Example: for the [path](#path) `wiki/images/`, `images/` is a subdirectory of `wiki/`.
 
 ## Path
 
@@ -95,6 +97,13 @@ Examples:
 - `./docs/`
 
 ## Special paths
+
+<!-- no toc -->
+- [Root directory (`/`)](#root-directory-)
+- [Home directory (`~`)](#home-directory-)
+- [Current directory (`.`)](#current-directory-)
+- [Parent directory (`..`)](#parent-directory-)
+- [`Desktop` directory](#desktop-directory)
 
 ### Root directory (`/`)
 
