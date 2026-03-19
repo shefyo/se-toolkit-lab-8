@@ -78,7 +78,7 @@ Docs:
    Example:
 
    ```terminal
-   git clone https://github.com/inno-se-toolkit/se-toolkit-lab-6 ~/software-engineering-toolkit
+   git clone https://github.com/inno-se-toolkit/se-toolkit-lab-6 ~/se-toolkit-lab-6
    ```
 
    See [Home directory (`~`)](./file-system.md#home-directory-).
