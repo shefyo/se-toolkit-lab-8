@@ -78,7 +78,7 @@ Docs:
    Example:
 
    ```terminal
-   git clone https://github.com/inno-se-toolkit/se-toolkit-lab-6 ~/se-toolkit-lab-6
+   git clone https://github.com/microsoft/vscode ~/vscode
    ```
 
    See [Home directory (`~`)](./file-system.md#home-directory-).
@@ -89,27 +89,21 @@ Docs:
    >
    > [**`fatal: destination path <directory-path> already exists and is not an empty directory.`**](./github.md#fatal-destination-path-directory-path-already-exists-and-is-not-an-empty-directory)
 
-3. To verify that the repo was cloned,
+2. To verify that the repository isn't empty,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   ls
+   ls <repo-path>
    ```
 
-   The output should include the `<repo-name>` - the name of the repo.
+   The output should be the list of names of files in the repository.
 
-4. To verify that the repo isn't empty,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+   Example:
 
    ```terminal
-   ls <repo-name>
+   ls ~/vscode
    ```
-  
-   Replace [`<repo-name>`](./github.md#repo-name).
-
-   The output should be the list of names of files in the repo.
 
 ### Clone the repository using the `Command Palette`
 
