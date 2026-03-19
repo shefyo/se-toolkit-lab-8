@@ -4,8 +4,8 @@
 
 - [What is `Git` in `VS Code`](#what-is-git-in-vs-code)
 - [Clone the repository](#clone-the-repository)
-  - [Clone the repo using the `VS Code Terminal`](#clone-the-repo-using-the-vs-code-terminal)
-  - [Clone the repo using the `Command Palette`](#clone-the-repo-using-the-command-palette)
+  - [Clone the repository using the `VS Code Terminal`](#clone-the-repository-using-the-vs-code-terminal)
+  - [Clone the repository using the `Command Palette`](#clone-the-repository-using-the-command-palette)
 - [Switch to the `<branch>`](#switch-to-the-branch)
   - [Switch to the `<branch>` using the `VS Code Terminal`](#switch-to-the-branch-using-the-vs-code-terminal)
   - [Switch to the `<branch>` using `GitLens`](#switch-to-the-branch-using-gitlens)
@@ -57,12 +57,12 @@ Docs:
 > See [`<repo-url>`](./github.md#repo-url), [`<repo-name>`](./github.md#repo-name).
 
 <!-- no toc -->
-- Method 1: [Clone the repo using the `VS Code Terminal`](#clone-the-repo-using-the-vs-code-terminal)
-- Method 2: [Clone the repo using the `Command Palette`](#clone-the-repo-using-the-command-palette)
+- Method 1: [Clone the repository using the `VS Code Terminal`](#clone-the-repository-using-the-vs-code-terminal)
+- Method 2: [Clone the repository using the `Command Palette`](#clone-the-repository-using-the-command-palette)
 
-### Clone the repo using the `VS Code Terminal`
+### Clone the repository using the `VS Code Terminal`
 
-1. To clone the repo,
+1. To clone the repository,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -72,8 +72,8 @@ Docs:
 
    Replace:
 
-   - [`<repo-url>`](./github.md#repo-url).
-   - `<repo-path>` with the path where you want to clone the repo.
+   - [`<repo-url>`](./github.md#repo-url)
+   - `<repo-path>` with the path where you want to clone the repository
 
    Example:
 
@@ -107,7 +107,7 @@ Docs:
 
    The output should be the list of names of files in the repo.
 
-### Clone the repo using the `Command Palette`
+### Clone the repository using the `Command Palette`
 
 1. [Run using the `Command Palette`](./vs-code.md#run-a-command-using-the-command-palette):
    `Git: Clone`.
@@ -115,7 +115,7 @@ Docs:
 3. Allow the extension to sign in.
 4. Paste the [`<repo-url>`](./github.md#repo-url).
 5. [Select](./vs-code.md#select-an-option-from-a-list) the repo.
-6. Choose a directory where to clone the repo.
+6. Choose a directory where to clone the repository.
 7. Confirm the choice.
 
 ## Switch to the `<branch>`
