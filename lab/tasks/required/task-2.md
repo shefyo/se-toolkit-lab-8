@@ -38,21 +38,25 @@ Pass rates for Lab 04:
 When the backend is down, the bot must show a user-friendly message that **includes the actual error** — not a raw traceback, but not a generic "something went wrong" either. The user needs enough information to debug.
 
 Good — includes the error:
+
 ```terminal
 $ uv run bot.py --test "/health"
 Backend error: connection refused (localhost:42002). Check that the services are running.
 ```
+
 ```terminal
 $ uv run bot.py --test "/health"
 Backend error: HTTP 502 Bad Gateway. The app service may be down.
 ```
 
 Bad — hides the error (useless for debugging):
+
 ```terminal
 Backend is not responding.
 ```
 
 Bad — raw traceback (not user-friendly):
+
 ```terminal
 Traceback (most recent call last):
   ...
@@ -63,30 +67,30 @@ httpx.ConnectError: [Errno 111] Connection refused
 
 All on `localhost:42002`, require `Authorization: Bearer YOUR_LMS_API_KEY`:
 
-| Endpoint | Returns |
-|----------|---------|
-| `GET /items/` | Labs and tasks |
-| `GET /learners/` | Enrolled students |
-| `GET /analytics/scores?lab=lab-01` | Score distribution (4 buckets) |
-| `GET /analytics/pass-rates?lab=lab-01` | Per-task averages |
-| `GET /analytics/timeline?lab=lab-01` | Submissions per day |
-| `GET /analytics/groups?lab=lab-01` | Per-group performance |
-| `GET /analytics/top-learners?lab=lab-01&limit=5` | Top N learners |
-| `GET /analytics/completion-rate?lab=lab-01` | Completion percentage |
-| `POST /pipeline/sync` | Trigger ETL sync |
+| Endpoint                                         | Returns                        |
+| ------------------------------------------------ | ------------------------------ |
+| `GET /items/`                                    | Labs and tasks                 |
+| `GET /learners/`                                 | Enrolled students              |
+| `GET /analytics/scores?lab=lab-01`               | Score distribution (4 buckets) |
+| `GET /analytics/pass-rates?lab=lab-01`           | Per-task averages              |
+| `GET /analytics/timeline?lab=lab-01`             | Submissions per day            |
+| `GET /analytics/groups?lab=lab-01`               | Per-group performance          |
+| `GET /analytics/top-learners?lab=lab-01&limit=5` | Top N learners                 |
+| `GET /analytics/completion-rate?lab=lab-01`      | Completion percentage          |
+| `POST /pipeline/sync`                            | Trigger ETL sync               |
 
 > [!TIP]
 > Explore these in Swagger UI at `http://localhost:42002/docs` to see response formats before implementing.
 
 ## Required commands
 
-| Command | Endpoint | What it does |
-|---------|----------|-------------|
-| `/start` | — | Welcome message with bot name |
-| `/help` | — | Lists all commands with descriptions |
-| `/health` | `GET /items/` | Reports healthy/unhealthy status |
-| `/labs` | `GET /items/` | Lists labs (filter by type) |
-| `/scores <lab>` | `GET /analytics/pass-rates?lab=` | Per-task scores for a lab |
+| Command         | Endpoint                         | What it does                         |
+| --------------- | -------------------------------- | ------------------------------------ |
+| `/start`        | —                                | Welcome message with bot name        |
+| `/help`         | —                                | Lists all commands with descriptions |
+| `/health`       | `GET /items/`                    | Reports healthy/unhealthy status     |
+| `/labs`         | `GET /items/`                    | Lists labs (filter by type)          |
+| `/scores <lab>` | `GET /analytics/pass-rates?lab=` | Per-task scores for a lab            |
 
 ## Verify
 
@@ -134,4 +138,3 @@ In Telegram, try `/health`, `/labs`, `/scores lab-04`. You should see real data 
 - [ ] With backend stopped, `--test "/health"` returns a message with the actual error (e.g., "connection refused", "HTTP 502"), no raw `Traceback`.
 - [ ] Bot responds to `/health` and `/labs` in Telegram with real data.
 - [ ] Git workflow followed.
-

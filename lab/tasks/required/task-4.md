@@ -21,6 +21,7 @@ Installs dependencies using `uv sync` from `bot/pyproject.toml` and runs the bot
 ### 2. Bot service in `docker-compose.yml`
 
 Add a `bot` service to the existing compose file:
+
 - Connects to backend via Docker network (service name, not `localhost`)
 - Reads `BOT_TOKEN` and LLM credentials from environment
 - Restarts unless stopped

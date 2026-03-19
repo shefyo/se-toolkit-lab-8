@@ -40,17 +40,17 @@ The LLM receives the user's message, a list of tools (your backend endpoints as 
 
 Define all 9 backend endpoints as LLM tools — this gives the router enough variety for diverse questions:
 
-| Tool | Endpoint | LLM description |
-|------|----------|----------------|
-| `get_items` | `GET /items/` | List of labs and tasks |
-| `get_learners` | `GET /learners/` | Enrolled students and groups |
-| `get_scores` | `GET /analytics/scores?lab=` | Score distribution (4 buckets) |
-| `get_pass_rates` | `GET /analytics/pass-rates?lab=` | Per-task averages and attempt counts |
-| `get_timeline` | `GET /analytics/timeline?lab=` | Submissions per day |
-| `get_groups` | `GET /analytics/groups?lab=` | Per-group scores and student counts |
-| `get_top_learners` | `GET /analytics/top-learners?lab=&limit=` | Top N learners by score |
-| `get_completion_rate` | `GET /analytics/completion-rate?lab=` | Completion rate percentage |
-| `trigger_sync` | `POST /pipeline/sync` | Refresh data from autochecker |
+| Tool                  | Endpoint                                  | LLM description                      |
+| --------------------- | ----------------------------------------- | ------------------------------------ |
+| `get_items`           | `GET /items/`                             | List of labs and tasks               |
+| `get_learners`        | `GET /learners/`                          | Enrolled students and groups         |
+| `get_scores`          | `GET /analytics/scores?lab=`              | Score distribution (4 buckets)       |
+| `get_pass_rates`      | `GET /analytics/pass-rates?lab=`          | Per-task averages and attempt counts |
+| `get_timeline`        | `GET /analytics/timeline?lab=`            | Submissions per day                  |
+| `get_groups`          | `GET /analytics/groups?lab=`              | Per-group scores and student counts  |
+| `get_top_learners`    | `GET /analytics/top-learners?lab=&limit=` | Top N learners by score              |
+| `get_completion_rate` | `GET /analytics/completion-rate?lab=`     | Completion rate percentage           |
+| `trigger_sync`        | `POST /pipeline/sync`                     | Refresh data from autochecker        |
 
 Example tool schema:
 
@@ -75,27 +75,27 @@ Example tool schema:
 
 **Single API call:**
 
-| Message | Behavior |
-|---------|----------|
-| "what labs are available?" | `get_items` → list labs |
-| "show me scores for lab 4" | `get_pass_rates(lab="lab-04")` → format |
-| "who are the top 5 students?" | `get_top_learners(limit=5)` → leaderboard |
-| "which group is best in lab 3?" | `get_groups(lab="lab-03")` → rank |
+| Message                         | Behavior                                  |
+| ------------------------------- | ----------------------------------------- |
+| "what labs are available?"      | `get_items` → list labs                   |
+| "show me scores for lab 4"      | `get_pass_rates(lab="lab-04")` → format   |
+| "who are the top 5 students?"   | `get_top_learners(limit=5)` → leaderboard |
+| "which group is best in lab 3?" | `get_groups(lab="lab-03")` → rank         |
 
 **Multi-step:**
 
-| Message | Behavior |
-|---------|----------|
+| Message                               | Behavior                                         |
+| ------------------------------------- | ------------------------------------------------ |
 | "which lab has the lowest pass rate?" | `get_items` → `get_pass_rates` per lab → compare |
-| "compare group A and group B" | `get_groups` → filter → compare |
+| "compare group A and group B"         | `get_groups` → filter → compare                  |
 
 **Fallback:**
 
-| Message | Behavior |
-|---------|----------|
-| "hello" | Greeting + capabilities hint |
-| "asdfgh" | "I didn't understand. Here's what I can do..." |
-| "lab 4" | "What about lab 4? I can show scores, pass rates..." |
+| Message  | Behavior                                             |
+| -------- | ---------------------------------------------------- |
+| "hello"  | Greeting + capabilities hint                         |
+| "asdfgh" | "I didn't understand. Here's what I can do..."       |
+| "lab 4"  | "What about lab 4? I can show scores, pass rates..." |
 
 ## Inline buttons
 
@@ -141,4 +141,3 @@ In Telegram, try sending plain text like "what labs are available?" (no `/` pref
 - [ ] Source code defines at least 9 tool/function schemas.
 - [ ] The LLM decides which tool to call — no regex or keyword matching in the routing path. After the LLM returns tool calls, results are fed back to the LLM for the final answer.
 - [ ] Git workflow followed.
-

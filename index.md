@@ -3,10 +3,8 @@
 <h2>Table of contents</h2>
 
 - [Lab tasks](#lab-tasks)
-  - [Setup](#setup)
+  - [Full setup](#full-setup)
   - [Git workflow](#git-workflow)
-  - [Required tasks](#required-tasks)
-  - [Optional tasks](#optional-tasks)
 - [Application source](#application-source)
 - [Infrastructure](#infrastructure)
 - [Wiki](#wiki)
@@ -42,25 +40,13 @@
 
 ## Lab tasks
 
-### [Setup](lab/tasks/setup.md)
+### [Full setup](./lab/setup/setup-full.md)
 
 Required and optional steps to get the environment ready: fork, clone, install tools, start services.
 
 ### [Git workflow](./wiki/git-workflow.md)
 
 Branching, committing, opening PRs, and the review process used throughout the lab.
-
-### Required tasks
-
-1. [Explore the API](lab/tasks/required/task-1.md) — `Swagger UI`, authentication, and the API contract.
-2. [Enable and debug the interactions endpoint](lab/tasks/required/task-2.md) — trace the bug between code and database schema.
-3. [Implement the learners endpoint](lab/tasks/required/task-3.md) — follow the existing pattern to add a new endpoint.
-4. Deploy to a hardened VM — firewall, `fail2ban`, SSH restrictions, and deployment.
-
-### Optional tasks
-
-1. [Implement the `/outcomes` endpoint](lab/tasks/optional/task-1.md)
-2. Set up CI with `GitHub Actions`
 
 ## Application source
 
