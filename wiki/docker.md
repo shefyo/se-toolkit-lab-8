@@ -279,6 +279,21 @@ Complete these steps
    Total reclaimed space: ...
    ```
 
+4. To remove unused [networks](./docker-compose.md#docker-compose-networking),
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   sudo docker network prune -f
+   ```
+
+   The output should be empty or similar to this:
+
+   ```terminal
+   ...
+   Total reclaimed space: ...
+   ```
+
 ### Remove the container running at the port
 
 1. To find the [container](#container) occupying the port,
