@@ -139,7 +139,11 @@ Example: `vm.innopolis.university`, `mail.example.com`.
 
 ### `<host>` placeholder
 
-[`<hostname>`](#hostname-placeholder) or [`<host-ip-address>`](#host-ip-address-placeholder).
+Either of these (without `<` and `>`):
+
+- The [IP address](#ip-address) of the [host](#host)
+- The [hostname](#hostname)
+- The [FQDN](#fqdn) of the host
 
 ### `localhost`
 
