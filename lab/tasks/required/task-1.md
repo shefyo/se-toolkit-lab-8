@@ -113,4 +113,3 @@ After verifying with `--test`, deploy the bot on your VM and check it responds i
 - [ ] Bot responds to `/start` in Telegram.
 - [ ] Repo is cloned at `~/se-toolkit-lab-7` on the VM.
 - [ ] Git workflow followed (issue, branch, PR, review, merge).
-
