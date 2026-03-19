@@ -237,9 +237,6 @@ curl -fsSL https://get.pnpm.io/install.sh | sh -
    source ~/.bashrc
    ```
 
-   Alternatively, [open a new `VS Code Terminal`](./vs-code.md#open-a-new-vs-code-terminal).
-   The new terminal will use the new shell profile.
-
 5. To check that [`pnpm`](#pnpm) is available,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
