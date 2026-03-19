@@ -523,15 +523,17 @@ There is already a possibly outdated version of the [`GitHub` repository](./gith
 
 Option 1: Remove it.
 
-1. To remove the directory at `<directory-path>`,
+1. To remove the directory at `<directory-path>`:
 
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal)
+   1. [Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal)
 
-   ```terminal
-   rm -r <directory-path>
-   ```
+      ```terminal
+      sudo rm -r <directory-path>
+      ```
 
-   Replace the placeholder [`<directory-path>`](./file-system.md#directory-path-placeholder) with the path from the error message (without `<` and `>`).
+      Replace the placeholder [`<directory-path>`](./file-system.md#directory-path-placeholder) with the path from the error message (without `<` and `>`).
+
+   2. [Type the password for the user `<user>`](./vm-access.md#type-the-password-for-the-user-user-remote).
 
 2. Clone again.
 

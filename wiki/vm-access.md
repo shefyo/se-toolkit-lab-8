@@ -590,50 +590,50 @@ Complete these steps:
 
 1. [Connect to the VM as the user `<user>` (LOCAL)](#connect-to-the-vm-as-the-user-user-local) if not yet connected.
 
-2. To open the [`sshd`](./ssh.md#sshd) config,
+2. To open the [`sshd`](./ssh.md#sshd) config:
 
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+   1. [Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
-   ```terminal
-   sudo nano /etc/ssh/sshd_config
-   ```
+      ```terminal
+      sudo nano /etc/ssh/sshd_config
+      ```
 
-3. [Type the password for the user `<user>`](#type-the-password-for-the-user-user-remote).
+   2. [Type the password for the user `<user>`](./shell.md#type-the-password-for-the-user).
 
-4. Find the line `PermitRootLogin yes` and set it to:
+3. Find the line `PermitRootLogin yes` and set it to:
 
    ```text
    PermitRootLogin no
    ```
 
-5. Find the line `#PasswordAuthentication yes` and set it to:
+4. Find the line `#PasswordAuthentication yes` and set it to:
 
    ```text
    PasswordAuthentication no
    ```
 
-6. Save (`Ctrl+O`, `Enter`).
+5. Save (`Ctrl+O`, `Enter`).
 
 ### Restart `sshd` (REMOTE)
 
 > [!NOTE]
 > See [`<user>`](./operating-system.md#user-placeholder).
 
-1. To validate the [`sshd`](./ssh.md#sshd) config,
+1. To validate the [`sshd`](./ssh.md#sshd) config:
 
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+   1. [Run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
-   ```terminal
-   sudo sshd -t
-   ```
+      ```terminal
+      sudo sshd -t
+      ```
 
-2. [Type the password for the user `<user>`](#type-the-password-for-the-user-user-remote).
+   2. [Type the password for the user `<user>`](./shell.md#type-the-password-for-the-user).
 
-3. If the command prints no output, the config is valid.
+2. If the command prints no output, the config is valid.
 
    If it prints errors, fix them in `/etc/ssh/sshd_config` before continuing.
 
-4. To restart `sshd`,
+3. To restart `sshd`,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
