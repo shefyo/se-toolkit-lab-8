@@ -208,7 +208,7 @@ Default: `0.0.0.0`
 
 ### `LMS_API_HOST_PORT`
 
-The [port number](./computer-networks.md#port-number) exposed on the [host](./computer-networks.md#host) for accessing the [LMS API](./lms-api.md#about-the-lms-api) via [`Caddy`](./lms-api.md#caddy).
+The [LMS API host port](./lms-api.md#lms-api-host-port).
 
 Default: `42002`
 
