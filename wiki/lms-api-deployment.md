@@ -49,7 +49,7 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
 
 ### Configure the environment (REMOTE)
 
-1. To create the [environment file](./environments.md#env-file) for [`Docker`](./docker.md#what-is-docker),
+1. To create [`.env.docker.secret`](./dotenv-docker-secret.md#what-is-envdockersecret),
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -57,7 +57,7 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
    cp .env.docker.example .env.docker.secret
    ```
 
-2. To open [`.env.docker.secret`](./dotenv-docker-secret.md#what-is-envdockersecret) in an editor,
+2. To open the file in `nano`,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
