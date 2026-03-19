@@ -113,6 +113,17 @@ docker compose --env-file .env.docker.secret start app
 
 You should see a friendly error message, not a Python traceback.
 
+## Deploy and verify in Telegram
+
+Same flow as Task 1 — pull, restart, verify:
+
+```terminal
+cd ~/se-toolkit-lab-7 && git pull
+cd bot && pkill -f "bot.py" 2>/dev/null; nohup uv run bot.py > bot.log 2>&1 &
+```
+
+In Telegram, try `/health`, `/labs`, `/scores lab-04`. You should see real data from your backend.
+
 ## Acceptance criteria
 
 - [ ] `--test "/start"` returns text containing "welcome" or bot name.
@@ -121,5 +132,6 @@ You should see a friendly error message, not a Python traceback.
 - [ ] `--test "/labs"` lists at least 2 labs.
 - [ ] `--test "/scores lab-04"` shows task names and scores.
 - [ ] With backend stopped, `--test "/health"` returns a message with the actual error (e.g., "connection refused", "HTTP 502"), no raw `Traceback`.
+- [ ] Bot responds to `/health` and `/labs` in Telegram with real data.
 - [ ] Git workflow followed.
 

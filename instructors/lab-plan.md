@@ -165,7 +165,7 @@ Mirrors Lab 6 setup checks + deployment + sync.
 - `bot/PLAN.md` — development plan produced with agent assistance
 - Bot code in a `bot/` directory with separated handler layer
 - Bot dependencies in `bot/pyproject.toml` (managed with `uv sync`)
-- `BOT_TOKEN` added to `.env.agent.example`
+- `BOT_TOKEN` added to `.env.bot.example`
 - Bot entry point (`bot/bot.py` or `bot/main.py`) that starts without crashing
 - CLI test mode wired up (even if handlers return placeholder text)
 
@@ -178,7 +178,7 @@ Mirrors Lab 6 setup checks + deployment + sync.
 | ID | Check | Channel | How |
 |----|-------|---------|-----|
 | t1-plan | `bot/PLAN.md` exists and has ≥100 words | GitHub | file_exists + file_word_count |
-| t1-env | `.env.agent.example` contains `BOT_TOKEN` | GitHub | regex_in_file |
+| t1-env | `.env.bot.example` contains `BOT_TOKEN` | GitHub | regex_in_file |
 | t1-deps | `bot/pyproject.toml` exists | GitHub | file_exists |
 | t1-handlers | Handler directory exists | GitHub | file_exists — `bot/handlers/` |
 | t1-install | Bot dependencies install without errors | SSH | `cd bot && uv sync` on VM |
@@ -393,10 +393,10 @@ cd bot && uv run bot.py --test "asdfgh"
 
 **Behavior:**
 - Prints the bot's response text to **stdout**
-- Hits the **real backend on localhost:42002** (reads config from `.env.agent.secret`)
+- Hits the **real backend on localhost:42002** (reads config from `.env.bot.secret`)
 - Exits with code **0** on success, **non-zero** on error
 - Does NOT connect to Telegram (no `BOT_TOKEN` required in test mode)
-- LLM-dependent messages use the real LLM key from `.env.agent.secret`
+- LLM-dependent messages use the real LLM key from `.env.bot.secret`
 - Messages without `/` prefix go through the intent router (Task 3)
 
 **Why this matters:**
@@ -415,7 +415,7 @@ from services.api_client import ApiClient
 if __name__ == "__main__":
     if "--test" in sys.argv:
         command = sys.argv[sys.argv.index("--test") + 1]
-        client = ApiClient()  # reads backend URL from .env.agent.secret
+        client = ApiClient()  # reads backend URL from .env.bot.secret
         print(handle_command(command, client))
     else:
         # normal Telegram bot startup
@@ -446,7 +446,7 @@ se-toolkit-lab-7/           ← forked repo (already has backend/, frontend/, et
 ├── backend/                ← existing (from lab-6 fork)
 ├── frontend/               ← existing
 ├── docker-compose.yml      ← existing — students ADD a bot service
-├── .env.agent.example      ← existing — students ADD BOT_TOKEN
+├── .env.bot.example      ← existing — students ADD BOT_TOKEN
 └── .env.docker.secret      ← existing — backend credentials
 ```
 
@@ -539,9 +539,9 @@ Lab 7 forks `se-toolkit-lab-6`. Here's what carries over and what changes.
 - **Repo integrity:** `git remote get-url origin` on VM must match the
   student's known GitHub alias + repo name.
 - **Mock client:** Not needed. `--test` mode hits the real backend on localhost.
-- **Env vars:** Bot-specific vars (`BOT_TOKEN`) go in `.env.agent.secret`
+- **Env vars:** Bot-specific vars (`BOT_TOKEN`) go in `.env.bot.secret`
   (already gitignored via `*.secret`). Backend vars stay in `.env.docker.secret`.
-- **LLM API key:** Runs with student's own `.env.agent.secret` on their VM.
+- **LLM API key:** Runs with student's own `.env.bot.secret` on their VM.
   If key is missing, check fails — student's responsibility.
 - **Docker network:** Single compose file with bot + backend on the same
   network. Bot reaches backend via Docker service name.

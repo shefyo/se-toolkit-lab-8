@@ -103,7 +103,15 @@ Add keyboard buttons so users can discover actions without typing. For example, 
 
 ## Verify
 
-Try these on your VM:
+Before testing, fill in the LLM fields in `.env.bot.secret` on your VM:
+
+```terminal
+nano ~/se-toolkit-lab-7/.env.bot.secret
+```
+
+Set `LLM_API_KEY`, `LLM_API_BASE`, and `LLM_MODEL` (see setup step 1.9 for values).
+
+Then try these:
 
 ```terminal
 cd ~/se-toolkit-lab-7/bot
@@ -114,6 +122,15 @@ uv run bot.py --test "asdfgh"
 ```
 
 The first three should return real answers with data from your backend. The last should return a helpful fallback, not a crash.
+
+## Deploy and verify in Telegram
+
+```terminal
+cd ~/se-toolkit-lab-7 && git pull
+cd bot && pkill -f "bot.py" 2>/dev/null; nohup uv run bot.py > bot.log 2>&1 &
+```
+
+In Telegram, try sending plain text like "what labs are available?" (no `/` prefix). The bot should understand the question and respond with real data.
 
 ## Acceptance criteria
 

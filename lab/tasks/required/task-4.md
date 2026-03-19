@@ -1,12 +1,12 @@
-# Deploy and Document
+# Containerize and Document
 
-The bot works locally via `--test` mode, but it's not a real product until it's running on the VM and responding in Telegram. In this task, you containerize the bot, add it to Docker Compose alongside the backend, and document how to deploy.
+The bot has been running on your VM as a background process (`nohup`). That works for development, but it's fragile — it won't restart after a reboot, logs aren't managed, and it runs outside Docker while the backend runs inside. In this task, you containerize the bot so it runs alongside the backend as a proper Docker service.
 
 ## Requirements targeted
 
 - **P3.1** Bot containerized with Dockerfile
 - **P3.2** Added as service in `docker-compose.yml`
-- **P3.3** Deployed and running on VM
+- **P3.3** Running as container on VM
 - **P3.4** README documents deployment
 
 ## Deliverables
@@ -26,9 +26,9 @@ Add a `bot` service to the existing compose file:
 - Restarts unless stopped
 
 > [!IMPORTANT]
-> **Qwen proxy networking.** The backend (`app`) is in the same compose file, so the bot reaches it by service name (`http://app:8000`). But the Qwen Code API proxy is a **separate** docker-compose project — it's on a different Docker network. The bot container can't reach it by service name or via `localhost`.
+> **Docker networking change.** Until now, the bot ran on the host and used `localhost:42002` to reach the backend. Inside Docker, `localhost` means the container itself. The bot must use the Docker service name instead: `http://app:8000`.
 >
-> To reach host-mapped ports from inside a container on Linux, use `extra_hosts` with `host.docker.internal`:
+> **Qwen proxy networking.** The Qwen Code API proxy is a **separate** docker-compose project — it's on a different Docker network. The bot container can't reach it by service name or via `localhost`. To reach host-mapped ports from inside a container on Linux, use `extra_hosts` with `host.docker.internal`:
 >
 > ```yaml
 > bot:
@@ -38,33 +38,34 @@ Add a `bot` service to the existing compose file:
 >
 > Then use `http://host.docker.internal:42005/v1` as the LLM API base URL.
 
-### 3. Deployment verification
+### 3. README deploy section
 
-Bot container runs alongside the backend on your VM. Both are healthy.
-
-### 4. README deploy section
-
-Add a "Deploy" section explaining: required env vars, docker compose commands, how to verify.
+Add a "Deploy" section to the project README explaining: required env vars, docker compose commands, how to verify.
 
 ## Verify
 
-On your VM:
+On your VM, stop the background bot process and switch to Docker:
 
 ```terminal
 cd ~/se-toolkit-lab-7
+
+# Stop the nohup bot
+pkill -f "bot.py" 2>/dev/null
+
+# Start everything with Docker
 docker compose --env-file .env.docker.secret up --build -d
 docker compose --env-file .env.docker.secret ps
 ```
 
-You should see the bot service running alongside app, postgres, caddy. Then open Telegram and send `/start` to your bot — it should respond.
+You should see the `bot` service running alongside `app`, `postgres`, `caddy`. Then open Telegram and send `/start` — the bot should respond just like before, but now from inside a container.
 
 ## Acceptance criteria
 
-- [ ] Repo deployed at `~/se-toolkit-lab-7` on VM.
-- [ ] `git remote get-url origin` matches student's GitHub repo.
-- [ ] `docker-compose.yml` includes a bot service.
+- [ ] `bot/Dockerfile` exists.
+- [ ] `docker-compose.yml` includes a `bot` service.
 - [ ] Bot container running (`docker ps` shows it).
 - [ ] Backend still healthy (`curl -sf http://localhost:42002/docs` returns 200).
+- [ ] `git remote get-url origin` matches student's GitHub repo.
 - [ ] README has a section with "deploy" in heading.
-- [ ] Bot responds in Telegram (TA-verified).
-
+- [ ] Bot responds in Telegram from the container (TA-verified).
+- [ ] Git workflow followed.

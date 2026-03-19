@@ -415,10 +415,28 @@ You need a Telegram bot token to run your bot client.
    123456789:ABCdefGhIJKlmNoPQRsTUVwxyz
    ```
 
-6. Save this token — you will put it in your `.env` as `BOT_TOKEN` when you start building the bot.
+6. Save this token.
+
+7. Create the bot environment file on your VM:
+
+   ```terminal
+   cd ~/se-toolkit-lab-7
+   cp .env.bot.example .env.bot.secret
+   nano .env.bot.secret
+   ```
+
+   Fill in:
+
+   ```text
+   BOT_TOKEN=your-token-from-botfather
+   LMS_API_URL=http://localhost:42002
+   LMS_API_KEY=same-value-as-in-env-docker-secret
+   ```
+
+   The `LMS_API_KEY` must match what you set in `.env.docker.secret`. The LLM fields (`LLM_API_KEY`, etc.) can stay as placeholders — you'll fill them in when you reach Task 3.
 
 > [!IMPORTANT]
-> Do not share your bot token or commit it to git. When you start building the bot (Task 1), you will add it to `.env.agent.secret` (already in `.gitignore` — any file matching `*.secret` is ignored).
+> Do not share your bot token or commit it to git. The file `.env.bot.secret` is already in `.gitignore` (any file matching `*.secret` is ignored).
 
 ### 1.11. Coding agent
 

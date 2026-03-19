@@ -43,7 +43,7 @@ uv run bot.py --test "what labs are available"    # Task 3
 ```
 
 - Prints response to **stdout**, exits with code **0**
-- Reads config from `.env.agent.secret` (`LMS_API_URL`, `LMS_API_KEY`, `LLM_API_KEY`)
+- Reads config from `.env.bot.secret` (`LMS_API_URL`, `LMS_API_KEY`, `LLM_API_KEY`)
 - Does **not** connect to Telegram (no `BOT_TOKEN` needed in test mode)
 
 ## Deliverables
@@ -66,7 +66,7 @@ Bot-specific Python project with dependencies. `cd bot && uv sync` must work wit
 
 ### 5. Environment files
 
-`.env.agent.example` must include `BOT_TOKEN`, `LMS_API_URL`, `LMS_API_KEY` with placeholder values. On the VM, `.env.agent.secret` must exist with real values filled in.
+`.env.bot.example` must include `BOT_TOKEN`, `LMS_API_URL`, `LMS_API_KEY` with placeholder values. On the VM, `.env.bot.secret` must exist with real values filled in.
 
 ## Verify
 
@@ -80,13 +80,37 @@ uv run bot.py --test "/start"
 
 You should see a welcome message printed to the terminal. If it prints something and exits without errors — the scaffold works.
 
+## Deploy and verify in Telegram
+
+After verifying with `--test`, deploy the bot on your VM and check it responds in Telegram. You'll repeat this after every task — it's how you know the bot actually works for real users, not just in test mode.
+
+1. Push your changes and pull on the VM:
+
+   ```terminal
+   cd ~/se-toolkit-lab-7
+   git pull
+   cd bot && uv sync
+   ```
+
+2. Start the bot (kills any previous instance):
+
+   ```terminal
+   pkill -f "bot.py" 2>/dev/null; nohup uv run bot.py > bot.log 2>&1 &
+   ```
+
+3. Open Telegram and send `/start` to your bot. You should see the welcome message.
+
+> [!TIP]
+> Check `bot.log` if the bot doesn't respond. Common issues: wrong `BOT_TOKEN`, missing `.env.bot.secret`.
+
 ## Acceptance criteria
 
 - [ ] `bot/PLAN.md` exists with at least 100 words.
 - [ ] `bot/pyproject.toml` exists and `cd bot && uv sync` succeeds.
 - [ ] `bot/handlers/` directory exists with at least one module.
 - [ ] `cd bot && uv run bot.py --test "/start"` exits 0 with non-empty output.
-- [ ] `.env.agent.secret` exists on the VM with `BOT_TOKEN`, `LMS_API_URL`, `LMS_API_KEY`.
+- [ ] `.env.bot.secret` exists on the VM with `BOT_TOKEN`, `LMS_API_URL`, `LMS_API_KEY`.
+- [ ] Bot responds to `/start` in Telegram.
 - [ ] Repo is cloned at `~/se-toolkit-lab-7` on the VM.
 - [ ] Git workflow followed (issue, branch, PR, review, merge).
 

@@ -24,7 +24,7 @@ They'll say "let's do the lab" or "start task 1." They probably haven't read the
 
 2. **Verify setup.** Before coding, check:
    - Backend running? `curl -sf http://localhost:42002/docs`
-   - `.env.agent.secret` exists with `LMS_API_URL`, `LMS_API_KEY`?
+   - `.env.bot.secret` exists with `LMS_API_URL`, `LMS_API_KEY`?
    - Data synced? `curl -sf http://localhost:42002/items/ -H "Authorization: Bearer <key>"` returns items?
 
    If anything is missing, point to `lab/tasks/setup-simple.md` and STOP. Don't fix it for them.
@@ -39,7 +39,7 @@ DON'T create all files at once. Each step creates ONE thing, then stops.
 
 **Step 2:** Create `bot.py` with --test mode and ONE placeholder handler (e.g., /start returns "Welcome"). Nothing else. STOP. Say: "Run `cd bot && uv sync && uv run bot.py --test "/start"` and tell me what you see."
 
-**Step 3:** After the student sees it work, create `config.py`. STOP. Say: "Open `bot/config.py` and look at how it reads `.env.agent.secret`. This pattern loads secrets from environment files."
+**Step 3:** After the student sees it work, create `config.py`. STOP. Say: "Open `bot/config.py` and look at how it reads `.env.bot.secret`. This pattern loads secrets from environment files."
 
 **Step 4:** Add `/help` handler. STOP. Say: "Run `uv run bot.py --test "/help"` — you should see a list of commands."
 
@@ -98,5 +98,5 @@ Don't lecture upfront. Explain at the moment they become relevant:
 - `lab/tasks/required/` — task descriptions with deliverables and acceptance criteria.
 - `wiki/` — project documentation.
 - `backend/` — the FastAPI backend the bot queries.
-- `.env.agent.secret` — bot token + LLM credentials (gitignored).
+- `.env.bot.secret` — bot token + LLM credentials (gitignored).
 - `.env.docker.secret` — backend API credentials (gitignored).
