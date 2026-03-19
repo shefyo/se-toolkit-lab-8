@@ -28,7 +28,7 @@
 - [Pull changes from `<branch>` on `<remote>` and rebase](#pull-changes-from-branch-on-remote-and-rebase)
   - [Pull and rebase using the `VS Code Terminal`](#pull-and-rebase-using-the-vs-code-terminal)
   - [Pull and rebase using `GitLens`](#pull-and-rebase-using-gitlens)
-- [Stage using the `Source Control`](#stage-using-the-source-control)
+- [Stage changes using the `Source Control`](#stage-changes-using-the-source-control)
   - [Stage all changes in a specific file](#stage-all-changes-in-a-specific-file)
   - [Stage all changes in specific files](#stage-all-changes-in-specific-files)
   - [Stage specific changes in a specific file](#stage-specific-changes-in-a-specific-file)
@@ -435,7 +435,7 @@ For each conflicting file, complete the following steps:
    `Pull with Rebase`.
 3. If `GitLens` does not show any error, the rebase is complete.
 
-## Stage using the `Source Control`
+## Stage changes using the `Source Control`
 
 <!-- no toc -->
 - Method 1: [Stage all changes in a specific file](#stage-all-changes-in-a-specific-file)
@@ -444,11 +444,18 @@ For each conflicting file, complete the following steps:
 
 ### Stage all changes in a specific file
 
-<!-- TODO click + near the name -->
+1. [Open the `Source Control`](./vs-code.md#open-the-source-control).
+2. Go to `Changes`.
+3. Hover over the file name.
+4. Click the `+` icon next to the file name.
 
 ### Stage all changes in specific files
 
-<!-- TODO select and click + -->
+1. [Open the `Source Control`](./vs-code.md#open-the-source-control).
+2. Go to `Changes`.
+3. Select multiple files by holding `Ctrl` and clicking each file.
+4. Right mouse click the selected files.
+5. Click `Stage Changes`.
 
 ### Stage specific changes in a specific file
 
@@ -525,11 +532,8 @@ For each conflicting file, complete the following steps:
 
 ### Commit using `Source Control`
 
-1. [Open the `Source Control`](./vs-code.md#open-the-source-control).
-2. Go to `Changes`.
-3. Hover over a file name.
-4. Click `+` to stage the file.
-5. [Commit staged changes](#commit-staged-changes).
+1. [Stage changes using the `Source Control`](#stage-changes-using-the-source-control).
+2. [Commit staged changes](#commit-staged-changes).
 
 #### Commit staged changes
 
