@@ -269,6 +269,9 @@ Complete these steps:
 
 ## Set up the `SSH` access to the VM as the user `<user>`
 
+> [!NOTE]
+> See [`<user>`](./operating-system.md#user-placeholder).
+
 Complete these steps:
 
 1. [Create the non-root user `<user>` (REMOTE)](#create-the-non-root-user-user-remote).
@@ -279,7 +282,7 @@ Complete these steps:
 ### Create the non-root user `<user>` (REMOTE)
 
 > [!NOTE]
-> Replace the placeholder [`<user>`](./operating-system.md#user-placeholder).
+> See [`<user>`](./operating-system.md#user-placeholder).
 
 Complete these steps:
 
@@ -289,6 +292,9 @@ Complete these steps:
 3. [Add the user `<user>` to the group `sudo` (REMOTE)](#add-the-user-user-to-the-group-sudo-remote).
 
 #### Add the non-root user `<user>` (REMOTE)
+
+> [!NOTE]
+> See [`<user>`](./operating-system.md#user-placeholder).
 
 1. To create the user `<user>`,
 
@@ -330,6 +336,9 @@ Complete these steps:
 
 #### Provide other information about the user `<user>` (REMOTE)
 
+> [!NOTE]
+> See [`<user>`](./operating-system.md#user-placeholder).
+
 1. Keep the default values for these (press `Enter` when prompted):
 
    ```terminal
@@ -354,6 +363,9 @@ Complete these steps:
    ```
 
 #### Add the user `<user>` to the group `sudo` (REMOTE)
+
+> [!NOTE]
+> Replace the placeholder [`<user>`](./operating-system.md#user-placeholder).
 
 1. To add the user `<user>` to the [group `sudo`](./linux.md#the-group-sudo),
 
@@ -453,7 +465,7 @@ Complete these steps:
 ### Update the `SSH` config to connect to the VM as the user `<user>` (LOCAL)
 
 > [!NOTE]
-> Replace the placeholder [`<user>`](./operating-system.md#user-placeholder).
+> See [`<user>`](./operating-system.md#user-placeholder).
 
 1. [Open the file](./vs-code.md#open-the-file-or-the-directory-using-code):
    `~/.ssh/config`.
@@ -483,10 +495,12 @@ Complete these steps:
         UseKeychain yes
      ```
 
+   Replace the placeholder [`<user>`](./operating-system.md#user-placeholder).
+
 ### Connect to the VM as the user `<user>` (LOCAL)
 
 > [!NOTE]
-> Replace the placeholder [`<user>`](./operating-system.md#user-placeholder).
+> See [`<user>`](./operating-system.md#user-placeholder).
 
 1. [Connect to the correct network](./vm.md#connect-to-the-correct-network).
 
@@ -534,6 +548,9 @@ Complete these steps:
 
 ### Restrict the `SSH` config for the user `<user>` (LOCAL)
 
+> [!NOTE]
+> See [`<user>`](./operating-system.md#user-placeholder).
+
 1. [Open the file](./vs-code.md#open-the-file-or-the-directory-using-code):
    `~/.ssh/config`.
 
@@ -562,9 +579,14 @@ Complete these steps:
         PasswordAuthentication no
      ```
 
+   Replace the placeholder [`<user>`](./operating-system.md#user-placeholder).
+
 3. [Connect to the VM as the user `<user>` (LOCAL)](#connect-to-the-vm-as-the-user-user-local) to verify you can connect as the user `<user>` without a password.
 
 ### Restrict the `sshd` config for the user `<user>` (REMOTE)
+
+> [!NOTE]
+> See [`<user>`](./operating-system.md#user-placeholder).
 
 1. [Connect to the VM as the user `<user>` (LOCAL)](#connect-to-the-vm-as-the-user-user-local) if not yet connected.
 
@@ -593,6 +615,9 @@ Complete these steps:
 6. Save (`Ctrl+O`, `Enter`).
 
 ### Restart `sshd` (REMOTE)
+
+> [!NOTE]
+> See [`<user>`](./operating-system.md#user-placeholder).
 
 1. To validate the [`sshd`](./ssh.md#sshd) config,
 
