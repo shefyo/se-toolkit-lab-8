@@ -16,7 +16,7 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
 
 ## Deploy the LMS API on the VM
 
-1. [Connect to the VM as the user `<user>` (LOCAL)](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
+1. [Connect to the VM as the user `admin` (LOCAL)](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
 2. [Clone the repository (REMOTE)](#clone-the-repository-remote).
 3. [Configure the environment (REMOTE)](#configure-the-environment-remote).
 4. [Start the services (REMOTE)](#start-the-services-remote).
