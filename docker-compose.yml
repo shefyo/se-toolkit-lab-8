@@ -2,6 +2,8 @@ services:
   app:
     build: .
     restart: unless-stopped
+    networks:
+      - lms-network
     ports:
       - ${APP_HOST_ADDRESS:?'APP_HOST_ADDRESS is required'}:${APP_HOST_PORT:?'APP_HOST_PORT is required'}:${APP_CONTAINER_PORT}
     expose:
@@ -35,6 +37,8 @@ services:
     # This solution may not work outside of the University network.
     image: harbor.pg.innopolis.university/docker-hub-cache/postgres:18.3-alpine
     restart: unless-stopped
+    networks:
+      - lms-network
     environment:
       - POSTGRES_DB=${POSTGRES_DB:?'POSTGRES_DB is required'}
       - POSTGRES_USER=${POSTGRES_USER:?'POSTGRES_USER is required'}
@@ -63,6 +67,8 @@ services:
     # This solution may not work outside of the University network.
     image: harbor.pg.innopolis.university/docker-hub-cache/dpage/pgadmin4:latest
     restart: unless-stopped
+    networks:
+      - lms-network
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL:?'PGADMIN_EMAIL is required'}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD:?'PGADMIN_PASSWORD is required'}
@@ -75,6 +81,8 @@ services:
 
   caddy:
     build: frontend/
+    networks:
+      - lms-network
     depends_on:
       - app
     environment:
