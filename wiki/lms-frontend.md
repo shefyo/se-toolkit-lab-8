@@ -14,7 +14,7 @@
 
 The LMS frontend is a single-page [frontend](./frontend.md#what-is-frontend) application built with `React` and `TypeScript` that provides a web interface for the [LMS API](./lms-api.md#about-the-lms-api).
 
-It displays [items](#items-page) and [analytics dashboards](#dashboard-page) loaded from the [backend](./backend.md#what-is-a-backend).
+After you [authenticate](#authentication), you can see [items](#items-page) and [analytics dashboards](#dashboard-page) loaded from the LMS API.
 
 The source code is in the [`frontend/`](../frontend/) directory.
 
@@ -56,6 +56,7 @@ A lab selector dropdown lets you filter the data by lab.
 
 The frontend requires the [LMS API key](./lms-api.md#lms-api-key) to access the [LMS API](./lms-api.md#about-the-lms-api).
 When you open the frontend, you see a form asking for the API key.
+
 After you enter the key, the frontend stores it in the browser's `localStorage` and sends it as a `Bearer` token in the `Authorization` [header](./http.md#http-request-header) with every request.
 
 Click **Disconnect** in the navigation bar to clear the stored key and return to the login form.
