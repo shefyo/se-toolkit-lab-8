@@ -30,6 +30,18 @@ Bot container runs alongside the backend on your VM. Both are healthy.
 
 Add a "Deploy" section explaining: required env vars, docker compose commands, how to verify.
 
+## Verify
+
+On your VM:
+
+```terminal
+cd ~/se-toolkit-lab-7
+docker compose --env-file .env.docker.secret up --build -d
+docker compose --env-file .env.docker.secret ps
+```
+
+You should see the bot service running alongside app, postgres, caddy. Then open Telegram and send `/start` to your bot — it should respond.
+
 ## Acceptance criteria
 
 - [ ] Repo deployed at `~/se-toolkit-lab-7` on VM.

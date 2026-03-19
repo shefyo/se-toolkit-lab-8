@@ -71,6 +71,29 @@ All on `localhost:42002`, require `Authorization: Bearer YOUR_LMS_API_KEY`:
 | `/labs` | `GET /items/` | Lists labs (filter by type) |
 | `/scores <lab>` | `GET /analytics/pass-rates?lab=` | Per-task scores for a lab |
 
+## Verify
+
+Run all commands on your VM:
+
+```terminal
+cd ~/se-toolkit-lab-7
+python bot/bot.py --test "/start"
+python bot/bot.py --test "/help"
+python bot/bot.py --test "/health"
+python bot/bot.py --test "/labs"
+python bot/bot.py --test "/scores lab-04"
+```
+
+Each should print real data. Then test error handling — stop the backend and try again:
+
+```terminal
+docker compose --env-file .env.docker.secret stop app
+python bot/bot.py --test "/health"
+docker compose --env-file .env.docker.secret start app
+```
+
+You should see a friendly error message, not a Python traceback.
+
 ## Acceptance criteria
 
 - [ ] `--test "/start"` returns text containing "welcome" or bot name.

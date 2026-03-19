@@ -101,6 +101,20 @@ Example tool schema:
 
 Add keyboard buttons so users can discover actions without typing. For example, after `/start` show buttons for common queries.
 
+## Verify
+
+Try these on your VM:
+
+```terminal
+cd ~/se-toolkit-lab-7
+python bot/bot.py --test "what labs are available"
+python bot/bot.py --test "which lab has the lowest pass rate"
+python bot/bot.py --test "who are the top 5 students in lab 4"
+python bot/bot.py --test "asdfgh"
+```
+
+The first three should return real answers with data from your backend. The last should return a helpful fallback, not a crash.
+
 ## Acceptance criteria
 
 - [ ] `--test "what labs are available"` returns non-empty answer (at least 20 chars).

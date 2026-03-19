@@ -67,6 +67,18 @@ Bot-specific Python dependencies. Must install without errors.
 
 `.env.agent.example` must include `BOT_TOKEN`, `LMS_API_URL`, `LMS_API_KEY` with placeholder values. On the VM, `.env.agent.secret` must exist with real values filled in.
 
+## Verify
+
+Run this on your VM:
+
+```terminal
+cd ~/se-toolkit-lab-7
+uv pip install -r bot/requirements.txt
+python bot/bot.py --test "/start"
+```
+
+You should see a welcome message printed to the terminal. If it prints something and exits without errors — the scaffold works.
+
 ## Acceptance criteria
 
 - [ ] `bot/PLAN.md` exists with at least 100 words.
