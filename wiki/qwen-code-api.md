@@ -8,8 +8,8 @@
   - [`<qwen-code-api-host-port>` placeholder](#qwen-code-api-host-port-placeholder)
 - [`Qwen Code` API base URL](#qwen-code-api-base-url)
   - [`<qwen-code-api-base-url>` placeholder](#qwen-code-api-base-url-placeholder)
+- [Set up the `Qwen Code` CLI (REMOTE)](#set-up-the-qwen-code-cli-remote)
 - [Set up the `Qwen Code` API (REMOTE)](#set-up-the-qwen-code-api-remote)
-  - [Set up the `Qwen Code` CLI (REMOTE)](#set-up-the-qwen-code-cli-remote)
   - [Clone the `Qwen Code` API repository (REMOTE)](#clone-the-qwen-code-api-repository-remote)
   - [Pull the latest changes from the `Qwen Code` API repository (REMOTE)](#pull-the-latest-changes-from-the-qwen-code-api-repository-remote)
   - [Enter the `Qwen Code` API repository directory (REMOTE)](#enter-the-qwen-code-api-repository-directory-remote)
@@ -64,19 +64,7 @@ See:
 
 [`Qwen Code` API base URL](#qwen-code-api-base-url) (without `<` and `>`).
 
-## Set up the `Qwen Code` API (REMOTE)
-
-Complete these steps:
-
-1. [Set up the `Qwen Code` CLI (REMOTE)](#set-up-the-qwen-code-cli-remote).
-2. [Clone the `Qwen Code` API repository (REMOTE)](#clone-the-qwen-code-api-repository-remote).
-3. [Pull the latest changes from the `Qwen Code` API repository (REMOTE)](#pull-the-latest-changes-from-the-qwen-code-api-repository-remote).
-4. [Enter the `Qwen Code` API repository directory (REMOTE)](#enter-the-qwen-code-api-repository-directory-remote).
-5. [Prepare the environment in the `Qwen Code` API repository (REMOTE)](#prepare-the-environment-in-the-qwen-code-api-repository-remote).
-6. [Start the `Qwen Code` API (REMOTE)](#start-the-qwen-code-api-remote).
-7. [Check that the `Qwen Code` API is accessible](#check-that-the-qwen-code-api-is-accessible) on the VM (REMOTE).
-
-### Set up the `Qwen Code` CLI (REMOTE)
+## Set up the `Qwen Code` CLI (REMOTE)
 
 1. [Connect to the VM](./vm-access.md#connect-to-the-vm).
 
@@ -99,6 +87,18 @@ Complete these steps:
 7. Open the link in a browser to complete the authentication procedure.
 
 8. [Quit the chat with `Qwen Code`](./qwen-code.md#quit-the-chat-with-qwen-code).
+
+## Set up the `Qwen Code` API (REMOTE)
+
+Complete these steps:
+
+1. [Set up the `Qwen Code` CLI (REMOTE)](#set-up-the-qwen-code-cli-remote).
+2. [Clone the `Qwen Code` API repository (REMOTE)](#clone-the-qwen-code-api-repository-remote).
+3. [Pull the latest changes from the `Qwen Code` API repository (REMOTE)](#pull-the-latest-changes-from-the-qwen-code-api-repository-remote).
+4. [Enter the `Qwen Code` API repository directory (REMOTE)](#enter-the-qwen-code-api-repository-directory-remote).
+5. [Prepare the environment in the `Qwen Code` API repository (REMOTE)](#prepare-the-environment-in-the-qwen-code-api-repository-remote).
+6. [Start the `Qwen Code` API (REMOTE)](#start-the-qwen-code-api-remote).
+7. [Check that the `Qwen Code` API is accessible](#check-that-the-qwen-code-api-is-accessible) on the VM (REMOTE).
 
 ### Clone the `Qwen Code` API repository (REMOTE)
 
