@@ -76,7 +76,11 @@ Complete these steps:
 
 ### Install `Nix`
 
-1. To install `Nix` using the [`Determinate Systems` installer](https://github.com/DeterminateSystems/nix-installer#install-determinate-nix),
+1. [Check whether `Nix` is installed](#verify-nix-installation).
+
+   Skip the subsequent steps if `Nix` is already installed.
+
+2. To install `Nix` using the [`Determinate Systems` installer](https://github.com/DeterminateSystems/nix-installer#install-determinate-nix),
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -84,9 +88,11 @@ Complete these steps:
    curl -fsSL https://install.determinate.systems/nix | sh -s -- install
    ```
 
-2. Follow the prompts to complete the installation.
-3. [Delete the current `VS Code Terminal`](./vs-code.md#delete-a-vs-code-terminal).
-4. [Open a new `VS Code Terminal`](./vs-code.md#open-a-new-vs-code-terminal).
+3. Follow the prompts to complete the installation.
+
+4. [Delete the current `VS Code Terminal`](./vs-code.md#delete-a-vs-code-terminal).
+
+5. [Open a new `VS Code Terminal`](./vs-code.md#open-a-new-vs-code-terminal).
 
 ### Verify `Nix` installation
 
