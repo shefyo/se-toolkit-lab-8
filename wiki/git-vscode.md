@@ -193,7 +193,7 @@ Docs:
 
 ## Detect conflicts
 
-It can happen that commits in [`<branch>`](./git.md#branch) on [`<remote>`](./git.md#remote) are different from commits on the `<branch>` in the cloned repo on your computer.
+It can happen that commits in [`<branch>`](./git.md#branch) on [`<remote>`](./git.md#remote-placeholder) are different from commits on the `<branch>` in the cloned repo on your computer.
 
 1. Look at the [`Status Bar`](./vs-code.md#status-bar).
 
@@ -296,7 +296,7 @@ For each conflicting file, complete the following steps:
 ## Pull changes from the `<branch>` on `<remote>`
 
 > [!NOTE]
-> See [`<branch>`](./git.md#branch), [`<remote>`](./git.md#remote).
+> See [`<branch>`](./git.md#branch), [`<remote>`](./git.md#remote-placeholder).
 
 <!-- no toc -->
 - Method 1: [Pull changes from `<branch>` on `<remote>` using the `VS Code Terminal`](#pull-changes-from-branch-on-remote-using-the-vs-code-terminal)

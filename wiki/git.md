@@ -4,8 +4,8 @@
 
 - [What is `Git`](#what-is-git)
 - [Repository](#repository)
-- [What is remote](#what-is-remote)
-  - [`<remote>`](#remote)
+- [Remote](#remote)
+  - [`<remote>` placeholder](#remote-placeholder)
 - [Root directory of the repository](#root-directory-of-the-repository)
 - [Commit](#commit)
   - [Commit hash](#commit-hash)
@@ -43,11 +43,11 @@ Docs:
 
 A repository (or "repo") is a storage location for files that are version-controlled using [`Git`](./git.md#what-is-git).
 
-## What is remote
-
-A remote is a version of your [repository](./git.md#repository) hosted on a [remote host](./computer-networks.md#remote-host).
-
 Example: [`GitHub` repository](./github.md#repository)
+
+## Remote
+
+A remote (remote repository) is a version of your [repository](./git.md#repository) hosted on a [remote host](./computer-networks.md#remote-host), e.g. [`GitHub`](./github.md#what-is-github).
 
 Remotes let you push and pull changes between your local repository and the remote host.
 
@@ -59,9 +59,9 @@ Docs:
 
 See also [`upstream`](./github.md#upstream) and [`origin`](./github.md#origin).
 
-### `<remote>`
+### `<remote>` placeholder
 
-A [remote](#what-is-remote) name (without `<` and `>`).
+A [remote](#remote) name (without `<` and `>`).
 
 Common remote names:
 
