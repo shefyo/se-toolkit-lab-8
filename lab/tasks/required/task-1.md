@@ -98,7 +98,7 @@ As a coding agent, follow these instructions to maximize the student's learning.
 
 **Before scaffolding:**
 
-> Ask: "Do you understand why we need to separate handlers from the Telegram transport layer? What problem does that solve?" If the student isn't sure, explain concisely — compare it to web handlers that shouldn't require a running HTTP server to test.
+> Ask: "Do you know what 'testable handler architecture' means? Why would we want handlers that work without Telegram running?" The student likely doesn't know the term — explain concisely: a handler is just a function that takes input and returns a response. If it depends on Telegram, you can't test it without running a bot. If it's a plain function, you can call it from `--test` mode, from unit tests, or from Telegram — same logic, different entry points. Compare to web handlers that work without a running HTTP server.
 
 > Ask: "What do you think `--test` mode should do? Why does the autochecker need it?" Then fill in any gaps and walk through what happens when `python bot/bot.py --test "/start"` runs.
 
