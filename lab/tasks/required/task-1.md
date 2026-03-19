@@ -13,14 +13,14 @@ sequenceDiagram
         participant agent.py
     end
     box VM
-        participant Proxy as qwen-code-oai-proxy
+        participant Proxy as qwen-code-api
     end
     box Qwen Cloud
         participant LLM as Qwen 3 Coder
     end
 
     User->>agent.py: CLI arg (question)
-    agent.py->>Proxy: POST /v1/chat/completions
+    agent.py->>Proxy: POST /chat/completions
     Proxy->>LLM: proxy request
     LLM-->>Proxy: response
     Proxy-->>agent.py: response
@@ -51,15 +51,14 @@ uv run agent.py "What does REST stand for?"
 
 Your agent needs an LLM that supports the OpenAI-compatible chat completions API. You are free to use any provider.
 
-**Recommended: [Set up the Qwen Code API on your VM](../../../wiki/qwen-code-api.md#set-up-the-qwen-code-api-remote)**
+**Recommended: [Set up the Qwen Code API on your VM](../../../wiki/qwen-code-api-deployment.md#deploy-the-qwen-code-api-remote)**
 
-[Qwen Code](../../../wiki/qwen.md#what-is-qwen-code) provides **1000 free requests per day**, works from Russia, and requires no credit card.
+[Qwen Code](../../../wiki/qwen-code.md#what-is-qwen-code) provides **1000 free requests per day**, works from Russia, and requires no credit card.
 
-Follow the [setup instructions](../setup-simple.md#17-set-up-llm-access-qwen-code-api) to deploy it on your VM.
+Follow the [setup instructions](../../setup/setup-simple.md#17-deploy-the-qwen-code-api) to deploy it on your VM.
 
 | Model              | Tool calling | Notes                                        |
 | ------------------ | ------------ | -------------------------------------------- |
-| `qwen3-coder-plus` | Strong       | Recommended, default in `.env.agent.example` |
 | `coder-model`      | Strong       | Qwen 3.5 Plus                                |
 
 <details><summary><b>Alternative: OpenRouter (click to open)</b></summary>
@@ -87,7 +86,7 @@ Create the agent environment file:
 cp .env.agent.example .env.agent.secret
 ```
 
-Edit `.env.agent.secret` and fill in `LLM_API_KEY`, `LLM_API_BASE`, and `LLM_MODEL`. Your agent reads from this file.
+Edit `.env.agent.secret` and fill in `LLM_API_KEY`, `LLM_API_BASE_URL`, and `LLM_API_MODEL`. Your agent reads from this file.
 
 > **Note:** This is **not** the same as `LMS_API_KEY` in `.env.docker.secret`. That one protects your backend LMS endpoints. `LLM_API_KEY` authenticates with your LLM provider.
 

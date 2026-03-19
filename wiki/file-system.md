@@ -107,7 +107,7 @@ Its [absolute path](#absolute-path) is `/`.
 
 Shortcut for the [absolute path](#absolute-path) for the [user](./operating-system.md#user) home [directory](#directory) `/home/<user>/`.
 
-See [`<user>`](./operating-system.md#username-placeholder).
+See [`<user>`](./operating-system.md#user-placeholder).
 
 ### Current directory (`.`)
 
@@ -130,7 +130,7 @@ Examples:
 
 The `Desktop` directory is the folder that corresponds to the desktop on your screen.
 
-`Windows`: `C:/Users/<username>/Desktop/`
+`Windows`: `C:/Users/<user>/Desktop/` (see [`<user>`](./operating-system.md#user-placeholder))
 `Linux`: `~/Desktop/` (see [home directory (`~`)](#home-directory-))
 `macOS`: `~/Desktop/`
 `WSL`: `~/Desktop/`
