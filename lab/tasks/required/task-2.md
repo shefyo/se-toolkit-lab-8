@@ -18,6 +18,30 @@ Available labs:
 ...
 ```
 
+## Working with your coding agent
+
+Build each command incrementally — implement one, test it, understand it, then move to the next. Here are prompts for each stage:
+
+**Before implementing:**
+
+> I need to implement `/health` that calls the backend API. Before writing code, explain: what HTTP status codes should I handle? What could go wrong with the request?
+
+> I want to pick 2 data commands. Help me explore the backend API — which endpoints return the most interesting data for a Telegram user?
+
+**Implementing:**
+
+> Implement `/health`. It should call `GET /items/` on `localhost:42002` with Bearer auth and report the status. Explain the `httpx` (or `requests`) call and what each parameter does.
+
+> I picked `/scores <lab>` as my data command. Show me what the API returns first, then help me format it nicely for Telegram.
+
+**Error handling:**
+
+> I stopped the backend and ran `--test "/health"` — it shows a Python traceback. Help me add error handling, but explain the try/except pattern first. What should the user see instead?
+
+**Testing:**
+
+> Run all my commands with `--test` and show me the output. Are there edge cases I'm missing?
+
 ## Available backend endpoints
 
 Your LMS backend (running on `localhost:42002` via Caddy) provides these endpoints. All require `Authorization: Bearer YOUR_LMS_API_KEY`.
