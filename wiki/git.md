@@ -3,6 +3,7 @@
 <h2>Table of contents</h2>
 
 - [What is `Git`](#what-is-git)
+- [Repository](#repository)
 - [What is remote](#what-is-remote)
   - [`<remote>`](#remote)
 - [Root directory of the repository](#root-directory-of-the-repository)
@@ -38,9 +39,15 @@ Docs:
 - [Git Reference](https://git-scm.com/doc)
 - [Git Cheat Sheet](https://git-scm.com/cheat-sheet)
 
+## Repository
+
+A repository (or "repo") is a storage location for files that are version-controlled using [`Git`](./git.md#what-is-git).
+
 ## What is remote
 
-A remote is a version of your [repository](./github.md#repository) hosted on a [remote host](./computer-networks.md#remote-host) (e.g., on [`GitHub`](./github.md#what-is-github)).
+A remote is a version of your [repository](./git.md#repository) hosted on a [remote host](./computer-networks.md#remote-host).
+
+Example: [`GitHub` repository](./github.md#repository)
 
 Remotes let you push and pull changes between your local repository and the remote host.
 

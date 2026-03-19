@@ -104,9 +104,11 @@ Assume `<your-github-username>` is your [`GitHub` username](#github-username).
 
 ## Repository
 
-A repository (or "repo") is a storage location for files that are version-controlled using [`Git`](./git.md#what-is-git).
+A `GitHub` repository contains not only project files but also additional collaborative features such as:
 
-A `GitHub` repository contains not only project files but also additional collaborative features such as [issues](#issue) for tracking bugs and tasks, [pull requests](#pull-request) for code review and merging changes, and [Projects](#github-projects) for organizing work.
+- [issues](#issue) for tracking bugs and tasks
+- [pull requests](#pull-request) for code review and merging changes
+- [Projects](#github-projects) for organizing work
 
 ### `<repo-name>`
 

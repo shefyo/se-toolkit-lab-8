@@ -45,7 +45,7 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
 
    Replace the placeholder [`<your-github-username>`](./github.md#your-github-username).
 
-4. To enter the [repository](./github.md#repository) directory,
+4. To enter the [repository](./git.md#repository) directory,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
