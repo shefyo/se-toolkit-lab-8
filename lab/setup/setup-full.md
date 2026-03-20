@@ -263,7 +263,7 @@ See [tools](../../wiki/software-types.md#tool).
 
 ### 1.12. (UPD) Deploy the LMS API (REMOTE)
 
-1. [Deploy the LMS API on your VM](../../wiki/lms-api-deployment.md#about-the-lms-api-deployment).
+1. [Deploy the LMS API on your VM](../../wiki/lms-api-deployment.md#deploy-the-lms-api-on-the-vm).
 
 ### 1.13. (UPD) Set up the `Qwen Code` API (REMOTE)
 
