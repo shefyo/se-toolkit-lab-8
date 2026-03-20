@@ -187,6 +187,6 @@ The [username](#bot-username) of your bot.
 
 2. Find your bot by [your bot username](#your-bot-username).
 
-3. Send `/start`.
+3. Send `/health`.
 
    You should see a response from your bot.
