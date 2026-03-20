@@ -704,10 +704,10 @@ Method 2 (file at the absolute [`<file-path>`](./file-system.md#file-path-placeh
    [run in the `VS Code Terminal`](#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   code <fd-path>
+   code <path>
    ```
 
-   Replace the placeholder [`<fd-path>`](./file-system.md#fd-path-placeholder)
+   Replace the placeholder [`<path>`](./file-system.md#path-placeholder)
    with the path to the file or the directory that you want to open.
 
    > 🟦 **Note**
