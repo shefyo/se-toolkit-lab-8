@@ -36,6 +36,12 @@ Example: `githubtelegram`.
 
 [`Autochecker` API password](#autochecker-api-password) (without `<` and `>`).
 
+## `Autochecker` API base URL
+
+The [base URL](./web-api.md#base-url) of the [`Autochecker` API](#about-the-autochecker-api).
+
+<https://auche.namaz.live>
+
 ## `Autochecker` API endpoints
 
 <!-- TODO which endpoints are available -->
