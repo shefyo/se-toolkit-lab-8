@@ -115,7 +115,7 @@ Example: `coder-model`.
    Replace the placeholders:
 
    - [`<qwen-code-api-base-url>`](#qwen-code-api-base-url-placeholder) (depends on the case (REMOTE or LOCAL))
-   - `<qwen-code-api-key>` with the value of [`QWEN_CODE_API_KEY`](./qwen-code-api-dotenv-secret.md#qwen_code_api_key) from [`qwen-code-api/.env.secret`](./qwen-code-api-dotenv-secret.md#about-qwen-code-apienvsecret)
+   - [`<qwen-code-api-key>`](#qwen-code-api-key)
    - [`<qwen-code-api-model>`](#qwen-code-api-model)
 
 2. When you run it, the output should be similar to this:
