@@ -44,7 +44,7 @@ Default: `<lms-api-base-url>`
 
 The [LMS API key](./lms-api.md#lms-api-key).
 
-Its value must match the value of [`LMS_API_KEY`](./dotenv-docker-secret.md#lms_api_key) in [`.env.docker.secret`](./dotenv-docker-secret.md#what-is-envdockersecret).
+Its value must match the value of [`LMS_API_KEY`](./dotenv-docker-secret.md#lms_api_key) in [`.env.docker.secret`](./dotenv-docker-secret.md#what-is-envdockersecret) used for deployment.
 
 Default: `my-secret-api-key`
 
