@@ -3,8 +3,14 @@
 <h2>Table of contents</h2>
 
 - [About `Telegram` bots](#about-telegram-bots)
+- [Bot username](#bot-username)
+- [Your bot username](#your-bot-username)
+  - [`<your-bot-username>` placeholder](#your-bot-username-placeholder)
 - [Create a `Telegram` bot](#create-a-telegram-bot)
-- [Set up the bot environment](#set-up-the-bot-environment)
+- [Deploy the bot on the VM](#deploy-the-bot-on-the-vm)
+  - [Set up the bot environment (REMOTE)](#set-up-the-bot-environment-remote)
+  - [Start the bot (REMOTE)](#start-the-bot-remote)
+  - [Check the bot](#check-the-bot)
 
 ## About `Telegram` bots
 
@@ -18,6 +24,20 @@ Docs:
 - [Telegram Bot API](https://core.telegram.org/bots/api)
 - [BotFather](https://core.telegram.org/bots#botfather)
 
+## Bot username
+
+A unique name of the bot on `Telegram`.
+
+Example: `@BotFather`
+
+## Your bot username
+
+The [username](#bot-username) of your bot.
+
+### `<your-bot-username>` placeholder
+
+[Your bot username](#your-bot-username) (without `<` and `>`).
+
 ## Create a `Telegram` bot
 
 > [!NOTE]
@@ -29,7 +49,7 @@ Docs:
 
 3. Choose a **name** for your bot (e.g., `My LMS Bot`).
 
-4. Choose a **username** for your bot.
+4. Choose a [username for your bot](#your-bot-username).
 
    The username must end in `bot` (e.g., `my_lms_bot`).
 
@@ -41,37 +61,52 @@ Docs:
 
 6. Save this token — you will need it for the [bot environment file](./dotenv-bot-secret.md#bot_token).
 
-## Set up the bot environment
+## Deploy the bot on the VM
 
-1. [Connect to the VM as the user `admin`](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
+1. [Connect to the VM as the user `admin` (LOCAL)](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
+2. [Set up the bot environment (REMOTE)](#set-up-the-bot-environment-remote).
+3. [Start the bot (REMOTE)](#start-the-bot-remote).
+4. [Check the bot](#check-the-bot).
 
-2. Go to the project directory:
+### Set up the bot environment (REMOTE)
 
-   ```terminal
-   cd ~/se-toolkit-lab-7
-   ```
+1. [Enter the repository directory](./lms-api-deployment.md#enter-the-repository-directory-remote).
 
-3. Create the bot environment file:
+2. To open [`.env.docker.secret`](./dotenv-bot-secret.md#about-envbotsecret) for editing,
 
-   ```terminal
-   cp .env.bot.example .env.bot.secret
-   ```
-
-4. Open the file for editing:
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
    nano .env.bot.secret
    ```
 
-5. Set the values.
+3. Set the values:
 
-   See [`.env.bot.secret`](./dotenv-bot-secret.md#about-envbotsecret) for a description of each variable.
+   - [`BOT_TOKEN`](./dotenv-bot-secret.md#bot_token)
+   - [`LMS_API_URL`](./dotenv-bot-secret.md#lms_api_url)
+   - [`LMS_API_KEY`](./dotenv-bot-secret.md#lms_api_key)
+   - [`LLM_API_KEY`](./dotenv-bot-secret.md#llm_api_key)
+   - [`LLM_API_BASE_URL`](./dotenv-bot-secret.md#llm_api_base_url)
+   - [`LLM_API_MODEL`](./dotenv-bot-secret.md#llm_api_model)
 
-   - [`BOT_TOKEN`](./dotenv-bot-secret.md#bot_token) — the token from [`@BotFather`](#create-a-telegram-bot).
-   - [`LMS_API_URL`](./dotenv-bot-secret.md#lms_api_url) — the base URL of the [LMS API](./lms-api.md#about-the-lms-api).
-   - [`LMS_API_KEY`](./dotenv-bot-secret.md#lms_api_key) — must match the value in [`.env.docker.secret`](./dotenv-docker-secret.md#lms_api_key).
-   - [`LLM_API_KEY`](./dotenv-bot-secret.md#llm_api_key) — the key for your [LLM provider API](./llm.md#llm-provider-api).
-   - [`LLM_API_BASE_URL`](./dotenv-bot-secret.md#llm_api_base_url) — the LLM API endpoint.
-   - [`LLM_API_MODEL`](./dotenv-bot-secret.md#llm_api_model) — the model name.
+4. Save and close the file.
 
-6. Save and close the file.
+### Start the bot (REMOTE)
+
+1. To start the bot,
+
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   docker compose up --env-file .env.docker.secret bot --build -d
+   ```
+
+### Check the bot
+
+1. Open `Telegram`.
+
+2. Find your bot by [your bot username](#your-bot-username).
+
+3. Send `/start`.
+
+   You should see a response from the your bot.
