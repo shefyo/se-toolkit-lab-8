@@ -544,13 +544,11 @@ Lab 7 forks `se-toolkit-lab-6`. Here's what carries over and what changes.
    - Could require a `--test-healthcheck` flag that runs one cycle and exits
    - **Leaning toward:** P1 (should have), TA-verified in demo
 
-2. **Eval set for Task 3 intent routing:**
-   - Current t3 checks only verify output shape (non-empty, mentions a lab name) — passable with regex routing that bypasses the LLM entirely
-   - Lab 6 had `agent_eval` (Docker sandbox + question bank) — the idea was valid but the sandbox caused debugging pain
-   - Simpler approach for Lab 7: define a bank of `--test "..."` queries with expected output patterns, run via SSH exactly like existing checks, no sandbox needed
-   - Queries must be designed so regex cannot satisfy them — e.g. semantic reasoning required: "which lab covers Docker?" (requires knowing lab content), "how does lab 3 compare to lab 4 in pass rate?" (requires two API calls + comparison)
-   - Could also include a negative check: source code must not contain `re.search` or `re.match` in the intent routing path
-   - **Leaning toward:** add 2–3 eval queries to t3 auto-checks in next iteration; keep queries in a versioned file so they can be updated without changing the spec
+2. ~~**Eval set for Task 3 intent routing**~~ — **Resolved.** Eval sets
+   defined for all tasks (see auto-checks above). Each task has seen +
+   unseen queries. Task 3 uses the student's Qwen proxy for LLM-dependent
+   queries. AGENTS.md prohibits regex routing. Structural check verifies
+   ≥9 tool schemas exist.
 
 ## Resolved Decisions
 
@@ -572,6 +570,14 @@ Lab 7 forks `se-toolkit-lab-6`. Here's what carries over and what changes.
   (already gitignored via `*.secret`). Backend vars stay in `.env.docker.secret`.
 - **LLM API key:** Runs with student's own `.env.bot.secret` on their VM.
   If key is missing, check fails — student's responsibility.
+- **LLM evaluation:** Unlike Lab 6 (which injected the autochecker's own
+  Groq/OpenRouter key), Lab 7 uses the student's Qwen proxy exclusively.
+  The autochecker SSHes to the student's VM and runs `--test` commands —
+  the bot calls the student's local Qwen proxy at `localhost:42005`.
+  For LLM-judged quality checks (if needed beyond regex), the autochecker
+  can SSH and curl the student's Qwen proxy directly:
+  `curl -s http://localhost:42005/v1/chat/completions -H "Authorization: Bearer <key>" ...`
+  No autochecker LLM key is needed for Lab 7.
 - **Docker network:** Single compose file with bot + backend on the same
   network. Bot reaches backend via Docker service name.
 - **Project directory:** `~/se-toolkit-lab-7`. Bot code in `bot/` subdirectory.
