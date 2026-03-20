@@ -296,7 +296,7 @@ The autochecker tests your bot against your **deployed backend on your VM**. You
    nano .env.docker.secret
    ```
 
-   Set `AUTOCHECKER_EMAIL`, `AUTOCHECKER_PASSWORD`, and `LMS_API_KEY` (use the same values as locally).
+   Set `AUTOCHECKER_API_LOGIN`, `AUTOCHECKER_API_PASSWORD`, and `LMS_API_KEY` (use the same values as locally).
 
 6. Configure Docker DNS (required on most university VMs):
 
