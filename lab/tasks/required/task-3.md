@@ -105,13 +105,7 @@ Add keyboard buttons so users can discover actions without typing. For example, 
 
 ### Setup
 
-Fill in the LLM fields in `.env.bot.secret` on your VM:
-
-```terminal
-nano ~/se-toolkit-lab-7/.env.bot.secret
-```
-
-Set `LLM_API_KEY`, `LLM_API_BASE_URL`, and `LLM_API_MODEL` (see setup step 1.9 for values).
+If you filled in the LLM fields during setup (step 1.10), you're ready. If not, edit `.env.bot.secret` on your VM and set `LLM_API_KEY`, `LLM_API_BASE_URL`, and `LLM_API_MODEL` (see setup step 1.9 for values).
 
 Verify the LLM is reachable before testing the bot:
 

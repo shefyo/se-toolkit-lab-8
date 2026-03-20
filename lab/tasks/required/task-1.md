@@ -54,7 +54,7 @@ A plan produced with your coding agent. Describe the approach for all tasks: sca
 
 ### 2. Bot entry point (`bot/bot.py`)
 
-Must support `--test` mode. Handlers can return placeholder text for now — real implementation comes in Task 2.
+Ask your coding agent to create the entry point with `--test` mode support. Handlers can return placeholder text for now — real implementation comes in Task 2. Your job is to verify it works and understand the architecture (see [Test mode](#test-mode) above).
 
 ### 3. Handler directory (`bot/handlers/`)
 
