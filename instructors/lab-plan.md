@@ -177,7 +177,8 @@ Mirrors Lab 6 setup checks + deployment + sync.
 
 | ID | Check | Channel | How |
 |----|-------|---------|-----|
-| t1-plan | `bot/PLAN.md` exists, ≥100 words, mentions key topics | GitHub | file_word_count ≥100 + regex for `handler\|backend\|intent\|deploy` (at least 3 of 4) |
+| t1-plan-exists | `bot/PLAN.md` exists and ≥100 words | GitHub | file_word_count ≥100 |
+| t1-plan-quality | PLAN.md covers key topics (handlers, backend, intent routing, deployment) | SSH+LLM | Read file via GitHub, judge via student's Qwen proxy: "Does this plan cover all 4 areas?" |
 | t1-deps | `bot/pyproject.toml` exists | GitHub | file_exists |
 | t1-handlers | Handler directory exists with at least one module | GitHub | glob_exists — `bot/handlers/*.py` |
 | t1-install | Bot dependencies install without errors | SSH | `cd ~/se-toolkit-lab-7/bot && uv sync` exits 0 |
@@ -339,7 +340,7 @@ agent is embedded inside a user-facing product.
 |----|-------|---------|-----|
 | t4-dockerfile | `bot/Dockerfile` exists | GitHub | file_exists |
 | t4-readme-heading | README has deploy/containerize heading | GitHub | regex_in_file — `^#{1,3}.*[Dd]eploy\|^#{1,3}.*[Cc]ontainerize` |
-| t4-readme-content | README deploy section has substance | GitHub | regex_in_file — section contains `docker compose` AND mentions env vars (`env\|\.secret\|BOT_TOKEN`) |
+| t4-readme-quality | README deploy section explains env vars, docker compose commands, and how to verify | SSH+LLM | Read README via GitHub, judge deploy section via student's Qwen proxy: "Does this explain how to deploy?" |
 | t4-repo-match | Deployed code is from student's GitHub repo | SSH | `git remote get-url origin` matches `github.com/{alias}/{repo}` |
 | t4-compose | `docker-compose.yml` includes a bot service | SSH | `grep -i bot docker-compose.yml` |
 | t4-running | Bot container is running | SSH | `docker ps` shows bot container |
@@ -368,9 +369,10 @@ agent is embedded inside a user-facing product.
 - SSH: connectivity, repo at correct path, env files exist (docker + bot),
   backend running, data synced, LLM API reachable
 
-**Task 1 — Plan & Scaffold (4 structural + 3 eval)**
-- GitHub: PLAN.md content, pyproject.toml, handlers/
+**Task 1 — Plan & Scaffold (5 structural + 3 eval)**
+- GitHub: PLAN.md exists, pyproject.toml, handlers/
 - SSH: uv sync
+- SSH+LLM: PLAN.md quality (covers key topics)
 - Eval: `/start`, `/help`, `/foo` (unknown command)
 
 **Task 2 — Backend Integration (8 eval)**
@@ -379,14 +381,18 @@ agent is embedded inside a user-facing product.
 
 **Task 3 — Intent Routing (2 structural + 7 eval)**
 - GitHub: button/keyboard code, ≥9 tool schemas
-- Eval (LLM): labs query, scores query, multi-step, fallback,
-  top learners (unseen), enrolled count (unseen), greeting (unseen)
+- Eval (via student's LLM): labs query, scores query, multi-step,
+  fallback, top learners (unseen), enrolled count (unseen), greeting (unseen)
 
 **Task 4 — Containerize & Document (7 checks)**
-- GitHub: Dockerfile, README deploy heading + content
+- GitHub: Dockerfile, README deploy heading
+- SSH+LLM: README deploy section quality
 - SSH: repo integrity, compose has bot, container running, backend healthy
 
-**Total: ~41 checks (10 setup + 7 + 8 + 9 + 7)**
+**Total: ~42 checks (10 setup + 8 + 8 + 9 + 7)**
+
+**LLM-judged checks (3 total):** t1-plan-quality, t4-readme-quality,
+and all t3-eval-* queries — all use the student's Qwen proxy via relay SSH.
 
 ### TA-Verified (demo)
 
@@ -530,10 +536,15 @@ Lab 7 forks `se-toolkit-lab-6`. Here's what carries over and what changes.
 - `task2_agent_tools` checking for `read_file`/`list_files`
 
 **New for Lab 7:**
-- SSH-based `--test` command execution (run `python bot.py --test "..."`,
+- SSH-based `--test` command execution (run `bot.py --test "..."`,
   check stdout) — uses `ssh_check` with custom commands
+- Eval sets per task (seen + unseen test inputs with expected patterns)
 - Repo integrity check (`git remote get-url origin` via SSH)
-- Intent routing checks (plain text → LLM → tool calls → response)
+- Intent routing checks (plain text → student's LLM → tool calls → response)
+- LLM-judged quality checks via student's Qwen proxy (PLAN.md, README)
+- New engine method: `_call_student_llm_via_relay()` — wraps curl to
+  student's `localhost:42005` in a relay SSH command
+- No autochecker LLM key needed (unlike Lab 6)
 
 ---
 
@@ -572,12 +583,33 @@ Lab 7 forks `se-toolkit-lab-6`. Here's what carries over and what changes.
   If key is missing, check fails — student's responsibility.
 - **LLM evaluation:** Unlike Lab 6 (which injected the autochecker's own
   Groq/OpenRouter key), Lab 7 uses the student's Qwen proxy exclusively.
-  The autochecker SSHes to the student's VM and runs `--test` commands —
-  the bot calls the student's local Qwen proxy at `localhost:42005`.
-  For LLM-judged quality checks (if needed beyond regex), the autochecker
-  can SSH and curl the student's Qwen proxy directly:
-  `curl -s http://localhost:42005/v1/chat/completions -H "Authorization: Bearer <key>" ...`
-  No autochecker LLM key is needed for Lab 7.
+  No autochecker LLM key is needed.
+
+  **Three ways the autochecker uses the student's LLM:**
+
+  1. **Bot eval (--test mode):** SSH to VM → `cd bot && uv run bot.py --test "query"`.
+     The bot reads `.env.bot.secret` and calls `localhost:42005`. Autochecker
+     checks stdout with regex patterns. Used for all eval sets.
+
+  2. **Direct LLM call (quality judging):** SSH to VM → curl the student's
+     Qwen proxy with a judge prompt. Returns JSON verdict.
+     ```
+     curl -s http://localhost:42005/v1/chat/completions \
+       -H "Authorization: Bearer <student's key>" \
+       -H "Content-Type: application/json" \
+       -d '{"model":"coder-model","messages":[{"role":"user","content":"<judge prompt>"}]}'
+     ```
+     Used for: PLAN.md quality, README deploy section quality.
+     Implementation: new engine method `_call_student_llm_via_relay()` that
+     wraps the curl in an SSH relay command and parses the JSON response.
+
+  3. **Not used:** `llm_analyzer.py`'s `_call_llm_api()` / `analyze_repo()`
+     (these call OpenRouter from Hetzner — not needed for Lab 7).
+
+  **Why student's LLM, not ours:** Validates the student's infrastructure
+  as a side effect. No cost to us. `setup-llm` check catches broken LLM
+  early. If the student's proxy is down at check time, the check fails —
+  same as if their backend were down.
 - **Docker network:** Single compose file with bot + backend on the same
   network. Bot reaches backend via Docker service name.
 - **Project directory:** `~/se-toolkit-lab-7`. Bot code in `bot/` subdirectory.
