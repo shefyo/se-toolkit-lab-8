@@ -28,16 +28,6 @@ Add a `bot` service to the existing compose file:
 
 > [!IMPORTANT]
 > **Docker networking change.** Until now, the bot ran on the host and used `localhost:42002` to reach the backend. Inside Docker, `localhost` means the container itself. The bot must use the Docker service name instead: `http://backend:8000`.
->
-> **Qwen proxy networking.** The Qwen Code API proxy is a **separate** docker-compose project — it's on a different Docker network. The bot container can't reach it by service name or via `localhost`. To reach host-mapped ports from inside a container on Linux, use `extra_hosts` with `host.docker.internal`:
->
-> ```yaml
-> bot:
->   extra_hosts:
->     - "host.docker.internal:host-gateway"
-> ```
->
-> Then use `http://host.docker.internal:42005/v1` as the LLM API base URL.
 
 ### 3. README deploy section
 
