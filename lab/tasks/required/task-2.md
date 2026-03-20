@@ -72,6 +72,7 @@ curl -s http://localhost:42002/items/ -H "Authorization: Bearer YOUR_LMS_API_KEY
 ```
 
 If this returns `[]` or an error, your bot's data commands will return empty results — that's a data problem, not a code problem. Fix it:
+
 - Backend not running → `cd ~/se-toolkit-lab-7 && docker compose --env-file .env.docker.secret up -d`
 - Empty data → re-run ETL sync: `curl -X POST http://localhost:42002/pipeline/sync -H "Authorization: Bearer YOUR_LMS_API_KEY" -H "Content-Type: application/json" -d '{}'`
 
@@ -120,6 +121,7 @@ uv run bot.py --test "/scores lab-04"
 ```
 
 **What to check:**
+
 - `/start` — contains a welcome message or bot name
 - `/help` — lists at least 4 commands with descriptions
 - `/health` — says "healthy" or shows item count (proves backend connection works)
@@ -158,6 +160,7 @@ cd bot && pkill -f "bot.py" 2>/dev/null; nohup uv run bot.py > bot.log 2>&1 &
 ```
 
 In Telegram, try:
+
 1. `/health` — should show backend status
 2. `/labs` — should list labs
 3. `/scores lab-04` — should show per-task scores

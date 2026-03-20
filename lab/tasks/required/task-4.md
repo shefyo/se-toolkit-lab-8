@@ -73,6 +73,7 @@ docker compose --env-file .env.docker.secret logs bot --tail 20
 ```
 
 **What to look for in the logs:**
+
 - "Application started" — bot connected to Telegram successfully
 - "HTTP Request: POST .../getUpdates" — bot is polling for messages
 - No Python tracebacks
@@ -88,13 +89,13 @@ Send these in Telegram — everything that worked before should still work:
 
 ### Common Docker problems
 
-| Symptom | Likely cause |
-|---------|-------------|
-| Bot container keeps restarting | Check logs: `docker compose logs bot`. Usually a missing env var or import error. |
-| `/health` fails but worked before | `LMS_API_URL` must be `http://backend:8000` (not `localhost:42002`). Inside Docker, `localhost` is the container itself. |
-| LLM queries fail but worked before | `LLM_API_BASE_URL` must use `host.docker.internal` (not `localhost`). The qwen proxy is on a different Docker network. |
-| "BOT_TOKEN is required" error | Bot env vars need to be in `.env.docker.secret`, not just `.env.bot.secret`. |
-| Build fails at `uv sync --frozen` | `uv.lock` must be copied in the Dockerfile. Check your `COPY` commands. |
+| Symptom                            | Likely cause                                                                                                             |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Bot container keeps restarting     | Check logs: `docker compose logs bot`. Usually a missing env var or import error.                                        |
+| `/health` fails but worked before  | `LMS_API_URL` must be `http://backend:8000` (not `localhost:42002`). Inside Docker, `localhost` is the container itself. |
+| LLM queries fail but worked before | `LLM_API_BASE_URL` must use `host.docker.internal` (not `localhost`). The qwen proxy is on a different Docker network.   |
+| "BOT_TOKEN is required" error      | Bot env vars need to be in `.env.docker.secret`, not just `.env.bot.secret`.                                             |
+| Build fails at `uv sync --frozen`  | `uv.lock` must be copied in the Dockerfile. Check your `COPY` commands.                                                  |
 
 ## Acceptance criteria
 
