@@ -28,7 +28,7 @@ Default values: [`.env.bot.example`](../.env.bot.example)
 
 The Telegram bot token obtained from [`@BotFather`](https://core.telegram.org/bots#botfather).
 
-Default: `your-telegram-bot-token-here`
+Default: `<bot-token>`
 
 ## LMS backend connection
 
@@ -36,11 +36,9 @@ The bot calls these endpoints to communicate with the [LMS API](./lms-api.md#abo
 
 ### `LMS_API_URL`
 
-The base [URL](./computer-networks.md#url) of the [LMS API](./lms-api.md#about-the-lms-api).
+The [LMS API base URL](./lms-api.md#lms-api-base-url).
 
-See [LMS API base URL](./lms-api.md#lms-api-base-url).
-
-Default: `http://localhost:42002`
+Default: `<lms-api-base-url>`
 
 ### `LMS_API_KEY`
 
@@ -58,7 +56,7 @@ Variables for the [LLM API](./llm-api.md#about-llm-api) that powers the bot.
 
 The [LLM API key](./llm-api.md#llm-api-key).
 
-Default: `my-secret-qwen-key`
+Default: `<llm-api-key>`
 
 ### `LLM_API_BASE_URL`
 
