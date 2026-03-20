@@ -1,6 +1,6 @@
-# `.env.tests.unit.secret`
+# `backend/.env.tests.unit.secret`
 
-- [What is `.env.tests.unit.secret`](#what-is-envtestsunitsecret)
+- [What is `backend/.env.tests.unit.secret`](#what-is-backendenvtestsunitsecret)
 - [`NAME`](#name)
 - [`DEBUG`](#debug)
 - [`ADDRESS`](#address)
@@ -15,11 +15,13 @@
 - [`DB_USER`](#db_user)
 - [`DB_PASSWORD`](#db_password)
 
-## What is `.env.tests.unit.secret`
+## What is `backend/.env.tests.unit.secret`
 
-`.env.tests.unit.secret` is an [`.env` file](./environments.md#env-file) that stores [environment variables](./environments.md#environment-variable) for running [unit tests](./quality-assurance.md#unit-test).
+`backend/.env.tests.unit.secret` is an [`.env` file](./environments.md#env-file) that stores [environment variables](./environments.md#environment-variable) for running [unit tests](./quality-assurance.md#unit-test) for the [backend](../docs/design/architecture.md#51-fastapi-application).
 
-Default values: [`.env.tests.unit.example`](../.env.tests.unit.example)
+<!-- TODO properly document backend -->
+
+Default values: [`backend/.env.tests.unit.example`](../backend/.env.tests.unit.example)
 
 > It was added to [`.gitignore`](./git.md#gitignore) because it may contain [secrets](./environments.md#secrets).
 
