@@ -139,24 +139,24 @@ Therefore, unit tests run first.
 ```toml
 [tool.poe.tasks.test-unit]
 cmd = "pytest backend/tests/unit"
-envfile = ".env.tests.unit.secret"
+envfile = "backend/.env.tests.unit.secret"
 ```
 
 Runs [unit tests](./quality-assurance.md#unit-test) in `backend/tests/unit/` using [`pytest`](./python.md#pytest).
 
-Uses [environment variables](./environments.md#environment-variable) from [`.env.tests.unit.secret`](./dotenv-tests-unit-secret.md#what-is-envtestsunitsecret).
+Uses [environment variables](./environments.md#environment-variable) from [`backend/.env.tests.unit.secret`](./backend-dotenv-tests-unit-secret.md#what-is-backendenvtestsunitsecret).
 
 #### `poe test-e2e`
 
 ```toml
 [tool.poe.tasks.test-e2e]
 cmd = "pytest backend/tests/e2e"
-envfile = ".env.tests.e2e.secret"
+envfile = "backend/.env.tests.e2e.secret"
 ```
 
 Runs [end-to-end tests](./quality-assurance.md#end-to-end-test) in `backend/tests/e2e/` against the deployed API using [`pytest`](./python.md#pytest).
 
-Uses [environment variables](./environments.md#environment-variable) from [`.env.tests.e2e.secret`](./dotenv-tests-e2e-secret.md#what-is-envtestse2esecret).
+Uses [environment variables](./environments.md#environment-variable) from [`backend/.env.tests.e2e.secret`](./backend-dotenv-tests-e2e-secret.md#what-is-backendenvtestse2esecret).
 
 ## `[tool.ruff.lint]`
 
