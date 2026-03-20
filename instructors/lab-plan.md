@@ -136,20 +136,20 @@ Mirrors Lab 6 setup checks + deployment + sync.
 
 > Setup instructions are implemented in `lab/setup/setup-simple.md`.
 
-**Auto-checks (reused from Lab 6):**
+**Auto-checks:**
 
 | ID | Check | Channel | How |
 |----|-------|---------|-----|
 | setup-repo | Repository exists on GitHub | GitHub | `repo_exists` |
 | setup-fork | Repository is a fork of the template | GitHub | `repo_is_fork` |
 | setup-issues | GitHub Issues are enabled | GitHub | `repo_has_issues` |
-| setup-ssh | SSH connectivity as student's main user | SSH | `ssh_check` — `echo ok` as `vm_username` |
-| setup-backend | LMS backend is running | SSH | `ssh_check` — `curl -sf http://localhost:42002/docs` returns 200 |
-| setup-data | Database has data (ETL was synced) | SSH | `ssh_check` — `curl -sf -H 'Authorization: Bearer <key>' http://localhost:42002/items/` returns non-empty JSON array |
-
-> Setup checks are mostly identical to Lab 6. The new check (`setup-data`)
-> verifies the student ran the ETL sync. Without it, the bot's data
-> commands and intent routing will return empty results.
+| setup-ssh | SSH connectivity as student's main user | SSH | `echo ok` as `vm_username` |
+| setup-repo-vm | Repo cloned at `~/se-toolkit-lab-7` | SSH | `test -d ~/se-toolkit-lab-7/.git` |
+| setup-env-docker | `.env.docker.secret` exists | SSH | `test -f ~/se-toolkit-lab-7/.env.docker.secret` |
+| setup-env-bot | `.env.bot.secret` exists with BOT_TOKEN and LMS_API_KEY | SSH | `grep -q BOT_TOKEN ~/se-toolkit-lab-7/.env.bot.secret && grep -q LMS_API_KEY ~/se-toolkit-lab-7/.env.bot.secret` |
+| setup-backend | LMS backend is running | SSH | `curl -sf http://localhost:42002/docs` returns 200 |
+| setup-data | Database has data (ETL synced) | SSH | `curl -sf -H 'Authorization: Bearer <key>' http://localhost:42002/items/` returns non-empty JSON |
+| setup-llm | LLM API is reachable | SSH | `curl -sf http://localhost:42005/v1/models -H 'Authorization: Bearer <key>'` returns JSON |
 
 ### Task 1 — Plan and Scaffold
 
@@ -177,13 +177,18 @@ Mirrors Lab 6 setup checks + deployment + sync.
 
 | ID | Check | Channel | How |
 |----|-------|---------|-----|
-| t1-plan | `bot/PLAN.md` exists and has ≥100 words | GitHub | file_exists + file_word_count |
-| t1-env | `.env.bot.example` contains `BOT_TOKEN` | GitHub | regex_in_file |
+| t1-plan | `bot/PLAN.md` exists, ≥100 words, mentions key topics | GitHub | file_word_count ≥100 + regex for `handler\|backend\|intent\|deploy` (at least 3 of 4) |
 | t1-deps | `bot/pyproject.toml` exists | GitHub | file_exists |
-| t1-handlers | Handler directory exists | GitHub | file_exists — `bot/handlers/` |
-| t1-install | Bot dependencies install without errors | SSH | `cd bot && uv sync` on VM |
-| t1-test-mode | `cd bot && uv run bot.py --test "/start"` exits 0 and produces output | SSH | check exit code + stdout non-empty |
-| t1-env-vm | `.env.bot.secret` exists on VM | SSH | `test -f ~/se-toolkit-lab-7/.env.bot.secret` |
+| t1-handlers | Handler directory exists with at least one module | GitHub | glob_exists — `bot/handlers/*.py` |
+| t1-install | Bot dependencies install without errors | SSH | `cd ~/se-toolkit-lab-7/bot && uv sync` exits 0 |
+
+**Eval set (deterministic, no LLM):**
+
+| ID | Input | Expected | Notes |
+|----|-------|----------|-------|
+| t1-eval-start | `--test "/start"` | non-empty, exits 0 | From task description |
+| t1-eval-help | `--test "/help"` | non-empty, exits 0 | Not in task description — unseen |
+| t1-eval-unknown | `--test "/foo"` | non-empty, exits 0, no `Traceback` | Unseen — unknown command must not crash |
 
 ### Task 2 — Backend Integration
 
@@ -208,16 +213,20 @@ Mirrors Lab 6 setup checks + deployment + sync.
 | `/learners` | `GET /learners` | Enrolled learner count/list |
 | `/sync` | `POST /pipeline/sync` | Trigger ETL, show result |
 
-**Auto-checks:**
+**Eval set (deterministic, no LLM):**
 
-| ID | Check | Channel | How |
-|----|-------|---------|-----|
-| t2-start | `--test "/start"` returns text containing "welcome" or bot name (case-insensitive) | SSH | regex on stdout |
-| t2-help | `--test "/help"` output lists at least 4 commands | SSH | count `/command` patterns in stdout |
-| t2-health | `--test "/health"` output contains "healthy" or "ok" or status indicator | SSH | hits real backend on localhost |
-| t2-labs | `--test "/labs"` returns non-empty structured output | SSH | stdout has ≥2 lines |
-| t2-scores | `--test "/scores lab-04"` returns task names and scores | SSH | stdout non-empty, ≥2 lines |
-| t2-error | Backend error produces user-friendly message, not traceback | SSH | stop backend → `--test "/health"` → no `Traceback` → restart |
+All run via SSH as `cd ~/se-toolkit-lab-7/bot && uv run bot.py --test "<input>"`.
+
+| ID | Input | Expected | Notes |
+|----|-------|----------|-------|
+| t2-eval-start | `/start` | contains "welcome" or bot name (case-insensitive) | From task |
+| t2-eval-help | `/help` | lists ≥4 `/command` patterns | From task |
+| t2-eval-health | `/health` | contains "healthy" or "ok" or status indicator | From task — hits real backend |
+| t2-eval-labs | `/labs` | ≥2 lines, contains lab names | From task |
+| t2-eval-scores | `/scores lab-04` | ≥2 lines, contains task names | From task |
+| t2-eval-scores-other | `/scores lab-01` | ≥2 lines, non-empty | Unseen — different lab |
+| t2-eval-scores-noarg | `/scores` | non-empty, no `Traceback` | Unseen — missing argument |
+| t2-eval-error | `/health` (backend stopped) | contains error info, no `Traceback` | From task — stop `app`, test, restart |
 
 > `--test` mode hits the real backend on localhost. No mock needed.
 
@@ -285,18 +294,28 @@ agent is embedded inside a user-facing product.
 | "lab 4" | ambiguous | Clarify: "What about lab 4? I can show scores, pass rates..." |
 | "asdfgh" | nonsense | "I didn't understand. Here's what I can help with..." |
 
-**Auto-checks:**
+**Auto-checks (structural):**
 
 | ID | Check | Channel | How |
 |----|-------|---------|-----|
-| t3-intent | `--test "what labs are available"` (no `/` prefix) returns non-empty answer (≥20 chars) | SSH | real LLM key + real backend |
-| t3-multi | `--test "which lab has the lowest pass rate"` returns answer mentioning a lab name | SSH | regex for `lab-\d+` or lab title in stdout |
-| t3-fallback | `--test "asdfgh"` returns a helpful message, not a crash or empty response | SSH | stdout non-empty, no `Traceback` |
-| t3-buttons | Source code contains keyboard/button setup | GitHub | regex_in_file — `InlineKeyboardMarkup\|ReplyKeyboardMarkup` or equivalent |
-| t3-tools | Source code defines at least 9 tool/function schemas | GitHub | regex_in_file — count occurrences of `"type": "function"` or `"name":` patterns in tool definitions, ≥9 matches |
+| t3-buttons | Source code contains keyboard/button setup | GitHub | regex_in_file — `InlineKeyboardMarkup\|ReplyKeyboardMarkup\|InlineKeyboardButton` or equivalent |
+| t3-tools | Source code defines ≥9 tool/function schemas | GitHub | count `"type": "function"` patterns in tool definition files, ≥9 matches |
 
-> Intent-based checks run with the student's own `.env` on their VM
-> (real LLM key + real backend). If the key is missing, check fails.
+**Eval set (LLM-dependent — runs with student's real LLM key + backend):**
+
+| ID | Input | Expected | Notes |
+|----|-------|----------|-------|
+| t3-eval-labs | `"what labs are available"` | ≥20 chars, non-empty | From task — single tool call |
+| t3-eval-scores | `"show me scores for lab 4"` | contains numbers/percentages | From task — single tool call with argument |
+| t3-eval-multi | `"which lab has the lowest pass rate"` | mentions a specific lab name (regex `Lab\s*\d+` or lab title) | From task — multi-step reasoning |
+| t3-eval-fallback | `"asdfgh"` | non-empty, no `Traceback` | From task — graceful fallback |
+| t3-eval-top | `"top 3 students in lab 4"` | non-empty, contains names or scores | Unseen — tests argument extraction |
+| t3-eval-learners | `"how many students are enrolled"` | non-empty, contains a number | Unseen — different tool |
+| t3-eval-greeting | `"hello"` | non-empty, no `Traceback` | Unseen — non-data query |
+
+> Eval checks run with the student's own `.env.bot.secret` on their VM
+> (real LLM key + real backend). If the LLM key is missing or expired,
+> checks fail — student's responsibility to maintain working LLM access.
 
 ### Task 4 — Containerize and Document
 
@@ -314,11 +333,12 @@ agent is embedded inside a user-facing product.
 | ID | Check | Channel | How |
 |----|-------|---------|-----|
 | t4-dockerfile | `bot/Dockerfile` exists | GitHub | file_exists |
+| t4-readme-heading | README has deploy/containerize heading | GitHub | regex_in_file — `^#{1,3}.*[Dd]eploy\|^#{1,3}.*[Cc]ontainerize` |
+| t4-readme-content | README deploy section has substance | GitHub | regex_in_file — section contains `docker compose` AND mentions env vars (`env\|\.secret\|BOT_TOKEN`) |
 | t4-repo-match | Deployed code is from student's GitHub repo | SSH | `git remote get-url origin` matches `github.com/{alias}/{repo}` |
 | t4-compose | `docker-compose.yml` includes a bot service | SSH | `grep -i bot docker-compose.yml` |
 | t4-running | Bot container is running | SSH | `docker ps` shows bot container |
-| t4-health | Backend is still up alongside the bot | SSH | `curl -sf http://localhost:42002/docs` returns 200 |
-| t4-readme | README has "deploy" or "containerize" section | GitHub | regex_in_file — heading containing "deploy" or "containerize" |
+| t4-health | Backend still healthy alongside bot | SSH | `curl -sf http://localhost:42002/docs` returns 200 |
 
 **TA verification (demo):**
 - Bot responds to `/start`, `/help`, `/health` in Telegram
@@ -338,29 +358,30 @@ agent is embedded inside a user-facing product.
 
 **SSH as student's main user** — runtime & deployment checks on the VM:
 
-**Setup (6 checks) — reused from Lab 6 + data check**
+**Setup (10 checks)**
 - GitHub: repo exists, is fork, issues enabled
-- SSH: connectivity, backend running, database has data (ETL synced)
+- SSH: connectivity, repo at correct path, env files exist (docker + bot),
+  backend running, data synced, LLM API reachable
 
-**Task 1 — Structure & Scaffold (7 checks)**
-- GitHub: bot/PLAN.md, .env.bot.example, bot/pyproject.toml, bot/handlers/
-- SSH: dependencies install, `--test "/start"` works, .env.bot.secret exists
+**Task 1 — Plan & Scaffold (4 structural + 3 eval)**
+- GitHub: PLAN.md content, pyproject.toml, handlers/
+- SSH: uv sync
+- Eval: `/start`, `/help`, `/foo` (unknown command)
 
-**Task 2 — Backend Integration (6 checks)**
-- SSH: /start, /help return expected content via test mode
-- SSH: /health returns status (real backend on localhost)
-- SSH: /labs and /scores return real data
-- SSH: error handling (no traceback on failure)
+**Task 2 — Backend Integration (8 eval)**
+- Eval: `/start`, `/help`, `/health`, `/labs`, `/scores lab-04`,
+  `/scores lab-01` (unseen), `/scores` (no arg), error handling
 
-**Task 3 — Intent Routing (5 checks)**
-- SSH: plain text query returns answer, multi-step query works, fallback works
-- GitHub: button/keyboard code exists, ≥9 tool schemas defined
+**Task 3 — Intent Routing (2 structural + 7 eval)**
+- GitHub: button/keyboard code, ≥9 tool schemas
+- Eval (LLM): labs query, scores query, multi-step, fallback,
+  top learners (unseen), enrolled count (unseen), greeting (unseen)
 
-**Task 4 — Containerize & Document (6 checks)**
-- GitHub: bot/Dockerfile exists, README has deploy section
-- SSH: repo integrity, compose has bot service, bot container running, backend healthy
+**Task 4 — Containerize & Document (7 checks)**
+- GitHub: Dockerfile, README deploy heading + content
+- SSH: repo integrity, compose has bot, container running, backend healthy
 
-**Total: ~30 auto-checks (6 setup + 7 + 6 + 5 + 6)**
+**Total: ~41 checks (10 setup + 7 + 8 + 9 + 7)**
 
 ### TA-Verified (demo)
 
