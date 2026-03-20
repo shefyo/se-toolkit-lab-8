@@ -90,7 +90,7 @@ The [username](#bot-username) of your bot.
    nano .env.bot.secret
    ```
 
-2. [Set the variables in `.env.bot.secret`](./environments.md#set-variables-in-a-env-file-at-file-path):
+2. [Set the variables in `.env.bot.secret`](./environments.md#set-the-variable-to-value-in-the-env-file-at-file-path):
 
    - [`BOT_TOKEN`](./dotenv-bot-secret.md#bot_token)
    - [`LMS_API_URL`](./dotenv-bot-secret.md#lms_api_url)
