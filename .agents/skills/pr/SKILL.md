@@ -15,4 +15,6 @@ Create a pull request following the project's PR template at `.github/pull_reque
 - If `$ARGUMENTS` contains an issue number, include `- Closes #<issue-number>` in the Summary section; otherwise omit that line entirely.
 - Use `gh pr create` with `--title` and `--body` to open the PR.
 - Target the `main` branch (`--base main`).
+- Do not mark any checklist items. Leave all checkboxes unchecked (`[ ]`) for the user to review and check manually.
 - Do not push or create the PR without showing the user the title and body first and asking for confirmation.
+- After the PR is created, suggest that the user edit the PR description directly on GitHub (provide the PR URL) to add any additional context or refine the auto-generated summary.
