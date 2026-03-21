@@ -274,6 +274,7 @@ See [tools](../../wiki/software-types.md#tool).
 
 1. [Create a `Telegram` bot](../../wiki/bot.md#create-a-telegram-bot).
 2. [Configure the environment for the bot](../../wiki/bot.md#configure-the-environment-remote) on your VM (REMOTE).
+3. [Install `uv` (REMOTE)](../../wiki/python.md#install-uv).
 
 ### 1.15. Set up the `Autochecker` bot
 
