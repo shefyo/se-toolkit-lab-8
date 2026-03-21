@@ -528,11 +528,13 @@ Complete these steps:
 
    > 🟦 **Note**
    >
+   > The [current working directory](./shell.md#current-working-directory) is the [home directory (`~`)](./file-system.md#home-directory-).
+   >
    > [`<user>`](./operating-system.md#user-placeholder) is the same as you specified when [updating the `SSH` config to connect to the VM as the user `<user>` (LOCAL)](#update-the-ssh-config-to-connect-to-the-vm-as-the-user-user-local).
    >
    > [`<your-vm-name>`](./vm.md#your-vm-name-placeholder) is the same as you specified when [creating the VM](./vm.md#create-a-vm).
    >
-   > You are in the [home directory (`~`)](./file-system.md#home-directory-).
+   > `<vm-index>` is some number.
 
 ## Restrict the `SSH` connection
 
