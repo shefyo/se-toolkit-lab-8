@@ -113,8 +113,7 @@ Docs:
 
 ## Check that `Node.js` works
 
-1. [Check the current shell in the `VS Code Terminal`](./vs-code.md#check-the-current-shell-in-the-vs-code-terminal).
-2. To check the `Node.js` version,
+1. To check the `Node.js` version,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -122,7 +121,7 @@ Docs:
    node --version
    ```
 
-3. The output should be similar to this:
+2. The output should be similar to this:
 
    ```terminal
    v25.8.1
