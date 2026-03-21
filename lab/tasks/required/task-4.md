@@ -89,8 +89,17 @@ Send these in Telegram — everything that worked before should still work:
 
 ## Acceptance criteria
 
+### On `GitHub`
+
+- [ ] [`Git workflow`](../../../wiki/git-workflow.md) followed (issue, branch, PR, review, merge).
+
+### On `GitHub` on the `main` branch
+
 - [ ] `bot/Dockerfile` exists.
 - [ ] `docker-compose.yml` includes a `bot` service.
+
+### On the VM (REMOTE)
+
 - [ ] Bot container running (`docker ps` shows it).
 - [ ] Backend still healthy (`curl -sf http://localhost:42002/docs` returns 200).
 - [ ] `git remote get-url origin` matches student's GitHub repo.
