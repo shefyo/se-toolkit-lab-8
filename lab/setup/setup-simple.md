@@ -158,6 +158,12 @@ Replace **`YOUR_VM_USERNAME`** and **`YOUR_VM_IP`** with your values.
 
 > <h3>Troubleshooting</h3>
 >
+> **`=> ERROR [backend builder 6/6] RUN --mount=type=cache,target=/root/.cache/uv     uv sync --  0.3s`**
+>
+> The problem is intentional.
+>
+> Ask your [coding agent](#111-coding-agent) to run the `docker compose` command and debug.
+>
 > **Port conflict (`port is already allocated`).**
 >
 > First, check what's using the port:
