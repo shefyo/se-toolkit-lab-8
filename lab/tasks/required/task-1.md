@@ -130,13 +130,13 @@ After verifying with `--test`, deploy the bot on your VM and check it responds i
 
 - [ ] [`Git workflow`](../../../wiki/git-workflow.md) followed (issue, branch, PR, review, merge).
 
-### On the `main` branch on `GitHub`
+### On `GitHub` on the `main` branch
 
 - [ ] `bot/PLAN.md` with at least 100 words exists.
 - [ ] `bot/pyproject.toml` exists.
 - [ ] `bot/handlers/` directory with at least one module exists.
 
-### On the VM
+### On the VM (REMOTE)
 
 - [ ] Repo is cloned at `~/se-toolkit-lab-7`.
 - [ ] `.env.bot.secret` with `BOT_TOKEN`, `LMS_API_KEY` exists.
