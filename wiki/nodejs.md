@@ -10,9 +10,9 @@
 - [Check that `Node.js` works](#check-that-nodejs-works)
 - [`nvm`](#nvm)
   - [Install `nvm`](#install-nvm)
+- [`package.json`](#packagejson)
+- [`node_modules`](#node_modules)
 - [Package managers for `Node.js`](#package-managers-for-nodejs)
-  - [`package.json`](#packagejson)
-  - [`node_modules`](#node_modules)
 - [`npm`](#npm)
 - [`pnpm`](#pnpm)
   - [Install `pnpm`](#install-pnpm)
@@ -160,28 +160,29 @@ Docs:
    0.40.3
    ```
 
+## `package.json`
+
+`package.json` is a configuration [file](./file-system.md#file) in a [`Node.js`](#what-is-nodejs) project that declares the project's [dependencies](./package-manager.md#dependency), scripts, and metadata.
+
+[`pnpm`](#pnpm) and other [package managers for `Node.js`](#package-managers-for-nodejs) read it to know which packages to install and which commands to run.
+
+## `node_modules`
+
+`node_modules` stores all [`Node.js`](#nodejs) modules installed using [`pnpm`](#pnpm) or another [package manager for `Node.js`](#package-managers-for-nodejs).
+
+This [directory](./file-system.md#directory) is [`.gitignore`](./git.md#gitignore)-d.
+
 ## Package managers for `Node.js`
+
+> [!NOTE]
+> See [Package manager](./package-manager.md#what-is-a-package-manager).
 
 - [`npm`](#npm)
 - [`pnpm`](#pnpm)
 
-<!-- TODO toc should include nested sections but there are not only package managers -->
-
-### `package.json`
-
-`package.json` is a configuration [file](./file-system.md#file) in a [`Node.js`](#what-is-nodejs) project that declares the project's [dependencies](./package-manager.md#dependency), scripts, and metadata.
-
-[`pnpm`](#pnpm) reads it to know which packages to install and which commands to run.
-
-### `node_modules`
-
-`node_modules` stores all [`Node.js`](#nodejs) modules installed using [`pnpm`](#pnpm) or another package manager for `Node.js`.
-
-This [directory](./file-system.md#directory) is [`.gitignore`](./git.md#gitignore)-d.
-
 ## `npm`
 
-`npm` is the default package manager for [`Node.js`](#what-is-nodejs).
+`npm` is the default [package manager](./package-manager.md#what-is-a-package-manager) for [`Node.js`](#what-is-nodejs).
 
 It is installed automatically when you install [`Node.js`](#install-nodejs).
 
@@ -191,7 +192,7 @@ Docs:
 
 ## `pnpm`
 
-`pnpm` is a fast, disk-efficient package manager for [`Node.js`](#what-is-nodejs).
+`pnpm` is a fast, disk-efficient [package manager](./package-manager.md#what-is-a-package-manager) for [`Node.js`](#what-is-nodejs).
 It installs and manages project dependencies declared in [`package.json`](#packagejson).
 
 Docs:
