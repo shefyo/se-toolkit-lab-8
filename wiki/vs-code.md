@@ -28,10 +28,10 @@
   - [Delete a `VS Code Terminal`](#delete-a-vs-code-terminal)
   - [Copy text inside the `VS Code Terminal`](#copy-text-inside-the-vs-code-terminal)
   - [Paste text inside the `VS Code Terminal`](#paste-text-inside-the-vs-code-terminal)
+  - [Expand the sidebar with open `VS Code Terminal`s](#expand-the-sidebar-with-open-vs-code-terminals)
   - [Look at the open `VS Code Terminal`s](#look-at-the-open-vs-code-terminals)
   - [Look at the current `VS Code Terminal`](#look-at-the-current-vs-code-terminal)
   - [Check the current shell in the `VS Code Terminal`](#check-the-current-shell-in-the-vs-code-terminal)
-  - [Expand the sidebar with open `VS Code Terminal`s](#expand-the-sidebar-with-open-vs-code-terminals)
   - [(`Windows` only) Switch to the `Linux` shell for the `VS Code Terminal`](#windows-only-switch-to-the-linux-shell-for-the-vs-code-terminal)
   - [Run a command in the `VS Code Terminal`](#run-a-command-in-the-vs-code-terminal)
 - [`VS Code Explorer`](#vs-code-explorer)
@@ -254,8 +254,14 @@ Actions:
 - [Close the `VS Code Terminal`](#close-the-vs-code-terminal)
 - [Open a new `VS Code Terminal`](#open-a-new-vs-code-terminal)
 - [Switch to another `VS Code Terminal`](#switch-to-another-vs-code-terminal)
+- [Delete a `VS Code Terminal`](#delete-a-vs-code-terminal)
 - [Copy text inside the `VS Code Terminal`](#copy-text-inside-the-vs-code-terminal)
 - [Paste text inside the `VS Code Terminal`](#paste-text-inside-the-vs-code-terminal)
+- [Expand the sidebar with open `VS Code Terminal`s](#expand-the-sidebar-with-open-vs-code-terminals)
+- [Look at the open `VS Code Terminal`s](#look-at-the-open-vs-code-terminals)
+- [Look at the current `VS Code Terminal`](#look-at-the-current-vs-code-terminal)
+- [Check the current shell in the `VS Code Terminal`](#check-the-current-shell-in-the-vs-code-terminal)
+- [(`Windows` only) Switch to the `Linux` shell for the `VS Code Terminal`](#windows-only-switch-to-the-linux-shell-for-the-vs-code-terminal)
 - [Run a command in the `VS Code Terminal`](#run-a-command-in-the-vs-code-terminal)
 
 ### Open the `VS Code Terminal`
@@ -311,50 +317,64 @@ Method 2:
 
 `Ctrl+Shift+V` (`Cmd+V` on `macOS`, `Ctrl+V` on `Windows`)
 
+### Expand the sidebar with open `VS Code Terminal`s
+
+1. [Open the `VS Code Terminal`](#open-the-vs-code-terminal).
+
+2. Hover, click, and move the mouse:
+
+   <img alt="Terminal - Expand Open Terminals" src="./images/vs-code/terminal-expand-open-terminals.png" style="width:300px"></img>
+
 ### Look at the open `VS Code Terminal`s
 
 1. [Open the `VS Code Terminal`](#open-the-vs-code-terminal).
+
 2. Look at the sidebar with a list of `VS Code Terminal`s.
 
-   <img alt="Open Terminals" src="./images/vs-code/terminal-current-terminal.png" style="width:300px"></img>
+   <img alt="Open Terminals - Wide" src="./images/vs-code/terminal-current-terminal-bash.png" style="width:300px"></img>
 
    <img alt="Open Terminals - Narrow" src="./images/vs-code/terminal-open-terminals-narrow.png" style="width:300px"></img>
 
    If you don't see a list of `VS Code Terminal`s on the right, you have only one `VS Code Terminal` open.
+
 3. (Optional) [Expand the sidebar with open `VS Code Terminal`s](#expand-the-sidebar-with-open-vs-code-terminals).
 
 ### Look at the current `VS Code Terminal`
 
-1. [Open the `VS Code Terminal`](#open-the-vs-code-terminal).
+1. [Look at the open `VS Code Terminal`s](#look-at-the-open-vs-code-terminals)
+
 2. Look at one of these:
    - The [`Panel Toolbar`](#panel-toolbar):
 
       <img alt="Current Terminal Shell" src="./images/vs-code/terminal-single-current-shell-bash.png" style="width:300px"></img>
 
-   - Current (highlighted) `VS Code Terminal`:
+   - The current (highlighted) `VS Code Terminal`:
 
-      <img alt="Terminals" src="./images/vs-code/terminal-current-terminal.png" style="width:300px"></img>
+      <img alt="Terminals" src="./images/vs-code/terminal-current-terminal-bash.png" style="width:300px"></img>
+
+      <img alt="Current Terminal Shell" src="./images/vs-code/terminal-current-terminal-ssh.png" style="width:300px"></img>
 
 ### Check the current shell in the `VS Code Terminal`
 
 1. [Look at the current `VS Code Terminal`](#look-at-the-current-vs-code-terminal).
 
-   You should see on:
+   - When working on your local machine (LOCAL), you should see on:
 
-   - `Windows`: `bash`
+      - `Windows`:
+          - [`bash`](./shell.md#bash) or [`zsh`](./shell.md#zsh)
 
-      If you see something else, you're not using [`VS Code`](#what-is-vs-code) in [`Linux`](./linux.md#what-is-linux).
+         If you see another shell name (e.g. `Git Bash` or `wsl`),
 
-      [Switch to the `Linux` shell for the `VS Code Terminal`](#windows-only-switch-to-the-linux-shell-for-the-vs-code-terminal).
+         [switch to the `Linux` shell for the `VS Code Terminal`](#windows-only-switch-to-the-linux-shell-for-the-vs-code-terminal).
 
-   - `macOS`, `Linux`: [`zsh`](./shell.md#zsh), [`bash`](./shell.md#bash), or another [shell](./shell.md#shell-variants) name
+      - `macOS`, `Linux`:
+        - [`zsh`](./shell.md#zsh), [`bash`](./shell.md#bash), or another shell
 
-### Expand the sidebar with open `VS Code Terminal`s
+   - When [connected to the VM](./vm-access.md#connect-to-the-vm-as-the-user-user-local) (REMOTE), you should see `ssh`.
 
-1. [Open the `VS Code Terminal`](#open-the-vs-code-terminal).
-2. Hover, click, and move the mouse:
-
-   <img alt="Terminal - Expand Open Terminals" src="./images/vs-code/terminal-expand-open-terminals.png" style="width:300px"></img>
+      > 🟦 **Note**
+      >
+      > The default [shell](./shell.md#what-is-a-shell) on the VM is [`bash`](./shell.md#bash).
 
 ### (`Windows` only) Switch to the `Linux` shell for the `VS Code Terminal`
 
