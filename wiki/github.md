@@ -5,9 +5,10 @@
 - [What is `GitHub`](#what-is-github)
 - [The `GitHub` site](#the-github-site)
 - [`GitHub` API](#github-api)
-- [`GitHub` username](#github-username)
-  - [`<your-github-username>` placeholder](#your-github-username-placeholder)
-  - [Find `<your-github-username>`](#find-your-github-username)
+- [`GitHub` account](#github-account)
+  - [`GitHub` username](#github-username)
+    - [`<your-github-username>` placeholder](#your-github-username-placeholder)
+    - [Find `<your-github-username>`](#find-your-github-username)
 - [`GitHub` repository](#github-repository)
   - [`<repo-name>`](#repo-name)
   - [`<repo-url>`](#repo-url)
@@ -85,19 +86,25 @@ Docs:
 
 - [GitHub REST API documentation](https://docs.github.com/en/rest)
 
-## `GitHub` username
+## `GitHub` account
 
-A `GitHub` username is a unique identifier of a user or an organization on [the `GitHub` site](#the-github-site).
+A `GitHub` account is a registered user or organization profile on [the `GitHub` site](#the-github-site).
+
+With a `GitHub` account, you can create and manage [`GitHub` repositories](#github-repository), open [issues](#issue), submit [pull requests](#pull-request), and collaborate with others.
+
+### `GitHub` username
+
+A `GitHub` username is a unique identifier of a [`GitHub` account](#github-account) — a user or an organization — on [the `GitHub` site](#the-github-site).
 
 Example of a username: `inno-se-toolkit`.
 
 Note that this username doesn't include `@`.
 
-### `<your-github-username>` placeholder
+#### `<your-github-username>` placeholder
 
 Your [`GitHub` username](#github-username) (without `@`).
 
-### Find `<your-github-username>`
+#### Find `<your-github-username>`
 
 1. Go to the [`GitHub` site](#the-github-site).
 2. Sign in if necessary.
@@ -156,7 +163,7 @@ Example: <https://github.com/nixos/nixpkgs/tree/nixpkgs-unstable>
 
 ## Repository owner
 
-Repository owner is an account where the repo is currently stored.
+Repository owner is a [`GitHub` account](#github-account) where the repo is currently stored.
 
 ### `<repo-owner-github-username>`
 
