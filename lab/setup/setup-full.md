@@ -35,14 +35,15 @@
   - [1.15. Set up the `Autochecker` bot](#115-set-up-the-autochecker-bot)
   - [1.16. Check the setup using the `Autochecker` bot](#116-check-the-setup-using-the-autochecker-bot)
 - [2. Optional steps](#2-optional-steps)
-  - [2.1. (UPD) Set up `Nix` (LOCAL)](#21-upd-set-up-nix-local)
-  - [2.2. (UPD) Set up `direnv` (LOCAL)](#22-upd-set-up-direnv-local)
-  - [2.3. Learn to go back after clicking a link (LOCAL)](#23-learn-to-go-back-after-clicking-a-link-local)
-  - [2.4. Set up the shell prompt (LOCAL)](#24-set-up-the-shell-prompt-local)
-  - [2.5. Customize the `Source Control` (LOCAL)](#25-customize-the-source-control-local)
-  - [2.6. Get familiar with `GitLens` (LOCAL)](#26-get-familiar-with-gitlens-local)
-  - [2.7. Create a label for tasks (`GitHub`)](#27-create-a-label-for-tasks-github)
-  - [2.8. View `Markdown` files in `VS Code` (LOCAL)](#28-view-markdown-files-in-vs-code-local)
+  - [2.1. (UPD) Set up `gh` (LOCAL)](#21-upd-set-up-gh-local)
+  - [2.2. Set up `Nix` (LOCAL)](#22-set-up-nix-local)
+  - [2.3. Set up `direnv` (LOCAL)](#23-set-up-direnv-local)
+  - [2.4. Learn to go back after clicking a link (LOCAL)](#24-learn-to-go-back-after-clicking-a-link-local)
+  - [2.5. Set up the shell prompt (LOCAL)](#25-set-up-the-shell-prompt-local)
+  - [2.6. Customize the `Source Control` (LOCAL)](#26-customize-the-source-control-local)
+  - [2.7. Get familiar with `GitLens` (LOCAL)](#27-get-familiar-with-gitlens-local)
+  - [2.8. Create a label for tasks (`GitHub`)](#28-create-a-label-for-tasks-github)
+  - [2.9. View `Markdown` files in `VS Code` (LOCAL)](#29-view-markdown-files-in-vs-code-local)
 
 ## 1. Required steps
 
@@ -291,27 +292,32 @@ See [tools](../../wiki/software-types.md#tool).
 These enhancements can make your life easier:
 
 <!-- no toc -->
-- [Set up `Nix`](#21-upd-set-up-nix-local)
-- [Set up `direnv`](#22-upd-set-up-direnv-local)
-- [Learn to go back after clicking a link](#23-learn-to-go-back-after-clicking-a-link-local)
-- [Set up the shell prompt](#24-set-up-the-shell-prompt-local)
-- [Customize the `Source Control`](#25-customize-the-source-control-local)
-- [Get familiar with `GitLens`](#26-get-familiar-with-gitlens-local)
-- [Create a label for tasks](#27-create-a-label-for-tasks-github)
-- [View `Markdown` files in `VS Code`](#28-view-markdown-files-in-vs-code-local)
+- [Set up `gh`](#21-upd-set-up-gh-local)
+- [Set up `Nix`](#22-set-up-nix-local)
+- [Set up `direnv`](#23-set-up-direnv-local)
+- [Learn to go back after clicking a link](#24-learn-to-go-back-after-clicking-a-link-local)
+- [Set up the shell prompt](#25-set-up-the-shell-prompt-local)
+- [Customize the `Source Control`](#26-customize-the-source-control-local)
+- [Get familiar with `GitLens`](#27-get-familiar-with-gitlens-local)
+- [Create a label for tasks](#28-create-a-label-for-tasks-github)
+- [View `Markdown` files in `VS Code`](#29-view-markdown-files-in-vs-code-local)
 
-### 2.1. (UPD) Set up `Nix` (LOCAL)
+### 2.1. (UPD) Set up `gh` (LOCAL)
+
+1. [Set up `gh`](../../wiki/github.md#set-up-gh)
+
+### 2.2. Set up `Nix` (LOCAL)
 
 1. (Optional) [Read about `Nix`](../../wiki/nix.md#what-is-nix).
 2. [Set up `Nix`](../../wiki/nix.md#set-up-nix).
 
-### 2.2. (UPD) Set up `direnv` (LOCAL)
+### 2.3. Set up `direnv` (LOCAL)
 
 1. (Optional) [Read about `direnv`](../../wiki/direnv.md#what-is-direnv).
-2. [Set up `Nix`](#21-upd-set-up-nix-local).
+2. [Set up `Nix`](#22-set-up-nix-local).
 3. [Set up `direnv`](../../wiki/direnv.md#set-up-direnv).
 
-### 2.3. Learn to go back after clicking a link (LOCAL)
+### 2.4. Learn to go back after clicking a link (LOCAL)
 
 > [!NOTE]
 > Shortcuts for going back after clicking a link:
@@ -320,7 +326,7 @@ These enhancements can make your life easier:
 - `Firefox` — `Alt+ArrowLeft`.
 - Other browsers — google.
 
-### 2.4. Set up the shell prompt (LOCAL)
+### 2.5. Set up the shell prompt (LOCAL)
 
 `Starship` shows your current `Git` branch, status, and other useful info directly in your [shell prompt](../../wiki/shell.md#shell-prompt) in almost any terminal, including the [`VS Code Terminal`](../../wiki/vs-code.md#vs-code-terminal).
 
@@ -333,7 +339,7 @@ Complete these steps:
 
    <img alt="Starship in the VS Code Terminal" src="../../wiki/images/starship/terminal-prompt.png" style="width:400px"></img>
 
-### 2.5. Customize the `Source Control` (LOCAL)
+### 2.6. Customize the `Source Control` (LOCAL)
 
 1. [Open the `Source Control`](../../wiki/vs-code.md#open-the-source-control).
 2. Click three dots to the right of `SOURCE CONTROL`.
@@ -341,7 +347,7 @@ Complete these steps:
 
    <img alt="Changes and GitLens" src="../../wiki/images/vs-code/source-control-allowed-views.png" style="width:400px"></img>
 
-### 2.6. Get familiar with `GitLens` (LOCAL)
+### 2.7. Get familiar with `GitLens` (LOCAL)
 
 [`GitLens`](../../wiki/gitlens.md#what-is-gitlens) helps you work with `Git` in `VS Code`.
 
@@ -352,7 +358,7 @@ Complete these steps:
 3. [Inspect the current branch](../../wiki/gitlens.md#inspect-the-current-branch).
 4. [Inspect the remotes](../../wiki/gitlens.md#inspect-the-remotes).
 
-### 2.7. Create a label for tasks (`GitHub`)
+### 2.8. Create a label for tasks (`GitHub`)
 
 [Labels](../../wiki/github.md#label) help you filter and organize issues.
 
@@ -367,7 +373,7 @@ Complete these steps:
 2. [Add the label to issues](../../wiki/github.md#add-a-label-to-issues).
 3. [See all issues with the label](../../wiki/github.md#see-all-issues-with-a-label).
 
-### 2.8. View `Markdown` files in `VS Code` (LOCAL)
+### 2.9. View `Markdown` files in `VS Code` (LOCAL)
 
 If you want to view [`README.md`](../../README.md) and other `Markdown` files in `VS Code` instead of on `GitHub`:
 
