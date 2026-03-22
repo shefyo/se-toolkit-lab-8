@@ -72,10 +72,7 @@ services:
         condition: service_healthy
 
   caddy:
-    build:
-      context: caddy/
-      args:
-        REGISTRY_PREFIX: ${REGISTRY_PREFIX:-harbor.pg.innopolis.university/docker-hub-cache/}
+    image: ${REGISTRY_PREFIX:-harbor.pg.innopolis.university/docker-hub-cache/}caddy:2.11-alpine
     networks:
       - lms-network
     depends_on:
