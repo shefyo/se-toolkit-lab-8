@@ -12,9 +12,7 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm run build
 
-
-# Stage 2: Serve with Caddy
-ARG REGISTRY_PREFIX=harbor.pg.innopolis.university/docker-hub-cache/
-FROM ${REGISTRY_PREFIX}caddy:2.11-alpine
-
-COPY --from=builder /app/dist /srv
+# Stage 2: Copy build output
+FROM alpine
+COPY --from=builder /app/dist /frontend-web
+CMD ["cp", "-r", "/frontend-web/.", "/output/"]
