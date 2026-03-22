@@ -60,7 +60,7 @@ Ask your coding agent to create the entry point with `--test` mode support. Hand
 
 Handler modules separated from the Telegram transport layer. The `--test` mode calls them directly without Telegram.
 
-### 4. Dependencies (`bot/pyproject.toml`)
+### 4. Dependencies (`client-telegram-bot/pyproject.toml`)
 
 Bot-specific Python project with dependencies. `cd bot && uv sync` must work without errors. Do **not** create `requirements.txt` — use `pyproject.toml` and `uv` exclusively.
 
@@ -133,7 +133,7 @@ After verifying with `--test`, deploy the bot on your VM and check it responds i
 ### On `GitHub` on the `main` branch
 
 - [ ] `bot/PLAN.md` with at least 100 words exists.
-- [ ] `bot/pyproject.toml` exists.
+- [ ] `client-telegram-bot/pyproject.toml` exists.
 - [ ] `bot/handlers/` directory with at least one module exists.
 
 ### On the VM (REMOTE)

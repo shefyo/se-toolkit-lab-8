@@ -13,7 +13,7 @@ The bot has been running on your VM as a background process (`nohup`). That work
 
 ### 1. Bot Dockerfile (`bot/Dockerfile`)
 
-Installs dependencies using `uv sync` from `bot/pyproject.toml` and runs the bot entry point.
+Installs dependencies using `uv sync` from `client-telegram-bot/pyproject.toml` and runs the bot entry point.
 
 > [!IMPORTANT]
 > Do **not** use `requirements.txt` or `pip install`. The project uses `uv` and `pyproject.toml` exclusively. Having both `pyproject.toml` and `requirements.txt` leads to dependency drift and random breakage. If your coding agent generates a `requirements.txt`, delete it.
