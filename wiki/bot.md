@@ -8,7 +8,6 @@
   - [`<your-bot-username>` placeholder](#your-bot-username-placeholder)
 - [Create a `Telegram` bot](#create-a-telegram-bot)
 - [Deploy the bot on the VM](#deploy-the-bot-on-the-vm)
-  - [Enter the repository directory (REMOTE)](#enter-the-repository-directory-remote)
   - [Configure the environment (REMOTE)](#configure-the-environment-remote)
   - [Start the bot](#start-the-bot)
     - [Start the bot via `uv run python`](#start-the-bot-via-uv-run-python)
@@ -72,21 +71,11 @@ The [username](#bot-username) of your bot.
 
 1. [Connect to the VM as the user `admin` (LOCAL)](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
 2. [Install `uv` (REMOTE)](./python.md#install-uv).
-3. [Enter the repository directory (REMOTE)](#enter-the-repository-directory-remote).
+3. [Set up the lab repository directory (REMOTE)](./lab.md#set-up-the-lab-repository-directory).
 4. [Configure the environment (REMOTE)](#configure-the-environment-remote).
 5. [Start the bot (REMOTE)](#start-the-bot).
 6. [Check the bot (REMOTE)](#check-the-bot-via-uv-run-poe).
 7. [Check the bot in `Telegram`](#check-the-bot-in-telegram).
-
-### Enter the repository directory (REMOTE)
-
-1. To enter the repository directory,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   cd ~/se-toolkit-lab-7
-   ```
 
 ### Configure the environment (REMOTE)
 
