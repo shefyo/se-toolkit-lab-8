@@ -1,5 +1,5 @@
 [tool.uv.workspace]
-members = ["backend", "bot"]
+members = ["backend", "client-telegram-bot"]
 
 [dependency-groups]
 dev = [
@@ -91,16 +91,16 @@ envfile = ".env.bot.secret"
 
 [tool.poe.tasks.bot]
 help = "Run bot in Telegram mode"
-cmd = "python bot/bot.py"
+cmd = "python client-telegram-bot/bot.py"
 envfile = ".env.bot.secret"
 
 [tool.poe.tasks.bot-test]
 help = "Run bot in Test mode"
-cmd = "python bot/bot.py --test"
+cmd = "python client-telegram-bot/bot.py --test"
 envfile = ".env.bot.secret"
 
 [tool.pyright]
-include = ["backend", "bot"]
+include = ["backend", "client-telegram-bot"]
 exclude = ["**/__pycache__", "**/node_modules", "**/.*", ".venv", ".direnv"]
 typeCheckingMode = "strict"
 reportAssignmentType = "none"
@@ -112,4 +112,4 @@ pythonpath = ["backend"]
 asyncio_mode = "auto"
 
 [tool.ty.src]
-include = ["backend", "bot"]
+include = ["backend", "client-telegram-bot"]

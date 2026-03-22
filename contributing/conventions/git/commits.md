@@ -46,8 +46,8 @@ area of change:
 - `caddy` — `caddy/` config and reverse-proxy setup
 - `lab` — `lab/` (task sheets, setup guide)
 - `client-web-react` — `client-web-react/`
+- `client-telegram-bot` — `client-telegram-bot/`
 - `backend` — `backend/`, `pyproject.toml`, backend config
-- `bot` — `bot/`, bot config
 - `tests` — `backend/tests/` (test files and fixtures)
 - `vscode` — `.vscode/` settings and extensions
 - `git` — `.gitignore`, `.gitmodules`, git config

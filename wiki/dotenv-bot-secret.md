@@ -18,7 +18,7 @@
 
 The values configure the bot token, the [LMS API](./lms-api.md#about-the-lms-api) connection, and the [LLM](./llm.md) that powers the bot.
 
-Default values: [`.env.bot.example`](../.env.bot.example)
+Default values: [`client-telegram-bot/.env.bot.example`](../client-telegram-bot/.env.bot.example)
 
 > [!NOTE]
 > `.env.bot.secret` was added to [`.gitignore`](./git.md#gitignore) because you may specify there

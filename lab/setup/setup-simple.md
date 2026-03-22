@@ -430,7 +430,7 @@ You need a Telegram bot token to run your bot client.
 
    ```terminal
    cd ~/se-toolkit-lab-7
-   cp .env.bot.example .env.bot.secret
+   cp client-telegram-bot/.env.bot.example .env.bot.secret
    nano .env.bot.secret
    ```
 

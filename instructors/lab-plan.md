@@ -168,7 +168,7 @@ Mirrors Lab 6 setup checks + deployment + sync.
 
 - `bot/PLAN.md` — development plan produced with agent assistance
 - Bot code in a `bot/` directory with separated handler layer
-- Bot dependencies in `bot/pyproject.toml` (managed with `uv sync`)
+- Bot dependencies in `client-telegram-bot/pyproject.toml` (managed with `uv sync`)
 - `BOT_TOKEN` added to `.env.bot.example`
 - Bot entry point (`bot/bot.py` or `bot/main.py`) that starts without crashing
 - CLI test mode wired up (even if handlers return placeholder text)
@@ -183,7 +183,7 @@ Mirrors Lab 6 setup checks + deployment + sync.
 |----|-------|---------|-----|
 | t1-plan-exists | `bot/PLAN.md` exists and ≥100 words | GitHub | file_word_count ≥100 |
 | t1-plan-quality | PLAN.md covers key topics (handlers, backend, intent routing, deployment) | SSH+LLM | Read file via GitHub, judge via student's Qwen proxy: "Does this plan cover all 4 areas?" |
-| t1-deps | `bot/pyproject.toml` exists | GitHub | file_exists |
+| t1-deps | `client-telegram-bot/pyproject.toml` exists | GitHub | file_exists |
 | t1-handlers | Handler directory exists with at least one module | GitHub | glob_exists — `bot/handlers/*.py` |
 | t1-install | Bot dependencies install without errors | SSH | `cd ~/se-toolkit-lab-7/bot && uv sync` exits 0 |
 
