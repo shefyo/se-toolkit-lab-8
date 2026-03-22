@@ -76,7 +76,9 @@ Alternatively, the name of that branch (without `<` and `>`).
 
 ## Create a PR to the `main` branch in your fork
 
-[Create a PR](./github.md#create-a-pull-request-in-your-fork) from the branch [`<task-branch>`](#task-branch) to `main`. Replace:
+[Create a PR](./github.md#create-a-pull-request-in-your-fork) from the branch [`<task-branch>`](#task-branch) to `main`.
+
+Replace the placeholders:
 
 - [`<repo-name>`](./github.md#repo-name) with [`<lab-repo-name>`](./lab.md#lab-repo-name)
 - [`<branch>`](./git.md#branch) with [`<task-branch>`](./git-workflow.md#task-branch)

@@ -74,7 +74,7 @@ Docs:
    git clone <repo-url> <repo-path>
    ```
 
-   Replace:
+   Replace the placeholders:
 
    - [`<repo-url>`](./github.md#repo-url)
    - `<repo-path>` with the path where you want to clone the repository

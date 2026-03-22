@@ -157,7 +157,7 @@ You can verify which URLs `origin` and `upstream` point to by [inspecting remote
 
 You can browse a repository at a particular [revision](./git.md#revision): `<repo-url>/tree/<revision>`.
 
-Replace:
+Replace the placeholders:
 
 - [`<repo-url>`](#repo-url)
 - `<revision>` at the end of the [URL](./computer-networks.md#url) with the actual [revision](./git.md#revision).

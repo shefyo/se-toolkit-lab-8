@@ -40,9 +40,9 @@ Commands for changing permissions:
 chmod <mode> <path>
 ```
 
-Replace:
+Replace the placeholders:
 
-- `<mode>` placeholder with the [mode](./linux.md#mode)
+- `<mode>` placeholder with the necessary [mode](./linux.md#mode)
 - [`<path>` placeholder](./file-system.md#path-placeholder)
 
 ### `chown`
