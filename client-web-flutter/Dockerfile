@@ -1,5 +1,7 @@
-ARG REGISTRY_PREFIX=harbor.pg.innopolis.university/docker-hub-cache/
-FROM ${REGISTRY_PREFIX}instrumentisto/flutter:3.29.3 AS builder
+ARG REGISTRY_PREFIX_GHCR=harbor.pg.innopolis.university/ghcr-proxy/
+ARG REGISTRY_PREFIX_DOCKER_HUB=harbor.pg.innopolis.university/docker-hub-cache/
+
+FROM ${REGISTRY_PREFIX_GHCR}cirruslabs/flutter:3.41.2 AS builder
 
 WORKDIR /app
 
@@ -11,7 +13,6 @@ RUN flutter pub get
 COPY . .
 RUN flutter build web --base-href /flutter/
 
-ARG REGISTRY_PREFIX=harbor.pg.innopolis.university/docker-hub-cache/
-FROM ${REGISTRY_PREFIX}alpine:3.21
+FROM ${REGISTRY_PREFIX_DOCKER_HUB}alpine:3.21
 COPY --from=builder /app/build/web /flutter-web
 CMD ["cp", "-r", "/flutter-web/.", "/output/"]

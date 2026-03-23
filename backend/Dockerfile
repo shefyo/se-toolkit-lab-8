@@ -5,8 +5,8 @@
 # Stage 1: build the application in the `/app` directory.
 # ---
 
-ARG REGISTRY_PREFIX=harbor.pg.innopolis.university/docker-hub-cache/
-FROM ${REGISTRY_PREFIX}astral/uv:python3.14-bookworm-slim AS builder
+ARG REGISTRY_PREFIX_DOCKER_HUB=harbor.pg.innopolis.university/docker-hub-cache/
+FROM ${REGISTRY_PREFIX_DOCKER_HUB}astral/uv:python3.14-bookworm-slim AS builder
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 
 # Omit development dependencies
@@ -37,8 +37,8 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # Stage 2: use a final image without uv
 # ---
 
-ARG REGISTRY_PREFIX=harbor.pg.innopolis.university/docker-hub-cache/
-FROM ${REGISTRY_PREFIX}python:3.14.2-slim-bookworm
+ARG REGISTRY_PREFIX_DOCKER_HUB=harbor.pg.innopolis.university/docker-hub-cache/
+FROM ${REGISTRY_PREFIX_DOCKER_HUB}python:3.14.2-slim-bookworm
 # It is important to use the image that matches the builder, as the path to the
 # Python executable must be the same, e.g., using `python:3.11-slim-bookworm`
 # will fail.

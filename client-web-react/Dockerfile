@@ -1,7 +1,7 @@
 # Stage 1: Build the React frontend
 
-ARG REGISTRY_PREFIX=harbor.pg.innopolis.university/docker-hub-cache/
-FROM ${REGISTRY_PREFIX}node:25.8.0-alpine AS builder
+ARG REGISTRY_PREFIX_DOCKER_HUB=harbor.pg.innopolis.university/docker-hub-cache/
+FROM ${REGISTRY_PREFIX_DOCKER_HUB}node:25.8.0-alpine AS builder
 
 WORKDIR /app
 
