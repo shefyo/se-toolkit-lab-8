@@ -79,6 +79,14 @@ services:
     volumes:
       - client-web-react:/output
 
+  client-web-flutter:
+    build:
+      context: client-web-flutter/
+      args:
+        REGISTRY_PREFIX: ${REGISTRY_PREFIX:-harbor.pg.innopolis.university/docker-hub-cache/}
+    volumes:
+      - client-web-flutter:/output
+
   caddy:
     image: ${REGISTRY_PREFIX:-harbor.pg.innopolis.university/docker-hub-cache/}caddy:2.11-alpine
     networks:
@@ -86,6 +94,7 @@ services:
     depends_on:
       - backend
       - client-web-react
+      - client-web-flutter
     environment:
       - CADDY_CONTAINER_PORT=${CADDY_CONTAINER_PORT:?'CADDY_CONTAINER_PORT is required'}
       - BACKEND_CONTAINER_PORT=${BACKEND_CONTAINER_PORT:?'BACKEND_CONTAINER_PORT is required'}
@@ -95,6 +104,7 @@ services:
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
       - client-web-react:/srv/react:ro
+      - client-web-flutter:/srv/flutter:ro
 
   client-telegram-bot:
     build:
@@ -119,6 +129,7 @@ services:
 volumes:
   postgres_data:
   client-web-react:
+  client-web-flutter:
 
 networks:
   lms-network:
