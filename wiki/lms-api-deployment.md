@@ -16,14 +16,13 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
 ## Deploy the LMS API on the VM
 
 1. [Connect to the VM as the user `admin` (LOCAL)](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
-2. [Set up the lab repository (REMOTE)](./lab.md#clone-the-lab-repository).
+2. [Set up the lab repository directory (REMOTE)](./lab.md#set-up-the-lab-repository-directory).
 3. [Switch to the necessary branch `<branch>` (REMOTE)](./git-vscode.md#switch-to-the-branch-branch-using-the-vs-code-terminal).
 4. [Hard reset the branch `<branch>`](./git-vscode.md#hard-reset-the-branch-branch).
 5. [Configure the environment (REMOTE)](#configure-the-environment-remote).
-6. [Configure `Docker` DNS (REMOTE)](./docker.md#configure-docker-dns).
-7. [Start the services (REMOTE)](#start-the-services-remote).
-8. [Populate the database (LOCAL)](#populate-the-database-local).
-9. [View the dashboard (LOCAL)](#view-the-dashboard-local).
+6. [Start the services (REMOTE)](#start-the-services-remote).
+7. [Populate the database (LOCAL)](#populate-the-database-local).
+8. [View the dashboard (LOCAL)](#view-the-dashboard-local).
 
 ### Configure the environment (REMOTE)
 
