@@ -6,6 +6,7 @@
 - [Clone the repository](#clone-the-repository)
   - [Clone the repository using the `VS Code Terminal`](#clone-the-repository-using-the-vs-code-terminal)
   - [Clone the repository using the `Command Palette`](#clone-the-repository-using-the-command-palette)
+- [Update submodules using the `VS Code Terminal`](#update-submodules-using-the-vs-code-terminal)
 - [Switch to the branch `<branch>`](#switch-to-the-branch-branch)
   - [Switch to the branch `<branch>` using the `VS Code Terminal`](#switch-to-the-branch-branch-using-the-vs-code-terminal)
   - [Switch to the branch `<branch>` using `GitLens`](#switch-to-the-branch-branch-using-gitlens)
@@ -133,6 +134,16 @@ Docs:
 5. [Select](./vs-code.md#select-an-option-from-a-list) the repo.
 6. Choose a directory where to clone the repository.
 7. Confirm the choice.
+
+## Update submodules using the `VS Code Terminal`
+
+1. To check out missing submodules and update all submodules,
+  
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
+
+   ```terminal
+   git submodule update --init
+   ```
 
 ## Switch to the branch `<branch>`
 
