@@ -3,7 +3,9 @@
 <h2>Table of contents</h2>
 
 - [What is `.env.docker.secret`](#what-is-envdockersecret)
-- [`REGISTRY_PREFIX`](#registry_prefix)
+- [Registry prefixes](#registry-prefixes)
+  - [`REGISTRY_PREFIX_DOCKER_HUB`](#registry_prefix_docker_hub)
+  - [`REGISTRY_PREFIX_GHCR`](#registry_prefix_ghcr)
 - [`backend`](#backend)
   - [`BACKEND_NAME`](#backend_name)
   - [`BACKEND_DEBUG`](#backend_debug)
@@ -64,15 +66,27 @@ The default values are in [`.env.docker.example`](../.env.docker.example).
 > `.env.docker.secret` was added to [`.gitignore`](./git.md#gitignore) because you may specify there
 > [secrets](./environments.md#secrets) such as the [LMS API key](./lms-api.md#lms-api-key) or the [address of your VM](./vm.md#your-vm-ip-address).
 
-## `REGISTRY_PREFIX`
+## Registry prefixes
 
-The prefix prepended to [Docker image](./docker.md#image) names when pulling base images.
-By default, it points to a [`Harbor`](https://goharbor.io/) cache proxy on the university network, which avoids [`DockerHub`](./docker.md#dockerhub) rate limits.
-Outside the university network, set it to an empty string to pull directly from `DockerHub`.
+Prefixes prepended to [Docker image](./docker.md#image) names when pulling base images.
+By default, they point to [`Harbor`](https://goharbor.io/) cache proxies on the university network to avoid rate limits.
+Outside the university network, set them to empty strings to pull directly from the source registries.
 
-This value is used as a build argument in the [`backend`](#backend) and [`caddy`](#caddy) service [`Dockerfile`](./docker.md#what-is-docker) builds, and as an image prefix for the [`postgres`](#postgres) and [`pgadmin`](#pgadmin) services in [`docker-compose.yml`](../docker-compose.yml).
+### `REGISTRY_PREFIX_DOCKER_HUB`
+
+A [registry prefix](#registry-prefixes) for [Docker Hub](./docker.md#dockerhub) images.
+
+Used as a build argument in [`docker-compose.yml`](../wiki/docker-compose-yml.md#what-is-docker-composeyml).
 
 Default: `harbor.pg.innopolis.university/docker-hub-cache/`
+
+### `REGISTRY_PREFIX_GHCR`
+
+A [registry prefix](#registry-prefixes) for [GitHub Container Registry](https://ghcr.io) images.
+
+Used as a build argument in [`docker-compose.yml`](../wiki/docker-compose-yml.md).
+
+Default: `harbor.pg.innopolis.university/ghcr-proxy/`
 
 ## `backend`
 
@@ -229,6 +243,12 @@ Default: `42002`
 The [LMS API key](./lms-api.md#lms-api-key).
 
 Default: `<lms-api-key>`
+
+<!-- TODO everywhere 
+don't mention [`.env.docker.secret`](#what-is-envdockersecret) inline?
+-->
+
+Set in [`.env.docker.secret`](#what-is-envdockersecret).
 
 ### `LMS_API_BASE_URL`
 
