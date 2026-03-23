@@ -79,7 +79,7 @@ The LLM proxy is available at `/utils/qwen-code-api/v1/chat/completions` through
 
 ## Deliverables
 
-### 1. Flutter web app (`flutter_chatbot/`)
+### 1. Flutter web app (`client-web-flutter/`)
 
 A Flutter project inside the repo with a chat UI. The app must:
 
@@ -95,7 +95,7 @@ The project structure:
 
 ```
 se-toolkit-lab-7/
-├── flutter_chatbot/         ← NEW
+├── client-web-flutter/      ← NEW
 │   ├── lib/
 │   │   ├── main.dart        ← entry point
 │   │   ├── chat_screen.dart ← chat UI
@@ -117,11 +117,11 @@ se-toolkit-lab-7/
 Build the Flutter app for web and place the output where Caddy can serve it:
 
 ```terminal
-cd flutter_chatbot
+cd client-web-flutter
 flutter build web --base-href /flutter/
 ```
 
-The build output goes to `flutter_chatbot/build/web/`. Caddy serves these static files at `/flutter`.
+The build output goes to `client-web-flutter/build/web/`. Caddy serves these static files at `/flutter`.
 
 ### 3. Caddy configuration (`caddy/Caddyfile`)
 
@@ -143,7 +143,7 @@ Update the Caddy service in `docker-compose.yml` to mount the Flutter build dire
 caddy:
   volumes:
     - ./caddy/Caddyfile:/etc/caddy/Caddyfile
-    - ./flutter_chatbot/build/web:/srv/flutter  # ← NEW
+    - ./client-web-flutter/build/web:/srv/flutter  # ← NEW
 ```
 
 Alternatively, add a build stage to the Caddy Dockerfile that compiles Flutter and copies the output. Either approach works — the result must be that `/flutter` serves the app.
@@ -155,7 +155,7 @@ Alternatively, add a build stage to the Caddy Dockerfile that compiles Flutter a
 On your VM (or locally), install Flutter and build:
 
 ```terminal
-cd ~/se-toolkit-lab-7/flutter_chatbot
+cd ~/se-toolkit-lab-7/client-web-flutter
 flutter build web --base-href /flutter/
 ```
 
@@ -202,8 +202,8 @@ Open `http://<your-vm-ip-address>:42002/flutter` in your browser. You should see
 
 ### On `GitHub` on the `main` branch
 
-- [ ] `flutter_chatbot/` directory with a Flutter project exists.
-- [ ] `flutter_chatbot/pubspec.yaml` exists.
+- [ ] `client-web-flutter/` directory with a Flutter project exists.
+- [ ] `client-web-flutter/pubspec.yaml` exists.
 - [ ] `caddy/Caddyfile` includes a `/flutter` route.
 - [ ] Source code contains LLM tool definitions (at least 5 tool schemas).
 - [ ] Source code contains a command menu (buttons, chips, or equivalent UI element).
