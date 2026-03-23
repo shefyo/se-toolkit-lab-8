@@ -80,6 +80,19 @@ help = "Run end-to-end tests against the deployed API"
 cmd = "pytest backend/tests/e2e"
 envfile = "backend/.env.tests.e2e.secret"
 
+# Export OpenAPI schema
+
+[tool.poe.tasks.export-openapi]
+help = "Export OpenAPI schema to openapi.json"
+cmd = "python scripts/export-openapi.py"
+env = { PYTHONPATH = "backend" }
+
+[tool.poe.tasks.check-openapi]
+help = "Check that openapi.json is up to date"
+cmd = "python scripts/export-openapi.py --check"
+env = { PYTHONPATH = "backend" }
+
+
 # Query Qwen Code API
 
 [tool.poe.tasks.query-qwen-code-api]
