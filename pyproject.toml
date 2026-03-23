@@ -92,12 +92,12 @@ envfile = ".env.bot.secret"
 [tool.poe.tasks.bot]
 help = "Run bot in Telegram mode"
 cmd = "python client-telegram-bot/bot.py"
-envfile = ".env.bot.secret"
+envfile = "client-telegram-bot/.env.secret"
 
 [tool.poe.tasks.bot-test]
 help = "Run bot in Test mode"
 cmd = "python client-telegram-bot/bot.py --test"
-envfile = ".env.bot.secret"
+envfile = "client-telegram-bot/.env.secret"
 
 [tool.pyright]
 include = ["backend", "client-telegram-bot"]
