@@ -147,7 +147,7 @@ If you installed `Docker Desktop`:
 
 ## Set up `Docker` as the user `<user>` (REMOTE)
 
-Complete these steps
+Complete these steps:
 
 1. [Connect to the VM as the user `<user>`](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
 2. [Add the user `<user>` to the group `docker` (REMOTE)](#add-the-user-user-to-the-group-docker-remote).
