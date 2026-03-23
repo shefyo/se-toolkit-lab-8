@@ -91,14 +91,14 @@ Docs:
    >
    > [**`git` asks for a password**](./github.md#git-asks-for-a-password)
    >
-   > [**`fatal: destination path <directory-path> already exists and is not an empty directory.`**](./github.md#fatal-destination-path-directory-path-already-exists-and-is-not-an-empty-directory)
+   > [**`fatal: destination path <path> already exists and is not an empty directory.`**](./github.md#fatal-destination-path-directory-path-already-exists-and-is-not-an-empty-directory)
 
 2. To verify that the repository isn't empty,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   ls <repo-path>
+   ls <path>
    ```
 
    The output should be the list of names of files in the repository.
