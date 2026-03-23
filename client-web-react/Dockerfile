@@ -14,5 +14,4 @@ RUN pnpm run build
 
 # Stage 2: Copy build output
 FROM alpine
-COPY --from=builder /app/dist /frontend-web
-CMD ["cp", "-r", "/frontend-web/.", "/output/"]
+COPY --from=builder /app/dist /output/
