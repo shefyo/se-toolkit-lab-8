@@ -80,7 +80,7 @@ Alternatively, the name of that branch (without `<` and `>`).
 
 Replace the placeholders:
 
-- [`<repo-name>`](./github.md#repo-name) with [`<lab-repo-name>`](./lab.md#lab-repo-name)
+- [`<repo-name>`](./github.md#repo-name-placeholder) with [`<lab-repo-name>`](./lab.md#lab-repo-name)
 - [`<branch>`](./git.md#branch-placeholder) with [`<task-branch>`](./git-workflow.md#task-branch-placeholder)
 - [`<your-github-username>`](./github.md#your-github-username-placeholder)
 

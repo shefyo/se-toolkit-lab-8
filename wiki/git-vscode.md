@@ -58,7 +58,7 @@ Docs:
 ## Clone the repository
 
 > [!NOTE]
-> See [`<repo-url>`](./github.md#repo-url), [`<repo-name>`](./github.md#repo-name).
+> See [`<repo-url>`](./github.md#repo-url-placeholder), [`<repo-name>`](./github.md#repo-name-placeholder).
 
 <!-- no toc -->
 - Method 1: [Clone the repository using the `VS Code Terminal`](#clone-the-repository-using-the-vs-code-terminal)
@@ -76,7 +76,7 @@ Docs:
 
    Replace the placeholders:
 
-   - [`<repo-url>`](./github.md#repo-url)
+   - [`<repo-url>`](./github.md#repo-url-placeholder)
    - [`<path>`](./file-system.md#path-placeholder) with the path where you want to clone the repository
 
    Example:
@@ -115,7 +115,7 @@ Docs:
    `Git: Clone`.
 2. Click `Clone from GitHub`.
 3. Allow the extension to sign in.
-4. Paste the [`<repo-url>`](./github.md#repo-url).
+4. Paste the [`<repo-url>`](./github.md#repo-url-placeholder).
 5. [Select](./vs-code.md#select-an-option-from-a-list) the repo.
 6. Choose a directory where to clone the repository.
 7. Confirm the choice.
