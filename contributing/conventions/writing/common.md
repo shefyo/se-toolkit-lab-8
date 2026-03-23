@@ -33,6 +33,8 @@
 - [4.28. JSON command output](#428-json-command-output)
 - [4.29. Referring to users of a machine](#429-referring-to-users-of-a-machine)
 - [4.30. Section titles with execution context](#430-section-titles-with-execution-context)
+- [4.31. Path placeholder references](#431-path-placeholder-references)
+- [4.32. Standalone `<branch>` placeholder references](#432-standalone-branch-placeholder-references)
 
 ## 4.1. Instructions wording
 
@@ -338,6 +340,24 @@ When actions don't share a logical goal, flatten them into separate top-level st
 
 ## 4.20. Placeholders in docs
 
+**Parameterize generic instructions; bind concrete values at the surface.**
+Wiki pages and reusable how-tos (e.g., `git-vscode.md`) must be written with placeholders (`<branch>`, `<remote>`, `<user>`, `<path>`, etc.).
+Surface files that students actually follow (e.g., `git-workflow.md`, `lab.md`, task files) bind those placeholders to concrete values for the current lab.
+
+Example — generic wiki instruction:
+
+```markdown
+[Switch to the branch `<branch>`](./git-vscode.md#switch-to-the-branch-branch)
+```
+
+Surface file binds the placeholder:
+
+```markdown
+Switch to the `main` branch.
+```
+
+This separation keeps wiki content reusable across labs while letting each lab supply its own values.
+
 Use placeholders instead of hardcoded environment-specific values (e.g., URLs, ports from `.env`). This keeps docs accurate when students change their configuration.
 
 Bad: `` Open <http://127.0.0.1:5050> in a browser. ``
@@ -454,13 +474,13 @@ When the placeholder pair first appears in a section, link each part to its defi
 From a wiki file:
 
 ```markdown
-See [`<branch>`](./git.md#branch), [`<remote>`](./git.md#remote).
+See [`<branch>`](./git.md#branch-placeholder), [`<remote>`](./git.md#remote-placeholder).
 ```
 
 From a task file:
 
 ```markdown
-See [`<branch>`](../../../wiki/git.md#branch), [`<remote>`](../../../wiki/git.md#remote).
+See [`<branch>`](../../../wiki/git.md#branch-placeholder), [`<remote>`](../../../wiki/git.md#remote-placeholder).
 ```
 
 ## 4.26. Example IP address
@@ -580,3 +600,39 @@ When a section contains commands that run on a specific machine, append `(REMOTE
 ```
 
 Omit the suffix when the section contains no commands, or when the execution context is unambiguous from the surrounding content (e.g., a file that exclusively covers remote or local operations).
+
+## 4.31. Path placeholder references
+
+When referring to a path placeholder in prose, link it to the matching section in `file-system.md`.
+
+From a wiki file:
+
+```markdown
+[`<path>`](./file-system.md#path-placeholder)
+[`<file-path>`](./file-system.md#file-path-placeholder)
+[`<directory-path>`](./file-system.md#directory-path-placeholder)
+```
+
+From a task file:
+
+```markdown
+[`<path>`](../../../wiki/file-system.md#path-placeholder)
+[`<file-path>`](../../../wiki/file-system.md#file-path-placeholder)
+[`<directory-path>`](../../../wiki/file-system.md#directory-path-placeholder)
+```
+
+## 4.32. Standalone `<branch>` placeholder references
+
+When asking the reader to replace a `<branch>` placeholder outside of a branch-on-remote pair (see [4.25](#425-branch-on-remote-references)), link to the placeholder section:
+
+From a wiki file:
+
+```markdown
+Replace the placeholder [`<branch>`](./git.md#branch-placeholder).
+```
+
+From a task file:
+
+```markdown
+Replace the placeholder [`<branch>`](../../../wiki/git.md#branch-placeholder).
+```

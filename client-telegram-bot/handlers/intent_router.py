@@ -1,6 +1,7 @@
 """Intent router for natural language queries using LLM."""
 
 from typing import Any
+import httpx
 import sys
 import os
 
@@ -223,6 +224,11 @@ async def route_intent(
                 "I'm not sure how to help with that. Try /help for available commands.",
             )
 
+    except httpx.ConnectError as e:
+        url = str(e.request.url) if e.request else "unknown"
+        return f"⚠️ Could not connect to {url} — the service may not be running."
+    except httpx.HTTPStatusError as e:
+        return f"⚠️ Service returned HTTP {e.response.status_code} for {e.request.url}."
     except Exception as e:
         return f"⚠️ Error processing your request: {str(e)}"
 
