@@ -46,6 +46,7 @@ area of change:
 - `caddy` — `caddy/` config and reverse-proxy setup
 - `lab` — `lab/` (task sheets, setup guide)
 - `client-web-react` — `client-web-react/`
+- `client-web-flutter` — `client-web-flutter/`
 - `client-telegram-bot` — `client-telegram-bot/`
 - `backend` — `backend/`, `pyproject.toml`, backend config
 - `tests` — `backend/tests/` (test files and fixtures)
@@ -54,7 +55,7 @@ area of change:
 - `github` — `.github/` (workflows, issue templates, PR templates)
 - `agent` — `.agents/`, `AGENTS.md` (skills, settings)
 - `nix` — `flake.nix`, `flake.lock`, Nix-related config
-- `docker` — `Dockerfile`, `docker-compose.yml`, Docker-related config
+- `docker` — root `docker-compose.yml` and root Docker config
 - `database` — `.sql` files, migrations, schema
 - `markdownlint` — `.markdownlint*` config
 
