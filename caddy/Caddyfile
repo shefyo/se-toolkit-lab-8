@@ -29,7 +29,7 @@
         reverse_proxy http://backend:{$BACKEND_CONTAINER_PORT}
     }
     handle {
-        root * /srv
+        root * /srv/react
         try_files {path} /index.html
         file_server
     }
