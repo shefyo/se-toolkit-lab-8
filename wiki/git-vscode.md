@@ -170,7 +170,7 @@ Docs:
    git checkout <branch>
    ```
 
-   Replace [`<branch>`](./git.md#branch).
+   Replace the placeholder [`<branch>`](./git.md#branch-placeholder).
 
 4. [Run the copied command using the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal).
 
@@ -184,7 +184,7 @@ Docs:
    git checkout -b <branch>
    ```
 
-   Replace [`<branch>`](./git.md#branch).
+   Replace the placeholder [`<branch>`](./git.md#branch-placeholder).
 
 ### Switch to a new branch using `GitLens`
 
@@ -192,7 +192,7 @@ Docs:
    `GitLens: Git Create Branch...`.
 2. [Select](./vs-code.md#select-an-option-from-a-list)
    `main` as the base branch.
-3. Write the new branch name (let it be [`<branch>`](./git.md#branch)).
+3. Write the new branch name (we refer to this name as [`<branch>`](./git.md#branch-placeholder)).
 4. Press `Enter` to confirm.
 5. [Select](./vs-code.md#select-an-option-from-a-list)
    `Create & Switch to Branch`.
@@ -220,16 +220,16 @@ Docs:
 
 ## Detect conflicts
 
-It can happen that commits in [`<branch>`](./git.md#branch) on [`<remote>`](./git.md#remote-placeholder) are different from commits on the branch `<branch>` in the cloned repo on your computer.
+It can happen that commits on the branch [`<branch>`](./git.md#branch-placeholder) on the remote [`<remote>`](./git.md#remote-placeholder) are different from commits on the local branch `<branch>` in the cloned repo on your computer.
 
 - Method 1: [Detect conflicts using `GitLens`](#detect-conflicts-using-gitlens)
 - Method 2: [Detect conflicts using the `VS Code Terminal`](#detect-conflicts-using-the-vs-code-terminal)
 
 ### Detect conflicts using the `VS Code Terminal`
 
-1. [Fetch the latest changes using the `VS Code Terminal`](#fetch-the-latest-changes-using-the-vs-code-terminal).
+1. [Fetch the branch `<branch>` using the `VS Code Terminal`](#fetch-the-branch-branch-using-the-vs-code-terminal).
 
-2. To compare the local [`<branch>`](./git.md#branch-placeholder) with the branch `<branch>` on `<remote>`,
+2. To compare the local branch [`<branch>`](./git.md#branch-placeholder) with the branch `<branch>` on the remote `<remote>`,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -372,7 +372,7 @@ For each conflicting file, complete the following steps:
 ## Pull changes from the branch `<branch>` on `<remote>`
 
 > [!NOTE]
-> See [`<branch>`](./git.md#branch), [`<remote>`](./git.md#remote-placeholder).
+> See [`<branch>`](./git.md#branch-placeholder), [`<remote>`](./git.md#remote-placeholder).
 
 <!-- no toc -->
 - Method 1: [Pull changes from the branch `<branch>` on `<remote>` using the `VS Code Terminal`](#pull-changes-from-the-branch-branch-on-remote-using-the-vs-code-terminal)
@@ -492,6 +492,7 @@ For each conflicting file, complete the following steps:
 ### Commit using the `VS Code Terminal`
 
 1. Open the [`VS Code Terminal`](./vs-code.md#open-the-vs-code-terminal).
+
 2. To stage your changes,
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
@@ -500,7 +501,7 @@ For each conflicting file, complete the following steps:
    git add <file-path>
    ```
 
-   See [`<file-path>`](./file-system.md#file-path).
+   See [`<file-path>`](./file-system.md#file-path-placeholder).
 
    Example:
 

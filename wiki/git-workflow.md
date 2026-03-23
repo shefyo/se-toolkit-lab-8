@@ -18,7 +18,7 @@ Outline:
 - [Pull changes from `main` on `origin`](#pull-changes-from-main-on-origin)
 - [Pull changes from `main` on `upstream`](#pull-changes-from-main-on-upstream)
 - [Switch to the `<task-branch>`](#switch-to-the-task-branch)
-  - [`<task-branch>`](#task-branch)
+  - [`<task-branch>` placeholder](#task-branch-placeholder)
 - [Edit files](#edit-files)
 - [Commit changes](#commit-changes)
 - [(Optional) Undo commits](#optional-undo-commits)
@@ -51,7 +51,7 @@ Outline:
 
 [Create a new `<task-branch>` and switch to it](./git-vscode.md#switch-to-a-new-branch).
 
-### `<task-branch>`
+### `<task-branch>` placeholder
 
 The [new branch for the task](#switch-to-the-task-branch).
 
@@ -63,7 +63,7 @@ Alternatively, the name of that branch (without `<` and `>`).
 
 ## Commit changes
 
-[Commit changes](./git-vscode.md#commit-changes) to the [`<task-branch>`](#task-branch) to complete the task.
+[Commit changes](./git-vscode.md#commit-changes) to the [`<task-branch>`](#task-branch-placeholder) to complete the task.
 
 ## (Optional) Undo commits
 
@@ -76,12 +76,12 @@ Alternatively, the name of that branch (without `<` and `>`).
 
 ## Create a PR to the `main` branch in your fork
 
-[Create a PR](./github.md#create-a-pull-request-in-your-fork) from the branch [`<task-branch>`](#task-branch) to `main`.
+[Create a PR](./github.md#create-a-pull-request-in-your-fork) from the branch [`<task-branch>`](#task-branch-placeholder) to `main`.
 
 Replace the placeholders:
 
 - [`<repo-name>`](./github.md#repo-name) with [`<lab-repo-name>`](./lab.md#lab-repo-name)
-- [`<branch>`](./git.md#branch) with [`<task-branch>`](./git-workflow.md#task-branch)
+- [`<branch>`](./git.md#branch-placeholder) with [`<task-branch>`](./git-workflow.md#task-branch)
 - [`<your-github-username>`](./github.md#your-github-username-placeholder)
 
 > [!WARNING]
@@ -125,4 +125,4 @@ Click `Merge pull request`.
 
 1. Close the issue.
 
-2. Delete the PR branch ([`<task-branch>`](#task-branch)).
+2. Delete the PR branch ([`<task-branch>`](#task-branch-placeholder)).
