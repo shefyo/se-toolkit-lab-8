@@ -107,6 +107,27 @@ services:
       - client-web-react:/srv/react:ro
       - client-web-flutter:/srv/flutter:ro
 
+  nanobot:
+    build:
+      context: ./nanobot
+      args:
+        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
+    restart: unless-stopped
+    networks:
+      - lms-network
+    expose:
+      - "18790"
+      - "8765"
+    environment:
+      # LMS skill (used by agent via curl)
+      - NANOBOT_LMS_API_KEY=${LMS_API_KEY:?'LMS_API_KEY is required'}
+      - NANOBOT_LMS_BACKEND_URL=http://backend:${BACKEND_CONTAINER_PORT}
+      # LLM provider (pydantic-settings env override)
+      - NANOBOT_PROVIDERS__CUSTOM__API_KEY=${LLM_API_KEY:?'LLM_API_KEY is required'}
+      - NANOBOT_PROVIDERS__CUSTOM__API_BASE=${LLM_API_BASE_URL:?'LLM_API_BASE_URL is required'}
+    depends_on:
+      - backend
+
   client-telegram-bot:
     build:
       context: client-telegram-bot/
@@ -126,6 +147,7 @@ services:
       - LLM_API_MODEL=${LLM_API_MODEL:?'LLM_API_MODEL is required'}
     depends_on:
       - backend
+      - nanobot
 
 volumes:
   postgres_data:
