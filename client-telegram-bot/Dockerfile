@@ -20,15 +20,15 @@ ENV UV_PYTHON_DOWNLOADS=0
 
 WORKDIR /app
 RUN --mount=type=cache,target=/root/.cache/uv \
-    --mount=type=bind,source=uv.lock,target=uv.lock \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    --mount=type=bind,source=backend/pyproject.toml,target=backend/pyproject.toml \
-    --mount=type=bind,source=client-telegram-bot/pyproject.toml,target=client-telegram-bot/pyproject.toml \
+    --mount=type=bind,from=workspace,source=uv.lock,target=uv.lock \
+    --mount=type=bind,from=workspace,source=pyproject.toml,target=pyproject.toml \
+    --mount=type=bind,from=workspace,source=backend/pyproject.toml,target=backend/pyproject.toml \
+    --mount=type=bind,source=pyproject.toml,target=client-telegram-bot/pyproject.toml \
     uv sync --locked --no-install-project
 
-COPY client-telegram-bot /app/client-telegram-bot
-COPY backend/pyproject.toml /app/backend/pyproject.toml
-COPY pyproject.toml uv.lock /app/
+COPY . /app/client-telegram-bot
+COPY --from=workspace backend/pyproject.toml /app/backend/pyproject.toml
+COPY --from=workspace pyproject.toml uv.lock /app/
 
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked
