@@ -127,19 +127,20 @@ A `GitHub` repository contains not only project files but also additional collab
 
 ### `<repo-name>` placeholder
 
-A [`GitHub` repository](#github-repository) name.
+A [`GitHub` repository](#github-repository) name (without `<` and `>`).
 
 The name must be unique among repositories of the [repository owner](#repository-owner).
 
 ### `<repo-url>` placeholder
 
-We use `<repo-url>` to refer to a repository [URL](./computer-networks.md#url).
+A repository [URL](./computer-networks.md#url) (without `<` and `>`).
 
-A repository URL is typically `https://github.com/<repo-owner-github-username>/<repo-name>`.
-Placeholder values:
+A [`GitHub` repository](#github-repository) URL is typically `https://github.com/<repo-owner-github-username>/<repo-name>`.
 
-- See [`<repo-owner-github-username>`](#repo-owner-github-username).
-- `<repo-name>` is the name of the repository.
+See:
+
+- [`<repo-owner-github-username>`](#repo-owner-github-username).
+- [`<repo-name>`](#repo-name-placeholder)
 
 ### `upstream`
 
