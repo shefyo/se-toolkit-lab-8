@@ -1,5 +1,5 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'lms_service.dart';
 import 'llm_service.dart';
 
 class ChatMessage {
@@ -21,43 +21,35 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final List<ChatMessage> _messages = [];
   final TextEditingController _controller = TextEditingController();
-  final TextEditingController _apiKeyController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
-  String? _apiKey;
-  LmsService? _lms;
   late final LlmService _llm = LlmService();
+  StreamSubscription<String>? _sub;
   bool _isLoading = false;
 
   static const _commands = [
-    ('/start', 'Welcome'),
-    ('/help', 'Help'),
-    ('/health', 'Health'),
-    ('/labs', 'Labs'),
-    ('/scores lab-04', 'Scores'),
-    ('/sync', 'Sync Pipeline'),
+    ('What labs are available?', 'Labs'),
+    ('Is the backend healthy?', 'Health'),
+    ('Show scores for lab-04', 'Scores'),
+    ('Sync the data', 'Sync'),
   ];
 
-  void _connect(String apiKey) {
-    setState(() {
-      _apiKey = apiKey;
-      _lms = LmsService(apiKey: apiKey);
-      _messages.clear();
+  @override
+  void initState() {
+    super.initState();
+    _llm.connect();
+    _sub = _llm.responses.listen((content) {
+      setState(() {
+        _messages.add(ChatMessage(text: content, isUser: false));
+        _isLoading = false;
+      });
+      _scrollToBottom();
     });
     _addBotMessage(
-      'Welcome to SE Toolkit Bot!\n\n'
+      'Connected to Nanobot!\n\n'
       'I can help you check system health, browse labs, view scores, '
       'and answer questions about your LMS data.\n\n'
-      'Use the buttons below or type a command like /help.',
+      'Type a question or use the buttons below.',
     );
-  }
-
-  void _disconnect() {
-    setState(() {
-      _apiKey = null;
-      _lms = null;
-      _messages.clear();
-      _apiKeyController.clear();
-    });
   }
 
   void _addBotMessage(String text) {
@@ -79,7 +71,7 @@ class _ChatScreenState extends State<ChatScreen> {
     });
   }
 
-  Future<void> _sendMessage(String text) async {
+  void _sendMessage(String text) {
     final trimmed = text.trim();
     if (trimmed.isEmpty || _isLoading) return;
 
@@ -90,175 +82,16 @@ class _ChatScreenState extends State<ChatScreen> {
     });
     _scrollToBottom();
 
-    String response;
-    if (trimmed.startsWith('/')) {
-      response = await _handleCommand(trimmed);
-    } else {
-      response = await _llm.routeIntent(trimmed, _lms!);
-    }
-
-    setState(() {
-      _messages.add(ChatMessage(text: response, isUser: false));
-      _isLoading = false;
-    });
-    _scrollToBottom();
-  }
-
-  Future<String> _handleCommand(String input) async {
-    final parts = input.split(RegExp(r'\s+'));
-    final command = parts[0].toLowerCase();
-    final args = parts.length > 1 ? parts.sublist(1) : <String>[];
-
-    switch (command) {
-      case '/start':
-        return 'Welcome to SE Toolkit Bot!\n\n'
-            'I\'m your LMS assistant. I can help you:\n'
-            '- Check system health with /health\n'
-            '- Browse available labs with /labs\n'
-            '- View scores with /scores <lab>\n'
-            '- Ask questions in plain language!\n\n'
-            'Type /help to see all available commands.';
-
-      case '/help':
-        return 'Available commands:\n\n'
-            '- /start - Welcome message\n'
-            '- /help - Show this help message\n'
-            '- /health - Check backend system status\n'
-            '- /labs - List all available labs\n'
-            '- /scores <lab> - View pass rates for a specific lab\n\n'
-            'You can also ask questions in plain language, like:\n'
-            '- "What labs are available?"\n'
-            '- "Show me the scores for lab-04"\n'
-            '- "Is the backend working?"';
-
-      case '/health':
-        try {
-          final result = await _lms!.healthCheck();
-          if (result['status'] == 'healthy') {
-            return 'Backend is healthy. ${result['item_count']} items available.';
-          }
-          return 'Backend error: ${result['error']}';
-        } catch (e) {
-          return 'Error checking health: $e';
-        }
-
-      case '/labs':
-        try {
-          final items = await _lms!.getItems();
-          final labs = items
-              .where((item) => item['type'] == 'lab')
-              .toList()
-            ..sort((a, b) =>
-                a['id'].toString().compareTo(b['id'].toString()));
-
-          if (labs.isEmpty) return 'No labs available.';
-
-          final buffer = StringBuffer('Available labs:\n\n');
-          for (final lab in labs) {
-            buffer.writeln('- ${lab['title']}');
-          }
-          return buffer.toString().trim();
-        } catch (e) {
-          return 'Error fetching labs: $e';
-        }
-
-      case '/scores':
-        if (args.isEmpty) {
-          return 'Please specify a lab. Usage: /scores <lab>\nExample: /scores lab-04';
-        }
-        try {
-          final passRates = await _lms!.getPassRates(args[0]);
-          if (passRates.isEmpty) {
-            return 'No scores found for ${args[0]}. Check the lab name.';
-          }
-
-          final buffer = StringBuffer('Pass rates for ${args[0]}:\n\n');
-          for (final rate in passRates) {
-            final task = rate['task'] ?? 'Unknown';
-            final avgScore = (rate['avg_score'] as num?)?.toStringAsFixed(1) ?? '0';
-            final attempts = rate['attempts'] ?? 0;
-            buffer.writeln('- $task: $avgScore% ($attempts attempts)');
-          }
-          return buffer.toString().trim();
-        } catch (e) {
-          final msg = e.toString();
-          if (msg.contains('404') || msg.toLowerCase().contains('not found')) {
-            return 'Lab \'${args[0]}\' not found. Check the lab name.';
-          }
-          return 'Error fetching scores: $msg';
-        }
-
-      case '/sync':
-        try {
-          final result = await _lms!.syncPipeline();
-          return 'Pipeline sync complete. '
-              '${result['new_records'] ?? 0} new records, '
-              '${result['total_records'] ?? 0} total records.';
-        } catch (e) {
-          return 'Error syncing pipeline: $e';
-        }
-
-      default:
-        return 'Unknown command: $command. Type /help for available commands.';
-    }
+    _llm.send(trimmed);
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_apiKey == null) {
-      return Scaffold(
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(32),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 400),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('LMS API Key',
-                      style: Theme.of(context).textTheme.headlineMedium),
-                  const SizedBox(height: 8),
-                  const Text('Enter your LMS API key to connect.'),
-                  const SizedBox(height: 16),
-                  TextField(
-                    controller: _apiKeyController,
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      hintText: 'Token',
-                      border: OutlineInputBorder(),
-                    ),
-                    onSubmitted: (value) {
-                      if (value.trim().isNotEmpty) _connect(value.trim());
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  FilledButton(
-                    onPressed: () {
-                      final key = _apiKeyController.text.trim();
-                      if (key.isNotEmpty) _connect(key);
-                    },
-                    child: const Text('Connect'),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      );
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('LMS Chatbot'),
         backgroundColor: Theme.of(context).colorScheme.primary,
         foregroundColor: Colors.white,
-        actions: [
-          TextButton(
-            onPressed: _disconnect,
-            child: const Text('Disconnect',
-                style: TextStyle(color: Colors.white)),
-          ),
-        ],
       ),
       body: Column(
         children: [
@@ -386,7 +219,7 @@ class _ChatScreenState extends State<ChatScreen> {
             child: TextField(
               controller: _controller,
               decoration: const InputDecoration(
-                hintText: 'Type a message or command...',
+                hintText: 'Type a message...',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(24)),
                 ),
@@ -410,9 +243,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void dispose() {
+    _sub?.cancel();
     _controller.dispose();
-    _apiKeyController.dispose();
     _scrollController.dispose();
+    _llm.dispose();
     super.dispose();
   }
 }
