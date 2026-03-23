@@ -4,7 +4,7 @@
 
 - [What is a lab](#what-is-a-lab)
 - [Set up the lab repository directory](#set-up-the-lab-repository-directory)
-  - [Clone the lab repository](#clone-the-lab-repository)
+  - [Clone your lab repository fork](#clone-your-lab-repository-fork)
   - [Enter the lab repository directory](#enter-the-lab-repository-directory)
 - [Constants](#constants)
   - [`<lab-repo-name>`](#lab-repo-name)
@@ -25,22 +25,28 @@ A lab is the time for learning:
 Complete these steps:
 
 <!-- no toc -->
-1. [Clone the lab repository](#clone-the-lab-repository).
+1. [Clone your lab repository fork](#clone-your-lab-repository-fork).
 2. [Enter the lab repository directory](#enter-the-lab-repository-directory).
 3. [Fetch the branch `<branch>`](./git-vscode.md#fetch-the-branch-branch-using-the-vs-code-terminal).
 4. [Switch to the branch `<branch>`](./git-vscode.md#switch-to-the-branch-branch-using-the-vs-code-terminal).
 
-### Clone the lab repository
+### Clone your lab repository fork
 
-1. [Clone the lab repository](./git-vscode.md#clone-the-repository-using-the-vs-code-terminal).
+1. To clone your lab repository fork,
 
-   Replace the placeholders:
+   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
-   - `<repo-url>` with `https://github.com/<your-github-username>/se-toolkit-lab-7`
+   ```terminal
+   git clone --recurse-submodules \
+     https://github.com/<your-github-username>/se-toolkit-lab-7 \
+     ~/se-toolkit-lab-7
+   ```
 
-   - `<path>` with `~/se-toolkit-lab-7`
+   Replace the placeholder [`<your-github-username>`](./github.md#your-github-username-placeholder).
 
-   - [`<your-github-username>`](./github.md#your-github-username-placeholder)
+   > <h3>Troubleshooting<h3>
+   >
+   > See [Clone the repository using the `VS Code Terminal`](./git-vscode.md#clone-the-repository-using-the-vs-code-terminal).
 
 ### Enter the lab repository directory
 
@@ -52,7 +58,7 @@ Complete these steps:
    cd ~/se-toolkit-lab-7
    ```
 
-2. [Clone the lab repository](#clone-the-lab-repository) if the directory doesn't exist.
+2. [Clone your lab repository fork](#clone-your-lab-repository-fork) if the directory doesn't exist.
 
 ## Constants
 
