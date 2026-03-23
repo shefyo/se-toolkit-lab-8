@@ -64,10 +64,14 @@ We refer to your fork as `fork` and to the original repo as `upstream`.
 1. Clone your fork to your local machine:
 
    ```terminal
-   git clone https://github.com/YOUR_GITHUB_USERNAME/se-toolkit-lab-7
+   git clone --recurse-submodules https://github.com/YOUR_GITHUB_USERNAME/se-toolkit-lab-7
    ```
 
    Replace **`YOUR_GITHUB_USERNAME`** with your GitHub username.
+
+   > 🟦 **Note**
+   >
+   > The `--recurse-submodules` flag clones the `Qwen Code` API [submodule](../../wiki/git.md#submodule) included in the repository.
 
 2. Open the forked repo in `VS Code`.
 
@@ -288,7 +292,7 @@ The autochecker tests your bot against your **deployed backend on your VM**. You
 3. Clone your fork on the VM:
 
    ```terminal
-   git clone https://github.com/YOUR_GITHUB_USERNAME/se-toolkit-lab-7 ~/se-toolkit-lab-7
+   git clone --recurse-submodules https://github.com/YOUR_GITHUB_USERNAME/se-toolkit-lab-7 ~/se-toolkit-lab-7
    ```
 
    Replace **`YOUR_GITHUB_USERNAME`** with your GitHub username.
