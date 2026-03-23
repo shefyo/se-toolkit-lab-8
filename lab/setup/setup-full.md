@@ -106,6 +106,8 @@
 
    The [URL](../../wiki/computer-networks.md#url) of your fork should look like `https://github.com/<your-github-username>/se-toolkit-lab-7`.
 
+   See [`<your-github-username>`](../../wiki/github.md#your-github-username-placeholder).
+
 #### 1.3.4. (UPD) Enable issues
 
 1. [Enable issues](../../wiki/github.md#enable-issues).
