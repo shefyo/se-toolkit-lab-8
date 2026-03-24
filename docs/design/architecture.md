@@ -150,7 +150,7 @@ graph TD
     CADDY -->|"Reverse proxy\nAPI requests"| API
     CADDY -->|"WebSocket\n/ws/chat"| NANOBOT
     API -->|"Async SQL\n(SQLAlchemy)"| DB
-    NANOBOT -->|"curl\n(LMS skill)"| API
+    NANOBOT -->|"MCP tools\n(mcp_lms_*)"| API
     TGBOT -->|"WebSocket\nws://nanobot:8765"| NANOBOT
     Admin -->|"HTTP :42003"| PGA
     PGA -->|SQL| DB
@@ -164,7 +164,7 @@ graph TD
 | FastAPI       | Python, FastAPI, SQLModel, Uvicorn | REST API: handles all business logic, validates Bearer token on every request, and exposes auto-generated Swagger UI at `/docs`.                                                                                                                           |
 | PostgreSQL    | PostgreSQL                         | Relational database: stores the `item`, `learner`, and `interacts` tables. Initialised with schema and seed data from `init.sql` on first startup.                                                                                                         |
 | pgAdmin       | pgAdmin 4                          | Web-based database management UI: lets admins inspect tables, run SQL queries, and browse the data.                                                                                                                                                        |
-| Nanobot       | Python, nanobot-ai                 | AI agent gateway: accepts WebSocket connections on port 8765, routes messages to an LLM agent that can query the LMS backend via curl.                                                                                                                      |
+| Nanobot       | Python, nanobot-ai                 | AI agent gateway: accepts WebSocket connections on port 8765, routes messages to an LLM agent that can query the LMS backend via MCP tools.                                                                                                                 |
 | Telegram Bot  | Python, aiogram                    | Standalone Telegram bot: handles `/start` and `/help` locally; forwards all other messages to nanobot over WebSocket. Per-user API key auth via `/login`.                                                                                                   |
 
 ---
