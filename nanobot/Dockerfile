@@ -20,6 +20,7 @@ ENV UV_PYTHON_DOWNLOADS=0
 
 WORKDIR /app
 COPY --from=workspace pyproject.toml uv.lock /app/
+COPY --from=workspace nanobot-ai /app/nanobot-ai
 COPY pyproject.toml /app/nanobot/pyproject.toml
 
 RUN --mount=type=cache,target=/root/.cache/uv \
