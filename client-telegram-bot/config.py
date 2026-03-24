@@ -12,9 +12,5 @@ def load_config() -> dict[str, str]:
 
     return {
         "bot_token": os.getenv("BOT_TOKEN", ""),
-        "lms_api_url": os.getenv("LMS_API_BASE_URL", "http://localhost:42002"),
-        "lms_api_key": os.getenv("LMS_API_KEY", ""),
-        "llm_api_key": os.getenv("LLM_API_KEY", ""),
-        "llm_api_base_url": os.getenv("LLM_API_BASE_URL", "http://localhost:42005/v1"),
-        "llm_api_model": os.getenv("LLM_API_MODEL", "coder-model"),
+        "nanobot_ws_url": os.getenv("NANOBOT_WS_URL", "ws://localhost:8765"),
     }

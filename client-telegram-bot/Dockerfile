@@ -23,11 +23,13 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,from=workspace,source=uv.lock,target=uv.lock \
     --mount=type=bind,from=workspace,source=pyproject.toml,target=pyproject.toml \
     --mount=type=bind,from=workspace,source=backend/pyproject.toml,target=backend/pyproject.toml \
+    --mount=type=bind,from=workspace,source=nanobot/pyproject.toml,target=nanobot/pyproject.toml \
     --mount=type=bind,source=pyproject.toml,target=client-telegram-bot/pyproject.toml \
     uv sync --locked --no-install-project
 
 COPY . /app/client-telegram-bot
 COPY --from=workspace backend/pyproject.toml /app/backend/pyproject.toml
+COPY --from=workspace nanobot/pyproject.toml /app/nanobot/pyproject.toml
 COPY --from=workspace pyproject.toml uv.lock /app/
 
 RUN --mount=type=cache,target=/root/.cache/uv \

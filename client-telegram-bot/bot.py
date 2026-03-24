@@ -4,84 +4,42 @@
 import asyncio
 import sys
 import argparse
-from typing import Any
 
 from config import load_config
-from handlers.commands import (
-    handle_start,
-    handle_help,
-    handle_health,
-    handle_labs,
-    handle_scores,
-)
 from handlers.intent_router import route_intent
-from services.lms_client import LMSClient
-from services.llm_client import LLMClient
+from services.nanobot_client import NanobotClient
 
 
-# Command handler mapping
-COMMAND_HANDLERS = {
-    "/start": handle_start,
-    "/help": handle_help,
-    "/health": handle_health,
-    "/labs": handle_labs,
-    "/scores": handle_scores,
-}
+HELP_TEXT = (
+    "📚 Available commands:\n\n"
+    "• /start - Welcome message\n"
+    "• /help - Show this help message\n"
+    "• /login <api_key> - Set your LMS API key\n"
+    "• /logout - Remove your LMS API key\n\n"
+    "You can also ask questions in plain language, like:\n"
+    "• 'Is the backend healthy?'\n"
+    "• 'What labs are available?'\n"
+    "• 'Show me the scores for lab-04'"
+)
 
+WELCOME_TEXT = (
+    "👋 Welcome to SE Toolkit Bot!\n\n"
+    "I'm your LMS assistant. To get started, set your API key:\n"
+    "  /login <your-api-key>\n\n"
+    "Then ask me anything in plain language,\n"
+    "or type /help to see available commands."
+)
 
-def parse_command(message: str) -> tuple[str, list[str]]:
-    """Parse a command message into command and arguments."""
-    parts = message.strip().split()
-    if not parts:
-        return "", []
-    command = parts[0].lower()
-    args = parts[1:]
-    return command, args
-
-
-async def process_command(message: str, context: dict[str, Any]) -> str:
-    """Process a command or natural language message."""
-    command, args = parse_command(message)
-    
-    # Check if it's a known slash command
-    if command in COMMAND_HANDLERS:
-        return await COMMAND_HANDLERS[command](args, context)
-    
-    # If it looks like a command but isn't recognized
-    if command.startswith("/"):
-        return f"❓ Unknown command: {command}. Type /help to see available commands."
-    
-    # Otherwise, treat as natural language - route via LLM
-    llm_client = context.get("llm_client")
-    if llm_client:
-        return await route_intent(message, context["lms_client"], llm_client)
-    
-    return f"❓ I didn't understand that. Type /help to see available commands."
+# user_id -> api_key
+_user_keys: dict[int, str] = {}
 
 
 async def run_test_mode(command: str, config: dict[str, str]) -> None:
     """Run the bot in test mode - process a single command and print result."""
-    # Create service clients
-    lms_client = LMSClient(
-        base_url=config["lms_api_url"],
-        api_key=config["lms_api_key"],
-    )
-    llm_client = LLMClient(
-        api_key=config["llm_api_key"],
-        base_url=config["llm_api_base_url"],
-        model=config["llm_api_model"],
-    )
-    
-    # Build context
-    context: dict[str, Any] = {
-        "lms_client": lms_client,
-        "llm_client": llm_client,
-        "bot_name": "SE Toolkit Bot",
-    }
-    
-    # Process the command
-    result = await process_command(command, context)
-    print(result)
+    nanobot_client = NanobotClient(ws_url=config["nanobot_ws_url"])
+    response = await route_intent(command, nanobot_client)
+    # In test mode, just print the content
+    print(response.get("content", response))
 
 
 async def run_telegram_mode(config: dict[str, str]) -> None:
@@ -92,69 +50,60 @@ async def run_telegram_mode(config: dict[str, str]) -> None:
     except ImportError:
         print("Error: aiogram not installed. Run: uv sync")
         sys.exit(1)
-    
+
+    from handlers.renderer import render
+
     bot_token = config.get("bot_token")
     if not bot_token:
         print("Error: BOT_TOKEN not set in client-telegram-bot/.env.secret")
         sys.exit(1)
-    
-    # Create service clients
-    lms_client = LMSClient(
-        base_url=config["lms_api_url"],
-        api_key=config["lms_api_key"],
-    )
-    llm_client = LLMClient(
-        api_key=config["llm_api_key"],
-        base_url=config["llm_api_base_url"],
-        model=config["llm_api_model"],
-    )
-    
-    # Build context
-    context: dict[str, Any] = {
-        "lms_client": lms_client,
-        "llm_client": llm_client,
-        "bot_name": "SE Toolkit Bot",
-    }
-    
-    # Create dispatcher
+
+    nanobot_client = NanobotClient(ws_url=config["nanobot_ws_url"])
     dp = Dispatcher()
-    
-    # Register command handlers
+
     @dp.message(Command("start"))
     async def cmd_start(message: types.Message):
-        response = await handle_start([], context)
-        await message.answer(response)
-    
+        await message.answer(WELCOME_TEXT)
+
     @dp.message(Command("help"))
     async def cmd_help(message: types.Message):
-        response = await handle_help([], context)
-        await message.answer(response)
-    
-    @dp.message(Command("health"))
-    async def cmd_health(message: types.Message):
-        response = await handle_health([], context)
-        await message.answer(response)
-    
-    @dp.message(Command("labs"))
-    async def cmd_labs(message: types.Message):
-        response = await handle_labs([], context)
-        await message.answer(response)
-    
-    @dp.message(Command("scores"))
-    async def cmd_scores(message: types.Message):
+        await message.answer(HELP_TEXT)
+
+    @dp.message(Command("login"))
+    async def cmd_login(message: types.Message):
         args = message.text.split()[1:] if message.text else []
-        response = await handle_scores(args, context)
-        await message.answer(response)
-    
-    # Handle all other messages (natural language)
+        if not args:
+            await message.answer("Usage: /login <api_key>")
+            return
+        _user_keys[message.from_user.id] = args[0]
+        await message.answer("✅ API key saved. You can now ask questions.")
+
+    @dp.message(Command("logout"))
+    async def cmd_logout(message: types.Message):
+        _user_keys.pop(message.from_user.id, None)
+        await message.answer("🔓 API key removed.")
+
     @dp.message()
     async def handle_message(message: types.Message):
         if message.text:
-            response = await route_intent(message.text, lms_client, llm_client)
-            await message.answer(response)
-    
-    # Run the bot
-    print(f"Starting bot...")
+            api_key = _user_keys.get(message.from_user.id, "")
+            if not api_key:
+                await message.answer("🔑 Please set your API key first: /login <api_key>")
+                return
+            response = await route_intent(message.text, nanobot_client, api_key=api_key)
+            await render(message, response)
+
+    @dp.callback_query()
+    async def handle_callback(callback: types.CallbackQuery):
+        await callback.answer()
+        api_key = _user_keys.get(callback.from_user.id, "")
+        if not api_key:
+            await callback.message.answer("🔑 Please set your API key first: /login <api_key>")
+            return
+        response = await route_intent(callback.data, nanobot_client, api_key=api_key)
+        await render(callback.message, response)
+
+    print("Starting bot...")
     await dp.start_polling(Bot(token=bot_token))
 
 
@@ -168,15 +117,11 @@ def main() -> None:
         help="Run in test mode with the given command",
     )
     args = parser.parse_args()
-    
-    # Load configuration
     config = load_config()
-    
+
     if args.test:
-        # Test mode - process single command and exit
         asyncio.run(run_test_mode(args.test, config))
     else:
-        # Telegram mode - run the bot
         asyncio.run(run_telegram_mode(config))
 
 

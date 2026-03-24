@@ -1,1 +1,1 @@
-"""Services for the bot - API client and LLM client."""
+"""Services for the bot - nanobot WebSocket client."""

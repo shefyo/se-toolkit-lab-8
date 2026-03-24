@@ -1,1 +1,1 @@
-"""Command handlers for the bot."""
+"""Message handlers for the bot."""
