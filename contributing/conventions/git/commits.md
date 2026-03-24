@@ -48,6 +48,7 @@ area of change:
 - `client-web-react` — `client-web-react/`
 - `client-web-flutter` — `client-web-flutter/`
 - `client-telegram-bot` — `client-telegram-bot/`
+- `nanobot` — `nanobot/` (AI agent gateway, skills, MCP tools)
 - `backend` — `backend/`, `pyproject.toml`, backend config
 - `tests` — `backend/tests/` (test files and fixtures)
 - `vscode` — `.vscode/` settings and extensions
