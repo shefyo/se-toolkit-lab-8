@@ -4,12 +4,14 @@ This directory contains the nanobot gateway deployment for the LMS — an AI ass
 
 ## Upstream dependency
 
-The framework comes from the `nanobot-ai` PyPI package. We consume it as a pip dependency, not a fork. Customization is done through the **channel plugin** system (webchat) and **MCP tool servers** (LMS API).
+The framework comes from the `nanobot-ai` PyPI package, included as a git submodule at `packages/nanobot-ai/` for local development. Customization is done through the **channel plugin** system (webchat) and **MCP tool servers** (LMS API).
 
 ## Directory layout
 
 ```
 nanobot/
+├── packages/
+│   └── nanobot-ai/          # Git submodule — nanobot-ai framework (editable)
 ├── nanobot_common/          # Shared library (LMS client, models, formatters)
 │   ├── __init__.py
 │   ├── lms_client.py        # HTTP client for the LMS backend API
