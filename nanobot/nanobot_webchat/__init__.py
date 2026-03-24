@@ -9,6 +9,8 @@ from typing import Any
 from urllib.parse import parse_qs, urlparse
 
 import websockets
+from websockets.asyncio.server import Server as WebSocketServer
+from websockets.asyncio.server import ServerConnection
 from loguru import logger
 from pydantic import Field
 
@@ -53,10 +55,10 @@ class WebChatChannel(BaseChannel):
         super().__init__(config, bus)
         self.config: WebChatConfig = config
         # chat_id -> websocket connection
-        self._connections: dict[str, websockets.WebSocketServerProtocol] = {}
+        self._connections: dict[str, ServerConnection] = {}
         # chat_id -> api_key (if provided via query param)
         self._api_keys: dict[str, str] = {}
-        self._server: websockets.WebSocketServer | None = None
+        self._server: WebSocketServer | None = None
 
     async def start(self) -> None:
         """Start the WebSocket server."""
@@ -115,14 +117,14 @@ class WebChatChannel(BaseChannel):
             self._connections.pop(msg.chat_id, None)
             self._api_keys.pop(msg.chat_id, None)
 
-    async def _handle_ws(self, ws: websockets.WebSocketServerProtocol) -> None:
+    async def _handle_ws(self, ws: ServerConnection) -> None:
         """Handle a single WebSocket connection lifecycle."""
         chat_id = str(uuid.uuid4())
         self._connections[chat_id] = ws
         sender_id = chat_id  # anonymous web user
 
         # Read api_key from query string (e.g. ws://host:port?api_key=SECRET)
-        path: str = getattr(ws, "path", "") or ""  # pyright: ignore[reportUnknownArgumentType]
+        path: str = ws.request.path if ws.request is not None else ""
         qs = parse_qs(urlparse(path).query)
         api_key: str = qs.get("api_key", [""])[0]
         if api_key:
