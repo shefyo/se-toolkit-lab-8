@@ -280,7 +280,7 @@ Default: `<autochecker-api-password>`.
 
 ## Telegram bot
 
-Variables for the [Telegram bot](./bot.md#about-telegram-bots).
+Variables for the [`Telegram` bot client](./client-telegram-bot.md#about-the-telegram-bot-client).
 
 ### `BOT_TOKEN`
 
@@ -290,7 +290,7 @@ Default: `<bot-token>`
 
 ## LLM API
 
-Variables for the [LLM API](./llm-api.md#about-llm-api) that powers the [bot](./bot.md#about-telegram-bots).
+Variables for the [LLM API](./llm-api.md#about-llm-api) that powers the [`Telegram` bot client](./client-telegram-bot.md#about-the-telegram-bot-client).
 
 ### `LLM_API_KEY`
 
