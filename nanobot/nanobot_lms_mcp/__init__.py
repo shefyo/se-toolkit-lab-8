@@ -6,7 +6,6 @@ import asyncio
 import json
 import os
 from collections.abc import Awaitable, Callable, Sequence
-from typing import Any
 
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
@@ -15,7 +14,7 @@ from pydantic import BaseModel, Field
 
 from nanobot_common.lms_client import LMSClient
 
-_BASE_URL: str = ""
+_base_url: str = ""
 
 server = Server("lms")
 
@@ -44,20 +43,20 @@ class _TopLearnersQuery(_LabQuery):
 
 
 def _client(api_key: str) -> LMSClient:
-    if not _BASE_URL:
+    if not _base_url:
         raise RuntimeError(
             "LMS backend URL not configured. "
             "Pass it as: python -m nanobot_lms_mcp <base_url>"
         )
-    return LMSClient(_BASE_URL, api_key)
+    return LMSClient(_base_url, api_key)
 
 
 def _text(data: BaseModel | Sequence[BaseModel]) -> list[TextContent]:
     """Serialize a pydantic model (or list of models) to a JSON text block."""
-    if isinstance(data, Sequence):
-        payload: Any = [item.model_dump() for item in data]
-    else:
+    if isinstance(data, BaseModel):
         payload = data.model_dump()
+    else:
+        payload = [item.model_dump() for item in data]
     return [TextContent(type="text", text=json.dumps(payload, ensure_ascii=False))]
 
 
@@ -92,7 +91,9 @@ async def _groups(args: _LabQuery) -> list[TextContent]:
 
 
 async def _top_learners(args: _TopLearnersQuery) -> list[TextContent]:
-    return _text(await _client(args.api_key).get_top_learners(args.lab, limit=args.limit))
+    return _text(
+        await _client(args.api_key).get_top_learners(args.lab, limit=args.limit)
+    )
 
 
 async def _completion_rate(args: _LabQuery) -> list[TextContent]:
@@ -209,11 +210,8 @@ async def call_tool(
 
 
 async def main(base_url: str | None = None) -> None:
-    global _BASE_URL
-    _BASE_URL = (
-        base_url
-        or os.environ.get("NANOBOT_LMS_BACKEND_URL", "")
-    )
+    global _base_url
+    _base_url = base_url or os.environ.get("NANOBOT_LMS_BACKEND_URL", "")
     async with stdio_server() as (read_stream, write_stream):
         init_options = server.create_initialization_options()
         await server.run(read_stream, write_stream, init_options)
