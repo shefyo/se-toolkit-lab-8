@@ -2,9 +2,9 @@
 
 import json
 import os
-import tempfile
 
 CONFIG = "/app/nanobot/config.json"
+RESOLVED = "/app/nanobot/config.resolved.json"
 WORKSPACE = "/app/nanobot/workspace"
 
 # Env vars to forward into every MCP server subprocess.
@@ -32,17 +32,20 @@ def main() -> None:
             env.update(forward)
             srv["env"] = env
 
-    with tempfile.NamedTemporaryFile(
-        "w", suffix=".json", delete=False, dir="/tmp"
-    ) as f:
+    with open(RESOLVED, "w") as f:
         json.dump(config, f, indent=2)
-        resolved = f.name
 
-    os.execvp("nanobot", [
-        "nanobot", "gateway",
-        "--config", resolved,
-        "--workspace", WORKSPACE,
-    ])
+    os.execvp(
+        "nanobot",
+        [
+            "nanobot",
+            "gateway",
+            "--config",
+            RESOLVED,
+            "--workspace",
+            WORKSPACE,
+        ],
+    )
 
 
 if __name__ == "__main__":
