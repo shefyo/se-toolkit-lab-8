@@ -118,9 +118,9 @@ Default: `false`
 
 ### `BACKEND_CONTAINER_ADDRESS`
 
-The [IP address](./computer-networks.md#ip-address) the backend [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container). [`0.0.0.0`](./computer-networks.md#0000) means all network interfaces.
+The [IP address](./computer-networks.md#ip-address) the backend [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
 
-Default: `0.0.0.0`
+Default: [`0.0.0.0`](./computer-networks.md#0000)
 
 ### `BACKEND_CONTAINER_PORT`
 
@@ -234,9 +234,7 @@ Variables for the [LMS API](./lms-api.md#about-the-lms-api).
 
 The [IP address](./computer-networks.md#ip-address) of the [LMS API](./lms-api.md#about-the-lms-api) exposed on the [host](./computer-networks.md#host).
 
-[`0.0.0.0`](./computer-networks.md#0000) accepts connections from any network interface.
-
-Default: `0.0.0.0`
+Default: [`0.0.0.0`](./computer-networks.md#0000)
 
 ### `LMS_API_HOST_PORT`
 
