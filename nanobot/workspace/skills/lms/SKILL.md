@@ -1,18 +1,16 @@
 ---
 name: lms
 description: Query the Learning Management System backend for labs, scores, learners, and analytics.
-metadata: {"nanobot":{"emoji":"📚","requires":{"bins":["curl"],"env":["NANOBOT_LMS_BACKEND_URL"]},"always":true}}
+metadata: {"nanobot":{"emoji":"📚","requires":{"env":["NANOBOT_LMS_BACKEND_URL"]},"always":true}}
 ---
 
 # LMS (Learning Management System)
 
-Query the LMS backend API. All endpoints require a Bearer token.
-
-Base URL: `$NANOBOT_LMS_BACKEND_URL`
+Query the LMS backend API using the `mcp_lms_*` tools. All tools require an `api_key` parameter.
 
 ## Authentication
 
-The user's message begins with `[LMS_API_KEY=<key>]`. Extract the key and use it as the Bearer token in all curl commands.
+The user's message begins with `[LMS_API_KEY=<key>]`. Extract the key and pass it as the `api_key` parameter in every tool call.
 
 If the message does **not** contain `[LMS_API_KEY=...]`, tell the user they need to authenticate first (e.g. via `/login <api_key>` in the Telegram bot, or the login screen in the web app).
 
@@ -57,74 +55,31 @@ Combine a text summary with a follow-up choice:
 ### When to use structured responses
 
 - **Use `choice`** when a lab parameter is missing and you can list available labs.
-- **Use `confirm`** before `sync_pipeline`.
+- **Use `confirm`** before `mcp_lms_sync_pipeline`.
 - **Use plain text** for everything else (results, errors, explanations).
 - Do **not** output JSON for simple text answers — just write markdown.
 
-## API endpoints
+## Available tools
 
-### Health check
+All tools are prefixed with `mcp_lms_` and return JSON.
 
-```bash
-curl -s -H "Authorization: Bearer <key>" "$NANOBOT_LMS_BACKEND_URL/items/" | head -c 500
-```
+| Tool | Parameters | Description |
+|------|-----------|-------------|
+| `mcp_lms_health` | `api_key` | Check backend health and item count |
+| `mcp_lms_labs` | `api_key` | List all labs (title + id) |
+| `mcp_lms_learners` | `api_key` | List all registered learners |
+| `mcp_lms_pass_rates` | `api_key`, `lab` | Pass rates per task for a lab |
+| `mcp_lms_timeline` | `api_key`, `lab` | Submission timeline for a lab |
+| `mcp_lms_groups` | `api_key`, `lab` | Group performance for a lab |
+| `mcp_lms_top_learners` | `api_key`, `lab`, `limit?` | Top learners by avg score (default 5) |
+| `mcp_lms_completion_rate` | `api_key`, `lab` | Completion rate (passed / total) |
+| `mcp_lms_sync_pipeline` | `api_key` | Trigger the sync pipeline |
 
-If the response is a JSON array, the backend is healthy. Count the items to report the item count.
-
-### List labs
-
-```bash
-curl -s -H "Authorization: Bearer <key>" "$NANOBOT_LMS_BACKEND_URL/items/"
-```
-
-Filter results where `"type": "lab"`. Show their `title` and `id`.
-
-### Pass rates for a lab
-
-```bash
-curl -s -H "Authorization: Bearer <key>" "$NANOBOT_LMS_BACKEND_URL/analytics/pass-rates?lab=LAB_ID"
-```
-
-Replace `LAB_ID` with the lab identifier (e.g., `lab-04`).
-
-### List learners
-
-```bash
-curl -s -H "Authorization: Bearer <key>" "$NANOBOT_LMS_BACKEND_URL/learners/"
-```
-
-### Submission timeline
-
-```bash
-curl -s -H "Authorization: Bearer <key>" "$NANOBOT_LMS_BACKEND_URL/analytics/timeline?lab=LAB_ID"
-```
-
-### Group performance
-
-```bash
-curl -s -H "Authorization: Bearer <key>" "$NANOBOT_LMS_BACKEND_URL/analytics/groups?lab=LAB_ID"
-```
-
-### Top learners
-
-```bash
-curl -s -H "Authorization: Bearer <key>" "$NANOBOT_LMS_BACKEND_URL/analytics/top-learners?lab=LAB_ID&limit=5"
-```
-
-### Completion rate
-
-```bash
-curl -s -H "Authorization: Bearer <key>" "$NANOBOT_LMS_BACKEND_URL/analytics/completion-rate?lab=LAB_ID"
-```
-
-### Sync pipeline
-
-```bash
-curl -s -X POST -H "Authorization: Bearer <key>" "$NANOBOT_LMS_BACKEND_URL/pipeline/sync"
-```
+The `lab` parameter is a lab identifier like `lab-04`.
 
 ## Tips
 
 - Always ask the user which lab they mean if the query requires a `lab` parameter and none was given. Use a `choice` response with available labs.
 - Format numeric results nicely (percentages, counts).
 - Keep responses concise.
+- Do **not** use `exec` / `curl` to call the LMS API — always use the `mcp_lms_*` tools.

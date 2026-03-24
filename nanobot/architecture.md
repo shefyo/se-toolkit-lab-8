@@ -4,7 +4,7 @@ This directory contains the nanobot gateway deployment for the LMS — an AI ass
 
 ## Upstream dependency
 
-The framework comes from the `nanobot-ai` PyPI package (source: `../nanobot` in the parent monorepo at `inno-se-toolkit/nanobot`). We consume it as a pip dependency, not a fork. All customization is done through the **channel plugin** system.
+The framework comes from the `nanobot-ai` PyPI package. We consume it as a pip dependency, not a fork. Customization is done through the **channel plugin** system (webchat) and **MCP tool servers** (LMS API).
 
 ## Directory layout
 
@@ -15,11 +15,15 @@ nanobot/
 │   ├── lms_client.py        # HTTP client for the LMS backend API
 │   ├── models.py            # Pydantic models for LMS API responses
 │   └── formatters.py        # Pure formatting functions
+├── nanobot_lms_mcp/         # Stdio MCP server exposing LMS API as typed tools
+│   ├── __init__.py          # Tool definitions + handlers (wraps LMSClient)
+│   └── __main__.py          # Entry point for `python -m nanobot_lms_mcp`
 ├── nanobot_webchat/         # WebSocket channel plugin for chat clients
 │   └── __init__.py          # WebChatChannel (BaseChannel subclass)
 ├── workspace/
-│   └── skills/lms/SKILL.md  # Teaches the nanobot agent how to call LMS API via curl
-├── config.json              # Gateway config (webchat channel only)
+│   └── skills/lms/SKILL.md  # Teaches the nanobot agent how to use the mcp_lms_* tools
+├── config.json              # Gateway config (webchat channel + LMS MCP server)
+├── entrypoint.py            # Injects runtime env vars into MCP configs, then execs gateway
 ├── pyproject.toml           # Dependencies + entry point registration
 ├── Dockerfile               # Multi-stage build
 └── architecture.md          # This file
@@ -38,9 +42,9 @@ The Telegram bot (`client-telegram-bot/`) is a standalone aiogram service. It ha
 
 ## Docker services
 
-| Service | Image source | Purpose |
-|---------|-------------|---------|
-| `nanobot` | `./nanobot` | AI agent gateway with webchat WebSocket (port 8765) |
+| Service               | Image source            | Purpose                                              |
+| --------------------- | ----------------------- | ---------------------------------------------------- |
+| `nanobot`             | `./nanobot`             | AI agent gateway with webchat WebSocket (port 8765)  |
 | `client-telegram-bot` | `./client-telegram-bot` | Telegram bot — slash commands + WebSocket forwarding |
 
 Caddy reverse-proxies the nanobot instance: `/utils/nanobot*` → port 18790, `/ws/chat` → port 8765.
@@ -52,7 +56,7 @@ Clients connect to `ws://nanobot:8765` and exchange JSON messages:
 - **Send**: `{"content": "user message"}`
 - **Receive**: `{"content": "agent response"}`
 
-Each WebSocket connection gets its own chat session (UUID-based). The agent processes the message, may call tools (curl, exec, read_file), and returns a single response.
+Each WebSocket connection gets its own chat session (UUID-based). The agent processes the message, may call tools (mcp_lms_*, read_file), and returns a single response.
 
 ## Message flow
 
@@ -84,21 +88,20 @@ No agent involvement. Sub-second response. Commands: `/start`, `/help`, `/health
 
 ### nanobot service
 
-| Variable | Purpose |
-|----------|---------|
-| `NANOBOT_LMS_API_KEY` | Backend auth for agent's curl-based LMS skill |
-| `NANOBOT_LMS_BACKEND_URL` | Backend URL for agent's curl-based LMS skill |
-| `NANOBOT_PROVIDERS__CUSTOM__API_KEY` | LLM API key |
-| `NANOBOT_PROVIDERS__CUSTOM__API_BASE` | LLM API base URL |
+| Variable                              | Purpose                                       |
+| ------------------------------------- | --------------------------------------------- |
+| `NANOBOT_LMS_BACKEND_URL`             | Backend URL forwarded to the LMS MCP server   |
+| `NANOBOT_PROVIDERS__CUSTOM__API_KEY`  | LLM API key                                   |
+| `NANOBOT_PROVIDERS__CUSTOM__API_BASE` | LLM API base URL                              |
 
 ### client-telegram-bot service
 
-| Variable | Purpose |
-|----------|---------|
-| `BOT_TOKEN` | Telegram bot token |
-| `LMS_API_KEY` | Backend auth for direct slash commands |
-| `LMS_API_BASE_URL` | Backend URL for direct slash commands |
-| `NANOBOT_WS_URL` | Nanobot WebSocket URL (`ws://nanobot:8765`) |
+| Variable           | Purpose                                     |
+| ------------------ | ------------------------------------------- |
+| `BOT_TOKEN`        | Telegram bot token                          |
+| `LMS_API_KEY`      | Backend auth for direct slash commands      |
+| `LMS_API_BASE_URL` | Backend URL for direct slash commands       |
+| `NANOBOT_WS_URL`   | Nanobot WebSocket URL (`ws://nanobot:8765`) |
 
 ## Debugging checklist
 
@@ -110,6 +113,6 @@ No agent involvement. Sub-second response. Commands: `/start`, `/help`, `/health
 
 4. **Slash commands return "LMS client not configured"**: `LMS_API_BASE_URL` or `LMS_API_KEY` env vars are missing from the client-telegram-bot service.
 
-5. **Slow responses to free text**: The nanobot agent runs tool calls (curl, exec, read_file) before answering. This is normal — the agent may take 10-60s for complex queries. Slash commands bypass this entirely.
+5. **Slow responses to free text**: The nanobot agent runs tool calls (mcp_lms_*, read_file) before answering. This is normal — the agent may take 10-60s for complex queries. Slash commands bypass this entirely.
 
-6. **`setuptools` build error ("Multiple top-level packages")**: The `[tool.setuptools.packages.find]` section in `pyproject.toml` must explicitly include all packages (`nanobot_common`, `nanobot_webchat`).
+6. **`setuptools` build error ("Multiple top-level packages")**: The `[tool.setuptools.packages.find]` section in `pyproject.toml` must explicitly include all packages (`nanobot_common`, `nanobot_lms_mcp`, `nanobot_webchat`).

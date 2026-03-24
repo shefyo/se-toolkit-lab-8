@@ -46,9 +46,6 @@ ENV PYTHONUNBUFFERED=1
 # Make sure we use UTF-8 encoding
 ENV LANG=C.UTF-8
 
-# curl needed for LMS skill (agent uses shell exec)
-RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
-
 # Setup a non-root user
 RUN groupadd --system --gid 999 nonroot \
     && useradd --system --gid 999 --uid 999 --create-home nonroot
@@ -68,4 +65,6 @@ WORKDIR /app
 # nanobot gateway (default port 18790) + webchat ws (8765)
 EXPOSE 18790 8765
 
-CMD ["nanobot", "gateway", "--config", "/app/nanobot/config.json", "--workspace", "/app/nanobot/workspace"]
+# entrypoint.py injects runtime env vars (e.g. NANOBOT_LMS_BACKEND_URL)
+# into MCP server configs, then execs the nanobot gateway.
+CMD ["python", "/app/nanobot/entrypoint.py"]

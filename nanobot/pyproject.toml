@@ -9,7 +9,7 @@ dependencies = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["nanobot_common*", "nanobot_webchat*"]
+include = ["nanobot_common*", "nanobot_lms_mcp*", "nanobot_webchat*"]
 
 [project.entry-points."nanobot.channels"]
 webchat = "nanobot_webchat:WebChatChannel"
