@@ -20,10 +20,10 @@
         reverse_proxy {$QWEN_CODE_API_URL}
     }
     handle_path /utils/nanobot* {
-        reverse_proxy http://nanobot:18790
+        reverse_proxy http://nanobot:{$NANOBOT_GATEWAY_CONTAINER_PORT}
     }
     handle /ws/chat {
-        reverse_proxy http://nanobot:8765
+        reverse_proxy http://nanobot:{$NANOBOT_WEBCHAT_CONTAINER_PORT}
     }
     handle_path /utils/pgadmin* {
         reverse_proxy http://pgadmin:{$CONST_PGADMIN_CONTAINER_PORT}
