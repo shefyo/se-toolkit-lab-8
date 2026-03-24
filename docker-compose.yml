@@ -110,7 +110,8 @@ services:
 
   nanobot:
     build:
-      context: ./nanobot
+      context: .
+      dockerfile: nanobot/Dockerfile
       args:
         REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
     restart: unless-stopped
