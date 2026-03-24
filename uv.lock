@@ -924,7 +924,7 @@ requires-dist = [
 [[package]]
 name = "lms-nanobot"
 version = "1.0.0"
-source = { virtual = "nanobot" }
+source = { editable = "nanobot" }
 dependencies = [
     { name = "nanobot-ai" },
 ]
