@@ -1,8 +1,9 @@
 services:
   backend:
     build:
-      context: .
-      dockerfile: backend/Dockerfile
+      context: ./backend
+      additional_contexts:
+        workspace: .
       args:
         REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
     restart: unless-stopped
@@ -109,8 +110,9 @@ services:
 
   nanobot:
     build:
-      context: .
-      dockerfile: nanobot/Dockerfile
+      context: ./nanobot
+      additional_contexts:
+        workspace: .
       args:
         REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
     restart: unless-stopped
