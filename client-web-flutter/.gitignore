@@ -2,7 +2,6 @@
 .packages
 .pub/
 .idea/
-.env.secret
 *.iml
 *.ipr
 *.iws
