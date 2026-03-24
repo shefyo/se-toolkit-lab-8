@@ -46,6 +46,12 @@
   - [`LLM_API_MODEL`](#llm_api_model)
 - [`Qwen Code` API](#qwen-code-api)
   - [`QWEN_CODE_API_URL`](#qwen_code_api_url)
+- [`Nanobot`](#nanobot)
+  - [`NANOBOT_GATEWAY_CONTAINER_ADDRESS`](#nanobot_gateway_container_address)
+  - [`NANOBOT_GATEWAY_CONTAINER_PORT`](#nanobot_gateway_container_port)
+  - [`NANOBOT_WEBCHAT_CONTAINER_ADDRESS`](#nanobot_webchat_container_address)
+  - [`NANOBOT_WEBCHAT_CONTAINER_PORT`](#nanobot_webchat_container_port)
+  - [`NANOBOT_WS_URL`](#nanobot_ws_url)
 - [Constants](#constants)
   - [`CONST_POSTGRESQL_SERVICE_NAME`](#const_postgresql_service_name)
   - [`CONST_POSTGRESQL_SERVER_NAME`](#const_postgresql_server_name)
@@ -317,6 +323,40 @@ Default: `<llm-api-model>`
 [`Qwen Code` API URL](./qwen-code-api.md#what-is-qwen-code-api) that [`Caddy` forwards requests to](./lms-api.md#forward-requests-to-the-qwen-code-api).
 
 Default: `http://qwen-code-api:8080`
+
+## `Nanobot`
+
+Variables for the [`Nanobot`](./nanobot.md) gateway and webchat channel.
+
+### `NANOBOT_GATEWAY_CONTAINER_ADDRESS`
+
+The [IP address](./computer-networks.md#ip-address) the [`Nanobot` gateway](./nanobot.md#gateway) is [listening on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
+
+Default: [`0.0.0.0`](./computer-networks.md#0000)
+
+### `NANOBOT_GATEWAY_CONTAINER_PORT`
+
+The [port number](./computer-networks.md#port-number) the [`Nanobot` gateway](./nanobot.md#gateway) [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
+
+Default: `18790`
+
+### `NANOBOT_WEBCHAT_CONTAINER_ADDRESS`
+
+The [IP address](./computer-networks.md#ip-address) the [`Nanobot` webchat channel](./nanobot.md#webchat-channel) WebSocket server [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
+
+Default: [`0.0.0.0`](./computer-networks.md#0000)
+
+### `NANOBOT_WEBCHAT_CONTAINER_PORT`
+
+The [port number](./computer-networks.md#port-number) the [`Nanobot` webchat channel](./nanobot.md#webchat-channel) WebSocket server [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
+
+Default: `8765`
+
+### `NANOBOT_WS_URL`
+
+The full `WebSocket` URL that the [`Telegram` bot client](./client-telegram-bot.md#about-the-telegram-bot-client) uses to connect to the [`Nanobot` webchat channel](./nanobot.md#webchat-channel).
+
+Default: `ws://nanobot:8765`
 
 ## Constants
 
