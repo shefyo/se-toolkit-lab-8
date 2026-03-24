@@ -62,9 +62,6 @@ USER nonroot
 # Use `/app` as the working directory
 WORKDIR /app
 
-# nanobot gateway (default port 18790) + webchat ws (8765)
-EXPOSE 18790 8765
-
 # entrypoint.py injects runtime env vars (e.g. NANOBOT_LMS_BACKEND_URL)
 # into MCP server configs, then execs the nanobot gateway.
 CMD ["python", "/app/nanobot/entrypoint.py"]
