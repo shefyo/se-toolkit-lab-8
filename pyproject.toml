@@ -1,5 +1,5 @@
 [tool.uv.workspace]
-members = ["backend", "client-telegram-bot"]
+members = ["backend", "client-telegram-bot", "nanobot"]
 
 [dependency-groups]
 dev = [
