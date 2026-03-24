@@ -8,5 +8,8 @@ dependencies = [
     "nanobot-ai>=0.1.4",
 ]
 
+[tool.setuptools.packages.find]
+include = ["nanobot_common*", "nanobot_webchat*"]
+
 [project.entry-points."nanobot.channels"]
 webchat = "nanobot_webchat:WebChatChannel"

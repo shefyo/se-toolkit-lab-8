@@ -1,19 +1,20 @@
-# Stage 1: install nanobot-ai + webchat plugin
+# Stage 1: install nanobot-ai + channel plugins
 ARG REGISTRY_PREFIX_DOCKER_HUB=harbor.pg.innopolis.university/docker-hub-cache/
 FROM ${REGISTRY_PREFIX_DOCKER_HUB}astral/uv:python3.13-bookworm-slim AS builder
 ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy UV_NO_DEV=1 UV_PYTHON_DOWNLOADS=0
 
 WORKDIR /app
 
-# Install nanobot-ai + this package (registers the webchat entry point)
+# Install nanobot-ai + this package (registers channel entry points)
 COPY pyproject.toml .
+COPY nanobot_common/ ./nanobot_common/
 COPY nanobot_webchat/ ./nanobot_webchat/
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv pip install --system --no-cache-dir -e .
 
 # Copy workspace (skills, config)
 COPY workspace/ ./workspace/
-COPY config.json .
+COPY config.json ./
 
 # Stage 2: slim runtime
 ARG REGISTRY_PREFIX_DOCKER_HUB=harbor.pg.innopolis.university/docker-hub-cache/
