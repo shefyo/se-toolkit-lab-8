@@ -6,7 +6,7 @@ requires-python = "==3.14.2"
 members = [
     "lms-backend",
     "lms-bot",
-    "nanobot-lms-gateway",
+    "nanobot-agent",
 ]
 
 [manifest.dependency-groups]
@@ -1136,7 +1136,7 @@ wheels = [
 ]
 
 [[package]]
-name = "nanobot-lms-gateway"
+name = "nanobot-agent"
 version = "1.0.0"
 source = { virtual = "nanobot" }
 dependencies = [
