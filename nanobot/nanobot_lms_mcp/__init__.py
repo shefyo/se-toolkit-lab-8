@@ -33,7 +33,9 @@ class _LabQuery(_KeyOnly):
 
 
 class _TopLearnersQuery(_LabQuery):
-    limit: int = Field(default=5, ge=1, description="Max learners to return (default 5).")
+    limit: int = Field(
+        default=5, ge=1, description="Max learners to return (default 5)."
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -127,15 +129,52 @@ def _register(
     )
 
 
-_register("lms_health", "Check if the LMS backend is healthy and report the item count.", _KeyOnly, _health)
+_register(
+    "lms_health",
+    "Check if the LMS backend is healthy and report the item count.",
+    _KeyOnly,
+    _health,
+)
 _register("lms_labs", "List all labs available in the LMS.", _KeyOnly, _labs)
-_register("lms_learners", "List all learners registered in the LMS.", _KeyOnly, _learners)
-_register("lms_pass_rates", "Get pass rates (avg score and attempt count per task) for a lab.", _LabQuery, _pass_rates)
-_register("lms_timeline", "Get submission timeline (date + submission count) for a lab.", _LabQuery, _timeline)
-_register("lms_groups", "Get group performance (avg score + student count per group) for a lab.", _LabQuery, _groups)
-_register("lms_top_learners", "Get top learners by average score for a lab.", _TopLearnersQuery, _top_learners)
-_register("lms_completion_rate", "Get completion rate (passed / total) for a lab.", _LabQuery, _completion_rate)
-_register("lms_sync_pipeline", "Trigger the LMS sync pipeline. May take a moment.", _KeyOnly, _sync_pipeline)
+_register(
+    "lms_learners", "List all learners registered in the LMS.", _KeyOnly, _learners
+)
+_register(
+    "lms_pass_rates",
+    "Get pass rates (avg score and attempt count per task) for a lab.",
+    _LabQuery,
+    _pass_rates,
+)
+_register(
+    "lms_timeline",
+    "Get submission timeline (date + submission count) for a lab.",
+    _LabQuery,
+    _timeline,
+)
+_register(
+    "lms_groups",
+    "Get group performance (avg score + student count per group) for a lab.",
+    _LabQuery,
+    _groups,
+)
+_register(
+    "lms_top_learners",
+    "Get top learners by average score for a lab.",
+    _TopLearnersQuery,
+    _top_learners,
+)
+_register(
+    "lms_completion_rate",
+    "Get completion rate (passed / total) for a lab.",
+    _LabQuery,
+    _completion_rate,
+)
+_register(
+    "lms_sync_pipeline",
+    "Trigger the LMS sync pipeline. May take a moment.",
+    _KeyOnly,
+    _sync_pipeline,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -149,7 +188,9 @@ async def list_tools() -> list[Tool]:
 
 
 @server.call_tool()
-async def call_tool(name: str, arguments: dict | None) -> list[TextContent]:
+async def call_tool(
+    name: str, arguments: dict | None
+) -> list[TextContent]:
     entry = _TOOLS.get(name)
     if entry is None:
         return [TextContent(type="text", text=f"Unknown tool: {name}")]

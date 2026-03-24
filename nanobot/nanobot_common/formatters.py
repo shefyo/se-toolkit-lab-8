@@ -26,7 +26,6 @@ def format_scores(lab: str, rates: list[PassRate]) -> str:
         return f"📭 No scores found for {lab}."
     text = f"📊 Pass rates for {lab}:\n\n"
     text += "\n".join(
-        f"• {r.task}: {r.avg_score:.1f}% ({r.attempts} attempts)"
-        for r in rates
+        f"• {r.task}: {r.avg_score:.1f}% ({r.attempts} attempts)" for r in rates
     )
     return text

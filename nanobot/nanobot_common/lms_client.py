@@ -33,9 +33,13 @@ class LMSClient:
                 items = [Item.model_validate(i) for i in r.json()]
                 return HealthResult(status="healthy", item_count=len(items))
             except httpx.ConnectError:
-                return HealthResult(status="unhealthy", error=f"connection refused ({self.base_url})")
+                return HealthResult(
+                    status="unhealthy", error=f"connection refused ({self.base_url})"
+                )
             except httpx.HTTPStatusError as e:
-                return HealthResult(status="unhealthy", error=f"HTTP {e.response.status_code}")
+                return HealthResult(
+                    status="unhealthy", error=f"HTTP {e.response.status_code}"
+                )
             except Exception as e:
                 return HealthResult(status="unhealthy", error=str(e))
 
@@ -53,7 +57,9 @@ class LMSClient:
 
     async def get_pass_rates(self, lab: str) -> list[PassRate]:
         async with self._client() as c:
-            r = await c.get(f"{self.base_url}/analytics/pass-rates", params={"lab": lab})
+            r = await c.get(
+                f"{self.base_url}/analytics/pass-rates", params={"lab": lab}
+            )
             r.raise_for_status()
             return [PassRate.model_validate(i) for i in r.json()]
 
@@ -80,7 +86,9 @@ class LMSClient:
 
     async def get_completion_rate(self, lab: str) -> CompletionRate:
         async with self._client() as c:
-            r = await c.get(f"{self.base_url}/analytics/completion-rate", params={"lab": lab})
+            r = await c.get(
+                f"{self.base_url}/analytics/completion-rate", params={"lab": lab}
+            )
             r.raise_for_status()
             return CompletionRate.model_validate(r.json())
 

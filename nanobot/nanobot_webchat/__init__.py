@@ -103,7 +103,11 @@ class WebChatChannel(BaseChannel):
                 pass
 
             if payload is None:
-                payload = {"type": "text", "content": msg.content, "format": "markdown"}
+                payload = {
+                    "type": "text",
+                    "content": msg.content,
+                    "format": "markdown",
+                }
 
             await ws.send(json.dumps(payload))
         except websockets.ConnectionClosed:
@@ -124,7 +128,9 @@ class WebChatChannel(BaseChannel):
         if api_key:
             self._api_keys[chat_id] = api_key
 
-        logger.info("WebChat: new connection chat_id={} auth={}", chat_id, bool(api_key))
+        logger.info(
+            "WebChat: new connection chat_id={} auth={}", chat_id, bool(api_key)
+        )
 
         try:
             async for raw in ws:
