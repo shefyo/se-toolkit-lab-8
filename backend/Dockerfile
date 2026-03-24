@@ -19,16 +19,16 @@ ENV UV_NO_DEV=1
 ENV UV_PYTHON_DOWNLOADS=0
 
 WORKDIR /app
-RUN --mount=type=cache,target=/root/.cache/uv \
-    --mount=type=bind,source=uv.lock,target=uv.lock \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --frozen --no-install-workspace --package backend
-
-COPY backend /app/backend
-COPY pyproject.toml uv.lock /app/
+COPY --from=workspace pyproject.toml uv.lock /app/
+COPY pyproject.toml /app/backend/pyproject.toml
 
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen --package backend
+    uv sync --frozen --no-install-workspace --package lms-backend
+
+COPY . /app/backend
+
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --frozen --package lms-backend
 
 # ---
 # Stage 2: use a final image without uv
@@ -40,10 +40,10 @@ FROM ${REGISTRY_PREFIX_DOCKER_HUB}python:3.14.2-slim-bookworm
 # Python executable must be the same, e.g., using `python:3.11-slim-bookworm`
 # will fail.
 
-# # Set environment variables for Python and application
+# Set environment variables for Python and application
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-# # Make sure we use UTF-8 encoding
+# Make sure we use UTF-8 encoding
 ENV LANG=C.UTF-8
 
 # Setup a non-root user
