@@ -18,6 +18,7 @@ By the end of this lab, students should be able to:
 - [Apply] Implement MCP tools that query the VictoriaLogs API and return meaningful summaries to the nanobot agent.
 - [Apply] Implement MCP tools that query the VictoriaTraces API and return trace information to the nanobot agent.
 - [Analyze] Verify that the AI agent can combine log and trace data to answer natural-language questions about system health under normal and failure conditions.
+- [Create] Configure an AI agent with a skill prompt, a cron job, and a multi-step task that chains multiple tools to produce a periodic health report.
 
 In simple words:
 
@@ -26,6 +27,7 @@ In simple words:
 > 3. I can build MCP tools that let the AI agent search and summarize logs.
 > 4. I can build MCP tools that let the AI agent look up and interpret traces.
 > 5. I can verify that the agent answers "what went wrong?" correctly when something breaks.
+> 6. I can write a skill, configure a cron job, and set up a multi-step agent task that chains log and trace queries into a periodic health report.
 
 ## Lab story
 
@@ -40,6 +42,7 @@ A senior engineer explains the assignment:
 > 1. Add structured JSON logging across the backend and nanobot so every request — successful or failed — produces a defined sequence of queryable events.
 > 2. Extend the nanobot agent with MCP tools that query VictoriaLogs, so users can ask about errors and request history.
 > 3. Extend the nanobot agent with MCP tools that query VictoriaTraces, so users can ask about request flow and performance.
+> 4. Write an observability skill, configure a cron job for periodic health checks, and verify the agent chains multiple tools in a multi-step investigation.
 
 ## Required tasks
 
@@ -114,17 +117,12 @@ Students add MCP tools to the nanobot's MCP server that query the VictoriaLogs H
 They implement at least two tools: one that searches logs by keyword and time range (returning recent matching entries), and one that counts errors per service over a time window (returning a summary).
 Each tool constructs a LogsQL query, sends it to the VictoriaLogs query endpoint, parses the JSON response, and returns a structured result.
 
-Students write a skill prompt section that teaches the agent when to use the log tools.
-For example: "any errors in the last hour?" should trigger the log search tool, "which service has the most errors?" should trigger the error count tool.
-The prompt should guide the agent to summarize results concisely rather than dumping raw log entries.
-
 After redeploying the nanobot, students verify the tools work under both normal and failure conditions.
 They ask the agent about errors when the system is healthy (expecting "no errors found" or similar) and after triggering a failure (expecting a summary mentioning the affected service and error).
 
 **Acceptance criteria:**
 
 - At least two MCP tools for querying VictoriaLogs are registered in the MCP server.
-- The skill prompt documents the log tools and guides the agent on when to use each.
 - The agent answers "any errors in the last hour?" correctly under normal conditions.
 - The agent answers "any errors in the last hour?" correctly after a failure, mentioning the affected service.
 - The MCP server starts without errors after the changes.
@@ -143,20 +141,45 @@ Students add MCP tools to the nanobot's MCP server that query the VictoriaTraces
 They implement at least two tools: one that lists recent traces for a service (with duration and status), and one that fetches a specific trace by ID (returning the span hierarchy).
 Each tool queries the VictoriaTraces API, parses the response, and returns a structured summary.
 
-Students write a skill prompt section that teaches the agent when to use the trace tools.
-For example: "is the backend slow?" should look at recent trace durations, "show me trace abc123" should fetch the full trace.
-The prompt should guide the agent to combine log and trace tools when appropriate — e.g., find error logs, extract a trace ID, then fetch the full trace to show the request flow.
-
 After redeploying the nanobot, students verify the tools work by asking the agent trace-related questions through the Flutter web app.
-They also test a cross-tool scenario: trigger a failure, ask the agent what went wrong, and verify it uses both log and trace tools to provide a complete answer.
+They test fetching recent traces and looking up a specific trace by ID.
 
 **Acceptance criteria:**
 
 - At least two MCP tools for querying VictoriaTraces are registered in the MCP server.
-- The skill prompt documents the trace tools and guides the agent on when to use each.
 - The agent answers a question about recent request performance by calling the trace tools.
 - The agent can fetch and summarize a specific trace by ID.
 - The MCP server starts without errors after the changes.
+
+---
+
+### Task 4 — Write a Skill and Configure a Cron Health Check
+
+**Purpose:**
+
+A skill prompt teaches the agent *when* and *how* to use its tools; a cron job makes the agent proactive instead of reactive; a multi-step task shows that the agent can chain tools autonomously.
+
+**Summary:**
+
+Students create a new observability skill file (`workspace/skills/observability/SKILL.md`).
+The skill teaches the agent about its log and trace tools: what each tool does, when to use it, and how to combine them.
+For example, the skill should instruct the agent that when asked "what went wrong?", it should first search logs for recent errors, extract a trace ID from the results, then fetch the full trace to show the request flow.
+Students also add guidance for summarizing results concisely rather than dumping raw data.
+
+Next, students configure a cron job in `cron/jobs.json` that runs a periodic health check.
+The job uses the `agent_turn` payload kind — it sends a message like "Check for errors in the last 15 minutes and report a summary" to the agent on a schedule (e.g., every 15 minutes).
+The agent receives this as a regular message, reasons using the observability skill, calls the log and trace MCP tools, and delivers the result to the webchat channel.
+
+Students verify the cron job fires by setting a short interval (e.g., every 2 minutes), waiting for a cycle, and checking that the agent produced a health report in the Flutter web app.
+They also test the multi-step scenario: trigger a failure, wait for the next cron cycle, and verify the agent's report mentions the errors and includes trace information.
+
+**Acceptance criteria:**
+
+- An observability skill file exists at `workspace/skills/observability/SKILL.md` and is loaded by the agent.
+- The skill guides the agent to chain log and trace tools for multi-step investigations.
+- A cron job is configured in `cron/jobs.json` that triggers a periodic health check via `agent_turn`.
+- The cron job fires on schedule and the agent delivers a health report to the webchat channel.
+- When errors exist, the health report includes information from both log and trace tools.
 
 ---
 
