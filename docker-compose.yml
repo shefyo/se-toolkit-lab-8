@@ -96,6 +96,7 @@ services:
       - backend
       - client-web-react
       - client-web-flutter
+      - nanobot
     environment:
       - CADDY_CONTAINER_PORT=${CADDY_CONTAINER_PORT:?'CADDY_CONTAINER_PORT is required'}
       - BACKEND_CONTAINER_PORT=${BACKEND_CONTAINER_PORT:?'BACKEND_CONTAINER_PORT is required'}
@@ -119,10 +120,7 @@ services:
       - "18790"
       - "8765"
     environment:
-      # LMS skill (used by agent via curl)
-      - NANOBOT_LMS_API_KEY=${LMS_API_KEY:?'LMS_API_KEY is required'}
       - NANOBOT_LMS_BACKEND_URL=http://backend:${BACKEND_CONTAINER_PORT}
-      # LLM provider (pydantic-settings env override)
       - NANOBOT_PROVIDERS__CUSTOM__API_KEY=${LLM_API_KEY:?'LLM_API_KEY is required'}
       - NANOBOT_PROVIDERS__CUSTOM__API_BASE=${LLM_API_BASE_URL:?'LLM_API_BASE_URL is required'}
     depends_on:
@@ -130,7 +128,7 @@ services:
 
   client-telegram-bot:
     build:
-      context: client-telegram-bot/
+      context: ./client-telegram-bot
       additional_contexts:
         workspace: .
       args:
@@ -140,13 +138,8 @@ services:
       - lms-network
     environment:
       - BOT_TOKEN=${BOT_TOKEN:?'BOT_TOKEN is required'}
-      - LMS_API_BASE_URL=${LMS_API_BASE_URL:?'LMS_API_BASE_URL is required'}
-      - LMS_API_KEY=${LMS_API_KEY:?'LMS_API_KEY is required'}
-      - LLM_API_KEY=${LLM_API_KEY:?'LLM_API_KEY is required'}
-      - LLM_API_BASE_URL=${LLM_API_BASE_URL:?'LLM_API_BASE_URL is required'}
-      - LLM_API_MODEL=${LLM_API_MODEL:?'LLM_API_MODEL is required'}
+      - NANOBOT_WS_URL=ws://nanobot:8765
     depends_on:
-      - backend
       - nanobot
 
 volumes:
