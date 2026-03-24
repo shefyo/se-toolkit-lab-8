@@ -1,6 +1,15 @@
 [tool.uv.workspace]
 members = ["backend", "client-telegram-bot", "nanobot"]
 
+[tool.uv.sources]
+nanobot-ai = { path = "nanobot-ai" }
+
+# litellm is quarantined on PyPI (2026-03-24); override with direct wheel URL
+[tool.uv]
+override-dependencies = [
+    "litellm @ https://files.pythonhosted.org/packages/02/6c/5327667e6dbe9e98cbfbd4261c8e91386a52e38f41419575854248bbab6a/litellm-1.82.6-py3-none-any.whl",
+]
+
 [dependency-groups]
 dev = [
   "poethepoet>=0.40.0",

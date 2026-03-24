@@ -8,6 +8,7 @@ members = [
     "lms-client-telegram-bot",
     "lms-nanobot",
 ]
+overrides = [{ name = "litellm", url = "https://files.pythonhosted.org/packages/02/6c/5327667e6dbe9e98cbfbd4261c8e91386a52e38f41419575854248bbab6a/litellm-1.82.6-py3-none-any.whl" }]
 
 [manifest.dependency-groups]
 dev = [
@@ -791,7 +792,7 @@ wheels = [
 [[package]]
 name = "litellm"
 version = "1.82.6"
-source = { registry = "https://pypi.org/simple" }
+source = { url = "https://files.pythonhosted.org/packages/02/6c/5327667e6dbe9e98cbfbd4261c8e91386a52e38f41419575854248bbab6a/litellm-1.82.6-py3-none-any.whl" }
 dependencies = [
     { name = "aiohttp" },
     { name = "click" },
@@ -806,10 +807,65 @@ dependencies = [
     { name = "tiktoken" },
     { name = "tokenizers" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/29/75/1c537aa458426a9127a92bc2273787b2f987f4e5044e21f01f2eed5244fd/litellm-1.82.6.tar.gz", hash = "sha256:2aa1c2da21fe940c33613aa447119674a3ad4d2ad5eb064e4d5ce5ee42420136", size = 17414147, upload-time = "2026-03-22T06:36:00.452Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/02/6c/5327667e6dbe9e98cbfbd4261c8e91386a52e38f41419575854248bbab6a/litellm-1.82.6-py3-none-any.whl", hash = "sha256:164a3ef3e19f309e3cabc199bef3d2045212712fefdfa25fc7f75884a5b5b205", size = 15591595, upload-time = "2026-03-22T06:35:56.795Z" },
+    { url = "https://files.pythonhosted.org/packages/02/6c/5327667e6dbe9e98cbfbd4261c8e91386a52e38f41419575854248bbab6a/litellm-1.82.6-py3-none-any.whl", hash = "sha256:164a3ef3e19f309e3cabc199bef3d2045212712fefdfa25fc7f75884a5b5b205" },
 ]
+
+[package.metadata]
+requires-dist = [
+    { name = "a2a-sdk", marker = "python_full_version >= '3.10' and extra == 'extra-proxy'", specifier = ">=0.3.22,<0.4.0" },
+    { name = "aiohttp", specifier = ">=3.10" },
+    { name = "apscheduler", marker = "extra == 'proxy'", specifier = ">=3.10.4,<4.0.0" },
+    { name = "azure-identity", marker = "(python_full_version >= '3.9' and extra == 'extra-proxy') or (python_full_version >= '3.9' and extra == 'proxy')", specifier = ">=1.15.0,<2.0.0" },
+    { name = "azure-keyvault-secrets", marker = "extra == 'extra-proxy'", specifier = ">=4.8.0,<5.0.0" },
+    { name = "azure-storage-blob", marker = "extra == 'proxy'", specifier = ">=12.25.1,<13.0.0" },
+    { name = "backoff", marker = "extra == 'proxy'" },
+    { name = "boto3", marker = "extra == 'proxy'", specifier = ">=1.40.76,<2.0.0" },
+    { name = "click" },
+    { name = "cryptography", marker = "extra == 'proxy'" },
+    { name = "diskcache", marker = "extra == 'caching'", specifier = ">=5.6.1,<6.0.0" },
+    { name = "fastapi", marker = "extra == 'proxy'", specifier = ">=0.120.1" },
+    { name = "fastapi-sso", marker = "extra == 'proxy'", specifier = ">=0.16.0,<0.17.0" },
+    { name = "fastuuid", specifier = ">=0.13.0" },
+    { name = "google-cloud-aiplatform", marker = "extra == 'google'", specifier = ">=1.38.0" },
+    { name = "google-cloud-iam", marker = "extra == 'extra-proxy'", specifier = ">=2.19.1,<3.0.0" },
+    { name = "google-cloud-kms", marker = "extra == 'extra-proxy'", specifier = ">=2.21.3,<3.0.0" },
+    { name = "grpcio", marker = "python_full_version >= '3.14' and extra == 'grpc'", specifier = ">=1.75.0" },
+    { name = "grpcio", marker = "python_full_version < '3.14' and extra == 'grpc'", specifier = ">=1.62.3,!=1.68.*,!=1.69.*,!=1.70.*,!=1.71.0,!=1.71.1,!=1.72.0,!=1.72.1,!=1.73.0" },
+    { name = "gunicorn", marker = "extra == 'proxy'", specifier = ">=23.0.0,<24.0.0" },
+    { name = "httpx", specifier = ">=0.23.0" },
+    { name = "importlib-metadata", specifier = ">=6.8.0" },
+    { name = "jinja2", specifier = ">=3.1.2,<4.0.0" },
+    { name = "jsonschema", specifier = ">=4.23.0,<5.0.0" },
+    { name = "litellm-enterprise", marker = "extra == 'proxy'", specifier = "==0.1.35" },
+    { name = "litellm-proxy-extras", marker = "extra == 'proxy'", specifier = ">=0.4.60,<0.5.0" },
+    { name = "mcp", marker = "python_full_version >= '3.10' and extra == 'proxy'", specifier = ">=1.25.0,<2.0.0" },
+    { name = "mlflow", marker = "python_full_version >= '3.10' and extra == 'mlflow'", specifier = ">3.1.4" },
+    { name = "numpydoc", marker = "extra == 'utils'" },
+    { name = "openai", specifier = ">=2.8.0" },
+    { name = "orjson", marker = "extra == 'proxy'", specifier = ">=3.9.7,<4.0.0" },
+    { name = "polars", marker = "python_full_version >= '3.10' and extra == 'proxy'", specifier = ">=1.31.0,<2.0.0" },
+    { name = "prisma", marker = "extra == 'extra-proxy'", specifier = ">=0.11.0,<0.12.0" },
+    { name = "pydantic", specifier = ">=2.5.0,<3.0.0" },
+    { name = "pyjwt", marker = "python_full_version >= '3.9' and extra == 'proxy'", specifier = ">=2.12.0,<3.0.0" },
+    { name = "pynacl", marker = "extra == 'proxy'", specifier = ">=1.5.0,<2.0.0" },
+    { name = "pyroscope-io", marker = "sys_platform != 'win32' and extra == 'proxy'", specifier = ">=0.8,<0.9" },
+    { name = "python-dotenv", specifier = ">=0.2.0" },
+    { name = "python-multipart", marker = "extra == 'proxy'", specifier = ">=0.0.20" },
+    { name = "pyyaml", marker = "extra == 'proxy'", specifier = ">=6.0.1,<7.0.0" },
+    { name = "redisvl", marker = "python_full_version >= '3.9' and python_full_version < '3.14' and extra == 'extra-proxy'", specifier = ">=0.4.1,<0.5.0" },
+    { name = "resend", marker = "extra == 'extra-proxy'", specifier = ">=0.8.0" },
+    { name = "rich", marker = "extra == 'proxy'", specifier = ">=13.7.1,<14.0.0" },
+    { name = "rq", marker = "extra == 'proxy'" },
+    { name = "semantic-router", marker = "python_full_version >= '3.9' and python_full_version < '3.14' and extra == 'semantic-router'", specifier = ">=0.1.12" },
+    { name = "soundfile", marker = "extra == 'proxy'", specifier = ">=0.12.1,<0.13.0" },
+    { name = "tiktoken", specifier = ">=0.7.0" },
+    { name = "tokenizers" },
+    { name = "uvicorn", marker = "extra == 'proxy'", specifier = ">=0.32.1,<1.0.0" },
+    { name = "uvloop", marker = "sys_platform != 'win32' and extra == 'proxy'", specifier = ">=0.21.0,<0.22.0" },
+    { name = "websockets", marker = "extra == 'proxy'", specifier = ">=15.0.1,<16.0.0" },
+]
+provides-extras = ["caching", "extra-proxy", "google", "grpc", "mlflow", "proxy", "semantic-router", "utils"]
 
 [[package]]
 name = "lms-backend"
@@ -864,6 +920,17 @@ requires-dist = [
     { name = "python-dotenv", specifier = ">=1.0" },
     { name = "websockets", specifier = ">=15.0" },
 ]
+
+[[package]]
+name = "lms-nanobot"
+version = "1.0.0"
+source = { virtual = "nanobot" }
+dependencies = [
+    { name = "nanobot-ai" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "nanobot-ai", directory = "nanobot-ai" }]
 
 [[package]]
 name = "loguru"
@@ -1098,7 +1165,7 @@ wheels = [
 [[package]]
 name = "nanobot-ai"
 version = "0.1.4.post5"
-source = { registry = "https://pypi.org/simple" }
+source = { directory = "nanobot-ai" }
 dependencies = [
     { name = "chardet" },
     { name = "croniter" },
@@ -1120,6 +1187,7 @@ dependencies = [
     { name = "python-socks" },
     { name = "python-telegram-bot", extra = ["socks"] },
     { name = "qq-botpy" },
+    { name = "questionary" },
     { name = "readability-lxml" },
     { name = "rich" },
     { name = "slack-sdk" },
@@ -1130,21 +1198,52 @@ dependencies = [
     { name = "websocket-client" },
     { name = "websockets" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f8/ad/399695c86f661de8d8ca0dba1b1ba0d124f130feb90a5f418edb45ea481e/nanobot_ai-0.1.4.post5.tar.gz", hash = "sha256:ed627f5eac7f747bc9975adfcb833ab3a8a4c4213648c2a20b04604a73ff004d", size = 188222, upload-time = "2026-03-16T15:24:13.77Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/e4/a2/5a17c62311541fa2d69f8f820c2a9245084f8162fd12bc212a383d81c342/nanobot_ai-0.1.4.post5-py3-none-any.whl", hash = "sha256:fe415d361fc4b6e6bb85916adb419b55d327fedf67022d0f38ab83c12167003e", size = 214760, upload-time = "2026-03-16T15:24:11.629Z" },
-]
-
-[[package]]
-name = "lms-nanobot"
-version = "1.0.0"
-source = { virtual = "nanobot" }
-dependencies = [
-    { name = "nanobot-ai" },
-]
 
 [package.metadata]
-requires-dist = [{ name = "nanobot-ai", specifier = ">=0.1.4" }]
+requires-dist = [
+    { name = "chardet", specifier = ">=3.0.2,<6.0.0" },
+    { name = "croniter", specifier = ">=6.0.0,<7.0.0" },
+    { name = "ddgs", specifier = ">=9.5.5,<10.0.0" },
+    { name = "dingtalk-stream", specifier = ">=0.24.0,<1.0.0" },
+    { name = "httpx", specifier = ">=0.28.0,<1.0.0" },
+    { name = "json-repair", specifier = ">=0.57.0,<1.0.0" },
+    { name = "langsmith", marker = "extra == 'langsmith'", specifier = ">=0.1.0" },
+    { name = "lark-oapi", specifier = ">=1.5.0,<2.0.0" },
+    { name = "litellm", specifier = ">=1.82.1,<2.0.0" },
+    { name = "loguru", specifier = ">=0.7.3,<1.0.0" },
+    { name = "matrix-nio", extras = ["e2e"], marker = "extra == 'matrix'", specifier = ">=0.25.2" },
+    { name = "mcp", specifier = ">=1.26.0,<2.0.0" },
+    { name = "mistune", marker = "extra == 'matrix'", specifier = ">=3.0.0,<4.0.0" },
+    { name = "msgpack", specifier = ">=1.1.0,<2.0.0" },
+    { name = "nh3", marker = "extra == 'matrix'", specifier = ">=0.2.17,<1.0.0" },
+    { name = "oauth-cli-kit", specifier = ">=0.1.3,<1.0.0" },
+    { name = "openai", specifier = ">=2.8.0" },
+    { name = "prompt-toolkit", specifier = ">=3.0.50,<4.0.0" },
+    { name = "pycryptodome", marker = "extra == 'weixin'", specifier = ">=3.20.0" },
+    { name = "pydantic", specifier = ">=2.12.0,<3.0.0" },
+    { name = "pydantic-settings", specifier = ">=2.12.0,<3.0.0" },
+    { name = "pytest", marker = "extra == 'dev'", specifier = ">=9.0.0,<10.0.0" },
+    { name = "pytest-asyncio", marker = "extra == 'dev'", specifier = ">=1.3.0,<2.0.0" },
+    { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=6.0.0,<7.0.0" },
+    { name = "python-socketio", specifier = ">=5.16.0,<6.0.0" },
+    { name = "python-socks", extras = ["asyncio"], specifier = ">=2.8.0,<3.0.0" },
+    { name = "python-telegram-bot", extras = ["socks"], specifier = ">=22.6,<23.0" },
+    { name = "qq-botpy", specifier = ">=1.2.0,<2.0.0" },
+    { name = "qrcode", extras = ["pil"], marker = "extra == 'weixin'", specifier = ">=8.0" },
+    { name = "questionary", specifier = ">=2.0.0,<3.0.0" },
+    { name = "readability-lxml", specifier = ">=0.8.4,<1.0.0" },
+    { name = "rich", specifier = ">=14.0.0,<15.0.0" },
+    { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.1.0" },
+    { name = "slack-sdk", specifier = ">=3.39.0,<4.0.0" },
+    { name = "slackify-markdown", specifier = ">=0.2.0,<1.0.0" },
+    { name = "socksio", specifier = ">=1.0.0,<2.0.0" },
+    { name = "tiktoken", specifier = ">=0.12.0,<1.0.0" },
+    { name = "typer", specifier = ">=0.20.0,<1.0.0" },
+    { name = "websocket-client", specifier = ">=1.9.0,<2.0.0" },
+    { name = "websockets", specifier = ">=16.0,<17.0" },
+    { name = "wecom-aibot-sdk-python", marker = "extra == 'wecom'", specifier = ">=0.1.5" },
+]
+provides-extras = ["wecom", "weixin", "matrix", "langsmith", "dev"]
 
 [[package]]
 name = "nodeenv"
@@ -1615,6 +1714,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/1f/b7/1b13569f9cf784d1d37caa2d7bc27246922fe50adb62c3dac0d53d7d38ee/qq-botpy-1.2.1.tar.gz", hash = "sha256:442172a0557a9b43d2777d1c5e072090a9d1a54d588d1c5da8d3efc014f4887f", size = 38270, upload-time = "2024-03-22T10:57:27.075Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/94/2e/cf662566627f1c3508924ef5a0f8277ffc4ac033d6c3a05d1ead6e76f60b/qq_botpy-1.2.1-py3-none-any.whl", hash = "sha256:18b215690dfed88f711322136ec54b6760040b9b1608eb5db7a44e00f59e4f01", size = 51356, upload-time = "2024-03-22T10:57:24.695Z" },
+]
+
+[[package]]
+name = "questionary"
+version = "2.1.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "prompt-toolkit" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/f6/45/eafb0bba0f9988f6a2520f9ca2df2c82ddfa8d67c95d6625452e97b204a5/questionary-2.1.1.tar.gz", hash = "sha256:3d7e980292bb0107abaa79c68dd3eee3c561b83a0f89ae482860b181c8bd412d", size = 25845, upload-time = "2025-08-28T19:00:20.851Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3c/26/1062c7ec1b053db9e499b4d2d5bc231743201b74051c973dadeac80a8f43/questionary-2.1.1-py3-none-any.whl", hash = "sha256:a51af13f345f1cdea62347589fbb6df3b290306ab8930713bfae4d475a7d4a59", size = 36753, upload-time = "2025-08-28T19:00:19.56Z" },
 ]
 
 [[package]]
