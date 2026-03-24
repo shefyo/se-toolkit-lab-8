@@ -25,6 +25,9 @@ class _ChatScreenState extends State<ChatScreen> {
   late final LlmService _llm = LlmService();
   StreamSubscription<String>? _sub;
   bool _isLoading = false;
+  Timer? _responseTimeout;
+
+  static const _timeoutDuration = Duration(seconds: 90);
 
   static const _commands = [
     ('What labs are available?', 'Labs'),
@@ -37,19 +40,43 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
     _llm.connect();
-    _sub = _llm.responses.listen((content) {
-      setState(() {
-        _messages.add(ChatMessage(text: content, isUser: false));
-        _isLoading = false;
-      });
-      _scrollToBottom();
-    });
+    _sub = _llm.responses.listen(
+      (content) {
+        _responseTimeout?.cancel();
+        setState(() {
+          _messages.add(ChatMessage(text: content, isUser: false));
+          _isLoading = false;
+        });
+        _scrollToBottom();
+      },
+      onError: (_) => _handleDisconnect(),
+      onDone: () => _handleDisconnect(),
+    );
     _addBotMessage(
       'Connected to Nanobot!\n\n'
       'I can help you check system health, browse labs, view scores, '
       'and answer questions about your LMS data.\n\n'
       'Type a question or use the buttons below.',
     );
+  }
+
+  void _handleDisconnect() {
+    _responseTimeout?.cancel();
+    if (!mounted) return;
+    setState(() => _isLoading = false);
+    _addBotMessage('Connection lost. Please refresh the page to reconnect.');
+  }
+
+  void _startResponseTimeout() {
+    _responseTimeout?.cancel();
+    _responseTimeout = Timer(_timeoutDuration, () {
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+      _addBotMessage(
+        'The assistant is taking too long to respond. '
+        'Try again or refresh the page.',
+      );
+    });
   }
 
   void _addBotMessage(String text) {
@@ -83,6 +110,7 @@ class _ChatScreenState extends State<ChatScreen> {
     _scrollToBottom();
 
     _llm.send(trimmed);
+    _startResponseTimeout();
   }
 
   @override
@@ -243,6 +271,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void dispose() {
+    _responseTimeout?.cancel();
     _sub?.cancel();
     _controller.dispose();
     _scrollController.dispose();
