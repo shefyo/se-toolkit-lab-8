@@ -10,8 +10,6 @@ services:
       - lms-network
     ports:
       - ${BACKEND_HOST_ADDRESS:?'BACKEND_HOST_ADDRESS is required'}:${BACKEND_HOST_PORT:?'BACKEND_HOST_PORT is required'}:${BACKEND_CONTAINER_PORT}
-    expose:
-      - ${BACKEND_CONTAINER_PORT}
     environment:
       - NAME=${BACKEND_NAME:?'BACKEND_NAME is required'}
       - DEBUG=${BACKEND_DEBUG:?'BACKEND_DEBUG is required'}
@@ -119,9 +117,6 @@ services:
     restart: unless-stopped
     networks:
       - lms-network
-    expose:
-      - "${NANOBOT_GATEWAY_CONTAINER_PORT}"
-      - "${NANOBOT_WEBCHAT_CONTAINER_PORT}"
     environment:
       - NANOBOT_LMS_BACKEND_URL=http://backend:${BACKEND_CONTAINER_PORT}
       - NANOBOT_GATEWAY_CONTAINER_ADDRESS=${NANOBOT_GATEWAY_CONTAINER_ADDRESS:?'NANOBOT_GATEWAY_CONTAINER_ADDRESS is required'}
