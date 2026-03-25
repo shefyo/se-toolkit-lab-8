@@ -263,3 +263,25 @@ To verify, students trigger the alert by stopping PostgreSQL and sending several
 - The alert fires when the error threshold is exceeded within the configured time window.
 - An MCP tool reports active alerts from the vmalert API to the nanobot agent.
 - The alerting rule and threshold are configurable without code changes.
+
+---
+
+### Task 2 — Improve Observability Message Formatting in Clients
+
+**Purpose:**
+
+The agent's observability responses contain structured data (error summaries, trace hierarchies, health reports) that deserves better presentation than plain text.
+
+**Summary:**
+
+Students improve how the Telegram bot and Flutter web app render the agent's observability responses.
+For the Telegram bot, students use `aiogram` formatting features — e.g., inline keyboards for selecting a trace ID, code blocks for log excerpts, and structured summaries with bold labels.
+For the Flutter web app, students improve the chat UI to render log tables, trace timelines, or collapsible detail sections instead of raw text.
+
+Students test by triggering an investigation through each client and comparing the before/after experience.
+
+**Acceptance criteria:**
+
+- The Telegram bot renders observability responses with structured formatting (e.g., code blocks, bold labels, inline keyboards).
+- The Flutter web app renders observability responses with improved UI elements (e.g., tables, collapsible sections).
+- Both clients handle all agent response types (`text`, `choice`, `confirm`, `composite`) gracefully.
