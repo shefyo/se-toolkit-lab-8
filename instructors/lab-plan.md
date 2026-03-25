@@ -136,39 +136,36 @@ Students also use provided `poe` tasks to query the VictoriaTraces HTTP API (Jae
 **Purpose:**
 
 Letting the AI agent query logs and traces means users can ask about system health in natural language.
-Students first build this with a skill that uses `curl`, then discover why MCP tools are a better approach.
+Students first see what a bare agent can figure out on its own, then discover why MCP tools are needed.
 
 **Summary:**
 
-#### Part A — Skill with `curl`
+#### Part A — Bare agent (`nanobot-pure`)
 
-Students write an observability skill (`workspace/skills/observability/SKILL.md`) that instructs the agent to use `curl` to query the VictoriaLogs and VictoriaTraces HTTP APIs directly.
-The skill explains the API endpoints, query syntax, and how to interpret the JSON responses.
+Students create a `nanobot-pure/` directory with a minimal nanobot configuration — just an LLM connection, no skills, no MCP tools.
+They start it and ask questions like "any errors in the last hour?" and "is the backend healthy?"
 
-After deploying, students ask the agent questions like "any errors in the last hour?" and "show me recent traces for the backend."
-The agent figures out the right `curl` commands from the skill instructions, executes them, and summarizes the results.
+The agent is clever — it may try `curl` against plausible endpoints, guess at query syntax, or hallucinate APIs that don't exist.
+Students observe what works, what doesn't, and how unreliable the results are without structured access to the observability data.
 
-Students observe the limitations: the skill prompt is long and fragile (API URLs, query syntax, response formats all embedded in prose), the agent sometimes gets the `curl` syntax wrong, and raw JSON responses require the agent to parse and interpret on every call.
+#### Part B — Add MCP tools
 
-#### Part B — Refactor to MCP tools
-
-Students extract the `curl`-based queries into MCP tools with structured inputs and outputs.
+Students add MCP tools to the main nanobot's MCP server that give the agent reliable access to observability data.
 They implement at least two log tools (search by keyword/time range, count errors per service) and at least two trace tools (list recent traces, fetch a trace by ID).
 Each tool handles the HTTP call, parses the response, and returns a structured result.
 
-Students update the observability skill to reference the MCP tools instead of `curl` commands — the skill becomes shorter and focused on *when* to use each tool rather than *how* to call the API.
+Students also write an observability skill that tells the agent *when* to use each tool rather than *how* to call the API.
 
-After redeploying, students verify the agent answers the same questions correctly, and compare the experience: fewer agent errors, faster responses, and a simpler skill prompt.
+After redeploying, students ask the same questions from Part A and compare the experience: reliable answers, no hallucinated endpoints, structured responses.
 
 **Acceptance criteria:**
 
-- An observability skill exists and is loaded by the agent.
-- The agent can answer observability questions using `curl` via the skill (Part A baseline).
+- A `nanobot-pure/` directory exists with a minimal nanobot configuration that can answer questions (Part A baseline).
 - At least two MCP tools for querying VictoriaLogs are registered in the MCP server.
 - At least two MCP tools for querying VictoriaTraces are registered in the MCP server.
 - The agent answers "any errors in the last hour?" correctly under both normal and failure conditions.
 - The agent can fetch and summarize a specific trace by ID.
-- The skill prompt is updated to reference MCP tools instead of `curl` commands.
+- An observability skill exists and is loaded by the agent.
 - The MCP server starts without errors after the changes.
 
 ---
