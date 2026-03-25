@@ -130,6 +130,7 @@ exclude = ["**/__pycache__", "**/node_modules", "**/.*", ".venv", ".direnv", "na
 typeCheckingMode = "strict"
 reportAssignmentType = "none"
 reportIncompatibleVariableOverride = "none"
+reportUnknownMemberType = "none"
 
 [tool.pytest.ini_options]
 testpaths = ["backend/tests"]
@@ -139,3 +140,7 @@ asyncio_mode = "auto"
 [tool.ty.src]
 include = ["backend", "client-telegram-bot", "nanobot", "mcp"]
 exclude = ["nanobot/packages/**"]
+
+# TODO: remove after upgrading to ty>=0.0.26 (fixes ParamSpec, see https://github.com/astral-sh/ty/issues/1635)
+[tool.ty.rules]
+invalid-argument-type = "warn"
