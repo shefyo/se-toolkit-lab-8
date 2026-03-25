@@ -128,7 +128,7 @@ envfile = "client-telegram-bot/.env.secret"
 
 [tool.pyright]
 include = ["backend", "client-telegram-bot", "scripts", "nanobot", "mcp"]
-extraPaths = ["backend"]
+extraPaths = ["backend", "nanobot/packages/nanobot-ai"]
 exclude = ["**/__pycache__", "**/node_modules", "**/.*", ".venv", ".direnv"]
 typeCheckingMode = "strict"
 reportAssignmentType = "none"
