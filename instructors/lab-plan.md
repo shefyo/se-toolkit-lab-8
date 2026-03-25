@@ -173,11 +173,39 @@ After redeploying, students verify the agent answers the same questions correctl
 
 ---
 
-### Task 3 — Add Multi-Step Investigation and a Cron Health Check
+### Task 3 — Diagnose and Fix a Bug Using the Agent
 
 **Purpose:**
 
-A skill that chains multiple tools turns the agent from a single-query helper into an investigator.
+Everything students built in Tasks 1–2 is now the tool they use to solve a real problem.
+This task proves that observability and an AI agent aren't just infrastructure — they're how you debug a multi-service system when you can't attach a debugger.
+
+**Summary:**
+
+The instructor deploys a version of the backend with a planted bug (e.g., a model field mismatch that causes a specific endpoint to return 500 errors intermittently).
+Students are not told what the bug is or where it is — only that "users are reporting errors."
+
+Students ask the agent to investigate — manually querying step by step: "show me recent errors," then "get that trace," then "what service failed."
+Based on the agent's responses, students piece together the root cause, fix the bug, redeploy, and verify the fix by asking the agent again.
+
+Students document the investigation: the questions they asked, the agent's responses, the root cause, and the fix.
+They also note the friction of manually driving each step of the investigation.
+
+**Acceptance criteria:**
+
+- The student uses the agent to identify the affected endpoint and error type without prior knowledge of the bug.
+- The student fixes the bug in the code and redeploys.
+- After the fix, the agent confirms no errors when asked.
+- The student documents the investigation steps, root cause, and fix.
+
+---
+
+### Task 4 — Add Multi-Step Investigation and a Cron Health Check
+
+**Purpose:**
+
+In Task 3, students drove the investigation manually — asking the agent one question at a time.
+A skill that chains multiple tools turns the agent from a single-query helper into an autonomous investigator.
 A cron job makes the agent proactive instead of reactive.
 
 **Summary:**
@@ -188,7 +216,7 @@ Students enhance the observability skill from Task 2 to guide multi-step investi
 For example, the skill should instruct the agent that when asked "what went wrong?", it should first search logs for recent errors, extract a trace ID from the results, then fetch the full trace to show the request flow.
 Students also add guidance for summarizing results concisely rather than dumping raw data.
 
-Students verify the multi-step behavior by triggering a failure and asking the agent to investigate — the agent should chain log and trace tools autonomously and produce a coherent summary.
+Students verify the multi-step behavior by triggering a failure and asking the agent to investigate — the agent should chain log and trace tools autonomously and produce a coherent summary in a single response.
 
 #### Part B — Cron health check
 
@@ -206,35 +234,6 @@ They also test the multi-step scenario: trigger a failure, wait for the next cro
 - A cron job is configured in `cron/jobs.json` that triggers a periodic health check via `agent_turn`.
 - The cron job fires on schedule and the agent delivers a health report to the webchat channel.
 - When errors exist, the health report includes information from both log and trace tools.
-
----
-
-### Task 4 — Diagnose and Fix a Bug Using the Agent
-
-**Purpose:**
-
-Everything students built in Tasks 1–3 is now the tool they use to solve a real problem.
-This task proves that observability and an AI agent aren't just infrastructure — they're how you debug a multi-service system when you can't attach a debugger.
-
-**Summary:**
-
-The instructor deploys a version of the backend with a planted bug (e.g., a model field mismatch that causes a specific endpoint to return 500 errors intermittently).
-Students are not told what the bug is or where it is — only that "users are reporting errors."
-
-Students ask the agent to investigate.
-The agent searches logs for recent errors, finds the affected endpoint and error message, pulls the trace to show which service and span failed, and reports its findings.
-
-Based on the agent's report, students locate the buggy code, fix it, redeploy, and verify the fix by asking the agent again — this time the agent should report no errors.
-
-Students document the investigation: the questions they asked, the agent's responses, the root cause, and the fix.
-
-**Acceptance criteria:**
-
-- The student uses the agent to identify the affected endpoint and error type without prior knowledge of the bug.
-- The agent's investigation chains log and trace tools to pinpoint the failure.
-- The student fixes the bug in the code and redeploys.
-- After the fix, the agent confirms no errors when asked.
-- The student documents the investigation steps, root cause, and fix.
 
 ---
 
