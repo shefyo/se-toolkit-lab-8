@@ -31,9 +31,15 @@ class LlmService {
       (data) {
         try {
           final msg = jsonDecode(data as String) as Map<String, dynamic>;
-          final content = msg['content'] as String? ?? '';
-          if (content.isNotEmpty) {
-            _responses.add(content);
+          final type = msg['type'] as String? ?? 'text';
+          if (type == 'choice' || type == 'confirm' || type == 'composite') {
+            // Forward the full JSON so the UI can render interactive widgets.
+            _responses.add(jsonEncode(msg));
+          } else {
+            final content = msg['content'] as String? ?? '';
+            if (content.isNotEmpty) {
+              _responses.add(content);
+            }
           }
         } catch (_) {}
       },
