@@ -140,9 +140,9 @@ Students first see what a bare agent can figure out on its own, then discover wh
 
 **Summary:**
 
-#### Part A — Bare agent (`nanobot-pure`)
+#### Part A — Bare agent (`nanobot-bare`)
 
-Students create a `nanobot-pure/` directory with a minimal nanobot configuration — just an LLM connection, no skills, no MCP tools.
+Students create a `nanobot-bare/` directory with a minimal nanobot configuration — just an LLM connection, no skills, no MCP tools.
 They start it and ask questions like "any errors in the last hour?" and "is the backend healthy?"
 
 The agent is clever — it may try `curl` against plausible endpoints, guess at query syntax, or hallucinate APIs that don't exist.
@@ -160,7 +160,7 @@ After redeploying, students ask the same questions from Part A and compare the e
 
 **Acceptance criteria:**
 
-- A `nanobot-pure/` directory exists with a minimal nanobot configuration that can answer questions (Part A baseline).
+- A `nanobot-bare/` directory exists with a minimal nanobot configuration that can answer questions (Part A baseline).
 - At least two MCP tools for querying VictoriaLogs are registered in the MCP server.
 - At least two MCP tools for querying VictoriaTraces are registered in the MCP server.
 - The agent answers "any errors in the last hour?" correctly under both normal and failure conditions.
