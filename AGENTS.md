@@ -28,7 +28,7 @@ They'll say "let's do the lab" or "start task 1." They probably haven't read the
 
 2. **Verify setup.** Before coding, check:
    - Backend running? `curl -sf http://localhost:42002/docs`
-   - `.env.docker.secret` has `BOT_TOKEN`, `LMS_API_BASE_URL`, `LMS_API_KEY`?
+   - `.env.docker.secret` has `BOT_TOKEN`, `GATEWAY_BASE_URL`, `LMS_API_KEY`?
    - Data synced? `curl -sf http://localhost:42002/items/ -H "Authorization: Bearer <key>"` returns items?
 
    If anything is missing, point to `lab/setup/setup-simple.md` and STOP. Don't fix it for them.
