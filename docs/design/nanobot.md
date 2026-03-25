@@ -107,7 +107,7 @@ No agent involvement. Sub-second response. Commands: `/start`, `/help`, `/health
 | ------------------ | ------------------------------------------- |
 | `BOT_TOKEN`        | Telegram bot token                          |
 | `LMS_API_KEY`      | Backend auth for direct slash commands      |
-| `LMS_API_BASE_URL` | Backend URL for direct slash commands       |
+| `GATEWAY_BASE_URL` | Gateway URL for direct slash commands       |
 | `NANOBOT_WS_URL`   | Nanobot WebSocket URL                       |
 
 ## Debugging checklist
@@ -118,7 +118,7 @@ No agent involvement. Sub-second response. Commands: `/start`, `/help`, `/health
 
 3. **Free text returns "Could not reach the AI agent"**: The nanobot service is down or unreachable. Check `docker compose logs nanobot` and verify the webchat channel started on the expected port (`NANOBOT_WEBCHAT_CONTAINER_PORT`).
 
-4. **Slash commands return "LMS client not configured"**: `LMS_API_BASE_URL` or `LMS_API_KEY` env vars are missing from the client-telegram-bot service.
+4. **Slash commands return "LMS client not configured"**: `GATEWAY_BASE_URL` or `LMS_API_KEY` env vars are missing from the client-telegram-bot service.
 
 5. **Slow responses to free text**: The nanobot agent runs tool calls (mcp_lms_*, read_file) before answering. This is normal — the agent may take 10-60s for complex queries. Slash commands bypass this entirely.
 
