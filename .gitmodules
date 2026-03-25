@@ -1,6 +1,3 @@
-[submodule "instructors/meetings"]
-	path = instructors/meetings
-	url = https://github.com/inno-se-toolkit/meetings
 [submodule "nanobot/packages/nanobot-ai"]
 	path = nanobot/packages/nanobot-ai
 	url = https://github.com/inno-se-toolkit/nanobot.git
