@@ -1,7 +1,15 @@
 ---
 name: lms
 description: Query the Learning Management System backend for labs, scores, learners, and analytics.
-metadata: {"nanobot":{"emoji":"📚","requires":{"env":["NANOBOT_LMS_BACKEND_URL"]},"always":true}}
+metadata:
+  {
+    "nanobot":
+      {
+        "emoji": "📚",
+        "requires": { "env": ["NANOBOT_LMS_BACKEND_URL"] },
+        "always": true,
+      },
+  }
 ---
 
 # LMS (Learning Management System)
@@ -58,17 +66,17 @@ Combine a text summary with a follow-up choice:
 
 All tools are prefixed with `mcp_lms_` and return JSON.
 
-| Tool | Parameters | Description |
-|------|-----------|-------------|
-| `mcp_lms_health` | `api_key` | Check backend health and item count |
-| `mcp_lms_labs` | `api_key` | List all labs (title + id) |
-| `mcp_lms_learners` | `api_key` | List all registered learners |
-| `mcp_lms_pass_rates` | `api_key`, `lab` | Pass rates per task for a lab |
-| `mcp_lms_timeline` | `api_key`, `lab` | Submission timeline for a lab |
-| `mcp_lms_groups` | `api_key`, `lab` | Group performance for a lab |
-| `mcp_lms_top_learners` | `api_key`, `lab`, `limit?` | Top learners by avg score (default 5) |
-| `mcp_lms_completion_rate` | `api_key`, `lab` | Completion rate (passed / total) |
-| `mcp_lms_sync_pipeline` | `api_key` | Trigger the sync pipeline |
+| Tool                      | Parameters                 | Description                           |
+| ------------------------- | -------------------------- | ------------------------------------- |
+| `mcp_lms_health`          | `api_key`                  | Check backend health and item count   |
+| `mcp_lms_labs`            | `api_key`                  | List all labs (title + id)            |
+| `mcp_lms_learners`        | `api_key`                  | List all registered learners          |
+| `mcp_lms_pass_rates`      | `api_key`, `lab`           | Pass rates per task for a lab         |
+| `mcp_lms_timeline`        | `api_key`, `lab`           | Submission timeline for a lab         |
+| `mcp_lms_groups`          | `api_key`, `lab`           | Group performance for a lab           |
+| `mcp_lms_top_learners`    | `api_key`, `lab`, `limit?` | Top learners by avg score (default 5) |
+| `mcp_lms_completion_rate` | `api_key`, `lab`           | Completion rate (passed / total)      |
+| `mcp_lms_sync_pipeline`   | `api_key`                  | Trigger the sync pipeline             |
 
 The `lab` parameter is a lab identifier like `lab-04`.
 
