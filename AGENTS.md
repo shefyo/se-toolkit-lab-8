@@ -102,4 +102,15 @@ Don't lecture upfront. Explain at the moment they become relevant:
 - `lab/tasks/required/` — task descriptions with deliverables and acceptance criteria.
 - `wiki/` — project documentation.
 - `backend/` — the FastAPI backend the bot queries.
+- `client-web-flutter/` — the Flutter web client.
 - `.env.docker.secret` — all credentials: backend API, bot token, LLM (gitignored).
+
+## Flutter
+
+Flutter is not installed locally. Run Flutter CLI commands via the poe task (uses Docker):
+
+```sh
+uv run poe flutter <args>
+```
+
+For example: `uv run poe flutter analyze lib/chat_screen.dart`
