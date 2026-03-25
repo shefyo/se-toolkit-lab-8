@@ -340,19 +340,19 @@ Default: `18790`
 
 ### `NANOBOT_WEBCHAT_CONTAINER_ADDRESS`
 
-The [IP address](./computer-networks.md#ip-address) the [`Nanobot` webchat channel](./nanobot.md#webchat-channel) WebSocket server [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
+The [IP address](./computer-networks.md#ip-address) the [`Nanobot` webchat channel](./nanobot.md#webchat-channel) [`WebSocket`](./websocket.md#what-is-websocket) server [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
 
 Default: [`0.0.0.0`](./computer-networks.md#0000)
 
 ### `NANOBOT_WEBCHAT_CONTAINER_PORT`
 
-The [port number](./computer-networks.md#port-number) the [`Nanobot` webchat channel](./nanobot.md#webchat-channel) WebSocket server [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
+The [port number](./computer-networks.md#port-number) the [`Nanobot` webchat channel](./nanobot.md#webchat-channel) [`WebSocket`](./websocket.md#what-is-websocket) server [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
 
 Default: `8765`
 
 ### `NANOBOT_WS_URL`
 
-The full `WebSocket` URL that the [`Telegram` bot client](./client-telegram-bot.md#about-the-telegram-bot-client) uses to connect to the [`Nanobot` webchat channel](./nanobot.md#webchat-channel).
+The full [`WebSocket`](./websocket.md#what-is-websocket) URL that the [`Telegram` bot client](./client-telegram-bot.md#about-the-telegram-bot-client) uses to connect to the [`Nanobot` webchat channel](./nanobot.md#webchat-channel).
 
 Default: `ws://nanobot:8765`
 
