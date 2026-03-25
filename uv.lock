@@ -755,14 +755,14 @@ version = "0.1.0"
 source = { virtual = "client-telegram-bot" }
 dependencies = [
     { name = "aiogram" },
-    { name = "python-dotenv" },
+    { name = "pydantic-settings" },
     { name = "websockets" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "aiogram", specifier = ">=3.20" },
-    { name = "python-dotenv", specifier = ">=1.0" },
+    { name = "pydantic-settings", specifier = ">=2.0" },
     { name = "websockets", specifier = ">=15.0" },
 ]
 
