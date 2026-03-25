@@ -26,11 +26,9 @@ For normal answers, just reply in plain markdown. The system wraps it automatica
 
 ### Choice — let the user pick from options
 
-When the user's query requires a parameter (like a lab name) and you can enumerate the options, output:
+When the user's query requires a parameter (like a lab name) and you can enumerate the options, output **raw JSON on a single line** — no code fences, no surrounding text:
 
-```json
 {"type": "choice", "content": "Which lab?", "options": [{"label": "Lab 01", "value": "lab-01"}, {"label": "Lab 04", "value": "lab-04"}]}
-```
 
 The client renders this as clickable buttons. The user's selection is sent back to you as a plain text message containing the `value`.
 
@@ -38,9 +36,7 @@ The client renders this as clickable buttons. The user's selection is sent back 
 
 Before destructive or slow operations (like syncing the pipeline), ask for confirmation:
 
-```json
 {"type": "confirm", "content": "Sync the pipeline now? This may take a moment."}
-```
 
 The client shows Yes/No buttons. The user's answer arrives as `"yes"` or `"no"`.
 
@@ -48,9 +44,7 @@ The client shows Yes/No buttons. The user's answer arrives as `"yes"` or `"no"`.
 
 Combine a text summary with a follow-up choice:
 
-```json
 {"type": "composite", "parts": [{"type": "text", "content": "Found 3 labs.", "format": "markdown"}, {"type": "choice", "content": "Which one?", "options": [{"label": "Lab 01", "value": "lab-01"}, {"label": "Lab 04", "value": "lab-04"}, {"label": "Lab 07", "value": "lab-07"}]}]}
-```
 
 ### When to use structured responses
 
@@ -58,6 +52,7 @@ Combine a text summary with a follow-up choice:
 - **Use `confirm`** before `mcp_lms_sync_pipeline`.
 - **Use plain text** for everything else (results, errors, explanations).
 - Do **not** output JSON for simple text answers — just write markdown.
+- When outputting a structured response (`choice`, `confirm`, `composite`), output **only** the JSON object — do not add surrounding text.
 
 ## Available tools
 
