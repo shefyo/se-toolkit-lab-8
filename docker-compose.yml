@@ -5,7 +5,7 @@ services:
       additional_contexts:
         workspace: .
       args:
-        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
+        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:?'REGISTRY_PREFIX_DOCKER_HUB is required'}
     restart: unless-stopped
     networks:
       - lms-network
@@ -34,7 +34,7 @@ services:
         condition: service_healthy
 
   postgres:
-    image: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}postgres:18.3-alpine
+    image: ${REGISTRY_PREFIX_DOCKER_HUB}postgres:18.3-alpine
     restart: unless-stopped
     networks:
       - lms-network
@@ -58,7 +58,7 @@ services:
       retries: 5
 
   pgadmin:
-    image: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}dpage/pgadmin4:latest
+    image: ${REGISTRY_PREFIX_DOCKER_HUB}dpage/pgadmin4:latest
     restart: unless-stopped
     networks:
       - lms-network
@@ -76,7 +76,7 @@ services:
     build:
       context: client-web-react/
       args:
-        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
+        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:?'REGISTRY_PREFIX_DOCKER_HUB is required'}
     volumes:
       - client-web-react:/output
 
@@ -84,13 +84,13 @@ services:
     build:
       context: client-web-flutter/
       args:
-        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
-        REGISTRY_PREFIX_GHCR: ${REGISTRY_PREFIX_GHCR:-harbor.pg.innopolis.university/ghcr-proxy/}
+        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:?'REGISTRY_PREFIX_DOCKER_HUB is required'}
+        REGISTRY_PREFIX_GHCR: ${REGISTRY_PREFIX_GHCR:?'REGISTRY_PREFIX_GHCR is required'}
     volumes:
       - client-web-flutter:/output
 
   caddy:
-    image: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}caddy:2.11-alpine
+    image: ${REGISTRY_PREFIX_DOCKER_HUB}caddy:2.11-alpine
     networks:
       - lms-network
     depends_on:
@@ -117,7 +117,7 @@ services:
       additional_contexts:
         workspace: .
       args:
-        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
+        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:?'REGISTRY_PREFIX_DOCKER_HUB is required'}
     restart: unless-stopped
     networks:
       - lms-network
@@ -136,7 +136,7 @@ services:
     build:
       context: ./qwen-code-api
       args:
-        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
+        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:?'REGISTRY_PREFIX_DOCKER_HUB is required'}
     restart: unless-stopped
     networks:
       - lms-network
@@ -175,7 +175,7 @@ services:
       additional_contexts:
         workspace: .
       args:
-        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
+        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:?'REGISTRY_PREFIX_DOCKER_HUB is required'}
     restart: unless-stopped
     networks:
       - lms-network
