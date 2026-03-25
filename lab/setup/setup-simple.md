@@ -64,10 +64,14 @@ We refer to your fork as `fork` and to the original repo as `upstream`.
 1. Clone your fork to your local machine:
 
    ```terminal
-   git clone https://github.com/YOUR_GITHUB_USERNAME/se-toolkit-lab-7
+   git clone --recurse-submodules https://github.com/YOUR_GITHUB_USERNAME/se-toolkit-lab-7
    ```
 
    Replace **`YOUR_GITHUB_USERNAME`** with your GitHub username.
+
+   > 🟦 **Note**
+   >
+   > The `--recurse-submodules` flag clones the `Qwen Code` API [submodule](../../wiki/git.md#submodule) included in the repository.
 
 2. Open the forked repo in `VS Code`.
 
@@ -210,10 +214,11 @@ Replace **`YOUR_VM_USERNAME`** and **`YOUR_VM_IP`** with your values.
 >
 > **Docker Hub rate limits (`Too many requests`).**
 >
-> If you're building outside the university network and hit Docker Hub rate limits, set the registry prefix to empty in `.env.docker.secret`:
+> If you're building outside the university network and hit Docker Hub rate limits, set the registry prefixes to empty in `.env.docker.secret`:
 >
 > ```text
-> REGISTRY_PREFIX=
+> REGISTRY_PREFIX_DOCKER_HUB=
+> REGISTRY_PREFIX_GHCR=
 > ```
 >
 > This is only needed outside the university. On campus, the default harbor cache avoids rate limits.
@@ -287,7 +292,7 @@ The autochecker tests your bot against your **deployed backend on your VM**. You
 3. Clone your fork on the VM:
 
    ```terminal
-   git clone https://github.com/YOUR_GITHUB_USERNAME/se-toolkit-lab-7 ~/se-toolkit-lab-7
+   git clone --recurse-submodules https://github.com/YOUR_GITHUB_USERNAME/se-toolkit-lab-7 ~/se-toolkit-lab-7
    ```
 
    Replace **`YOUR_GITHUB_USERNAME`** with your GitHub username.
@@ -377,7 +382,7 @@ Your bot needs an LLM for the intent routing feature (Task 3). [Qwen Code](../..
 > If you set up the Qwen Code API in Lab 6, it should still be running on your VM. Verify by running this **on your VM**:
 >
 > ```terminal
-> grep QWEN_CODE_API_KEY ~/qwen-code-oai-proxy/.env
+> grep QWEN_CODE_API_KEY ~/se-toolkit-lab-7/qwen-code-api/.env.secret
 > ```
 >
 > This shows your key. Then test it:
@@ -426,26 +431,23 @@ You need a Telegram bot token to run your bot client.
 
 6. Save this token.
 
-7. Create the bot environment file on your VM:
+7. Add bot and LLM credentials to `.env.docker.secret` on your VM:
 
    ```terminal
    cd ~/se-toolkit-lab-7
-   cp .env.bot.example .env.bot.secret
-   nano .env.bot.secret
+   nano .env.docker.secret
    ```
 
-   Fill in **all** fields:
+   Set the following fields:
 
    ```text
    BOT_TOKEN=your-token-from-botfather
-   LMS_API_BASE_URL=http://localhost:42002
-   LMS_API_KEY=same-value-as-in-env-docker-secret
    LLM_API_KEY=your-qwen-api-key-from-step-1.9
    LLM_API_BASE_URL=http://localhost:42005/v1
    LLM_API_MODEL=coder-model
    ```
 
-   The `LMS_API_KEY` must match what you set in `.env.docker.secret`. The `LLM_API_KEY` is the `QWEN_CODE_API_KEY` from step 1.9.
+   The `LLM_API_KEY` is the `QWEN_CODE_API_KEY` from step 1.9.
 
 8. Verify the LLM works from your VM:
 
@@ -459,7 +461,7 @@ You need a Telegram bot token to run your bot client.
    You should see a JSON response containing `"2 + 2 = 4"` or similar. If you get an error, fix the Qwen proxy setup (step 1.9) before continuing — the bot needs a working LLM for Task 3.
 
 > [!IMPORTANT]
-> Do not share your bot token or commit it to git. The file `.env.bot.secret` is already in `.gitignore` (any file matching `*.secret` is ignored).
+> Do not share your bot token or commit it to git. The file `.env.docker.secret` is already in `.gitignore` (any file matching `*.secret` is ignored).
 
 ### 1.11. Coding agent
 

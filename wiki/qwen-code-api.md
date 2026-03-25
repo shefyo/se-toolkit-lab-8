@@ -100,7 +100,9 @@ Example: `coder-model`.
 > - on your VM (REMOTE)
 > - on your local machine (LOCAL)
 
-1. To send an [`HTTP` request](./http.md#http-request) to the [`Qwen Code` API](#what-is-qwen-code-api),
+1. [Enter the lab repository directory](./lab.md#enter-the-lab-repository-directory).
+
+2. To send an [`HTTP` request](./http.md#http-request) to the [`Qwen Code` API](#what-is-qwen-code-api),
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
@@ -118,7 +120,7 @@ Example: `coder-model`.
    - [`<qwen-code-api-key>`](#qwen-code-api-key)
    - [`<qwen-code-api-model>`](#qwen-code-api-model)
 
-2. When you run it, the output should be similar to this:
+3. When you run it, the output should be similar to this:
 
    ```terminal
    {

@@ -14,16 +14,16 @@ The following diagram shows this workflow in the context of repositories:
 Outline:
 
 - [Create a `Lab Task` issue](#create-a-lab-task-issue)
-- [Switch to the `main` branch](#switch-to-the-main-branch)
-- [Pull changes from `main` on `origin`](#pull-changes-from-main-on-origin)
-- [Pull changes from `main` on `upstream`](#pull-changes-from-main-on-upstream)
+- [Switch to the branch `main`](#switch-to-the-branch-main)
+- [Pull changes from the branch `main` on the remote `origin`](#pull-changes-from-the-branch-main-on-the-remote-origin)
+- [Pull changes from the branch `main` on the remote `upstream`](#pull-changes-from-the-branch-main-on-the-remote-upstream)
 - [Switch to the `<task-branch>`](#switch-to-the-task-branch)
-  - [`<task-branch>`](#task-branch)
+  - [`<task-branch>` placeholder](#task-branch-placeholder)
 - [Edit files](#edit-files)
 - [Commit changes](#commit-changes)
 - [(Optional) Undo commits](#optional-undo-commits)
 - [Push commits](#push-commits)
-- [Create a PR to the `main` branch in your fork](#create-a-pr-to-the-main-branch-in-your-fork)
+- [Create a PR to the branch `main` in your fork](#create-a-pr-to-the-branch-main-in-your-fork)
 - [Get a PR review](#get-a-pr-review)
   - [PR review rules](#pr-review-rules)
     - [PR review rules for the reviewer](#pr-review-rules-for-the-reviewer)
@@ -35,23 +35,23 @@ Outline:
 
 [Create an issue](./github.md#create-an-issue) using the `Lab Task` [issue form](./github.md#issue-form).
 
-## Switch to the `main` branch
+## Switch to the branch `main`
 
-[Switch to the `main` branch](./git-vscode.md#switch-to-the-branch) in `VS Code`.
+[Switch to the branch `main`](./git-vscode.md#switch-to-the-branch-branch) in `VS Code`.
 
-## Pull changes from `main` on `origin`
+## Pull changes from the branch `main` on the remote `origin`
 
-[Pull changes](./git-vscode.md#pull-changes-from-the-branch-on-remote) from `main` on [`origin`](./github.md#origin).
+[Pull changes](./git-vscode.md#pull-changes-from-the-branch-branch-on-remote) from the branch `main` on the remote [`origin`](./github.md#origin) to get the latest changes from your repository.
 
-## Pull changes from `main` on `upstream`
+## Pull changes from the branch `main` on the remote `upstream`
 
-[Pull changes](./git-vscode.md#pull-changes-from-the-branch-on-remote) from `main` on [`upstream`](./github.md#upstream) to get the latest fixes from the instructors' repository.
+[Pull changes](./git-vscode.md#pull-changes-from-the-branch-branch-on-remote) from the branch `main` on the remote [`upstream`](./github.md#upstream) to get the latest changes from the instructors' repository.
 
 ## Switch to the `<task-branch>`
 
-[Create a new `<task-branch>` and switch to it](./git-vscode.md#switch-to-a-new-branch).
+[Create a new branch `<task-branch>` from the branch `main` and switch to it](./git-vscode.md#switch-to-a-new-branch).
 
-### `<task-branch>`
+### `<task-branch>` placeholder
 
 The [new branch for the task](#switch-to-the-task-branch).
 
@@ -63,7 +63,7 @@ Alternatively, the name of that branch (without `<` and `>`).
 
 ## Commit changes
 
-[Commit changes](./git-vscode.md#commit-changes) to the [`<task-branch>`](#task-branch) to complete the task.
+[Commit changes](./git-vscode.md#commit-changes) to the [`<task-branch>`](#task-branch-placeholder) to complete the task.
 
 ## (Optional) Undo commits
 
@@ -74,16 +74,20 @@ Alternatively, the name of that branch (without `<` and `>`).
 1. [Publish the branch](./git-vscode.md#publish-the-branch) with your changes if it's not yet published.
 2. [Push more commits](./git-vscode.md#push-more-commits) to the published branch if necessary.
 
-## Create a PR to the `main` branch in your fork
+## Create a PR to the branch `main` in your fork
 
-[Create a PR](./github.md#create-a-pull-request-in-your-fork) from the branch [`<task-branch>`](#task-branch) to `main`. Replace:
+[Create a PR](./github.md#create-a-pull-request-in-your-fork) from the branch [`<task-branch>`](#task-branch-placeholder) to `main`.
 
-- [`<repo-name>`](./github.md#repo-name) with [`<lab-repo-name>`](./lab.md#lab-repo-name)
-- [`<branch>`](./git.md#branch) with [`<task-branch>`](./git-workflow.md#task-branch)
+Replace the placeholders:
+
+- [`<repo-name>`](./github.md#repo-name-placeholder) with [`<lab-repo-name>`](./lab.md#lab-repo-name)
+- [`<branch>`](./git.md#branch-placeholder) with [`<task-branch>`](./git-workflow.md#task-branch-placeholder)
 - [`<your-github-username>`](./github.md#your-github-username-placeholder)
 
 > [!WARNING]
-> By default, `GitHub` sets the base repository to the upstream (`inno-se-toolkit`). You must **change the base repository to your own fork** (`<your-github-username>/<lab-repo-name>`) before creating the PR. Do **not** create PRs to the upstream repo.
+> By default, `GitHub` sets the base repository to the upstream (`inno-se-toolkit`).
+>
+> You must **change the base repository to your own fork** (`<your-github-username>/<lab-repo-name>`) before creating the PR. Do **not** create PRs to the upstream repo.
 
 ## Get a PR review
 
@@ -121,4 +125,4 @@ Click `Merge pull request`.
 
 1. Close the issue.
 
-2. Delete the PR branch ([`<task-branch>`](#task-branch)).
+2. Delete the PR branch ([`<task-branch>`](#task-branch-placeholder)).

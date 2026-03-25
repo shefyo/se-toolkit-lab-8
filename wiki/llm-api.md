@@ -12,7 +12,7 @@
 
 ## About LLM API
 
-The LLM API is the [OpenAI-compatible API](./llm.md#openai-compatible-api) that the [bot](./bot.md#about-telegram-bots) uses to generate responses from an [LLM](./llm.md#what-is-an-llm).
+The LLM API is the [OpenAI-compatible API](./llm.md#openai-compatible-api) that [clients](./web-infrastructure.md#web-client) use to generate responses from an [LLM](./llm.md#what-is-an-llm).
 
 You choose which [LLM provider API](./llm.md#llm-provider-api) to use:
 

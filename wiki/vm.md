@@ -18,7 +18,7 @@
   - [Check the VM is running](#check-the-vm-is-running)
   - [Get the IP address of the VM](#get-the-ip-address-of-the-vm)
 - [Recreate the VM](#recreate-the-vm)
-- [Set up a new VM](#set-up-a-new-vm)
+- [Set up the VM](#set-up-the-vm)
 
 ## What is a VM
 
@@ -184,10 +184,11 @@ Complete these steps:
 1. [Delete the existing VM](#delete-the-existing-vm).
 2. [Create a new VM](#create-a-vm-using-the-subscription).
 
-## Set up a new VM
+## Set up the VM
 
-1. [Recreate the VM](#recreate-the-vm).
+1. [Recreate the VM](#recreate-the-vm) if you want to set up a clean VM.
 2. [Set up the `SSH` access to the VM as the user `admin`](./vm-access.md#set-up-the-ssh-access-to-the-vm).
 3. [Provide the `Autochecker` agent with access to the VM as the user `admin`](./autochecker.md#provide-the-autochecker-agent-with-access-to-the-vm-remote).
-4. [Harden the VM for the user `admin`](./vm-hardening.md#harden-the-vm).
+4. [Configure `Git` as the user `admin`](./git.md#configure-git).
 5. [Set up `Docker` as the user `admin`](./docker.md#set-up-docker-as-the-user-user-remote).
+6. [Harden the VM as the user `admin`](./vm-hardening.md#harden-the-vm).

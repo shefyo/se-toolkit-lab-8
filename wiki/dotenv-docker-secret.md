@@ -3,7 +3,9 @@
 <h2>Table of contents</h2>
 
 - [What is `.env.docker.secret`](#what-is-envdockersecret)
-- [`REGISTRY_PREFIX`](#registry_prefix)
+- [Registry prefixes](#registry-prefixes)
+  - [`REGISTRY_PREFIX_DOCKER_HUB`](#registry_prefix_docker_hub)
+  - [`REGISTRY_PREFIX_GHCR`](#registry_prefix_ghcr)
 - [`backend`](#backend)
   - [`BACKEND_NAME`](#backend_name)
   - [`BACKEND_DEBUG`](#backend_debug)
@@ -44,6 +46,12 @@
   - [`LLM_API_MODEL`](#llm_api_model)
 - [`Qwen Code` API](#qwen-code-api)
   - [`QWEN_CODE_API_URL`](#qwen_code_api_url)
+- [`Nanobot`](#nanobot)
+  - [`NANOBOT_GATEWAY_CONTAINER_ADDRESS`](#nanobot_gateway_container_address)
+  - [`NANOBOT_GATEWAY_CONTAINER_PORT`](#nanobot_gateway_container_port)
+  - [`NANOBOT_WEBCHAT_CONTAINER_ADDRESS`](#nanobot_webchat_container_address)
+  - [`NANOBOT_WEBCHAT_CONTAINER_PORT`](#nanobot_webchat_container_port)
+  - [`NANOBOT_WS_URL`](#nanobot_ws_url)
 - [Constants](#constants)
   - [`CONST_POSTGRESQL_SERVICE_NAME`](#const_postgresql_service_name)
   - [`CONST_POSTGRESQL_SERVER_NAME`](#const_postgresql_server_name)
@@ -64,15 +72,27 @@ The default values are in [`.env.docker.example`](../.env.docker.example).
 > `.env.docker.secret` was added to [`.gitignore`](./git.md#gitignore) because you may specify there
 > [secrets](./environments.md#secrets) such as the [LMS API key](./lms-api.md#lms-api-key) or the [address of your VM](./vm.md#your-vm-ip-address).
 
-## `REGISTRY_PREFIX`
+## Registry prefixes
 
-The prefix prepended to [Docker image](./docker.md#image) names when pulling base images.
-By default, it points to a [`Harbor`](https://goharbor.io/) cache proxy on the university network, which avoids [`DockerHub`](./docker.md#dockerhub) rate limits.
-Outside the university network, set it to an empty string to pull directly from `DockerHub`.
+Prefixes prepended to [Docker image](./docker.md#image) names when pulling base images.
+By default, they point to [`Harbor`](https://goharbor.io/) cache proxies on the university network to avoid rate limits.
+Outside the university network, set them to empty strings to pull directly from the source registries.
 
-This value is used as a build argument in the [`backend`](#backend) and [`caddy`](#caddy) service [`Dockerfile`](./docker.md#what-is-docker) builds, and as an image prefix for the [`postgres`](#postgres) and [`pgadmin`](#pgadmin) services in [`docker-compose.yml`](../docker-compose.yml).
+### `REGISTRY_PREFIX_DOCKER_HUB`
+
+A [registry prefix](#registry-prefixes) for [Docker Hub](./docker.md#dockerhub) images.
+
+Used as a build argument in [`docker-compose.yml`](../wiki/docker-compose-yml.md#what-is-docker-composeyml).
 
 Default: `harbor.pg.innopolis.university/docker-hub-cache/`
+
+### `REGISTRY_PREFIX_GHCR`
+
+A [registry prefix](#registry-prefixes) for [GitHub Container Registry](https://ghcr.io) images.
+
+Used as a build argument in [`docker-compose.yml`](../wiki/docker-compose-yml.md).
+
+Default: `harbor.pg.innopolis.university/ghcr-proxy/`
 
 ## `backend`
 
@@ -98,9 +118,9 @@ Default: `false`
 
 ### `BACKEND_CONTAINER_ADDRESS`
 
-The [IP address](./computer-networks.md#ip-address) the backend [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container). [`0.0.0.0`](./computer-networks.md#0000) means all network interfaces.
+The [IP address](./computer-networks.md#ip-address) the backend [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
 
-Default: `0.0.0.0`
+Default: [`0.0.0.0`](./computer-networks.md#0000)
 
 ### `BACKEND_CONTAINER_PORT`
 
@@ -214,9 +234,7 @@ Variables for the [LMS API](./lms-api.md#about-the-lms-api).
 
 The [IP address](./computer-networks.md#ip-address) of the [LMS API](./lms-api.md#about-the-lms-api) exposed on the [host](./computer-networks.md#host).
 
-[`0.0.0.0`](./computer-networks.md#0000) accepts connections from any network interface.
-
-Default: `0.0.0.0`
+Default: [`0.0.0.0`](./computer-networks.md#0000)
 
 ### `LMS_API_HOST_PORT`
 
@@ -229,6 +247,12 @@ Default: `42002`
 The [LMS API key](./lms-api.md#lms-api-key).
 
 Default: `<lms-api-key>`
+
+<!-- TODO everywhere 
+don't mention [`.env.docker.secret`](#what-is-envdockersecret) inline?
+-->
+
+Set in [`.env.docker.secret`](#what-is-envdockersecret).
 
 ### `LMS_API_BASE_URL`
 
@@ -260,7 +284,7 @@ Default: `<autochecker-api-password>`.
 
 ## Telegram bot
 
-Variables for the [Telegram bot](./bot.md#about-telegram-bots).
+Variables for the [`Telegram` bot client](./client-telegram-bot.md#about-the-telegram-bot-client).
 
 ### `BOT_TOKEN`
 
@@ -270,7 +294,7 @@ Default: `<bot-token>`
 
 ## LLM API
 
-Variables for the [LLM API](./llm-api.md#about-llm-api) that powers the [bot](./bot.md#about-telegram-bots).
+Variables for the [LLM API](./llm-api.md#about-llm-api) that powers the [`Telegram` bot client](./client-telegram-bot.md#about-the-telegram-bot-client).
 
 ### `LLM_API_KEY`
 
@@ -297,6 +321,40 @@ Default: `<llm-api-model>`
 [`Qwen Code` API URL](./qwen-code-api.md#what-is-qwen-code-api) that [`Caddy` forwards requests to](./lms-api.md#forward-requests-to-the-qwen-code-api).
 
 Default: `http://qwen-code-api:8080`
+
+## `Nanobot`
+
+Variables for the [`Nanobot`](./nanobot.md) gateway and webchat channel.
+
+### `NANOBOT_GATEWAY_CONTAINER_ADDRESS`
+
+The [IP address](./computer-networks.md#ip-address) the [`Nanobot` gateway](./nanobot.md#gateway) is [listening on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
+
+Default: [`0.0.0.0`](./computer-networks.md#0000)
+
+### `NANOBOT_GATEWAY_CONTAINER_PORT`
+
+The [port number](./computer-networks.md#port-number) the [`Nanobot` gateway](./nanobot.md#gateway) [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
+
+Default: `18790`
+
+### `NANOBOT_WEBCHAT_CONTAINER_ADDRESS`
+
+The [IP address](./computer-networks.md#ip-address) the [`Nanobot` webchat channel](./nanobot.md#webchat-channel) [`WebSocket`](./websocket.md#what-is-websocket) server [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
+
+Default: [`0.0.0.0`](./computer-networks.md#0000)
+
+### `NANOBOT_WEBCHAT_CONTAINER_PORT`
+
+The [port number](./computer-networks.md#port-number) the [`Nanobot` webchat channel](./nanobot.md#webchat-channel) [`WebSocket`](./websocket.md#what-is-websocket) server [listens on](./computer-networks.md#listen-on-a-port) inside the [container](./docker.md#container).
+
+Default: `8765`
+
+### `NANOBOT_WS_URL`
+
+The full [`WebSocket`](./websocket.md#what-is-websocket) URL that the [`Telegram` bot client](./client-telegram-bot.md#about-the-telegram-bot-client) uses to connect to the [`Nanobot` webchat channel](./nanobot.md#webchat-channel).
+
+Default: `ws://nanobot:8765`
 
 ## Constants
 

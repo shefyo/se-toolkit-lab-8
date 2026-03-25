@@ -125,7 +125,7 @@ Inspect the current branch using these sections:
 3. Click the icon `Remotes`.
 
     <img alt="View Remotes" src="./images/gitlens/view-remotes.png" style="width:400px"></img>
-4. (Optional) Make sure [`origin`](./github.md#origin) points to [`<your-fork-url>`](./github.md#your-fork-url):
+4. (Optional) Make sure [`origin`](./github.md#origin) points to [`<your-fork-url>`](./github.md#your-fork-url-placeholder):
    1. Hover over `origin`.
    2. Look at URLs for fetching and pushing changes.
 

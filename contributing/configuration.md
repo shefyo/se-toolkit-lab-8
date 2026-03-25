@@ -30,6 +30,7 @@
 - [7. Task runner and package manager config](#7-task-runner-and-package-manager-config)
   - [7.1. Rules for task runner](#71-rules-for-task-runner)
 - [8. Docker and deployment pattern](#8-docker-and-deployment-pattern)
+  - [8.1. Python Dockerfile build pattern](#81-python-dockerfile-build-pattern)
 - [9. Agent configuration (`AGENTS.md`)](#9-agent-configuration-agentsmd)
   - [9.1. File layout](#91-file-layout)
   - [9.2. `AGENTS.md` structure](#92-agentsmd-structure)
@@ -110,7 +111,7 @@ Create the following directory and file layout. Items marked *(conditional)* are
 │   ├── settings.json                  # Editor, formatter, ToC settings
 │   └── extensions.json                # Recommended VS Code extensions
 ├── backend/                           # Application source code (conditional)
-├── frontend/                          # Application source code (conditional)
+├── client-web-react/                  # Application source code (conditional)
 ├── caddy/                             # Reverse proxy config (conditional — only if using Docker)
 │   └── Caddyfile
 ├── .gitignore
@@ -359,12 +360,36 @@ If the lab involves deployment:
 2. Students copy them to `.env.secret` and `.env.docker.secret` (which are `.gitignore`d via the `*.secret` pattern).
 3. Use [`docker-compose.yml`](../docker-compose.yml) with environment variable substitution from `.env.docker.secret` (e.g., `${BACKEND_HOST_PORT}`). Parameterize all ports, host addresses, and credentials.
 4. Include a reverse proxy service (e.g., Caddy) in [`docker-compose.yml`](../docker-compose.yml).
-5. Use a multi-stage [`backend/Dockerfile`](../backend/Dockerfile) for production builds (builder stage + slim runtime).
+5. Use a multi-stage Dockerfile for production builds (builder stage + slim runtime). Follow the [Python Dockerfile build pattern](#81-python-dockerfile-build-pattern).
 6. Deployment task flow: SSH into VM → clone repo → create `.env.docker.secret` → `docker compose up --build -d`.
 7. Distinguish local vs remote env differences:
    - Local: `BACKEND_HOST_ADDRESS=127.0.0.1` (localhost only).
    - Remote: `LMS_API_HOST_ADDRESS=0.0.0.0` (accessible from outside).
 8. **Use an institutional container registry** (e.g., Harbor cache proxy) for base images to avoid Docker Hub rate limits. Reference the registry in [`docker-compose.yml`](../docker-compose.yml) image fields instead of pulling directly from Docker Hub.
+
+### 8.1. Python Dockerfile build pattern
+
+Each Python service has its own build context and Dockerfile. The `docker-compose.yml` entry uses `additional_contexts` to pull shared workspace files:
+
+```yaml
+service-name:
+  build:
+    context: ./service-name
+    additional_contexts:
+      workspace: .
+```
+
+The Dockerfile follows a two-stage `uv sync` pattern:
+
+1. `COPY --from=workspace pyproject.toml uv.lock` — copy root workspace files.
+2. `COPY pyproject.toml` — copy the member's own `pyproject.toml` (from the build context).
+3. `uv sync --frozen --no-install-workspace --package <name>` — install dependencies only.
+4. `COPY .` — copy the full source code.
+5. `uv sync --frozen --package <name>` — install the workspace package.
+
+The `--package` argument must match the `name` field in the member's `pyproject.toml` (e.g., `lms-backend`, `lms-client-telegram-bot`, `lms-nanobot`).
+
+Each service has its own `.dockerignore` scoped to its directory.
 
 ---
 

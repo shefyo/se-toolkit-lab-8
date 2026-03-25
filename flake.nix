@@ -56,6 +56,7 @@
                       --exclude-path '.direnv' \
                       --exclude-path 'node_modules' \
                       --exclude-path 'tmp' \
+                      --exclude-path 'nanobot/packages' \
                       --root-dir . \
                       --format json \
                       "$ROOT_DIR"/'**/*.md' \
@@ -73,7 +74,9 @@
                       '#**/node_modules' \
                       '#*/skills' \
                       '#tmp' \
-                      '#instructors/{file-reviews,meetings,scripts,lab-plan.md}'
+                      '#instructors/{file-reviews,meetings,scripts,lab-plan.md}' \
+                      '#qwen-code-api' \
+                      '#nanobot/packages'
                   '';
                   help = "Lint all Markdown files";
                 }

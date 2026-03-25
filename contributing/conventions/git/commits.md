@@ -45,18 +45,21 @@ area of change:
 - `readme` — Root `README.md`
 - `caddy` — `caddy/` config and reverse-proxy setup
 - `lab` — `lab/` (task sheets, setup guide)
-- `frontend` — `frontend/`
+- `client-web-react` — `client-web-react/`
+- `client-web-flutter` — `client-web-flutter/`
+- `client-telegram-bot` — `client-telegram-bot/`
+- `nanobot` — `nanobot/` (AI agent gateway, skills, MCP tools)
 - `backend` — `backend/`, `pyproject.toml`, backend config
-- `bot` — `bot/`, bot config
 - `tests` — `backend/tests/` (test files and fixtures)
 - `vscode` — `.vscode/` settings and extensions
 - `git` — `.gitignore`, `.gitmodules`, git config
 - `github` — `.github/` (workflows, issue templates, PR templates)
 - `agent` — `.agents/`, `AGENTS.md` (skills, settings)
 - `nix` — `flake.nix`, `flake.lock`, Nix-related config
-- `docker` — `Dockerfile`, `docker-compose.yml`, Docker-related config
+- `docker` — root `docker-compose.yml` and root Docker config
 - `database` — `.sql` files, migrations, schema
 - `markdownlint` — `.markdownlint*` config
+- `scripts` — `scripts/`
 
 ## 4. Subject line
 

@@ -22,6 +22,7 @@
 - [Merge conflict](#merge-conflict)
 - [Practice `Git`](#practice-git)
 - [`.gitignore`](#gitignore)
+- [Submodule](#submodule)
 - [`GitHub flow`](#github-flow)
 - [Check your `Git` config](#check-your-git-config)
 - [Configure `Git`](#configure-git)
@@ -221,13 +222,25 @@ The `.gitignore` file allows you to specify which files shouldn't be added to th
 Examples:
 
 - [`.gitignore`](../.gitignore)
-- [`frontend/.gitignore`](../frontend/.gitignore)
+- [`client-web-react/.gitignore`](../client-web-react/.gitignore)
 
 Common ignored files:
 
 - Secrets (`.env` files, keys, tokens).
 - Build artifacts (`dist/`, `build/`).
 - Local caches and temporary files.
+
+## Submodule
+
+A submodule is a [`Git` repository](#repository) embedded inside another `Git` repository.
+
+It lets you include external projects (e.g., a shared library or service) as a subdirectory while keeping their history separate.
+
+The parent repository tracks a specific [commit](#commit) of the submodule — not its full contents.
+
+Docs:
+
+- [Git Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
 
 ## `GitHub flow`
 

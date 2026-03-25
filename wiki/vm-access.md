@@ -179,6 +179,8 @@ Complete these steps:
    ping <your-vm-ip-address>
    ```
 
+   See [`<your-vm-ip-address>`](./vm.md#your-vm-ip-address).
+
    You should see the output like this:
 
    ```terminal
@@ -195,7 +197,7 @@ Complete these steps:
    >
    > **`Connection timed out`**
    >
-   > 1. [Recreate the VM](./vm.md#recreate-the-vm)
+   > 1. [Recreate the VM](./vm.md#recreate-the-vm).
 
 ## Set up the `SSH` access to the VM as the user `root`
 

@@ -19,6 +19,9 @@
     handle_path /utils/qwen-code-api* {
         reverse_proxy {$QWEN_CODE_API_URL}
     }
+    handle /ws/chat {
+        reverse_proxy http://nanobot:{$NANOBOT_WEBCHAT_CONTAINER_PORT}
+    }
     handle_path /utils/pgadmin* {
         reverse_proxy http://pgadmin:{$CONST_PGADMIN_CONTAINER_PORT}
     }
@@ -28,8 +31,13 @@
     handle /openapi.json {
         reverse_proxy http://backend:{$BACKEND_CONTAINER_PORT}
     }
+    handle_path /flutter* {
+        root * /srv/flutter
+        try_files {path} /index.html
+        file_server
+    }
     handle {
-        root * /srv
+        root * /srv/react
         try_files {path} /index.html
         file_server
     }

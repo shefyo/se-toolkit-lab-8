@@ -4,8 +4,6 @@
 
 - [About the LMS API deployment](#about-the-lms-api-deployment)
 - [Deploy the LMS API on the VM](#deploy-the-lms-api-on-the-vm)
-  - [Clone the repository (REMOTE)](#clone-the-repository-remote)
-  - [Enter the repository directory (REMOTE)](#enter-the-repository-directory-remote)
   - [Configure the environment (REMOTE)](#configure-the-environment-remote)
   - [Start the services (REMOTE)](#start-the-services-remote)
   - [Populate the database (LOCAL)](#populate-the-database-local)
@@ -18,34 +16,13 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
 ## Deploy the LMS API on the VM
 
 1. [Connect to the VM as the user `admin` (LOCAL)](./vm-access.md#connect-to-the-vm-as-the-user-user-local).
-2. [Clone the repository (REMOTE)](#clone-the-repository-remote).
-3. [Switch to the necessary `<branch>` (REMOTE)](./git-vscode.md#switch-to-the-branch-using-the-vs-code-terminal).
-4. [Hard reset the `<branch>`](./git-vscode.md#hard-reset-the-branch).
+2. [Set up the lab repository directory (REMOTE)](./lab.md#set-up-the-lab-repository-directory).
+3. [Switch to the necessary branch `<branch>` (REMOTE)](./git-vscode.md#switch-to-the-branch-branch-using-the-vs-code-terminal).
+4. [Hard reset the branch `<branch>`](./git-vscode.md#hard-reset-the-branch-branch).
 5. [Configure the environment (REMOTE)](#configure-the-environment-remote).
-6. [Configure `Docker` DNS (REMOTE)](./docker.md#configure-docker-dns).
-7. [Start the services (REMOTE)](#start-the-services-remote).
-8. [Populate the database (LOCAL)](#populate-the-database-local).
-9. [View the dashboard (LOCAL)](#view-the-dashboard-local).
-
-### Clone the repository (REMOTE)
-
-1. [Clone the repository](./git-vscode.md#clone-the-repository-using-the-vs-code-terminal)
-
-   with the URL `https://github.com/<your-github-username>/se-toolkit-lab-7`
-
-   to `~/se-toolkit-lab-7`.
-
-   Replace the placeholder [`<your-github-username>`](./github.md#your-github-username-placeholder).
-
-### Enter the repository directory (REMOTE)
-
-1. To enter the repository directory,
-
-   [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
-
-   ```terminal
-   cd ~/se-toolkit-lab-7
-   ```
+6. [Start the services (REMOTE)](#start-the-services-remote).
+7. [Populate the database (LOCAL)](#populate-the-database-local).
+8. [View the dashboard (LOCAL)](#view-the-dashboard-local).
 
 ### Configure the environment (REMOTE)
 
@@ -153,13 +130,13 @@ You need to run the ETL pipeline to populate it with data from the [`Autochecker
 
 ### View the dashboard (LOCAL)
 
-1. Open in a browser: `<lms-api-base-url>/`.
+1. Open in a browser: `<lms-api-base-url>`.
 
    Replace the placeholder [`<lms-api-base-url>`](./lms-api.md#lms-api-base-url-placeholder).
 
-   You should see the [frontend](./lms-frontend.md#about-the-lms-frontend).
+   You should see the [frontend](./lms-client-web-react.md#about-the-lms-frontend).
 
-2. Enter the [LMS API key](./lms-api.md#lms-api-key).
+2. Enter the [LMS API key](./lms-api.md#lms-api-key) that you set in [`LMS_API_KEY`](./dotenv-docker-secret.md#lms_api_key) in [`.env.docker.secret`](./dotenv-docker-secret.md#envdockersecret).
 
 3. Switch to the **Dashboard** tab.
 

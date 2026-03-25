@@ -20,8 +20,8 @@
   - [1.6. Clone your fork (LOCAL)](#16-clone-your-fork-local)
     - [1.6.1. (UPD) Copy your fork URL](#161-upd-copy-your-fork-url)
     - [1.6.2. (UPD) Clone your fork](#162-upd-clone-your-fork)
-  - [1.7. (UPD) Open the cloned repo and set up `VS Code` (LOCAL)](#17-upd-open-the-cloned-repo-and-set-up-vs-code-local)
-  - [1.8. Set up a new VM](#18-set-up-a-new-vm)
+  - [1.7. (UPD) Set up `VS Code` in the lab repository directory (LOCAL)](#17-upd-set-up-vs-code-in-the-lab-repository-directory-local)
+  - [1.8. Create a new VM](#18-create-a-new-vm)
   - [1.9. Set up `Python`](#19-set-up-python)
     - [1.9.1. Install `uv` (LOCAL)](#191-install-uv-local)
     - [1.9.2. (UPD) Set up `Python` in `VS Code` (LOCAL)](#192-upd-set-up-python-in-vs-code-local)
@@ -29,11 +29,12 @@
     - [1.10.1. Install `Node.js` (LOCAL)](#1101-install-nodejs-local)
     - [1.10.2. (UPD) Install `pnpm` (LOCAL)](#1102-upd-install-pnpm-local)
   - [1.11. (UPD) Set up `Qwen Code` (LOCAL)](#111-upd-set-up-qwen-code-local)
-  - [1.12. (UPD) Deploy the LMS API (REMOTE)](#112-upd-deploy-the-lms-api-remote)
-  - [1.13. (UPD) Set up the `Qwen Code` API (REMOTE)](#113-upd-set-up-the-qwen-code-api-remote)
-  - [1.14. Set up the `Telegram` bot](#114-set-up-the-telegram-bot)
-  - [1.15. Set up the `Autochecker` bot](#115-set-up-the-autochecker-bot)
-  - [1.16. Check the setup using the `Autochecker` bot](#116-check-the-setup-using-the-autochecker-bot)
+  - [1.12. Set up the VM](#112-set-up-the-vm)
+  - [1.13. (UPD) Deploy the LMS API (REMOTE)](#113-upd-deploy-the-lms-api-remote)
+  - [1.14. (UPD) Set up the `Qwen Code` API (REMOTE)](#114-upd-set-up-the-qwen-code-api-remote)
+  - [1.15. Set up the `Telegram` bot](#115-set-up-the-telegram-bot)
+  - [1.16. Set up the `Autochecker` bot](#116-set-up-the-autochecker-bot)
+  - [1.17. Check the setup using the `Autochecker` bot](#117-check-the-setup-using-the-autochecker-bot)
 - [2. Optional steps](#2-optional-steps)
   - [2.1. (UPD) Set up `gh` (LOCAL)](#21-upd-set-up-gh-local)
   - [2.2. Set up `Nix` (LOCAL)](#22-set-up-nix-local)
@@ -77,15 +78,15 @@
 
 ### 1.2. Start creating a VM
 
-> [!NOTE]
-> Skip this step if you can [connect to your VM](../../wiki/vm-access.md#connect-to-the-vm-as-the-user-user-local).
+> [!TIP]
+> Skip this step if you can [connect to your VM as the user `admin`](../../wiki/vm-access.md#connect-to-the-vm-as-the-user-user-local).
 
-[Create a subscription](../../wiki/vm.md#create-a-subscription) to be able to create a VM.
+1. [Create a subscription](../../wiki/vm.md#create-a-subscription) to be able to create a VM.
 
 > [!TIP]
 > Subscription approval may take time.
 > Continue with the next steps while you wait — you will
-> [set up a new VM](#18-set-up-a-new-vm) later.
+> [set up the VM](#112-set-up-the-vm) later.
 
 ### 1.3. Set up your fork (LOCAL)
 
@@ -105,6 +106,8 @@
 1. [Go to your fork](../../wiki/github.md#go-to-your-fork).
 
    The [URL](../../wiki/computer-networks.md#url) of your fork should look like `https://github.com/<your-github-username>/se-toolkit-lab-7`.
+
+   See [`<your-github-username>`](../../wiki/github.md#your-github-username-placeholder).
 
 #### 1.3.4. (UPD) Enable issues
 
@@ -171,14 +174,16 @@ See [tools](../../wiki/software-types.md#tool).
 
 2. [Open in `VS Code` the directory](../../wiki/vs-code.md#open-the-directory):
    `software-engineering-toolkit`.
-3. (`Windows` only) [Reopen the directory in `WSL`](../../wiki/vs-code.md#windows-only-reopen-the-directory-in-wsl) if you didn't do that before.
+
+3. (`Windows` only) [Reopen the directory in `WSL`](../../wiki/vs-code.md#windows-only-reopen-the-directory-in-wsl).
 
 ### 1.6. Clone your fork (LOCAL)
 
 #### 1.6.1. (UPD) Copy your fork URL
 
-1. [Go to your fork](#133-upd-go-to-your-fork).
-2. Copy [`<your-fork-url>`](../../wiki/github.md#your-fork-url).
+1. [Go to your lab repository fork](#133-upd-go-to-your-fork).
+
+2. Copy [`<your-fork-url>`](../../wiki/github.md#your-fork-url-placeholder).
 
    It should look like `https://github.com/<your-github-username>/se-toolkit-lab-7`.
 
@@ -186,18 +191,15 @@ See [tools](../../wiki/software-types.md#tool).
 
 #### 1.6.2. (UPD) Clone your fork
 
-1. [Clone your fork](../../wiki/git-vscode.md#clone-the-repository):
+1. [Clone your lab repository fork](../../wiki/lab.md#clone-your-lab-repository-fork).
 
-   - Replace `<repo-url>` with [`<your-fork-url>`](../../wiki/github.md#your-fork-url).
-   - Replace `<repo-name>` with `se-toolkit-lab-7`.
-
-### 1.7. (UPD) Open the cloned repo and set up `VS Code` (LOCAL)
+### 1.7. (UPD) Set up `VS Code` in the lab repository directory (LOCAL)
 
 > [!IMPORTANT]
 > Go by the links in the steps below and complete the checks ("You should see ...").
 > Otherwise, your setup will be broken.
 
-1. [Open in `VS Code` the directory](../../wiki/vs-code.md#open-the-directory):
+1. [Open in `VS Code` the cloned lab repository directory](../../wiki/vs-code.md#open-the-directory):
    `se-toolkit-lab-7`.
 2. [Check the current shell in the `VS Code Terminal`](../../wiki/vs-code.md#check-the-current-shell-in-the-vs-code-terminal).
 3. [Install the recommended `VS Code` extensions](../../wiki/vs-code.md#install-the-recommended-vs-code-extensions).
@@ -213,14 +215,15 @@ See [tools](../../wiki/software-types.md#tool).
 > 1. [Run using the `Command Palette`](../../wiki/vs-code.md#run-a-command-using-the-command-palette):
 >    `Reload Window`
 
-### 1.8. Set up a new VM
+### 1.8. Create a new VM
 
 > [!TIP]
 > You don't need to create a new [`SSH` key pair](../../wiki/ssh.md#ssh-key-pair) if the old one exists.
 >
 > You can use the key pair that you created before for the new VM.
 
-1. If you can't [connect to your VM as the user `admin`](../../wiki/vm-access.md#connect-to-the-vm-as-the-user-user-local), [set up a new VM](../../wiki/vm.md#set-up-a-new-vm).
+1. If you can't [connect to your VM as the user `admin`](../../wiki/vm-access.md#connect-to-the-vm-as-the-user-user-local),
+   [recreate the VM](../../wiki/vm.md#recreate-the-vm).
 
 ### 1.9. Set up `Python`
 
@@ -262,26 +265,30 @@ See [tools](../../wiki/software-types.md#tool).
 
 1. [Set up `Qwen Code`](../../wiki/qwen-code.md#set-up-qwen-code-local).
 
-### 1.12. (UPD) Deploy the LMS API (REMOTE)
+### 1.12. Set up the VM
+
+1. [Set up the VM](../../wiki/vm.md#set-up-the-vm).
+
+### 1.13. (UPD) Deploy the LMS API (REMOTE)
 
 1. [Deploy the LMS API on your VM](../../wiki/lms-api-deployment.md#deploy-the-lms-api-on-the-vm).
 
-### 1.13. (UPD) Set up the `Qwen Code` API (REMOTE)
+### 1.14. (UPD) Set up the `Qwen Code` API (REMOTE)
 
 1. [Set up the `Qwen Code` API on your VM](../../wiki/qwen-code-api-deployment.md#deploy-the-qwen-code-api-remote).
 2. [Check that the `Qwen Code` API is accessible on your local machine (LOCAL)](../../wiki/qwen-code-api.md#check-that-the-qwen-code-api-is-accessible).
 
-### 1.14. Set up the `Telegram` bot
+### 1.15. Set up the `Telegram` bot
 
 1. [Create a `Telegram` bot](../../wiki/bot.md#create-a-telegram-bot).
-2. [Configure the environment for the bot on your VM (REMOTE)](../../wiki/bot.md#configure-the-environment-remote).
+2. [Configure the environment for the bot on your VM (REMOTE)](../../wiki/client-telegram-bot.md#configure-the-environment-remote).
 3. [Install `uv` (REMOTE)](../../wiki/python.md#install-uv).
 
-### 1.15. Set up the `Autochecker` bot
+### 1.16. Set up the `Autochecker` bot
 
 1. [Set up the `Autochecker` bot](../../wiki/autochecker.md#set-up-the-autochecker-bot)
 
-### 1.16. Check the setup using the `Autochecker` bot
+### 1.17. Check the setup using the `Autochecker` bot
 
 1. [Check the `Setup` task](../../wiki/autochecker.md#check-the-task-using-the-autochecker-bot).
 

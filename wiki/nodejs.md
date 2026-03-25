@@ -86,10 +86,10 @@ Docs:
 
    Choose `<tool>` and `<package-manager>` that you like.
   
-   We recommend to replace:
+   Replace the placeholders:
 
-   - `<tool>` with `nvm`
-   - `<package-manager>` with `npm`
+   - `<tool>` with `nvm` (recommended)
+   - `<package-manager>` with `npm` (recommended)
 
 3. To copy the instructions to clipboard,
 

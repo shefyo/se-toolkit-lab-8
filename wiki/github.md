@@ -10,8 +10,8 @@
     - [`<your-github-username>` placeholder](#your-github-username-placeholder)
     - [Find `<your-github-username>`](#find-your-github-username)
 - [`GitHub` repository](#github-repository)
-  - [`<repo-name>`](#repo-name)
-  - [`<repo-url>`](#repo-url)
+  - [`<repo-name>` placeholder](#repo-name-placeholder)
+  - [`<repo-url>` placeholder](#repo-url-placeholder)
   - [`upstream`](#upstream)
   - [`origin`](#origin)
   - [Browse a repository revision](#browse-a-repository-revision)
@@ -20,7 +20,7 @@
   - [`<repo-owner-github-username>`](#repo-owner-github-username)
 - [Fork](#fork)
   - [Fork a repo](#fork-a-repo)
-  - [`<your-fork-url>`](#your-fork-url)
+  - [`<your-fork-url>` placeholder](#your-fork-url-placeholder)
   - [Go to your fork](#go-to-your-fork)
 - [Issue](#issue)
   - [Issue elements](#issue-elements)
@@ -109,7 +109,7 @@ Example: `inno-se-toolkit`.
 
 #### `<your-github-username>` placeholder
 
-Your [`GitHub` username](#github-username) (without `@`).
+Your [`GitHub` username](#github-username) (without `@`, `<`, and `>`).
 
 #### Find `<your-github-username>`
 
@@ -125,21 +125,22 @@ A `GitHub` repository contains not only project files but also additional collab
 - [pull requests](#pull-request) for code review and merging changes
 - [Projects](#github-projects) for organizing work
 
-### `<repo-name>`
+### `<repo-name>` placeholder
 
-A [`GitHub` repository](#github-repository) name.
+A [`GitHub` repository](#github-repository) name (without `<` and `>`).
 
 The name must be unique among repositories of the [repository owner](#repository-owner).
 
-### `<repo-url>`
+### `<repo-url>` placeholder
 
-We use `<repo-url>` to refer to a repository [URL](./computer-networks.md#url).
+A repository [URL](./computer-networks.md#url) (without `<` and `>`).
 
-A repository URL is typically `https://github.com/<repo-owner-github-username>/<repo-name>`.
-Placeholder values:
+A [`GitHub` repository](#github-repository) URL is typically `https://github.com/<repo-owner-github-username>/<repo-name>`.
 
-- See [`<repo-owner-github-username>`](#repo-owner-github-username).
-- `<repo-name>` is the name of the repository.
+See:
+
+- [`<repo-owner-github-username>`](#repo-owner-github-username).
+- [`<repo-name>`](#repo-name-placeholder)
 
 ### `upstream`
 
@@ -149,7 +150,7 @@ In [`Git`](./git.md#what-is-git), `upstream` is the conventional name for the [r
 
 In [`Git`](./git.md#what-is-git), `origin` is the conventional name for the [remote](./git.md#remote) that points to your own copy of the [`GitHub` repository](#github-repository) — typically [your fork](#fork).
 
-For example, if your fork [URL](./computer-networks.md#url) is [`<your-fork-url>`](#your-fork-url), then `origin` points to that URL.
+For example, if your fork [URL](./computer-networks.md#url) is [`<your-fork-url>`](#your-fork-url-placeholder), then `origin` points to that URL.
 
 You can verify which URLs `origin` and `upstream` point to by [inspecting remotes](./gitlens.md#inspect-the-remotes).
 
@@ -157,9 +158,9 @@ You can verify which URLs `origin` and `upstream` point to by [inspecting remote
 
 You can browse a repository at a particular [revision](./git.md#revision): `<repo-url>/tree/<revision>`.
 
-Replace:
+Replace the placeholders:
 
-- [`<repo-url>`](#repo-url)
+- [`<repo-url>`](#repo-url-placeholder)
 - `<revision>` at the end of the [URL](./computer-networks.md#url) with the actual [revision](./git.md#revision).
 
 Example: <https://github.com/nixos/nixpkgs/tree/nixpkgs-unstable>
@@ -191,7 +192,7 @@ When you fork a repository on `GitHub`, you create a personal copy under your `G
    2. Click [`<your-github-username>`](#your-github-username-placeholder) to make you the repo owner.
    3. Click `Create fork`.
 
-### `<your-fork-url>`
+### `<your-fork-url>` placeholder
 
 The [URL](./computer-networks.md#url) of your [fork](#fork).
 
@@ -202,11 +203,11 @@ Then, your fork URL should look like `https://github.com/<your-github-username>/
 See also:
 
 - [`<your-github-username>`](#your-github-username-placeholder)
-- [`<repo-name>`](#repo-name).
+- [`<repo-name>`](#repo-name-placeholder).
 
 ### Go to your fork
 
-1. Open [`<your-fork-url>`](#your-fork-url) in a browser.
+1. Open [`<your-fork-url>`](#your-fork-url-placeholder) in a browser.
 
 ## Issue
 
@@ -332,7 +333,7 @@ A placeholder for the name of the [compare branch](#compare-branch).
 
 1. [Go to your fork](#go-to-your-fork).
 2. Click `main` under the repo name to view all branches.
-3. Click `<branch>` that you want to use for PR.
+3. Click the branch `<branch>` that you want to use for PR.
 4. You'll see the `Contribute` button if the branch has commits that aren't yet in the `main` branch.
 5. Click `Contribute`.
 6. Click `Open pull request`.
@@ -616,7 +617,7 @@ Option 1: Remove it.
 
 2. Clone again.
 
-Option 2: Update the `<branch>`.
+Option 2: Update the branch `<branch>`.
 
 1. To enter the directory at `<directory-path>`,
 
@@ -628,4 +629,4 @@ Option 2: Update the `<branch>`.
 
    Replace the placeholder [`<directory-path>`](./file-system.md#directory-path-placeholder) with the path from the error message (without `<` and `>`).
 
-2. [Hard reset the `<branch>`](./git-vscode.md#hard-reset-the-branch).
+2. [Hard reset the branch `<branch>`](./git-vscode.md#hard-reset-the-branch-branch).
