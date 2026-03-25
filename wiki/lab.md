@@ -38,11 +38,16 @@ Complete these steps:
 
    ```terminal
    git clone --recurse-submodules \
-     https://github.com/<your-github-username>/se-toolkit-lab-7 \
-     ~/se-toolkit-lab-7
+     https://github.com/<your-github-username>/se-toolkit-lab-8 \
+     ~/se-toolkit-lab-8
    ```
 
    Replace the placeholder [`<your-github-username>`](./github.md#your-github-username-placeholder).
+
+   > 🟦 **Note**
+   >
+   > The `--recurse-submodules` flag also clones the [submodules](./git.md#submodule) included in the repository (e.g. the [`Qwen Code` API](./qwen-code-api.md#what-is-qwen-code-api)).
+   > You do not need to clone them separately.
 
    > <h3>Troubleshooting<h3>
    >
@@ -55,7 +60,7 @@ Complete these steps:
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   cd ~/se-toolkit-lab-7
+   cd ~/se-toolkit-lab-8
    ```
 
 2. [Clone your lab repository fork](#clone-your-lab-repository-fork) if the directory doesn't exist.
@@ -64,7 +69,7 @@ Complete these steps:
 
 ### `<lab-repo-name>`
 
-`se-toolkit-lab-7` (without `<` and `>`).
+`se-toolkit-lab-8` (without `<` and `>`).
 
 ## Prompts for coding agents
 
