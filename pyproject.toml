@@ -1,8 +1,9 @@
 [tool.uv.workspace]
-members = ["backend", "client-telegram-bot", "nanobot"]
+members = ["backend", "client-telegram-bot", "mcp", "nanobot"]
 
 [tool.uv.sources]
 nanobot-ai = { path = "nanobot/packages/nanobot-ai" }
+lms-mcp = { workspace = true }
 
 # litellm is quarantined on PyPI (2026-03-24); override with direct wheel URL
 [tool.uv]
@@ -126,7 +127,7 @@ cmd = "python client-telegram-bot/bot.py --test"
 envfile = "client-telegram-bot/.env.secret"
 
 [tool.pyright]
-include = ["backend", "client-telegram-bot", "scripts", "nanobot"]
+include = ["backend", "client-telegram-bot", "scripts", "nanobot", "mcp"]
 extraPaths = ["backend"]
 exclude = ["**/__pycache__", "**/node_modules", "**/.*", ".venv", ".direnv"]
 typeCheckingMode = "strict"
@@ -139,4 +140,4 @@ pythonpath = ["backend"]
 asyncio_mode = "auto"
 
 [tool.ty.src]
-include = ["backend", "client-telegram-bot", "nanobot"]
+include = ["backend", "client-telegram-bot", "nanobot", "mcp"]

@@ -12,14 +12,6 @@ The framework comes from the `nanobot-ai` PyPI package, included as a git submod
 nanobot/
 ├── packages/
 │   └── nanobot-ai/          # Git submodule — nanobot-ai framework (editable)
-├── lms_common/              # Shared library (LMS client, models, formatters)
-│   ├── __init__.py
-│   ├── lms_client.py        # HTTP client for the LMS backend API
-│   ├── models.py            # Pydantic models for LMS API responses
-│   └── formatters.py        # Pure formatting functions
-├── lms_mcp/                 # Stdio MCP server exposing LMS API as typed tools
-│   ├── __init__.py          # Tool definitions + handlers (wraps LMSClient)
-│   └── __main__.py          # Entry point for `python -m lms_mcp`
 ├── nanobot_webchat/         # WebSocket channel plugin for chat clients
 │   └── __init__.py          # WebChatChannel (BaseChannel subclass)
 ├── workspace/
@@ -29,6 +21,17 @@ nanobot/
 ├── pyproject.toml           # Dependencies + entry point registration
 ├── Dockerfile               # Multi-stage build
 └── architecture.md          # This file
+
+mcp/                         # Top-level MCP package (separate workspace member)
+├── lms_common/              # Shared library (LMS client, models, formatters)
+│   ├── __init__.py
+│   ├── lms_client.py        # HTTP client for the LMS backend API
+│   ├── models.py            # Pydantic models for LMS API responses
+│   └── formatters.py        # Pure formatting functions
+├── lms_mcp/                 # Stdio MCP server exposing LMS API as typed tools
+│   ├── __init__.py          # Tool definitions + handlers (wraps LMSClient)
+│   └── __main__.py          # Entry point for `python -m lms_mcp`
+└── pyproject.toml           # Package definition (lms-mcp)
 ```
 
 ## How clients connect
@@ -121,4 +124,4 @@ No agent involvement. Sub-second response. Commands: `/start`, `/help`, `/health
 
 5. **Slow responses to free text**: The nanobot agent runs tool calls (mcp_lms_*, read_file) before answering. This is normal — the agent may take 10-60s for complex queries. Slash commands bypass this entirely.
 
-6. **`setuptools` build error ("Multiple top-level packages")**: The `[tool.setuptools.packages.find]` section in `pyproject.toml` must explicitly include all packages (`lms_common`, `lms_mcp`, `nanobot_webchat`).
+6. **`setuptools` build error ("Multiple top-level packages")**: The `[tool.setuptools.packages.find]` section in each `pyproject.toml` must explicitly include its packages — `nanobot_webchat` in `nanobot/pyproject.toml`, `lms_common` and `lms_mcp` in `mcp/pyproject.toml`.

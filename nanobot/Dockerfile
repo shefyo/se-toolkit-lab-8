@@ -22,10 +22,12 @@ WORKDIR /app
 COPY --from=workspace pyproject.toml uv.lock /app/
 COPY packages/nanobot-ai /app/nanobot-ai
 COPY pyproject.toml /app/nanobot/pyproject.toml
+COPY --from=workspace mcp/pyproject.toml /app/mcp/pyproject.toml
 
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-install-workspace --package lms-nanobot
 
+COPY --from=workspace mcp /app/mcp
 COPY . /app/nanobot
 
 RUN --mount=type=cache,target=/root/.cache/uv \
