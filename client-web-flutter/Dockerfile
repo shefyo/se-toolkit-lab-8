@@ -1,5 +1,5 @@
-ARG REGISTRY_PREFIX_GHCR=harbor.pg.innopolis.university/ghcr-proxy/
-ARG REGISTRY_PREFIX_DOCKER_HUB=harbor.pg.innopolis.university/docker-hub-cache/
+ARG REGISTRY_PREFIX_GHCR
+ARG REGISTRY_PREFIX_DOCKER_HUB
 
 FROM ${REGISTRY_PREFIX_GHCR}cirruslabs/flutter:3.41.2 AS builder
 
