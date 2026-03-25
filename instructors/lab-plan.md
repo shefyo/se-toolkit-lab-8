@@ -131,57 +131,68 @@ Students also use provided `poe` tasks to query the VictoriaTraces HTTP API (Jae
 
 ---
 
-### Task 2 — Add Observability MCP Tools to the Nanobot Agent
+### Task 2 — Connect the Agent to Observability Data
 
 **Purpose:**
 
-Connecting the AI agent to VictoriaLogs and VictoriaTraces lets users ask about errors, request flow, and system health in natural language instead of writing queries by hand.
+Letting the AI agent query logs and traces means users can ask about system health in natural language.
+Students first build this with a skill that uses `curl`, then discover why MCP tools are a better approach.
 
 **Summary:**
 
-#### Part A — Log query tools
+#### Part A — Skill with `curl`
 
-Students add MCP tools to the nanobot's MCP server that query the VictoriaLogs HTTP API.
-They implement at least two tools: one that searches logs by keyword and time range (returning recent matching entries), and one that counts errors per service over a time window (returning a summary).
-Each tool constructs a LogsQL query, sends it to the VictoriaLogs query endpoint, parses the JSON response, and returns a structured result.
+Students write an observability skill (`workspace/skills/observability/SKILL.md`) that instructs the agent to use `curl` to query the VictoriaLogs and VictoriaTraces HTTP APIs directly.
+The skill explains the API endpoints, query syntax, and how to interpret the JSON responses.
 
-After redeploying the nanobot, students verify the tools work under both normal and failure conditions.
-They ask the agent about errors when the system is healthy (expecting "no errors found" or similar) and after triggering a failure (expecting a summary mentioning the affected service and error).
+After deploying, students ask the agent questions like "any errors in the last hour?" and "show me recent traces for the backend."
+The agent figures out the right `curl` commands from the skill instructions, executes them, and summarizes the results.
 
-#### Part B — Trace query tools
+Students observe the limitations: the skill prompt is long and fragile (API URLs, query syntax, response formats all embedded in prose), the agent sometimes gets the `curl` syntax wrong, and raw JSON responses require the agent to parse and interpret on every call.
 
-Students implement at least two tools that query the VictoriaTraces HTTP API (Jaeger-compatible query endpoints): one that lists recent traces for a service (with duration and status), and one that fetches a specific trace by ID (returning the span hierarchy).
-Each tool queries the VictoriaTraces API, parses the response, and returns a structured summary.
+#### Part B — Refactor to MCP tools
 
-After redeploying the nanobot, students verify the tools work by asking the agent trace-related questions through the Flutter web app.
-They test fetching recent traces and looking up a specific trace by ID.
+Students extract the `curl`-based queries into MCP tools with structured inputs and outputs.
+They implement at least two log tools (search by keyword/time range, count errors per service) and at least two trace tools (list recent traces, fetch a trace by ID).
+Each tool handles the HTTP call, parses the response, and returns a structured result.
+
+Students update the observability skill to reference the MCP tools instead of `curl` commands — the skill becomes shorter and focused on *when* to use each tool rather than *how* to call the API.
+
+After redeploying, students verify the agent answers the same questions correctly, and compare the experience: fewer agent errors, faster responses, and a simpler skill prompt.
 
 **Acceptance criteria:**
 
+- An observability skill exists and is loaded by the agent.
+- The agent can answer observability questions using `curl` via the skill (Part A baseline).
 - At least two MCP tools for querying VictoriaLogs are registered in the MCP server.
-- The agent answers "any errors in the last hour?" correctly under normal conditions.
-- The agent answers "any errors in the last hour?" correctly after a failure, mentioning the affected service.
 - At least two MCP tools for querying VictoriaTraces are registered in the MCP server.
-- The agent answers a question about recent request performance by calling the trace tools.
+- The agent answers "any errors in the last hour?" correctly under both normal and failure conditions.
 - The agent can fetch and summarize a specific trace by ID.
+- The skill prompt is updated to reference MCP tools instead of `curl` commands.
 - The MCP server starts without errors after the changes.
 
 ---
 
-### Task 3 — Write a Skill and Configure a Cron Health Check
+### Task 3 — Add Multi-Step Investigation and a Cron Health Check
 
 **Purpose:**
 
-A skill prompt teaches the agent *when* and *how* to use its tools; a cron job makes the agent proactive instead of reactive; a multi-step task shows that the agent can chain tools autonomously.
+A skill that chains multiple tools turns the agent from a single-query helper into an investigator.
+A cron job makes the agent proactive instead of reactive.
 
 **Summary:**
 
-Students create a new observability skill file (`workspace/skills/observability/SKILL.md`).
-The skill teaches the agent about its log and trace tools: what each tool does, when to use it, and how to combine them.
+#### Part A — Multi-step skill
+
+Students enhance the observability skill from Task 2 to guide multi-step investigations.
 For example, the skill should instruct the agent that when asked "what went wrong?", it should first search logs for recent errors, extract a trace ID from the results, then fetch the full trace to show the request flow.
 Students also add guidance for summarizing results concisely rather than dumping raw data.
 
-Next, students configure a cron job in `cron/jobs.json` that runs a periodic health check.
+Students verify the multi-step behavior by triggering a failure and asking the agent to investigate — the agent should chain log and trace tools autonomously and produce a coherent summary.
+
+#### Part B — Cron health check
+
+Students configure a cron job in `cron/jobs.json` that runs a periodic health check.
 The job uses the `agent_turn` payload kind — it sends a message like "Check for errors in the last 15 minutes and report a summary" to the agent on a schedule (e.g., every 15 minutes).
 The agent receives this as a regular message, reasons using the observability skill, calls the log and trace MCP tools, and delivers the result to the webchat channel.
 
@@ -190,8 +201,8 @@ They also test the multi-step scenario: trigger a failure, wait for the next cro
 
 **Acceptance criteria:**
 
-- An observability skill file exists at `workspace/skills/observability/SKILL.md` and is loaded by the agent.
 - The skill guides the agent to chain log and trace tools for multi-step investigations.
+- The agent produces a coherent summary when asked "what went wrong?" after a failure.
 - A cron job is configured in `cron/jobs.json` that triggers a periodic health check via `agent_turn`.
 - The cron job fires on schedule and the agent delivers a health report to the webchat channel.
 - When errors exist, the health report includes information from both log and trace tools.
