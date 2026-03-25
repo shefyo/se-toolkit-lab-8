@@ -1,5 +1,8 @@
 # LMS frontend
 
+<!-- TODO it's about the system explorer -->
+<!-- TODO client-web-flutter is a chatbot -->
+
 <h2>Table of contents</h2>
 
 - [About the LMS frontend](#about-the-lms-frontend)
@@ -83,7 +86,7 @@ The proxy target is configured by [`VITE_API_TARGET`](./client-web-react-dotenv-
    cp .env.example .env.secret
    ```
 
-   Then set [`VITE_API_TARGET`](./client-web-react-dotenv-secret.md#vite_api_target) to your [LMS API base URL](./lms-api.md#lms-api-base-url).
+   Then set [`VITE_API_TARGET`](./client-web-react-dotenv-secret.md#vite_api_target) to your [gateway base URL](./gateway.md#gateway-base-url).
 
 3. To install [`Node.js`](./nodejs.md#what-is-nodejs) dependencies,
 
@@ -105,4 +108,4 @@ The proxy target is configured by [`VITE_API_TARGET`](./client-web-react-dotenv-
 
 In production, the frontend is built into static files by [`Vite`](https://vite.dev/) and served by [`Caddy`](./caddy.md#what-is-caddy).
 
-The [`caddy` service](./docker-compose-yml.md#caddy-service) builds the frontend using [`client-web-react/Dockerfile`](../client-web-react/Dockerfile) and [serves the output files](./lms-api.md#serve-frontend-files) from `/srv`.
+The [`caddy` service](./docker-compose-yml.md#caddy-service) builds the frontend using [`client-web-react/Dockerfile`](../client-web-react/Dockerfile) and [serves the output files](./gateway.md#serve-frontend-files) from `/srv`.

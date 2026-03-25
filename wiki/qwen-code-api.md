@@ -63,13 +63,13 @@ The [`Qwen Code` API host port](#qwen-code-api-host-port) (without `<` and  `>`)
   `http://localhost:<qwen-code-api-host-port>/v1`
 
 - (REMOTE or LOCAL) When the [LMS API is deployed on the VM](./lms-api-deployment.md#deploy-the-lms-api-on-the-vm):
-  
-  `<lms-api-base-url>/utils/llm-api`
-  
+
+  `<gateway-base-url>/utils/llm-api`
+
 Replace the placeholders:
 
 - [`<qwen-code-api-host-port>`](#qwen-code-api-host-port-placeholder)
-- [`<lms-api-base-url>`](./lms-api.md#lms-api-base-url-placeholder)
+- [`<gateway-base-url>`](./gateway.md#gateway-base-url-placeholder)
 
 See:
 

@@ -1,7 +1,7 @@
 # `backend/.env.tests.e2e.secret`
 
 - [What is `backend/.env.tests.e2e.secret`](#what-is-backendenvtestse2esecret)
-- [`LMS_API_BASE_URL`](#lms_api_base_url)
+- [`GATEWAY_BASE_URL`](#gateway_base_url)
 - [`LMS_API_KEY`](#lms_api_key)
 
 ## What is `backend/.env.tests.e2e.secret`
@@ -12,11 +12,11 @@ Default values: [`backend/.env.tests.e2e.example`](../backend/.env.tests.e2e.exa
 
 > It was added to [`.gitignore`](./git.md#gitignore) because it may contain [secrets](./environments.md#secrets) such as the [LMS API key](./lms-api.md#lms-api-key) or the [VM IP address](./vm.md#your-vm-ip-address).
 
-## `LMS_API_BASE_URL`
+## `GATEWAY_BASE_URL`
 
-See [LMS API base URL](./lms-api.md#lms-api-base-url).
+See [gateway base URL](./gateway.md#gateway-base-url).
 
-Example: `<lms-api-base-url>`
+Example: `<gateway-base-url>`
 
 ## `LMS_API_KEY`
 
