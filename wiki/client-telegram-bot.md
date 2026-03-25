@@ -16,7 +16,7 @@
 
 ## About the `Telegram` bot client
 
-The `Telegram` bot client is a standalone [Python](./python.md#about-python) service built with `aiogram` that connects the [`Telegram`](./bot.md#about-telegram-bots) messaging interface to the [`Nanobot`](./nanobot.md#about-nanobot) AI agent.
+The `Telegram` bot client is a standalone [Python](./python.md#what-is-python) service built with `aiogram` that connects the [`Telegram`](./bot.md#about-telegram-bots) messaging interface to the [`Nanobot`](./nanobot.md#about-nanobot) AI agent.
 
 The source code is in the [`client-telegram-bot/`](../client-telegram-bot/) directory.
 
