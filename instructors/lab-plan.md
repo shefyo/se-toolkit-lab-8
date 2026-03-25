@@ -240,33 +240,7 @@ Students document the investigation: the questions they asked, the agent's respo
 
 ## Optional task
 
-### Task 1 — Set Up Error Alerting
-
-**Purpose:**
-
-Detecting problems before users report them is the difference between proactive and reactive operations.
-
-**Summary:**
-
-Students configure an alerting pipeline that fires when the error rate crosses a threshold.
-They add vmalert (part of the VictoriaMetrics stack) as a Docker Compose service with a LogsQL-based alerting rule — for example, trigger when more than five log entries matching `level: "error"` appear within a 5-minute window.
-
-Fired alerts are visible in the vmalert UI and queryable via its API.
-Students add an MCP tool to the nanobot agent that checks vmalert's `/api/v1/alerts` endpoint and reports active alerts.
-This way, a user can ask the agent "are there any active alerts?" and get a real answer — closing the loop between observability and the AI assistant.
-
-To verify, students trigger the alert by stopping PostgreSQL and sending several requests, then confirm the alert appears in the vmalert UI and the nanobot agent reports it when asked.
-
-**Acceptance criteria:**
-
-- vmalert is running as a Docker Compose service with at least one LogsQL-based alerting rule.
-- The alert fires when the error threshold is exceeded within the configured time window.
-- An MCP tool reports active alerts from the vmalert API to the nanobot agent.
-- The alerting rule and threshold are configurable without code changes.
-
----
-
-### Task 2 — Improve Observability Message Formatting in Clients
+### Task 1 — Improve Observability Message Formatting in Clients
 
 **Purpose:**
 
