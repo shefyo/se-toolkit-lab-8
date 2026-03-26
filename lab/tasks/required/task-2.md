@@ -8,19 +8,41 @@ In this task you extend the agent with **observability data** — logs and trace
 
 ### What is structured logging?
 
-When services run, they print messages like `INFO: 127.0.0.1:54032 - "GET /items/ HTTP/1.1" 200`. Finding "all errors from the backend" means grepping through thousands of these lines. Fragile.
+When services run, they print messages like `INFO: 127.0.0.1:54032 - "GET /items/ HTTP/1.1" 200`. These are **unstructured text** — just strings. Finding "all errors from the backend in the last hour" means scrolling through thousands of lines and grepping for keywords. It's fragile and slow — you might miss errors, or match lines that aren't actually errors.
 
-**Structured logging** means each entry is JSON with consistent fields: `{"level": "error", "service": "backend", "event": "db_query", "error": "connection refused"}`. Now you can filter by any field.
+**Structured logging** means each log entry is JSON with consistent fields:
 
-**VictoriaLogs** is a log database that stores these structured entries and lets you search them with a query language. It has a web UI and an HTTP API.
+```json
+{"level": "error", "service": "backend", "event": "db_query", "error": "connection refused"}
+```
+
+Now instead of grepping text, you can filter by any field: "show me all entries where `service=backend` and `level=error`."
+
+### What is VictoriaLogs?
+
+**VictoriaLogs** is a log database. Your services write structured JSON logs, VictoriaLogs stores them, and you can search and filter with a query language called LogsQL. It has a web UI where you can type queries, and an HTTP API that programs (like our agent) can call.
+
+Think of it as `grep` on steroids — but you can also filter by time range, count errors per service, and get results instantly instead of piping through multiple commands.
 
 ### What is distributed tracing?
 
-When a user asks "what labs are available?", the request flows through nanobot → MCP server → backend → PostgreSQL and back. A **trace** captures this journey. Each step is a **span** with a start time, end time, and status. All spans for one request form a trace.
+When a user asks "what labs are available?", the request flows through multiple services:
 
-**VictoriaTraces** stores these traces and shows a timeline view — like a call stack across network boundaries. You can see where time was spent and where failures occurred.
+```
+User → Nanobot → MCP Server → Backend → PostgreSQL → Backend → MCP Server → Nanobot → User
+```
 
-Both are already running in your Docker Compose stack.
+Each step takes some time. If something is slow or fails, you want to know *where*.
+
+A **trace** captures this entire journey. Each step is a **span** — it has a start time, end time, service name, and status (success or error). All spans for one request are grouped into a single trace.
+
+### What is VictoriaTraces?
+
+**VictoriaTraces** stores these traces and shows you a timeline view — like a debugger call stack, but across network boundaries. You can see:
+- "The request took 2.3 seconds total, 2.1 seconds was the database query, the rest was fast."
+- "The request failed at the backend with a 500 error after 50ms."
+
+Both VictoriaLogs and VictoriaTraces are open-source and lightweight. They're already running in your Docker Compose stack — you don't need to install anything.
 
 ## Part A — Add structured logging
 

@@ -2,14 +2,20 @@
 
 ## Background
 
-In Lab 7 you built a Telegram bot with your own LLM tool-calling loop — you wrote the code that sends messages to the LLM, parses tool calls, executes them, and feeds results back. That works, but it means every new client needs the same loop reimplemented.
+In Lab 7 you built a Telegram bot with your own LLM tool-calling loop — you wrote the code that sends messages to the LLM, parses tool calls, executes them, and feeds results back. That works, but it means every new client needs the same loop reimplemented from scratch.
 
-**Nanobot** (also called OpenClaw) is a framework that handles the agent loop for you. Instead of writing the loop, you **configure** it:
+**Nanobot** (also called OpenClaw) is a **framework** that does all of that for you. Instead of writing the loop, you **configure** it. Here's the difference:
 
-- **MCP tools** — a standard protocol for exposing tools to any agent (not just your code)
-- **Skills** — natural language prompts that teach the agent *strategy*
-- **Channels** — WebSocket, Telegram, etc. One agent, many clients.
-- **Cron** — the agent can act on a schedule
+| What you did in Lab 7 (manual) | What nanobot does (framework) |
+|---|---|
+| Wrote a Python tool-calling loop | Built-in agent loop — you just provide config |
+| Defined tools as Python dicts with JSON schemas | **MCP server** — a separate process that exposes typed tools via a standard protocol. Any agent can use them, not just your code. |
+| Hardcoded which tools to call and when | **Skills** — natural language prompts that teach the agent *strategy* ("when the user asks about errors, search logs first, then fetch the trace") |
+| Built one client (Telegram bot) | **Channels** — WebSocket, Telegram, etc. One agent, many clients. |
+| No memory between conversations | **Memory** — the agent remembers context across conversations |
+| Agent only responds when you message it | **Cron** — the agent can act on a schedule (e.g., check system health every 15 minutes) |
+
+Think of it this way: in Lab 7 you built a car from parts. In Lab 8 you're given a car chassis (nanobot) and you're installing the engine (LLM), the instruments (MCP tools), and the dashboard (chat clients). You focus on *what* the agent can do, not *how* the loop works.
 
 In this task you set up nanobot from scratch — the same way you would in your own project.
 
