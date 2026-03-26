@@ -41,9 +41,9 @@ The base URL of the [OpenAI-compatible API](./llm.md#openai-compatible-api) endp
 
 - For the [`Qwen Code` API](./qwen-code-api.md#what-is-qwen-code-api) on your VM:
 
-  `<gateway-base-url>/utils/llm-api`.
+  `http://localhost:<qwen-code-api-host-port>/v1`.
 
-  See [`<gateway-base-url>`](./gateway.md#gateway-base-url-placeholder).
+  See [`<qwen-code-api-host-port>`](./qwen-code-api.md#qwen-code-api-host-port-placeholder).
 
 - For the [`OpenRouter` API](./llm.md#openrouter-api):
 
