@@ -166,13 +166,18 @@ Replace **`YOUR_VM_USERNAME`** and **`YOUR_VM_IP`** with your values.
    backend           Up 50 seconds
    caddy             Up 49 seconds
    client-web-react  Up 49 seconds (exited)
+   otel-collector    Up 50 seconds
    pgadmin           Up 50 seconds
    postgres          Up 55 seconds (healthy)
    qwen-code-api     Up 50 seconds (healthy)
+   victorialogs      Up 50 seconds
+   victoriatraces    Up 50 seconds
    ```
 
    > [!NOTE]
    > `client-web-react` exits after copying its build output — that's normal. Caddy serves the static files.
+   >
+   > The observability services (VictoriaLogs, VictoriaTraces, OTel Collector) are part of the base system. You'll use them in Task 2.
 
 > <h3>Troubleshooting</h3>
 >

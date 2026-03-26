@@ -4,7 +4,9 @@
 
 Your agent can query application data — labs, scores, learners. But when something breaks, it's blind. It can't see logs, it can't see traces, it can't tell you what went wrong.
 
-In this task you extend the agent with **observability data** — logs and traces. This demonstrates a repeatable pattern: take any service API, wrap it as MCP tools, write a skill prompt, and the agent gains a new capability.
+The backend already has **structured logging** and **distributed tracing** set up via OpenTelemetry. Logs flow into **VictoriaLogs** and traces flow into **VictoriaTraces** — both are running in your Docker Compose stack. But nobody has given the agent access to this data yet.
+
+In this task you first learn to read the observability data yourself, then give the agent the same ability by writing MCP tools.
 
 ### What is structured logging?
 
@@ -44,42 +46,31 @@ A **trace** captures this entire journey. Each step is a **span** — it has a s
 
 Both VictoriaLogs and VictoriaTraces are open-source and lightweight. They're already running in your Docker Compose stack — you don't need to install anything.
 
-## Part A — Add structured logging
+## Part A — Explore structured logs
+
+The backend already emits structured log events via OpenTelemetry. In this part you learn to read them — first in the terminal, then in the VictoriaLogs UI.
 
 ### What to do
 
-1. Run `docker compose --env-file .env.docker.secret logs backend --tail 30` and look at the output. It's unstructured text — Uvicorn startup messages, raw request lines.
+1. Trigger a request through the Flutter app (e.g., ask the agent "what labs are available?").
 
-2. Try to find "all errors from the backend in the last 5 minutes" using only this output. Notice how hard it is.
+2. Run `docker compose --env-file .env.docker.secret logs backend --tail 30` and find the log entries for your request. You should see structured events like `request_started`, `auth_success`, `db_query`, and `request_completed` with fields like `method`, `path`, `status`, and `duration_ms`.
 
-3. Configure structured JSON logging in the **backend** and **nanobot** services. Use Python's `logging` module or `structlog`. Every log entry must have at least: `level`, `event`, and `service`.
+3. Now trigger a failure: stop PostgreSQL and make another request.
 
-4. Add log statements so that a single user request produces this sequence of events:
+   ```terminal
+   docker compose --env-file .env.docker.secret stop postgres
+   ```
 
-   **Happy path** (e.g., user asks "what labs are available?"):
+   Check the logs again. You should see `db_query` with `level: "error"` and `request_completed` with `status: 500`.
 
-   | # | service | event | key fields |
-   |---|---------|-------|-----------|
-   | 1 | nanobot | `ws_message_received` | `chat_id` |
-   | 2 | nanobot | `tool_call` | `tool` |
-   | 3 | backend | `request_started` | `method`, `path` |
-   | 4 | backend | `auth_success` | |
-   | 5 | backend | `db_query` | `table`, `operation` |
-   | 6 | backend | `request_completed` | `method`, `path`, `status`, `duration_ms` |
-   | 7 | nanobot | `tool_result` | `tool`, `success` |
-   | 8 | nanobot | `ws_message_sent` | `chat_id` |
+4. Restart PostgreSQL:
 
-   **Error path** (database is down):
+   ```terminal
+   docker compose --env-file .env.docker.secret start postgres
+   ```
 
-   | # | service | event | key fields |
-   |---|---------|-------|-----------|
-   | 5 | backend | `db_query` | `level: "error"`, `table`, `error` |
-   | 6 | backend | `request_completed` | `status: 500`, `duration_ms` |
-   | 7 | nanobot | `tool_result` | `tool`, `success: false` |
-
-5. Also add an `auth_failure` event (with `level: "warning"`) for requests with an invalid API key.
-
-6. Redeploy and trigger both scenarios. Verify the sequences appear in `docker compose logs`.
+5. Open the VictoriaLogs web UI at `http://localhost:42002/utils/victorialogs/select/vmui`. Run a LogsQL query that filters by service and error level. Compare how easy this is versus grepping through `docker compose logs`.
 
 <!-- STOP -->
 > [!CAUTION]
@@ -92,25 +83,25 @@ Both VictoriaLogs and VictoriaTraces are open-source and lightweight. They're al
 
 ### Checkpoint
 
-1. Trigger a request through the Flutter app. Run `docker compose --env-file .env.docker.secret logs backend --tail 20`.
-2. Verify you see JSON-structured entries with `level`, `event`, and `service` fields.
-3. Stop PostgreSQL: `docker compose --env-file .env.docker.secret stop postgres`
-4. Trigger another request. Verify the error-path sequence appears.
-5. Restart PostgreSQL: `docker compose --env-file .env.docker.secret start postgres`
-6. Paste both log excerpts into `REPORT.md` under `## Task 2A — Structured logging`.
+1. Paste a happy-path log excerpt (showing `request_started` → `request_completed` with status 200) into `REPORT.md` under `## Task 2A — Structured logging`.
+2. Paste an error-path log excerpt (showing `db_query` with error) into the same section.
+3. Screenshot a VictoriaLogs query result and add it to `REPORT.md`.
 
 ---
 
-## Part B — Explore logs and traces in the UI
+## Part B — Explore traces
 
 ### What to do
 
-1. Open the VictoriaLogs web UI (see wiki for the URL and port).
-2. Run a query that filters by `service=backend` and `level=error`. Compare this with grepping through `docker compose logs`.
-3. Open the VictoriaTraces UI.
-4. Trigger a request through the Flutter app.
-5. Find the resulting trace. Inspect the span hierarchy — which services appear, how long each step took.
-6. Trigger a failure (stop PostgreSQL), make another request, and compare the traces — where does the error appear?
+1. Open the VictoriaTraces UI at `http://localhost:42002/utils/victoriatraces`.
+
+2. Trigger a request through the Flutter app.
+
+3. Find the resulting trace. Inspect the span hierarchy — which services appear, how long each step took.
+
+4. Trigger a failure (stop PostgreSQL), make another request, and find that trace too. Compare the healthy and error traces — where does the error appear? How does the duration change?
+
+5. Restart PostgreSQL.
 
 <!-- STOP -->
 > [!CAUTION]
@@ -123,27 +114,33 @@ Both VictoriaLogs and VictoriaTraces are open-source and lightweight. They're al
 
 ### Checkpoint
 
-1. In VictoriaLogs UI, run a query that shows only backend errors. Screenshot the result.
-2. In VictoriaTraces UI, find a trace for a failed request. Screenshot the span timeline.
-3. Add both screenshots to `REPORT.md` under `## Task 2B — Observability UIs`.
+1. Screenshot a healthy trace showing the span hierarchy.
+2. Screenshot an error trace showing where the failure occurred.
+3. Add both screenshots to `REPORT.md` under `## Task 2B — Traces`.
 
 ---
 
 ## Part C — Add observability MCP tools
 
-### What to do
+The agent still can't access logs or traces — only you can, through the UIs. Let's fix that by writing MCP tools.
 
-The agent still can't access logs or traces. Let's fix that.
+This is the same pattern as Task 1B: take a service API, wrap it as MCP tools, write a skill prompt, and the agent gains a new capability.
+
+### What to do
 
 1. Implement new MCP tools that query VictoriaLogs and VictoriaTraces. Add them to the existing MCP server in `mcp/mcp_lms/` or create a new MCP server. You need at least:
 
-   **Log tools (VictoriaLogs HTTP API):**
+   **Log tools (VictoriaLogs HTTP API — port 9428):**
    - `logs_search` — search logs by keyword and/or time range
    - `logs_error_count` — count errors per service over a time window
 
-   **Trace tools (VictoriaTraces HTTP API, Jaeger-compatible):**
+   > **Hint:** VictoriaLogs query API: `GET /select/logsql/query?query=<LogsQL>&limit=<N>`. Example: `_stream:{service="backend"} AND level:error`
+
+   **Trace tools (VictoriaTraces HTTP API — port 10428, Jaeger-compatible):**
    - `traces_list` — list recent traces for a service
    - `traces_get` — fetch a specific trace by ID
+
+   > **Hint:** VictoriaTraces Jaeger API: `GET /jaeger/api/traces?service=<name>&limit=<N>` and `GET /jaeger/api/traces/<traceID>`
 
 2. Register the new tools in `nanobot/config.json` (if you created a separate MCP server).
 
@@ -152,11 +149,7 @@ The agent still can't access logs or traces. Let's fix that.
    - If you find a trace ID in the logs, fetch the full trace
    - Summarize findings concisely — don't dump raw JSON
 
-4. Redeploy and test:
-
-   ```terminal
-   echo '{"content":"Any errors in the last hour?"}' | websocat ws://localhost:42002/ws/chat
-   ```
+4. Redeploy and test. Ask the agent through the Flutter app: **"Any errors in the last hour?"**
 
    The agent should query VictoriaLogs and return real data — not hallucinate.
 
@@ -172,16 +165,17 @@ The agent still can't access logs or traces. Let's fix that.
 ### Checkpoint
 
 1. Ask the agent **"Any errors in the last hour?"** under normal conditions. It should report no errors (or real errors if any exist).
-2. Stop PostgreSQL, trigger a request, then ask the same question. The agent should report the actual errors.
-3. Paste both responses into `REPORT.md` under `## Task 2C — Observability MCP tools`.
+2. Stop PostgreSQL, trigger a few requests (they'll fail), then ask the agent the same question. The agent should report the actual errors.
+3. Restart PostgreSQL.
+4. Paste both responses into `REPORT.md` under `## Task 2C — Observability MCP tools`.
 
 ---
 
 ## Acceptance criteria
 
-- Both services emit JSON-structured log entries with `level`, `event`, and `service` fields.
-- A successful request produces the happy-path log sequence.
-- A failed request produces the error-path log sequence.
+- The student can identify structured log events in `docker compose logs` output.
+- The student can query logs in VictoriaLogs UI by service and level.
+- The student can find and interpret traces in VictoriaTraces UI.
 - At least two MCP tools for querying VictoriaLogs are registered.
 - At least two MCP tools for querying VictoriaTraces are registered.
 - An observability skill exists and is loaded by the agent.

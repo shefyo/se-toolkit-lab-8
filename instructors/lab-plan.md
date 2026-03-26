@@ -68,7 +68,7 @@ Students set up nanobot from scratch — same way they would in their own projec
 
 **Part B — Give the agent LMS tools.** Students register provided `mcp/mcp_lms/` in config, write skill prompt. Agent now returns real data. Students compare bare vs equipped responses.
 
-**Part C — Add a chat client.** Students add Flutter web client as submodule, wire into compose + Caddy. Docker builds it (no Flutter SDK needed). Students chat via browser UI.
+**Part C — Add a chat client.** Flutter client code is provided in `client-web-flutter/`. Students wire it into compose + Caddy (add service, volume, route). Docker builds it (no Flutter SDK needed). Students chat via browser UI.
 
 **Autochecker checks:**
 
@@ -85,13 +85,13 @@ Students set up nanobot from scratch — same way they would in their own projec
 
 ### Task 2 — Give the Agent New Eyes (Observability)
 
-Students extend the agent with operational data — logs and traces. Demonstrates the repeatable pattern: wrap any API as MCP tools → agent gains new capability.
+Students learn to read existing observability data, then give the agent the same ability by writing MCP tools. The backend already has structured logging via OpenTelemetry — students explore it, don't implement it.
 
-**Part A — Add structured logging.** Students configure JSON logging (structlog or stdlib) across backend and nanobot. Each entry has `level`, `event`, `service`. They implement defined log sequences for happy path and error path.
+**Part A — Explore structured logs.** Backend already emits structured log events. Students trigger requests, read logs in terminal and VictoriaLogs UI, compare healthy vs error sequences.
 
-**Part B — Explore logs and traces in the UI.** Students query VictoriaLogs UI, find traces in VictoriaTraces UI. Compare healthy vs error traces.
+**Part B — Explore traces.** Students find traces in VictoriaTraces UI, compare healthy vs error trace span hierarchies.
 
-**Part C — Add observability MCP tools.** Students implement 2+ log tools and 2+ trace tools, write observability skill prompt. Agent can now answer "any errors in the last hour?" with real data.
+**Part C — Add observability MCP tools.** Students implement 2+ log tools (VictoriaLogs API) and 2+ trace tools (VictoriaTraces Jaeger API), write observability skill prompt. Agent can now answer "any errors in the last hour?" with real data.
 
 **Autochecker checks:**
 

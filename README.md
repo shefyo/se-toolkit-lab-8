@@ -58,11 +58,14 @@ What you start with                    What you add
 
 | Service | What it does |
 |---------|-------------|
-| **backend** | FastAPI REST API — labs, scores, learners, analytics, ETL pipeline |
+| **backend** | FastAPI REST API — labs, scores, learners, analytics, ETL pipeline. Already instrumented with OpenTelemetry. |
 | **postgres** | Database storing all LMS data |
-| **caddy** | Reverse proxy — routes traffic, serves the React dashboard |
+| **caddy** | Reverse proxy — routes traffic, serves the React dashboard and observability UIs |
 | **client-web-react** | React dashboard at `/` — charts and tables |
 | **qwen-code-api** | LLM proxy — gives you access to the Qwen language model |
+| **victorialogs** | Log database — stores structured logs, queryable via LogsQL. UI at `/utils/victorialogs` |
+| **victoriatraces** | Trace database — stores distributed traces. UI at `/utils/victoriatraces` |
+| **otel-collector** | OpenTelemetry Collector — routes logs and traces from services to VictoriaLogs/Traces |
 | **pgadmin** | Database admin UI at `/utils/pgadmin` |
 
 ### What you add
