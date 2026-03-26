@@ -16,7 +16,8 @@ In Lab 7 you built a Telegram bot with your own LLM tool-calling loop — you wr
 | Agent only responds when you message it         | **Cron** — the agent can act on a schedule (e.g., check system health every 15 minutes)                                                            |
 
 Start by reading the [official nanobot repository](https://github.com/HKUDS/nanobot) to understand how the framework works.
-This lab includes the tested `nanobot-ai` source as the submodule `packages/nanobot-ai`.
+
+This lab includes the pinned `nanobot-ai` source as the submodule `packages/nanobot-ai`.
 
 ## Part A — Install nanobot and chat with it
 
