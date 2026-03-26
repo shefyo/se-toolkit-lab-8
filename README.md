@@ -25,69 +25,32 @@ By the end of this lab, you should be able to say:
 
 ## Architecture
 
-You start with the LMS backend and observability stack. By the end of the lab, the deployed system looks like this:
+High level: you start with a normal web system, then add an AI agent as a new interface to that same system.
 
 ```
- Browser                         Optional Telegram bot
- React at /                     from nanobot-websocket-channel
- Flutter chat at /flutter                  |
- Swagger / utils UIs                       | WebSocket
----------------------------+               |
-                            \              v
-                             \    +-----------------------+
-                              --->| Nanobot gateway       |
-                                  | custom webchat        |
-     +-----------------------+    | channel on /ws/chat   |
-     | Caddy reverse proxy   |--->| LMS MCP tools         |
-     | host :42002           |    | observability tools   |
-     +----------+------------+    +----+-------------+----+
-                |                      |             |
-                | HTTP                 | MCP         | LLM API
-                v                      v             v
-        +---------------+      +--------------+   +---------------+
-        | FastAPI LMS   |----->| PostgreSQL   |   | qwen-code-api |
-        | backend       |      +--------------+   +---------------+
-        +-------+-------+
-                |
-                | OpenTelemetry
-                v
-        +-------------------+
-        | otel-collector    |
-        +-----+--------+----+
-              |        |
-              v        v
-      +-----------+  +-------------+
-      | Victoria  |  | Victoria    |
-      | Logs      |  | Traces      |
-      +-----------+  +-------------+
+Before:
+browser -> caddy -> LMS backend -> postgres
+                   -> observability stack
+
+After:
+browser / telegram (optional) -> nanobot agent -> LMS tools -> LMS backend
+                                -> observability tools -> logs / traces
+                                -> LLM
 ```
 
-Task 2 pulls the WebSocket channel and browser client from the separate [`nanobot-websocket-channel`](https://github.com/inno-se-toolkit/nanobot-websocket-channel) repository. The browser UI stays generic and is protected by a student-chosen `NANOBOT_ACCESS_KEY`; LMS backend authentication stays server-side.
+Task 2 pulls the WebSocket channel and browser client from the separate [`nanobot-websocket-channel`](https://github.com/inno-se-toolkit/nanobot-websocket-channel) repository. The browser UI stays generic and is protected by a student-chosen `NANOBOT_ACCESS_KEY`.
 
 ### What you start with
 
-| Service | What it does |
-|---------|-------------|
-| **backend** | FastAPI REST API — labs, scores, learners, analytics, ETL pipeline. Already instrumented with OpenTelemetry. |
-| **postgres** | Database storing all LMS data |
-| **caddy** | Reverse proxy — routes traffic, serves the React dashboard and observability UIs |
-| **client-web-react** | React dashboard at `/` — charts and tables |
-| **qwen-code-api** | LLM proxy — gives you access to the Qwen language model |
-| **victorialogs** | Log database — stores structured logs, queryable via LogsQL. UI at `/utils/victorialogs` |
-| **victoriatraces** | Trace database — stores distributed traces. UI at `/utils/victoriatraces` |
-| **otel-collector** | OpenTelemetry Collector — routes logs and traces from services to VictoriaLogs/Traces |
-| **pgadmin** | Database admin UI at `/utils/pgadmin` |
+- **LMS app**: the React dashboard, FastAPI backend, and PostgreSQL database.
+- **Platform services**: Caddy routes requests, and `qwen-code-api` gives your agent access to the LLM.
+- **Observability stack**: OpenTelemetry, VictoriaLogs, and VictoriaTraces already collect system telemetry.
 
 ### What you add
 
-| Service | What it does | When |
-|---------|-------------|------|
-| **nanobot** | Repo-local `nanobot/` project, then Dockerized AI gateway — calls the LLM, serves channels, and uses MCP tools to act on the LMS | Tasks 1-2 |
-| **nanobot-webchat** | Custom WebSocket channel plugin from `nanobot-websocket-channel` — exposes `/ws/chat` and validates `NANOBOT_ACCESS_KEY` | Task 2 |
-| **client-web-flutter** | Flutter web client from `nanobot-websocket-channel`, served at `/flutter` — browser chat UI for the agent | Task 2 |
-| Observability MCP tools | Agent can query logs and traces | Task 3 |
-| Cron health check | Agent reports system health on a schedule | Task 5 |
-| Telegram bot (optional) | Separate client from `nanobot-websocket-channel/client-telegram-bot` that relays messages to the same agent | Optional task |
+- **Nanobot agent**: a new interface to the LMS that can reason, use tools, and answer in natural language.
+- **Web chat access**: a WebSocket channel plus Flutter web client at `/flutter`, protected by `NANOBOT_ACCESS_KEY`.
+- **New agent abilities**: LMS MCP tools first, then observability tools, then a scheduled health-check job.
 
 ## Tasks
 
