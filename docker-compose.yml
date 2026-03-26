@@ -5,7 +5,7 @@ services:
       additional_contexts:
         workspace: .
       args:
-        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
+        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:?'REGISTRY_PREFIX_DOCKER_HUB is required'}
     restart: unless-stopped
     networks:
       - lms-network
@@ -16,6 +16,8 @@ services:
       - DEBUG=${BACKEND_DEBUG:?'BACKEND_DEBUG is required'}
       - ADDRESS=${BACKEND_CONTAINER_ADDRESS:?'BACKEND_CONTAINER_ADDRESS is required'}
       - PORT=${BACKEND_CONTAINER_PORT:?'BACKEND_CONTAINER_PORT is required'}
+      - RELOAD=${BACKEND_RELOAD:?'BACKEND_RELOAD is required'}
+      - CORS_ORIGINS=${BACKEND_CORS_ORIGINS:-[]}
       - LMS_API_KEY=${LMS_API_KEY:?'LMS_API_KEY is required'}
       - BACKEND_ENABLE_INTERACTIONS=${BACKEND_ENABLE_INTERACTIONS:?'BACKEND_ENABLE_INTERACTIONS is required'}
       - BACKEND_ENABLE_LEARNERS=${BACKEND_ENABLE_LEARNERS:?'BACKEND_ENABLE_LEARNERS is required'}
@@ -32,7 +34,7 @@ services:
         condition: service_healthy
 
   postgres:
-    image: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}postgres:18.3-alpine
+    image: ${REGISTRY_PREFIX_DOCKER_HUB}postgres:18.3-alpine
     restart: unless-stopped
     networks:
       - lms-network
@@ -56,7 +58,7 @@ services:
       retries: 5
 
   pgadmin:
-    image: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}dpage/pgadmin4:latest
+    image: ${REGISTRY_PREFIX_DOCKER_HUB}dpage/pgadmin4:latest
     restart: unless-stopped
     networks:
       - lms-network
@@ -74,7 +76,7 @@ services:
     build:
       context: client-web-react/
       args:
-        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
+        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:?'REGISTRY_PREFIX_DOCKER_HUB is required'}
     volumes:
       - client-web-react:/output
 
@@ -82,13 +84,13 @@ services:
     build:
       context: client-web-flutter/
       args:
-        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
-        REGISTRY_PREFIX_GHCR: ${REGISTRY_PREFIX_GHCR:-harbor.pg.innopolis.university/ghcr-proxy/}
+        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:?'REGISTRY_PREFIX_DOCKER_HUB is required'}
+        REGISTRY_PREFIX_GHCR: ${REGISTRY_PREFIX_GHCR:?'REGISTRY_PREFIX_GHCR is required'}
     volumes:
       - client-web-flutter:/output
 
   caddy:
-    image: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}caddy:2.11-alpine
+    image: ${REGISTRY_PREFIX_DOCKER_HUB}caddy:2.11-alpine
     networks:
       - lms-network
     depends_on:
@@ -96,13 +98,15 @@ services:
       - client-web-react
       - client-web-flutter
       - nanobot
+      - qwen-code-api
     environment:
       - CADDY_CONTAINER_PORT=${CADDY_CONTAINER_PORT:?'CADDY_CONTAINER_PORT is required'}
       - BACKEND_CONTAINER_PORT=${BACKEND_CONTAINER_PORT:?'BACKEND_CONTAINER_PORT is required'}
       - NANOBOT_WEBCHAT_CONTAINER_PORT=${NANOBOT_WEBCHAT_CONTAINER_PORT:?'NANOBOT_WEBCHAT_CONTAINER_PORT is required'}
-      - QWEN_CODE_API_URL=${QWEN_CODE_API_URL:?'QWEN_CODE_API_URL is required'}
+      - QWEN_CODE_API_CONTAINER_PORT=${QWEN_CODE_API_CONTAINER_PORT:?'QWEN_CODE_API_CONTAINER_PORT is required'}
+      - CONST_PGADMIN_CONTAINER_PORT=${CONST_PGADMIN_CONTAINER_PORT:?'CONST_PGADMIN_CONTAINER_PORT is required'}
     ports:
-      - ${LMS_API_HOST_ADDRESS:?'LMS_API_HOST_ADDRESS is required'}:${LMS_API_HOST_PORT:?'LMS_API_HOST_PORT is required'}:${CADDY_CONTAINER_PORT}
+      - ${GATEWAY_HOST_ADDRESS:?'GATEWAY_HOST_ADDRESS is required'}:${GATEWAY_HOST_PORT:?'GATEWAY_HOST_PORT is required'}:${CADDY_CONTAINER_PORT}
     volumes:
       - ./caddy/Caddyfile:/etc/caddy/Caddyfile
       - client-web-react:/srv/react:ro
@@ -114,7 +118,7 @@ services:
       additional_contexts:
         workspace: .
       args:
-        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
+        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:?'REGISTRY_PREFIX_DOCKER_HUB is required'}
     restart: unless-stopped
     networks:
       - lms-network
@@ -129,13 +133,52 @@ services:
     depends_on:
       - backend
 
+  qwen-code-api:
+    build:
+      context: ./qwen-code-api
+      args:
+        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:?'REGISTRY_PREFIX_DOCKER_HUB is required'}
+    restart: unless-stopped
+    networks:
+      - lms-network
+    ports:
+      - ${QWEN_CODE_API_HOST_ADDRESS:?'QWEN_CODE_API_HOST_ADDRESS is required'}:${QWEN_CODE_API_HOST_PORT:?'QWEN_CODE_API_HOST_PORT is required'}:${QWEN_CODE_API_CONTAINER_PORT:-8080}
+    volumes:
+      - ~/.qwen:/mnt/qwen-creds:ro
+    environment:
+      - PORT=${QWEN_CODE_API_CONTAINER_PORT:-8080}
+      - ADDRESS=${QWEN_CODE_API_CONTAINER_ADDRESS:-0.0.0.0}
+      - DEFAULT_MODEL=${QWEN_CODE_API_MODEL:?'QWEN_CODE_API_MODEL is required'}
+      - LOG_LEVEL=${QWEN_CODE_API_LOG_LEVEL:?'QWEN_CODE_API_LOG_LEVEL is required'}
+      - MAX_RETRIES=${QWEN_CODE_API_MAX_RETRIES:?'QWEN_CODE_API_MAX_RETRIES is required'}
+      - RETRY_DELAY_MS=${QWEN_CODE_API_RETRY_DELAY_MS:?'QWEN_CODE_API_RETRY_DELAY_MS is required'}
+      - QWEN_CODE_AUTH_USE=${QWEN_CODE_API_AUTH_USE:?'QWEN_CODE_API_AUTH_USE is required'}
+      - LOG_REQUESTS=${QWEN_CODE_API_LOG_REQUESTS:?'QWEN_CODE_API_LOG_REQUESTS is required'}
+      - QWEN_CODE_API_KEY=${QWEN_CODE_API_KEY:-}
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - "-c"
+        - |
+          import urllib.request
+          req = urllib.request.Request(
+              'http://localhost:${QWEN_CODE_API_CONTAINER_PORT:-8080}/health',
+              headers={'X-API-Key': '${QWEN_CODE_API_KEY:-}'}
+          )
+          urllib.request.urlopen(req)
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
   client-telegram-bot:
     build:
       context: ./client-telegram-bot
       additional_contexts:
         workspace: .
       args:
-        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:-harbor.pg.innopolis.university/docker-hub-cache/}
+        REGISTRY_PREFIX_DOCKER_HUB: ${REGISTRY_PREFIX_DOCKER_HUB:?'REGISTRY_PREFIX_DOCKER_HUB is required'}
     restart: unless-stopped
     networks:
       - lms-network

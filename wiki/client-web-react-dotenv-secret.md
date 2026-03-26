@@ -23,6 +23,6 @@ Default values: [`client-web-react/.env.example`](../client-web-react/.env.examp
 
 ## `VITE_API_TARGET`
 
-The [LMS API base URL](./lms-api.md#lms-api-base-url) that the `Vite` dev server [proxies](./web-infrastructure.md#reverse-proxy) requests to.
+The [gateway base URL](./gateway.md#gateway-base-url) that the `Vite` dev server [proxies](./web-infrastructure.md#reverse-proxy) requests to.
 
 Default: `http://127.0.0.1:42002`

@@ -1,5 +1,5 @@
 [tool.uv.workspace]
-members = ["backend", "client-telegram-bot", "mcp", "nanobot"]
+members = ["backend", "client-telegram-bot", "mcp", "nanobot", "qwen-code-api"]
 
 [tool.uv.sources]
 nanobot-ai = { path = "nanobot/packages/nanobot-ai" }
@@ -14,6 +14,9 @@ dev = [
   "ruff==0.14.14",
   "ty==0.0.13",
 ]
+
+[tool.ruff]
+exclude = ["nanobot/packages", "qwen-code-api"]
 
 [tool.ruff.lint]
 select = ["RET503"]
@@ -121,12 +124,27 @@ cmd = "python client-telegram-bot/bot.py --test"
 envfile = "client-telegram-bot/.env.secret"
 
 [tool.pyright]
-include = ["backend", "client-telegram-bot", "scripts", "nanobot", "mcp"]
-extraPaths = ["backend", "nanobot/packages/nanobot-ai"]
-exclude = ["**/__pycache__", "**/node_modules", "**/.*", ".venv", ".direnv"]
+include = [
+  "backend",
+  "client-telegram-bot",
+  "scripts",
+  "nanobot",
+  "mcp",
+  "qwen-code-api",
+]
+extraPaths = ["backend", "nanobot/packages/nanobot-ai", "qwen-code-api"]
+exclude = [
+  "**/__pycache__",
+  "**/node_modules",
+  "**/.*",
+  ".venv",
+  ".direnv",
+  "nanobot/packages/**",
+]
 typeCheckingMode = "strict"
 reportAssignmentType = "none"
 reportIncompatibleVariableOverride = "none"
+reportUnknownMemberType = "none"
 
 [tool.pytest.ini_options]
 testpaths = ["backend/tests"]
@@ -134,4 +152,9 @@ pythonpath = ["backend"]
 asyncio_mode = "auto"
 
 [tool.ty.src]
-include = ["backend", "client-telegram-bot", "nanobot", "mcp"]
+include = ["backend", "client-telegram-bot", "nanobot", "mcp", "qwen-code-api"]
+exclude = ["nanobot/packages/**"]
+
+# TODO: remove after upgrading to ty>=0.0.26 (fixes ParamSpec, see https://github.com/astral-sh/ty/issues/1635)
+[tool.ty.rules]
+invalid-argument-type = "warn"

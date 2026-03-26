@@ -6,6 +6,7 @@ import asyncio
 import json
 import os
 from collections.abc import Awaitable, Callable, Sequence
+from typing import Any
 
 from mcp.server import Server
 from mcp.server.stdio import stdio_server
@@ -45,8 +46,7 @@ class _TopLearnersQuery(_LabQuery):
 def _client(api_key: str) -> LMSClient:
     if not _base_url:
         raise RuntimeError(
-            "LMS backend URL not configured. "
-            "Pass it as: python -m mcp_lms <base_url>"
+            "LMS backend URL not configured. Pass it as: python -m mcp_lms <base_url>"
         )
     return LMSClient(_base_url, api_key)
 
@@ -189,9 +189,7 @@ async def list_tools() -> list[Tool]:
 
 
 @server.call_tool()
-async def call_tool(
-    name: str, arguments: dict | None
-) -> list[TextContent]:
+async def call_tool(name: str, arguments: dict[str, Any] | None) -> list[TextContent]:
     entry = _TOOLS.get(name)
     if entry is None:
         return [TextContent(type="text", text=f"Unknown tool: {name}")]

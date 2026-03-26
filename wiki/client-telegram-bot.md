@@ -47,7 +47,7 @@ Docs:
 2. [Set the variables in `.env.docker.secret`](./environments.md#set-the-variable-to-value-in-the-env-file-at-file-path):
 
    - [`BOT_TOKEN`](./dotenv-docker-secret.md#bot_token)
-   - [`LMS_API_BASE_URL`](./dotenv-docker-secret.md#lms_api_base_url)
+   - [`GATEWAY_BASE_URL`](./dotenv-docker-secret.md#gateway_base_url)
    - [`LMS_API_KEY`](./dotenv-docker-secret.md#lms_api_key)
    - [`LLM_API_KEY`](./dotenv-docker-secret.md#llm_api_key)
    - [`LLM_API_BASE_URL`](./dotenv-docker-secret.md#llm_api_base_url)

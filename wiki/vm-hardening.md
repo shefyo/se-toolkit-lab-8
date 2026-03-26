@@ -80,15 +80,15 @@ Complete these steps:
    > Always allow `SSH` (port 22) before enabling `ufw`.
    > Otherwise, you will lock yourself out of your VM.
 
-2. To allow the [LMS API host port](./lms-api.md#lms-api-host-port),
+2. To allow the [gateway host port](./gateway.md#gateway-host-port),
 
    [run in the `VS Code Terminal`](./vs-code.md#run-a-command-in-the-vs-code-terminal):
 
    ```terminal
-   sudo ufw allow <lms-api-host-port>
+   sudo ufw allow <gateway-host-port>
    ```
 
-   Replace the placeholder [`<lms-api-host-port>`](./lms-api.md#lms-api-host-port-placeholder).
+   Replace the placeholder [`<gateway-host-port>`](./gateway.md#gateway-host-port-placeholder).
 
    The output should look like this:
 

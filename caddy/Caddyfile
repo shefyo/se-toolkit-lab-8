@@ -16,8 +16,9 @@
     handle /analytics* {
         reverse_proxy http://backend:{$BACKEND_CONTAINER_PORT}
     }
-    handle_path /utils/qwen-code-api* {
-        reverse_proxy {$QWEN_CODE_API_URL}
+    handle_path /utils/llm-api* {
+        rewrite * /v1{uri}
+        reverse_proxy http://qwen-code-api:{$QWEN_CODE_API_CONTAINER_PORT}
     }
     handle /ws/chat {
         reverse_proxy http://nanobot:{$NANOBOT_WEBCHAT_CONTAINER_PORT}

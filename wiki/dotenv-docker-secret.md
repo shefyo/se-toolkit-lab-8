@@ -29,11 +29,11 @@
   - [`PGADMIN_HOST_PORT`](#pgadmin_host_port)
 - [`caddy`](#caddy)
   - [`CADDY_CONTAINER_PORT`](#caddy_container_port)
-- [LMS](#lms)
-  - [`LMS_API_HOST_ADDRESS`](#lms_api_host_address)
-  - [`LMS_API_HOST_PORT`](#lms_api_host_port)
+- [Gateway](#gateway)
+  - [`GATEWAY_HOST_ADDRESS`](#gateway_host_address)
+  - [`GATEWAY_HOST_PORT`](#gateway_host_port)
   - [`LMS_API_KEY`](#lms_api_key)
-  - [`LMS_API_BASE_URL`](#lms_api_base_url)
+  - [`GATEWAY_BASE_URL`](#gateway_base_url)
 - [`Autochecker` API](#autochecker-api)
   - [`AUTOCHECKER_API_URL`](#autochecker_api_url)
   - [`AUTOCHECKER_API_LOGIN`](#autochecker_api_login)
@@ -44,8 +44,6 @@
   - [`LLM_API_KEY`](#llm_api_key)
   - [`LLM_API_BASE_URL`](#llm_api_base_url)
   - [`LLM_API_MODEL`](#llm_api_model)
-- [`Qwen Code` API](#qwen-code-api)
-  - [`QWEN_CODE_API_URL`](#qwen_code_api_url)
 - [`Nanobot`](#nanobot)
   - [`NANOBOT_GATEWAY_CONTAINER_ADDRESS`](#nanobot_gateway_container_address)
   - [`NANOBOT_GATEWAY_CONTAINER_PORT`](#nanobot_gateway_container_port)
@@ -226,19 +224,19 @@ The [port number](./computer-networks.md#port-number) that [`Caddy`](./caddy.md#
 
 Default: `80`
 
-## LMS
+## Gateway
 
-Variables for the [LMS API](./lms-api.md#about-the-lms-api).
+Variables for the [gateway](./gateway.md#about-the-gateway).
 
-### `LMS_API_HOST_ADDRESS`
+### `GATEWAY_HOST_ADDRESS`
 
-The [IP address](./computer-networks.md#ip-address) of the [LMS API](./lms-api.md#about-the-lms-api) exposed on the [host](./computer-networks.md#host).
+The [IP address](./computer-networks.md#ip-address) of the [gateway](./gateway.md#about-the-gateway) exposed on the [host](./computer-networks.md#host).
 
 Default: [`0.0.0.0`](./computer-networks.md#0000)
 
-### `LMS_API_HOST_PORT`
+### `GATEWAY_HOST_PORT`
 
-The [LMS API host port](./lms-api.md#lms-api-host-port).
+The [gateway host port](./gateway.md#gateway-host-port).
 
 Default: `42002`
 
@@ -248,17 +246,17 @@ The [LMS API key](./lms-api.md#lms-api-key).
 
 Default: `<lms-api-key>`
 
-<!-- TODO everywhere 
+<!-- TODO everywhere
 don't mention [`.env.docker.secret`](#what-is-envdockersecret) inline?
 -->
 
 Set in [`.env.docker.secret`](#what-is-envdockersecret).
 
-### `LMS_API_BASE_URL`
+### `GATEWAY_BASE_URL`
 
-The [LMS API base URL](./lms-api.md#lms-api-base-url).
+The [gateway base URL](./gateway.md#gateway-base-url).
 
-Default: `<lms-api-base-url>`
+Default: `<gateway-base-url>`
 
 ## `Autochecker` API
 
@@ -294,6 +292,8 @@ Default: `<bot-token>`
 
 ## LLM API
 
+<!-- TODO powers clients, not just bot -->
+
 Variables for the [LLM API](./llm-api.md#about-llm-api) that powers the [`Telegram` bot client](./client-telegram-bot.md#about-the-telegram-bot-client).
 
 ### `LLM_API_KEY`
@@ -313,14 +313,6 @@ Default: `<llm-api-base-url>`
 The [LLM API model](./llm-api.md#llm-api-model).
 
 Default: `<llm-api-model>`
-
-## `Qwen Code` API
-
-### `QWEN_CODE_API_URL`
-
-[`Qwen Code` API URL](./qwen-code-api.md#what-is-qwen-code-api) that [`Caddy` forwards requests to](./lms-api.md#forward-requests-to-the-qwen-code-api).
-
-Default: `http://qwen-code-api:8080`
 
 ## `Nanobot`
 

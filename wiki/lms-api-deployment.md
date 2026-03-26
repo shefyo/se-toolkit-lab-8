@@ -98,11 +98,11 @@ This page describes how to deploy the [LMS API](./lms-api.md#about-the-lms-api) 
 The [database](./database.md#what-is-a-database) starts empty.
 You need to run the ETL pipeline to populate it with data from the [`Autochecker` API](./autochecker-api.md#about-the-autochecker-api).
 
-1. Open in a browser: `<lms-api-base-url>/docs`.
+1. Open in a browser: `<gateway-base-url>/docs`.
 
    Replace the placeholders:
 
-   - [`<lms-api-base-url>`](./lms-api.md#lms-api-base-url-placeholder)
+   - [`<gateway-base-url>`](./gateway.md#gateway-base-url-placeholder)
 
    You should see the [`Swagger UI`](./swagger.md#what-is-swagger-ui) page.
 
@@ -130,9 +130,9 @@ You need to run the ETL pipeline to populate it with data from the [`Autochecker
 
 ### View the dashboard (LOCAL)
 
-1. Open in a browser: `<lms-api-base-url>`.
+1. Open in a browser: `<gateway-base-url>`.
 
-   Replace the placeholder [`<lms-api-base-url>`](./lms-api.md#lms-api-base-url-placeholder).
+   Replace the placeholder [`<gateway-base-url>`](./gateway.md#gateway-base-url-placeholder).
 
    You should see the [frontend](./lms-client-web-react.md#about-the-lms-frontend).
 

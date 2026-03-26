@@ -22,9 +22,9 @@ Actions:
 
 ## Open `Swagger UI`
 
-1. Open in a browser: `<lms-api-base-url>/docs`.
+1. Open in a browser: `<gateway-base-url>/docs`.
 
-   Replace the placeholder [`<lms-api-base-url>`](./lms-api.md#lms-api-base-url-placeholder).
+   Replace the placeholder [`<gateway-base-url>`](./gateway.md#gateway-base-url-placeholder).
 
    You should see the `Swagger UI` with all endpoints listed.
 
