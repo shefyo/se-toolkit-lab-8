@@ -74,8 +74,8 @@ What you start with                    What you add
 |---------|-------------|------|
 | **nanobot** | AI agent — receives chat via WebSocket, reasons with LLM, calls backend via MCP tools | Task 1 |
 | **client-web-flutter** | Chat UI at `/flutter` — talk to the agent in a browser | Task 1 |
-| Observability MCP tools | Agent can query logs and traces | Task 2 |
-| Cron health check | Agent reports system health on a schedule | Task 4 |
+| Observability MCP tools | Agent can query logs and traces | Task 3 |
+| Cron health check | Agent reports system health on a schedule | Task 5 |
 
 ## Tasks
 
@@ -87,10 +87,11 @@ What you start with                    What you add
 
 ### Required
 
-1. [Set Up the Agent](./lab/tasks/required/task-1.md) — create nanobot from scratch, connect to LLM, add MCP tools, add chat client
-2. [Give the Agent New Eyes](./lab/tasks/required/task-2.md) — structured logging, observability MCP tools
-3. [Diagnose and Fix a Bug](./lab/tasks/required/task-3.md) — use the agent to investigate a real production issue
-4. [Make the Agent Proactive](./lab/tasks/required/task-4.md) — multi-step skills, cron health checks
+1. [Set Up the Agent](./lab/tasks/required/task-1.md) — install nanobot, configure Qwen API, add MCP tools, write skill prompt
+2. [Deploy and Connect a Web Client](./lab/tasks/required/task-2.md) — Dockerize nanobot, add WebSocket channel + Flutter chat UI
+3. [Give the Agent New Eyes](./lab/tasks/required/task-3.md) — explore observability data, write log/trace MCP tools
+4. [Diagnose and Fix a Bug](./lab/tasks/required/task-4.md) — use the agent to investigate a real production issue
+5. [Make the Agent Proactive](./lab/tasks/required/task-5.md) — multi-step skills, cron health checks
 
 ### Optional
 

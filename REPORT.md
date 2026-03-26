@@ -10,33 +10,41 @@ Paste your checkpoint evidence below. Add screenshots as image files in the repo
 
 <!-- Paste the agent's response to "What labs are available?" and "Describe the architecture of the LMS system" -->
 
-## Task 1C — Chat client
+## Task 1C — Skill prompt
+
+<!-- Paste the agent's response to "Show me the scores" (without specifying a lab) -->
+
+## Task 2A — Deployed agent
+
+<!-- Paste the WebSocket response showing the agent works through Caddy -->
+
+## Task 2B — Web client
 
 <!-- Screenshot of a conversation with the agent in the Flutter web app -->
 
-## Task 2A — Structured logging
+## Task 3A — Structured logging
 
-<!-- Paste log excerpts: happy-path and error-path sequences -->
+<!-- Paste happy-path and error-path log excerpts, VictoriaLogs query screenshot -->
 
-## Task 2B — Observability UIs
+## Task 3B — Traces
 
-<!-- Screenshots: VictoriaLogs query result, VictoriaTraces span timeline -->
+<!-- Screenshots: healthy trace span hierarchy, error trace -->
 
-## Task 2C — Observability MCP tools
+## Task 3C — Observability MCP tools
 
 <!-- Paste agent responses to "any errors in the last hour?" under normal and failure conditions -->
 
-## Task 3 — Bug investigation
+## Task 4 — Bug investigation
 
 <!-- 1. Questions you asked the agent (conversation transcript)
      2. Root cause identified
      3. Code fix (diff or description)
      4. Agent response after fix confirming no errors -->
 
-## Task 4A — Multi-step investigation
+## Task 5A — Multi-step investigation
 
 <!-- Paste the agent's response to "what went wrong?" showing chained log+trace queries -->
 
-## Task 4B — Cron health check
+## Task 5B — Cron health check
 
 <!-- Screenshot of the health report in the Flutter app -->
