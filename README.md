@@ -27,18 +27,32 @@ By the end of this lab, you should be able to say:
 
 High level: you start with a normal web system, then add an AI agent as a new interface to that same system.
 
+This is different from Lab 7. There, you built one client around your own LLM loop. Here, the agent becomes a shared system layer that multiple clients can talk to, and that layer can use reusable tools, memory, and scheduled actions.
+
 ```
 Before:
-browser -> caddy -> LMS backend -> postgres
-                   -> observability stack
+[Browser]
+    |
+ [Caddy]
+    |
+ [LMS Backend] ---- [Postgres]
+       |
+ [Observability]
 
 After:
-browser / telegram (optional) -> nanobot agent -> LMS tools -> LMS backend
-                                -> observability tools -> logs / traces
-                                -> LLM
+[Browser]            [Telegram, optional]
+    \                       /
+     \                     /
+      +---- [Nanobot Agent] ---- [LLM]
+                 |
+         +-------+-------+
+         |               |
+   [LMS Tools]   [Observability Tools]
+         |               |
+   [LMS Backend]    [Logs / Traces]
+         |
+    [Postgres]
 ```
-
-Task 2 pulls the WebSocket channel and browser client from the separate [`nanobot-websocket-channel`](https://github.com/inno-se-toolkit/nanobot-websocket-channel) repository. The browser UI stays generic and is protected by a student-chosen `NANOBOT_ACCESS_KEY`.
 
 ### What you start with
 
