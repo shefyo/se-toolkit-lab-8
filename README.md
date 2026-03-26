@@ -25,38 +25,44 @@ By the end of this lab, you should be able to say:
 
 ## Architecture
 
-You start with the base LMS system (left side). During the lab, you add the agent and chat client (right side).
+You start with the LMS backend and observability stack. By the end of the lab, the deployed system looks like this:
 
 ```
-What you start with                    What you add
-====================                   =============
-
-┌──────────────┐                       ┌──────────────┐
-│ React        │                       │ Flutter      │
-│ Dashboard    │                       │ Chat UI      │
-│ /            │                       │ /flutter     │
-└──────┬───────┘                       └──────┬───────┘
-       │ HTTP                                 │ WebSocket
-       │                                      │
-       ▼                                      ▼
-┌──────────────────────────────────────────────────────┐
-│  Caddy (reverse proxy)                               │
-│  routes /items, /analytics, /ws/chat, /flutter, ...  │
-└──────┬────────────────────────────────┬──────────────┘
-       │                                │
-       │ /items, /analytics, ...        │ /ws/chat
-       ▼                                ▼
-┌──────────────┐                 ┌──────────────┐
-│ Backend      │                 │ Nanobot      │
-│ (FastAPI)    │◀────────────────│ (AI agent)   │
-│              │   MCP tools     │              │
-└──────┬───────┘                 └──────────────┘
-       │
-       ▼
-┌──────────────┐
-│ PostgreSQL   │
-└──────────────┘
+ Browser                         Optional Telegram bot
+ React at /                     from nanobot-websocket-channel
+ Flutter chat at /flutter                  |
+ Swagger / utils UIs                       | WebSocket
+---------------------------+               |
+                            \              v
+                             \    +-----------------------+
+                              --->| Nanobot gateway       |
+                                  | custom webchat        |
+     +-----------------------+    | channel on /ws/chat   |
+     | Caddy reverse proxy   |--->| LMS MCP tools         |
+     | host :42002           |    | observability tools   |
+     +----------+------------+    +----+-------------+----+
+                |                      |             |
+                | HTTP                 | MCP         | LLM API
+                v                      v             v
+        +---------------+      +--------------+   +---------------+
+        | FastAPI LMS   |----->| PostgreSQL   |   | qwen-code-api |
+        | backend       |      +--------------+   +---------------+
+        +-------+-------+
+                |
+                | OpenTelemetry
+                v
+        +-------------------+
+        | otel-collector    |
+        +-----+--------+----+
+              |        |
+              v        v
+      +-----------+  +-------------+
+      | Victoria  |  | Victoria    |
+      | Logs      |  | Traces      |
+      +-----------+  +-------------+
 ```
+
+Task 2 pulls the WebSocket channel and browser client from the separate [`nanobot-websocket-channel`](https://github.com/inno-se-toolkit/nanobot-websocket-channel) repository. The browser UI stays generic and is protected by a student-chosen `NANOBOT_ACCESS_KEY`; LMS backend authentication stays server-side.
 
 ### What you start with
 
@@ -76,10 +82,12 @@ What you start with                    What you add
 
 | Service | What it does | When |
 |---------|-------------|------|
-| **nanobot** | AI agent — receives chat via WebSocket, reasons with LLM, calls backend via MCP tools | Tasks 1-2 |
-| **client-web-flutter** | Chat UI at `/flutter` — talk to the agent in a browser, protected by a student-chosen access key | Task 2 |
+| **nanobot** | Repo-local `nanobot/` project, then Dockerized AI gateway — calls the LLM, serves channels, and uses MCP tools to act on the LMS | Tasks 1-2 |
+| **nanobot-webchat** | Custom WebSocket channel plugin from `nanobot-websocket-channel` — exposes `/ws/chat` and validates `NANOBOT_ACCESS_KEY` | Task 2 |
+| **client-web-flutter** | Flutter web client from `nanobot-websocket-channel`, served at `/flutter` — browser chat UI for the agent | Task 2 |
 | Observability MCP tools | Agent can query logs and traces | Task 3 |
 | Cron health check | Agent reports system health on a schedule | Task 5 |
+| Telegram bot (optional) | Separate client from `nanobot-websocket-channel/client-telegram-bot` that relays messages to the same agent | Optional task |
 
 ## Tasks
 
