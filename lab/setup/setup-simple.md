@@ -75,7 +75,7 @@ We refer to your fork as `fork` and to the original repo as `upstream`.
    Replace **`YOUR_GITHUB_USERNAME`** with your GitHub username.
 
    > [!NOTE]
-   > The `--recurse-submodules` flag clones the Qwen Code API [submodule](../../wiki/git.md#submodule) included in the repository.
+   > The `--recurse-submodules` flag clones the [submodules](../../wiki/git.md#submodule) included in the repository, including the `Qwen Code` API, `packages/nanobot-ai`, and `nanobot-websocket-channel`.
 
 2. Open the forked repo in `VS Code` through `Remote-SSH`.
 
