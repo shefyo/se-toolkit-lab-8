@@ -82,20 +82,25 @@ Both are in a single repository. The webchat plugin handles:
 
 ### What to do
 
-1. Add the Flutter web client + webchat plugin repo as a submodule:
+1. Add the WebSocket channel repo as a submodule:
 
    ```terminal
-   git submodule add https://github.com/inno-se-toolkit/client-web-flutter client-web-flutter
+   git submodule add https://github.com/inno-se-toolkit/nanobot-websocket-channel
    ```
 
-2. Install the webchat channel plugin as a nanobot dependency:
+   This repo contains three things:
+   - `nanobot_webchat/` — the WebSocket channel plugin
+   - `client-web-flutter/` — Flutter web chat UI
+   - `client-telegram-bot/` — Telegram bot (optional task)
+
+2. Install the webchat channel plugin into your nanobot environment:
 
    ```terminal
    cd nanobot
-   uv add nanobot-webchat --path ../client-web-flutter/nanobot_webchat
+   uv add nanobot-webchat --path ../nanobot-websocket-channel
    ```
 
-   This registers the `webchat` channel type in nanobot via a Python entry point.
+   This registers the `webchat` channel type in nanobot via a Python entry point. You can verify: `nanobot` will now recognize `webchat` as a valid channel in the config.
 
 3. Make sure your `nanobot/config.json` has the webchat channel enabled:
 
@@ -109,7 +114,7 @@ Both are in a single repository. The webchat plugin handles:
    ```
 
 4. Add a `client-web-flutter` service to `docker-compose.yml`:
-   - Build from `client-web-flutter/`
+   - Build from `nanobot-websocket-channel/client-web-flutter/`
    - Output to a named volume
    - Add the volume to the `volumes:` section
 

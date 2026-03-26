@@ -4,7 +4,7 @@
 
 The Flutter web client connects to nanobot via the WebSocket channel. A Telegram bot is another client that connects the same way — demonstrating that **the agent is the interface, not any particular frontend**. Same agent, same tools, same answers — different client.
 
-The Telegram bot code is already in the `nanobot-websocket-channel` repo you added in Task 2 (at `client-telegram-bot/`). It connects to nanobot via WebSocket and relays messages between Telegram users and the agent.
+The Telegram bot code is in the `nanobot-websocket-channel` repo you added in Task 2 (at `nanobot-websocket-channel/client-telegram-bot/`). It connects to nanobot via WebSocket and relays messages between Telegram users and the agent.
 
 ### Note on Telegram in Russia
 
@@ -15,7 +15,7 @@ The Telegram Bot API (`api.telegram.org`) is blocked from most Russian servers. 
 1. Get a Telegram bot token from [@BotFather](https://t.me/BotFather).
 
 2. Add a `client-telegram-bot` service to `docker-compose.yml`:
-   - Build from the submodule path (e.g., `nanobot-websocket-channel/client-telegram-bot/`)
+   - Build from `nanobot-websocket-channel/client-telegram-bot/`
    - Environment: `BOT_TOKEN`, `NANOBOT_WS_URL=ws://nanobot:8765`
    - `depends_on: nanobot`
 
