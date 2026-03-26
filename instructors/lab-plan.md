@@ -1,75 +1,133 @@
-# Lab plan — Add Observability with VictoriaLogs and VictoriaTraces
+# Lab plan — The Agent is the Interface
 
-**Topic:** structured logging, distributed tracing, and AI-assisted observability
-**Date:** 2026-03-24
+**Topic:** AI agents as a new type of client interface for existing services
+**Date:** 2026-03-26
 
 ## Main goals
 
-- Show students that unstructured text logs are nearly useless for debugging multi-service systems — structured logging makes the difference.
-- Teach the two complementary views of a running system: logs tell you what happened at each service, traces tell you how a request flowed across services.
-- Demonstrate that an AI agent becomes much more useful when it can access operational data — not just application data — through MCP tools.
+- Teach students that an AI agent is a new type of client — like a web app or a Telegram bot, but one that reasons, chains API calls, and answers in natural language.
+- Have students set up an agent (nanobot) from scratch: add it as a submodule, configure it, connect it to an LLM, wire it into the system, and experience the difference between a bare agent and one equipped with tools.
+- Demonstrate that observability data (logs, traces) becomes accessible to non-technical users when the agent can query it — turning infrastructure into a conversational interface.
 
 <!-- sometimes, you can use a debugger. other times - no -->
 <!-- fix a bug in a problematic endpoint (e.g. model field mismatch) -->
 <!-- optional task - improve formatting of messages in clients -->
-<!-- if not enough memory - use swap) -->
+<!-- if not enough memory - use swap -->
 
 ## Learning outcomes
 
 By the end of this lab, students should be able to:
 
-- [Understand] Explain how structured logs and distributed traces provide complementary views of a multi-service system — logs capture events, traces capture request flow.
-- [Apply] Add structured JSON logging at key points across multiple services so that both successful and failed requests produce a defined sequence of queryable events.
-- [Apply] Implement MCP tools that query the VictoriaLogs API and return meaningful summaries to the nanobot agent.
-- [Apply] Implement MCP tools that query the VictoriaTraces API and return trace information to the nanobot agent.
-- [Analyze] Verify that the AI agent can combine log and trace data to answer natural-language questions about system health under normal and failure conditions.
-- [Create] Configure an AI agent with a skill prompt, a cron job, and a multi-step task that chains multiple tools to produce a periodic health report.
+- [Understand] Explain how an AI agent differs from a traditional client (web app, bot) — it reasons about which API calls to make rather than following hardcoded logic.
+- [Apply] Set up an AI agent from scratch: add it as a submodule, configure the LLM provider, wire it into Docker Compose, and connect it to an existing backend via MCP tools.
+- [Apply] Write MCP tools and skill prompts that give the agent structured access to services it couldn't use before.
+- [Analyze] Compare a bare agent (no tools) with an equipped agent (MCP tools + skills) and explain why structured tool access matters.
+- [Analyze] Use the agent to investigate a real bug by chaining log and trace queries in natural language.
+- [Create] Configure an agent with a skill prompt, a cron job, and a multi-step task that chains multiple tools to produce a periodic health report.
 
 In simple words:
 
-> 1. I can explain the difference between logs and traces and when to use each.
-> 2. I can add structured logging across services so that every request produces a queryable trail of events.
-> 3. I can build MCP tools that let the AI agent search and summarize logs.
-> 4. I can build MCP tools that let the AI agent look up and interpret traces.
-> 5. I can verify that the agent answers "what went wrong?" correctly when something breaks.
-> 6. I can write a skill, configure a cron job, and set up a multi-step agent task that chains log and trace queries into a periodic health report.
+> 1. I can explain what makes an AI agent different from a regular client like a web app or a bot.
+> 2. I set up nanobot from scratch — added it as a submodule, connected it to the Qwen API, wired it into Docker Compose, and talked to it.
+> 3. I saw what a bare agent does without tools (hallucinates) vs. with MCP tools (answers correctly) — and I understand why.
+> 4. I built MCP tools that let the agent query logs and traces, turning observability data into a conversational interface.
+> 5. I used the agent to find and fix a real bug without manually grepping logs.
+> 6. I configured a cron job so the agent proactively reports system health.
 
 ## Lab story
 
-The LMS has been running on your VM for weeks — backend, nanobot, Flutter web app, Caddy, PostgreSQL.
-The team recently added VictoriaLogs, VictoriaTraces, and an OpenTelemetry Collector to the Docker Compose stack.
-The backend is already instrumented with the OpenTelemetry SDK — traces flow into VictoriaTraces and logs are collected by VictoriaLogs — but the logs are still unstructured text, and nobody on the team knows how to use any of it.
-When something goes wrong, nobody knows how to find the relevant traces or query the logs effectively.
-Your team lead wants you to fix the logging, then wire both systems into the AI agent so anyone can ask about system health in plain language.
+The LMS has been running on your VM for weeks — backend, Caddy, React dashboard, PostgreSQL.
+In the previous lab you built a Telegram bot that talks to the backend using hardcoded slash commands and an LLM tool-calling loop you wrote yourself.
+
+Your team lead has heard about a new approach: instead of writing a custom client for every interface, you deploy an AI agent that sits between users and the backend.
+The agent receives natural language, reasons about which API calls to make, and returns structured responses.
+Any chat interface — Telegram, a web app, a terminal — just connects to the agent via WebSocket.
 
 A senior engineer explains the assignment:
 
-> 1. Add structured JSON logging across the backend and nanobot so every request — successful or failed — produces a defined sequence of queryable events.
-> 2. Extend the nanobot agent with MCP tools that query VictoriaLogs, so users can ask about errors and request history.
-> 3. Extend the nanobot agent with MCP tools that query VictoriaTraces, so users can ask about request flow and performance.
-> 4. Write an observability skill, configure a cron job for periodic health checks, and verify the agent chains multiple tools in a multi-step investigation.
+> 1. Add the nanobot agent to the system. Set it up from scratch — configure the LLM, connect it to the backend via MCP tools, and deploy it alongside the existing services.
+> 2. Once it works, give it new capabilities: wire it into the observability stack (VictoriaLogs and VictoriaTraces) so anyone can ask about system health in plain language.
+> 3. Use the agent to investigate a real production issue — prove that this approach works for debugging, not just data queries.
+> 4. Make the agent proactive: configure a scheduled health check so it reports problems before users notice.
+
+## What students start with
+
+The main branch contains the base LMS system:
+
+- **backend/** — FastAPI REST API (items, learners, interactions, analytics, ETL pipeline)
+- **postgres** — PostgreSQL database
+- **caddy/** — reverse proxy serving the React dashboard and backend API
+- **client-web-react/** — React dashboard SPA
+- **qwen-code-api** — submodule, already wired as a Docker Compose service (LLM access)
+- Observability stack pre-configured in Docker Compose: VictoriaLogs, VictoriaTraces, OpenTelemetry Collector
+
+Students do **not** start with nanobot, MCP server, Telegram bot, or Flutter client. They add these themselves.
 
 ## Required tasks
 
-### Task 1 — Add Structured Logging and Explore Traces
+### Task 1 — Set Up the Agent
 
 **Purpose:**
 
-Structured logs with consistent fields turn free-text search into precise, filterable queries.
-Traces show how a single request flows across services.
-Understanding both data sources directly is a prerequisite for wiring them into the AI agent.
+Students experience the full setup of an AI agent from scratch.
+By the end, they have a working agent they can chat with — and they understand every piece of the wiring because they built it.
+
+**Summary:**
+
+#### Part A — Add nanobot and connect to Qwen API
+
+Students add the nanobot repository as a git submodule.
+They create a minimal `config.json` that connects the agent to the Qwen Code API (already running as a Docker Compose service).
+They write a Dockerfile for the nanobot service and add it to `docker-compose.yml`.
+They add a Caddy route for the WebSocket endpoint (`/ws/chat`).
+
+After deploying, students connect to the agent via a simple WebSocket client (e.g., `websocat ws://localhost:42002/ws/chat`) and have a conversation.
+The agent can answer general questions using the LLM, but it knows nothing about the LMS.
+
+#### Part B — Give the agent LMS tools
+
+Students add the MCP server package (`mcp/mcp_lms/`) that exposes the backend API as typed tools.
+They register the MCP server in the nanobot config and write a skill prompt (`workspace/skills/lms/SKILL.md`) that teaches the agent when and how to use each tool.
+
+After redeploying, students ask the same questions as in Part A — "what labs are available?", "which lab has the lowest pass rate?" — and see the agent call the right API endpoints and return real data.
+
+Students compare the two experiences: bare agent (Part A) vs. equipped agent (Part B).
+
+#### Part C — Add a chat client
+
+Students add the Flutter web client as a submodule (or implement a minimal chat UI).
+They wire it into Docker Compose and Caddy so it's served at `/flutter`.
+They open it in a browser, log in with their API key, and chat with the agent through a proper UI.
+
+**Acceptance criteria:**
+
+- Nanobot is added as a git submodule and runs as a Docker Compose service.
+- The agent connects to the Qwen Code API and responds to general questions.
+- MCP tools are registered and the agent can query backend data (items, analytics, pass rates).
+- A skill prompt exists that guides the agent's tool usage.
+- A chat client (Flutter or minimal web UI) is accessible at `/flutter` and communicates with the agent via WebSocket.
+- The student can demonstrate the difference between asking the bare agent vs. the equipped agent the same question.
+
+---
+
+### Task 2 — Give the Agent New Eyes (Observability)
+
+**Purpose:**
+
+The agent can already query application data. Now students extend it with operational data — logs and traces.
+This demonstrates the pattern: take any service API, wrap it as MCP tools, write a skill prompt, and the agent gains a new capability.
 
 **Summary:**
 
 #### Part A — Add structured logging
 
 Students run `docker compose logs backend` and see unstructured text: Uvicorn startup messages, raw request lines, Python tracebacks.
-They try to find "all errors from the backend" in this output and discover it requires fragile text matching.
+They try to find "all errors from the backend" and discover it requires fragile text matching.
 
-Students then configure structured JSON logging across the backend and nanobot services.
-They set up a JSON log formatter (via Python's logging or a library like `structlog`) so every entry has consistent fields: `level`, `event`, and `service`.
+Students configure structured JSON logging across the backend and nanobot services.
+They set up a JSON log formatter so every entry has consistent fields: `level`, `event`, and `service`.
 
-Next, students add log statements so that a single user request produces a defined sequence of events across services.
+Students add log statements so that a single user request produces a defined sequence of events across services.
 The task specifies the expected log sequence for two scenarios: a successful request and a failed request (database down).
 
 **Expected log sequence — happy path** (e.g., user asks "what labs are available?"):
@@ -98,75 +156,29 @@ The task specifies the expected log sequence for two scenarios: a successful req
 | 7   | nanobot | `tool_result`         | `tool`, `success: false`                       |
 | 8   | nanobot | `ws_message_sent`     | `chat_id`                                      |
 
-Students also add an `auth_failure` event (with `level: "warning"`) for requests with an invalid API key.
+After redeploying, students trigger both scenarios and verify the full sequences appear in `docker compose logs`.
 
-Students figure out where in the code each log statement belongs — in the webchat channel (`nanobot_webchat`), the MCP tool server (`lms_mcp`), and the backend (middleware, routes, DB layer).
-After redeploying, they trigger both scenarios and verify the full sequences appear in `docker compose logs`.
+#### Part B — Add observability MCP tools
 
-#### Part B — Explore logs in VictoriaLogs
+Students implement MCP tools that query VictoriaLogs and VictoriaTraces:
+- At least two log tools (search by keyword/time range, count errors per service)
+- At least two trace tools (list recent traces, fetch a trace by ID)
 
-Students open the VictoriaLogs web UI (vmui) and discover that the same structured logs are queryable with LogsQL — filtering by `service`, `level`, `event`, and time range.
-They run the same queries they struggled with in Part A and see how structured fields make them trivial.
+Each tool handles the HTTP call, parses the response, and returns a structured result.
 
-Students also use provided `poe` tasks to query VictoriaLogs from the terminal — e.g., `uv run poe logs-search "error"` to search by keyword and `uv run poe logs-count` to count errors per service over a time window.
+Students write an observability skill that tells the agent *when* to use each tool — e.g., "when the user asks about errors, search logs first; if you find a trace ID, fetch the full trace."
 
-#### Part C — Explore traces in VictoriaTraces
-
-Students open the VictoriaTraces UI and trigger a request through the Flutter web app.
-They find the resulting trace, inspect the span hierarchy, and identify which service each span belongs to.
-They then trigger a failure (e.g., stop PostgreSQL) and compare the healthy and error traces — noting where the error appears and how the trace duration changes.
-
-Students also use provided `poe` tasks to query the VictoriaTraces HTTP API (Jaeger-compatible endpoints) — e.g., `uv run poe traces-list` to list recent traces for a service and `uv run poe trace-get <trace-id>` to fetch a specific trace by ID.
+After redeploying, students ask the agent "any errors in the last hour?" and "show me the trace for that request" — and get real answers.
 
 **Acceptance criteria:**
 
 - Both services emit JSON-structured log entries with at least `level`, `event`, and `service` fields.
-- A successful request produces the happy-path log sequence, visible in `docker compose logs`.
-- A failed request (database down) produces the error-path log sequence, with `level: "error"` on the DB query event.
-- A request with an invalid API key produces an `auth_failure` event with `level: "warning"`.
-- The student can query structured logs in VictoriaLogs by `service`, `level`, and `event` fields.
-- The student can use `poe` tasks to search logs and count errors from the terminal.
-- The student can find a trace in the VictoriaTraces UI and identify the span hierarchy for a cross-service request.
-- The student can use `poe` tasks to list recent traces and fetch a trace by ID.
-
----
-
-### Task 2 — Connect the Agent to Observability Data
-
-**Purpose:**
-
-Letting the AI agent query logs and traces means users can ask about system health in natural language.
-Students first see what a bare agent can figure out on its own, then discover why MCP tools are needed.
-
-**Summary:**
-
-#### Part A — Bare agent (`nanobot-bare`)
-
-Students create a `nanobot-bare/` directory with a minimal nanobot configuration — just an LLM connection, no skills, no MCP tools.
-They start it and ask questions like "any errors in the last hour?" and "is the backend healthy?"
-
-The agent is clever — it may try `curl` against plausible endpoints, guess at query syntax, or hallucinate APIs that don't exist.
-Students observe what works, what doesn't, and how unreliable the results are without structured access to the observability data.
-
-#### Part B — Add MCP tools
-
-Students add MCP tools to the main nanobot's MCP server that give the agent reliable access to observability data.
-They implement at least two log tools (search by keyword/time range, count errors per service) and at least two trace tools (list recent traces, fetch a trace by ID).
-Each tool handles the HTTP call, parses the response, and returns a structured result.
-
-Students also write an observability skill that tells the agent *when* to use each tool rather than *how* to call the API.
-
-After redeploying, students ask the same questions from Part A and compare the experience: reliable answers, no hallucinated endpoints, structured responses.
-
-**Acceptance criteria:**
-
-- A `nanobot-bare/` directory exists with a minimal nanobot configuration that can answer questions (Part A baseline).
-- At least two MCP tools for querying VictoriaLogs are registered in the MCP server.
-- At least two MCP tools for querying VictoriaTraces are registered in the MCP server.
-- The agent answers "any errors in the last hour?" correctly under both normal and failure conditions.
-- The agent can fetch and summarize a specific trace by ID.
+- A successful request produces the happy-path log sequence.
+- A failed request produces the error-path log sequence.
+- At least two MCP tools for querying VictoriaLogs are registered.
+- At least two MCP tools for querying VictoriaTraces are registered.
 - An observability skill exists and is loaded by the agent.
-- The MCP server starts without errors after the changes.
+- The agent answers "any errors in the last hour?" correctly under both normal and failure conditions.
 
 ---
 
@@ -175,18 +187,18 @@ After redeploying, students ask the same questions from Part A and compare the e
 **Purpose:**
 
 Everything students built in Tasks 1–2 is now the tool they use to solve a real problem.
-This task proves that observability and an AI agent aren't just infrastructure — they're how you debug a multi-service system when you can't attach a debugger.
+This task proves that an AI agent isn't just a novelty — it's how you debug a multi-service system when you can't attach a debugger.
 
 **Summary:**
 
 The instructor deploys a version of the backend with a planted bug (e.g., a model field mismatch that causes a specific endpoint to return 500 errors intermittently).
 Students are not told what the bug is or where it is — only that "users are reporting errors."
 
-Students ask the agent to investigate — manually querying step by step: "show me recent errors," then "get that trace," then "what service failed."
+Students ask the agent to investigate — querying step by step: "show me recent errors," then "get that trace," then "what service failed."
 Based on the agent's responses, students piece together the root cause, fix the bug, redeploy, and verify the fix by asking the agent again.
 
 Students document the investigation: the questions they asked, the agent's responses, the root cause, and the fix.
-They also note the friction of manually driving each step of the investigation.
+They also note the friction of manually driving each step.
 
 **Acceptance criteria:**
 
@@ -197,11 +209,11 @@ They also note the friction of manually driving each step of the investigation.
 
 ---
 
-### Task 4 — Add Multi-Step Investigation and a Cron Health Check
+### Task 4 — Make the Agent Proactive
 
 **Purpose:**
 
-In Task 3, students drove the investigation manually — asking the agent one question at a time.
+In Task 3, students drove the investigation manually — one question at a time.
 A skill that chains multiple tools turns the agent from a single-query helper into an autonomous investigator.
 A cron job makes the agent proactive instead of reactive.
 
@@ -210,19 +222,18 @@ A cron job makes the agent proactive instead of reactive.
 #### Part A — Multi-step skill
 
 Students enhance the observability skill from Task 2 to guide multi-step investigations.
-For example, the skill should instruct the agent that when asked "what went wrong?", it should first search logs for recent errors, extract a trace ID from the results, then fetch the full trace to show the request flow.
-Students also add guidance for summarizing results concisely rather than dumping raw data.
+The skill instructs the agent that when asked "what went wrong?", it should first search logs for recent errors, extract a trace ID, then fetch the full trace to show the request flow.
+Students also add guidance for summarizing results concisely.
 
-Students verify the multi-step behavior by triggering a failure and asking the agent to investigate — the agent should chain log and trace tools autonomously and produce a coherent summary in a single response.
+Students verify by triggering a failure and asking the agent to investigate — the agent should chain log and trace tools autonomously and produce a coherent summary in a single response.
 
 #### Part B — Cron health check
 
 Students configure a cron job in `cron/jobs.json` that runs a periodic health check.
 The job uses the `agent_turn` payload kind — it sends a message like "Check for errors in the last 15 minutes and report a summary" to the agent on a schedule (e.g., every 15 minutes).
-The agent receives this as a regular message, reasons using the observability skill, calls the log and trace MCP tools, and delivers the result to the webchat channel.
+The agent receives this as a regular message, reasons using the observability skill, calls MCP tools, and delivers the result to the webchat channel.
 
 Students verify the cron job fires by setting a short interval (e.g., every 2 minutes), waiting for a cycle, and checking that the agent produced a health report in the Flutter web app.
-They also test the multi-step scenario: trigger a failure, wait for the next cron cycle, and verify the agent's report mentions the errors and includes trace information.
 
 **Acceptance criteria:**
 
@@ -236,22 +247,35 @@ They also test the multi-step scenario: trigger a failure, wait for the next cro
 
 ## Optional task
 
-### Task 1 — Improve Observability Message Formatting in Clients
+### Task 1 — Add a Telegram Bot Client
 
 **Purpose:**
 
-The agent's observability responses contain structured data (error summaries, trace hierarchies, health reports) that deserves better presentation than plain text.
+The Flutter web client connects to the agent via WebSocket. A Telegram bot is another client that connects the same way — demonstrating that the agent is the interface, not any particular frontend.
 
 **Summary:**
 
-Students improve how the Telegram bot and Flutter web app render the agent's observability responses.
-For the Telegram bot, students use `aiogram` formatting features — e.g., inline keyboards for selecting a trace ID, code blocks for log excerpts, and structured summaries with bold labels.
-For the Flutter web app, students improve the chat UI to render log tables, trace timelines, or collapsible detail sections instead of raw text.
+Students add the Telegram bot client as a submodule or implement one from scratch.
+The bot connects to nanobot via WebSocket and relays messages between Telegram users and the agent.
+Slash commands (`/start`, `/help`, `/health`, `/labs`) are handled directly; free-text messages go through the agent.
 
-Students test by triggering an investigation through each client and comparing the before/after experience.
+Students wire the bot into Docker Compose, configure the bot token, and deploy.
+They compare the experience: same agent, same tools, same answers — different client.
 
 **Acceptance criteria:**
 
-- The Telegram bot renders observability responses with structured formatting (e.g., code blocks, bold labels, inline keyboards).
-- The Flutter web app renders observability responses with improved UI elements (e.g., tables, collapsible sections).
-- Both clients handle all agent response types (`text`, `choice`, `confirm`, `composite`) gracefully.
+- The Telegram bot runs as a Docker Compose service.
+- Slash commands work without the agent (direct backend calls).
+- Free-text messages are routed to the agent and responses appear in Telegram.
+- The same observability queries work from both Telegram and the Flutter web app.
+
+## Setup changes needed
+
+The `setup-simple.md` needs the following adjustments for this lab:
+
+- **Step 1.3:** Stop Lab **7** services (not Lab 6).
+- **Step 1.4:** Only base services come up: backend, postgres, caddy, client-web-react, qwen-code-api, pgadmin. No nanobot, no telegram bot, no flutter.
+- **Step 1.9:** Qwen Code API is now a compose service — students just set `QWEN_CODE_API_KEY` in `.env.docker.secret`. No separate clone/deploy needed.
+- **Step 1.10:** Remove "Get a Telegram bot token" from setup — it moves to the optional task.
+- **Step 1.11:** Coding agent section stays.
+- **New note:** Explain that students will add more services (nanobot, chat clients) during the tasks — the setup only launches the base system.
