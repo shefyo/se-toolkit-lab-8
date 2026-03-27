@@ -340,7 +340,7 @@ LLM_API_MODEL=meta-llama/llama-3.3-70b-instruct:free
 > If not, [set one up](../../wiki/coding-agents.md#choose-and-use-a-coding-agent).
 
 > [!TIP]
-> Ask your coding agent first, then ask the TA.
+> When stuck, ask your coding agent first, then ask the TA.
 
 In this lab, you will use the coding agent (Qwen Code) to help implement tasks. The agent is your development partner — but **make sure you understand what it builds**. Each task has checkpoints where you must verify the results manually.
 
