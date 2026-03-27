@@ -44,7 +44,9 @@ In Task 4 you drove the investigation manually — asking the agent one question
 
 ### What to do in Part B
 
-1. Create `nanobot/cron/jobs.json` — a cron configuration that sends a message to the agent on a schedule.
+1. Create `nanobot/workspace/cron/jobs.json` — a cron configuration that sends a message to the agent on a schedule.
+
+   The gateway in Task 2 runs nanobot with `--workspace ./workspace`, so keep the cron store inside that same workspace.
 
    The job should use the `agent_turn` payload kind — it sends a message like "Check for errors in the last 15 minutes and report a summary" to the agent periodically.
 
@@ -87,7 +89,7 @@ In Task 4 you drove the investigation manually — asking the agent one question
 
 - The observability skill guides the agent to chain log and trace tools for multi-step investigations.
 - The agent produces a coherent summary when asked "what went wrong?" after a failure.
-- A cron job is configured in `nanobot/cron/jobs.json` that triggers a periodic health check via `agent_turn`.
+- A cron job is configured in `nanobot/workspace/cron/jobs.json` that triggers a periodic health check via `agent_turn`.
 - The cron job fires on schedule and the agent delivers a health report to the webchat channel.
 - When errors exist, the health report includes information from both log and trace tools.
 - `REPORT.md` contains the multi-step response and cron health report screenshot.
