@@ -272,6 +272,11 @@ The database starts empty. You need to run the ETL pipeline to populate it with 
 
    You should see a JSON response with model information.
 
+   > [!TIP]
+   > If you get `Internal Server Error`, your Qwen token may have expired.
+   > Check: `curl -s -H "X-API-Key: YOUR_KEY" http://localhost:42005/health` — if `default_account.status` is `"expired"`, you need to refresh.
+   > See [Qwen Code credentials file](../../wiki/qwen-code.md#qwen-code-credentials-file) for how to re-copy the credentials from your local machine to the VM.
+
 > [!IMPORTANT]
 > If the dashboard shows no data or errors, make sure:
 >

@@ -52,11 +52,15 @@ In Task 1 you ran `nanobot agent` from the VM terminal. For production, nanobot 
    - `NANOBOT_WEBCHAT_CONTAINER_PORT` in caddy's environment
    - the `/ws/chat` route in `Caddyfile`
 
-5. Deploy:
+5. Build and deploy. Because some services use `additional_contexts`, you must **build first** and then start:
 
    ```terminal
-   docker compose --env-file .env.docker.secret up --build -d
+   docker compose --env-file .env.docker.secret build nanobot
+   docker compose --env-file .env.docker.secret up -d
    ```
+
+   > [!NOTE]
+   > `docker compose up --build` may fail with a "workspace" context error. Always `build` the service first, then `up -d` separately.
 
 6. Check that the service starts cleanly:
 
@@ -111,7 +115,7 @@ Both are in a single repository. The webchat plugin handles:
 
    ```terminal
    cd nanobot
-   uv add nanobot-webchat --path ../nanobot-websocket-channel
+   uv add nanobot-webchat --editable ../nanobot-websocket-channel
    ```
 
    This registers the `webchat` channel type in nanobot via a Python entry point. You can verify: `nanobot` will now recognize `webchat` as a valid channel in the config.
@@ -144,10 +148,11 @@ Both are in a single repository. The webchat plugin handles:
    }
    ```
 
-6. Redeploy:
+6. Build the Flutter client and redeploy:
 
    ```terminal
-   docker compose --env-file .env.docker.secret up --build -d
+   docker compose --env-file .env.docker.secret build client-web-flutter
+   docker compose --env-file .env.docker.secret up -d
    ```
 
 7. Test the WebSocket endpoint through Caddy with the deployment access key:

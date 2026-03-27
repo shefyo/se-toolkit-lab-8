@@ -21,12 +21,12 @@ Start by reading the [official nanobot repository](https://github.com/HKUDS/nano
 
 ### What to do in Part A
 
-1. Create a repo-local `nanobot/` project and install the framework there from the official repository at the lab-tested commit:
+1. Create a repo-local `nanobot/` project and install the framework from PyPI:
 
    ```terminal
    uv init nanobot
    cd nanobot
-   uv add "nanobot-ai @ git+https://github.com/HKUDS/nanobot.git@e7d371ec1e6531b28898ec2c869ef338e8dd46ec"
+   uv add nanobot-ai
    ```
 
    From this point on, treat `nanobot/` inside the repository as the source of truth for this lab.
@@ -101,7 +101,7 @@ The LMS MCP server is provided in `mcp/mcp_lms/`. It exposes the backend API as 
 
    ```terminal
    cd nanobot
-   uv add lms-mcp --path ../mcp
+   uv add lms-mcp --editable ../mcp
    ```
 
 2. Add the MCP server to your repo-local nanobot config (`nanobot/config.json`). Check the [nanobot docs](https://github.com/HKUDS/nanobot) for how to configure MCP servers. It runs as a subprocess via `python -m mcp_lms`.
@@ -184,7 +184,7 @@ The agent works, but it could be smarter about *how* it uses tools. A **skill pr
 
 ## Acceptance criteria
 
-- Nanobot is installed in the repo-local `nanobot/` project from the official GitHub repository at commit `e7d371ec1e6531b28898ec2c869ef338e8dd46ec`, and configured via `nanobot onboard --config ./config.json --workspace ./workspace`.
+- Nanobot is installed in the repo-local `nanobot/` project from PyPI (`uv add nanobot-ai`) and configured via `nanobot onboard --config ./config.json --workspace ./workspace`.
 - The agent responds to general questions via the repo-local `nanobot/config.json`.
 - MCP tools are configured and the agent returns real backend data.
 - A skill prompt exists that guides the agent's tool usage.
