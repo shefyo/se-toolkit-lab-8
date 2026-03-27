@@ -103,10 +103,11 @@ The backend version in this lab contains a planted bug in a failure path. To sur
 
 1. Use the findings from Parts A and B to identify the planted bug in the backend code and fix it.
 
-2. Redeploy:
+2. Rebuild and redeploy:
 
    ```terminal
-   docker compose --env-file .env.docker.secret up --build -d
+   docker compose --env-file .env.docker.secret build backend
+   docker compose --env-file .env.docker.secret up -d
    ```
 
 3. Trigger the failure path again after the redeploy:

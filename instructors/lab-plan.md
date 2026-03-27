@@ -60,9 +60,9 @@ The `setup-simple.md` adjustments for this lab:
 
 ### Task 1 — Set Up the Agent
 
-Students create a repo-local `nanobot/` project from scratch, install the framework at a pinned Git commit, run the onboard wizard, connect the agent to the LMS via MCP, and write the first LMS skill prompt.
+Students create a repo-local `nanobot/` project from scratch, install the framework from PyPI, run the onboard wizard, connect the agent to the LMS via MCP, and write the first LMS skill prompt.
 
-**Part A — Install nanobot and connect to Qwen API.** Students run `uv init nanobot`, `uv add "nanobot-ai @ git+..."`, and `nanobot onboard --config ./config.json --workspace ./workspace`. Bare agent answers general questions but hallucinates about the LMS.
+**Part A — Install nanobot and connect to Qwen API.** Students run `uv init nanobot`, `uv add nanobot-ai`, and `nanobot onboard`. Bare agent answers general questions but hallucinates about the LMS.
 
 **Part B — Give the agent LMS tools.** Students install the provided `mcp/mcp_lms/` package into the repo-local project, register it in config, and pass backend env vars. Agent now returns real data.
 
