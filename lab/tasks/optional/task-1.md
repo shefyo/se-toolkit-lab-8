@@ -16,8 +16,13 @@ The Telegram Bot API (`api.telegram.org`) is blocked from most Russian servers. 
 
 2. Uncomment the scaffolded `client-telegram-bot` service in `docker-compose.yml`:
    - Build from `nanobot-websocket-channel/client-telegram-bot/`
-   - Environment: `BOT_TOKEN`, `NANOBOT_WS_URL=ws://nanobot:8765`, `NANOBOT_ACCESS_KEY`
+   - Environment: `BOT_TOKEN`, `NANOBOT_ACCESS_KEY`, and `NANOBOT_WS_URL`
+   - If the bot runs inside Docker Compose, use `NANOBOT_WS_URL=ws://nanobot:8765`
+   - If the bot runs on your local machine or another host, use the public/proxied endpoint instead, for example `NANOBOT_WS_URL=ws://localhost:42002/ws/chat` with SSH port forwarding to the VM
    - `depends_on: nanobot`
+
+   Do not append `?access_key=...` yourself — the bot adds that query parameter automatically.
+   If you run the bot outside Docker Compose, use the same environment variables and start it from `nanobot-websocket-channel/client-telegram-bot/` by following that repo's README.
 
    If you want to keep Telegram LMS-specific, users can still provide a per-user LMS key with `/login <api_key>`.
 
