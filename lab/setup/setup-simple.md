@@ -51,7 +51,7 @@ We refer to your fork as `fork` and to the original repo as `upstream`.
 
 1. [Connect to your VM](../../wiki/vm-access.md#connect-to-the-vm-as-the-user-user-local).
 
-   Do the whole lab from this VM shell. Keep using it for the steps below and for the rest of the lab.
+   You will do the whole lab on VM. All the steps below and the tasks will be done on VM.
 
 2. Clone your fork there:
 
@@ -115,7 +115,7 @@ We refer to your fork as `fork` and to the original repo as `upstream`.
    NANOBOT_ACCESS_KEY=set-your-own-private-password
    ```
 
-### 1.3. Stop Lab 7 services on your VM
+### 1.3. Stop Lab 7 services on your VM to free the ports
 
 > [!IMPORTANT]
 > Labs 7 and 8 use the same ports (42001–42005). You **must** stop Lab 7 containers before starting Lab 8.
