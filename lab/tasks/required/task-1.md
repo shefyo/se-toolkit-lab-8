@@ -6,37 +6,43 @@ In Lab 7 you built a Telegram bot with your own LLM tool-calling loop — you wr
 
 **Nanobot** (also called OpenClaw) is a **framework** that does all of that for you. Instead of writing the loop, you **configure** it. Here's the difference:
 
-| What you did in Lab 7 (manual) | What nanobot does (framework) |
-|---|---|
-| Wrote a Python tool-calling loop | Built-in agent loop — you just provide config |
-| Defined tools as Python dicts with JSON schemas | **MCP server** — a separate process that exposes typed tools via a standard protocol. Any agent can use them, not just your code. |
-| Hardcoded which tools to call and when | **Skills** — natural language prompts that teach the agent *strategy* ("when the user asks about errors, search logs first, then fetch the trace") |
-| Built one client (Telegram bot) | **Channels** — WebSocket, Telegram, etc. One agent, many clients. |
-| No memory between conversations | **Memory** — the agent remembers context across conversations |
-| Agent only responds when you message it | **Cron** — the agent can act on a schedule (e.g., check system health every 15 minutes) |
+| What you did in Lab 7 (manual)                  | What nanobot does (framework)                                                                                                                      |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Wrote a Python tool-calling loop                | Built-in agent loop — you just provide config                                                                                                      |
+| Defined tools as Python dicts with JSON schemas | **MCP server** — a separate process that exposes typed tools via a standard protocol. Any agent can use them, not just your code.                  |
+| Hardcoded which tools to call and when          | **Skills** — natural language prompts that teach the agent *strategy* ("when the user asks about errors, search logs first, then fetch the trace") |
+| Built one client (Telegram bot)                 | **Channels** — WebSocket, Telegram, etc. One agent, many clients.                                                                                  |
+| No memory between conversations                 | **Memory** — the agent remembers context across conversations                                                                                      |
+| Agent only responds when you message it         | **Cron** — the agent can act on a schedule (e.g., check system health every 15 minutes)                                                            |
 
 Start by reading the [official nanobot repository](https://github.com/HKUDS/nanobot) to understand how the framework works.
 
 ## Part A — Install nanobot and chat with it
 
-### What to do
+### What to do in Part A
 
-1. Add nanobot as a git submodule so the source code is available in the project:
+1. Add nanobot as a git submodule so the framework source is visible in the project:
 
    ```terminal
    git submodule add https://github.com/HKUDS/nanobot.git packages/nanobot-ai
    ```
 
-2. Install it with uv:
+2. Create a repo-local `nanobot/` project and install the framework there:
 
    ```terminal
-   uv add nanobot-ai --path packages/nanobot-ai
+   uv init nanobot
+   cd nanobot
+   uv add nanobot-ai --path ../packages/nanobot-ai
    ```
 
-3. Run the onboard wizard to generate the initial configuration:
+   From this point on, treat `nanobot/` inside the repository as the source of truth for this lab.
+   Later tasks should build on this same project instead of copying state from your home directory.
+
+3. Run the onboard wizard inside the repo-local project to generate the initial configuration and workspace:
 
    ```terminal
-   nanobot onboard
+   cd nanobot
+   uv run nanobot onboard --config ./config.json --workspace ./workspace
    ```
 
    The wizard will guide you through configuring the LLM provider. Set up the **custom** provider (any OpenAI-compatible endpoint) and point it to the Qwen Code API:
@@ -44,13 +50,14 @@ Start by reading the [official nanobot repository](https://github.com/HKUDS/nano
    - **API key:** your `QWEN_CODE_API_KEY` from `.env.docker.secret`
    - **Default model:** `coder-model`
 
-   This generates `~/.nanobot/config.json` and a workspace at `~/.nanobot/workspace`.
-   In Task 2 you will copy these into a repo-local `nanobot/` project for Docker deployment.
+   This generates `nanobot/config.json` and a workspace at `nanobot/workspace`.
+   Task 2 will Dockerize this same repo-local project.
 
-4. Chat with the agent in the terminal on your VM:
+4. Chat with the repo-local agent in the terminal on your VM:
 
    ```terminal
-   nanobot agent
+   cd nanobot
+   uv run nanobot agent -c ./config.json
    ```
 
    This starts an interactive CLI session. Try asking:
@@ -63,7 +70,8 @@ Start by reading the [official nanobot repository](https://github.com/HKUDS/nano
 5. Try a single-message query:
 
    ```terminal
-   nanobot agent -m "What is 2+2?"
+   cd nanobot
+   uv run nanobot agent -c ./config.json -m "What is 2+2?"
    ```
 
 <!-- STOP -->
@@ -75,10 +83,10 @@ Start by reading the [official nanobot repository](https://github.com/HKUDS/nano
 > The student MUST confirm that the checkpoint below passes.
 > ANY further action before student confirmation is a violation.
 
-### Checkpoint
+### Checkpoint for Part A
 
-1. Run `nanobot agent -m "What is the agentic loop?"` — you should get a reasonable answer.
-2. Run `nanobot agent -m "What labs are available in our LMS?"` — it should **not** know (no tools).
+1. Run `cd nanobot && uv run nanobot agent -c ./config.json -m "What is the agentic loop?"` — you should get a reasonable answer.
+2. Run `cd nanobot && uv run nanobot agent -c ./config.json -m "What labs are available in our LMS?"` — it should **not** know (no tools).
 3. Paste both responses into `REPORT.md` under `## Task 1A — Bare agent`.
 
 ---
@@ -91,17 +99,18 @@ MCP (Model Context Protocol) is a standard way for agents to use tools. Instead 
 
 The same MCP server works with any agent that speaks MCP — nanobot, Claude, Cursor, or anything else. Your tools become reusable.
 
-### What to do
+### What to do in Part B
 
 The LMS MCP server is provided in `mcp/mcp_lms/`. It exposes the backend API as tools: `lms_health`, `lms_labs`, `lms_pass_rates`, etc.
 
 1. Install the MCP server as a dependency so nanobot can find it:
 
    ```terminal
-   uv add lms-mcp --path mcp
+   cd nanobot
+   uv add lms-mcp --path ../mcp
    ```
 
-2. Add the MCP server to your nanobot config (`~/.nanobot/config.json`). Check the [nanobot docs](https://github.com/HKUDS/nanobot) for how to configure MCP servers. It runs as a subprocess via `python -m mcp_lms`.
+2. Add the MCP server to your repo-local nanobot config (`nanobot/config.json`). Check the [nanobot docs](https://github.com/HKUDS/nanobot) for how to configure MCP servers. It runs as a subprocess via `python -m mcp_lms`.
 
    > **Hint:** The MCP server needs the backend URL and backend API key. Set them as environment variables:
    > `NANOBOT_LMS_BACKEND_URL=http://localhost:42002`
@@ -112,7 +121,8 @@ The LMS MCP server is provided in `mcp/mcp_lms/`. It exposes the backend API as 
 3. Test with the agent:
 
    ```terminal
-   NANOBOT_LMS_BACKEND_URL=http://localhost:42002 NANOBOT_LMS_API_KEY=YOUR_LMS_API_KEY nanobot agent -m "What labs are available?"
+   cd nanobot
+   NANOBOT_LMS_BACKEND_URL=http://localhost:42002 NANOBOT_LMS_API_KEY=YOUR_LMS_API_KEY uv run nanobot agent -c ./config.json -m "What labs are available?"
    ```
 
    The agent should now call the MCP tools and return **real lab names** from the backend.
@@ -120,7 +130,8 @@ The LMS MCP server is provided in `mcp/mcp_lms/`. It exposes the backend API as 
 4. Try a more complex question:
 
    ```terminal
-   NANOBOT_LMS_BACKEND_URL=http://localhost:42002 NANOBOT_LMS_API_KEY=YOUR_LMS_API_KEY nanobot agent -m "Which lab has the lowest pass rate?"
+   cd nanobot
+   NANOBOT_LMS_BACKEND_URL=http://localhost:42002 NANOBOT_LMS_API_KEY=YOUR_LMS_API_KEY uv run nanobot agent -c ./config.json -m "Which lab has the lowest pass rate?"
    ```
 
    The agent should chain multiple tool calls to figure this out.
@@ -134,7 +145,7 @@ The LMS MCP server is provided in `mcp/mcp_lms/`. It exposes the backend API as 
 > The student MUST confirm that the checkpoint below passes.
 > ANY further action before student confirmation is a violation.
 
-### Checkpoint
+### Checkpoint for Part B
 
 1. Ask the agent **"What labs are available?"** — it should return real lab names (e.g., `lab-01`, `lab-02`).
 2. Ask the agent **"Describe the architecture of the LMS system"** (Q22) — it should mention specific services.
@@ -146,9 +157,9 @@ The LMS MCP server is provided in `mcp/mcp_lms/`. It exposes the backend API as 
 
 The agent works, but it could be smarter about *how* it uses tools. A **skill prompt** teaches the agent strategy — when to use which tool, how to handle authentication, how to format responses.
 
-### What to do
+### What to do in Part C
 
-1. Write a skill prompt in your nanobot workspace, for example at `~/.nanobot/workspace/skills/lms/SKILL.md`.
+1. Write a skill prompt in your repo-local nanobot workspace, for example at `nanobot/workspace/skills/lms/SKILL.md`.
 
    The skill should teach the agent:
    - Which `mcp_lms_*` tools are available and when to use each one
@@ -170,7 +181,7 @@ The agent works, but it could be smarter about *how* it uses tools. A **skill pr
 > The student MUST confirm that the checkpoint below passes.
 > ANY further action before student confirmation is a violation.
 
-### Checkpoint
+### Checkpoint for Part C
 
 1. Ask the agent **"Show me the scores"** (without specifying a lab) — it should ask you which lab, or list available labs.
 2. Paste the response into `REPORT.md` under `## Task 1C — Skill prompt`.
@@ -179,8 +190,8 @@ The agent works, but it could be smarter about *how* it uses tools. A **skill pr
 
 ## Acceptance criteria
 
-- Nanobot is installed as a submodule and configured via `nanobot onboard`.
-- The agent responds to general questions via `nanobot agent`.
+- Nanobot source is added as a submodule at `packages/nanobot-ai` and configured in the repo-local `nanobot/` project via `nanobot onboard --config ./config.json --workspace ./workspace`.
+- The agent responds to general questions via the repo-local `nanobot/config.json`.
 - MCP tools are configured and the agent returns real backend data.
 - A skill prompt exists that guides the agent's tool usage.
 - `REPORT.md` contains responses from all three checkpoints.

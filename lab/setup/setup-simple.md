@@ -278,7 +278,7 @@ The database starts empty. You need to run the ETL pipeline to populate it with 
 4. Verify the Qwen Code API is working:
 
    ```terminal
-   curl -s http://localhost:42002/utils/llm-api/models -H "Authorization: Bearer YOUR_QWEN_CODE_API_KEY" | head -c 100
+   curl -s http://localhost:42005/v1/models -H "Authorization: Bearer YOUR_QWEN_CODE_API_KEY" | head -c 100
    ```
 
    You should see a JSON response with model information.
@@ -324,12 +324,12 @@ The Qwen Code API is included as a Docker Compose service in this lab. You just 
 > [!NOTE]
 > If you already have a Qwen Code API key from a previous lab, use the same one. Set it as `QWEN_CODE_API_KEY` in `.env.docker.secret` (step 1.2).
 
-If you need a new key, follow the [Qwen Code API setup guide](../../wiki/qwen-code-api.md#get-an-api-key).
+If you need a new key, follow the [Qwen Code API setup guide](../../wiki/qwen-code-api.md#qwen-code-api-key).
 
 Verify the API works:
 
 ```terminal
-curl -s http://localhost:42002/utils/llm-api/models -H "Authorization: Bearer YOUR_QWEN_CODE_API_KEY" | head -c 100
+curl -s http://localhost:42005/v1/models -H "Authorization: Bearer YOUR_QWEN_CODE_API_KEY" | head -c 100
 ```
 
 You should see a JSON response with model information.

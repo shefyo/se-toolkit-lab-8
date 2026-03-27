@@ -1,6 +1,20 @@
 # See wiki/caddy.md
 
 :{$CADDY_CONTAINER_PORT} {
+    @public-utils-denied {
+        path /utils/pgadmin* /utils/victorialogs* /utils/victoriatraces*
+        not remote_ip private_ranges
+    }
+    @unknown-utils {
+        path /utils/*
+        not path /utils/pgadmin* /utils/victorialogs* /utils/victoriatraces*
+    }
+
+    # Keep admin and observability UIs reachable only from localhost/private networks.
+    respond @public-utils-denied "Forbidden" 403
+    # Deny any other /utils routes so they don't fall through to the SPA.
+    respond @unknown-utils "Not Found" 404
+
     handle /items* {
         reverse_proxy http://backend:{$BACKEND_CONTAINER_PORT}
     }
@@ -15,10 +29,6 @@
     }
     handle /analytics* {
         reverse_proxy http://backend:{$BACKEND_CONTAINER_PORT}
-    }
-    handle_path /utils/llm-api* {
-        rewrite * /v1{uri}
-        reverse_proxy http://qwen-code-api:{$QWEN_CODE_API_CONTAINER_PORT}
     }
     # Students add /ws/chat route here during Task 1A.
     handle_path /utils/pgadmin* {
