@@ -20,9 +20,6 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # opentelemetry-instrument already installed the LoggingHandler on the root logger
-    # (via OTEL_LOGS_EXPORTER=otlp). We only need to fix uvicorn.access, which has
-    # propagate=False by default, so its HTTP access lines reach the OTel handler.
     logging.getLogger("uvicorn.access").propagate = True
     yield
 
@@ -38,19 +35,27 @@ app = FastAPI(
 
 @app.exception_handler(Exception)
 async def unhandled_exception_handler(request: Request, exc: Exception):
-    """Return error details in the response for easier debugging."""
+    error_message = str(exc)
+    error_type = type(exc).__name__
     tb = traceback.format_exception(type(exc), exc, exc.__traceback__)
-    logger.exception(
-        "unhandled_exception",
-        extra={"event": "unhandled_exception", "path": request.url.path},
+    
+    logger.error(
+        f"Unhandled exception: {error_type}: {error_message}",
+        extra={
+            "event": "unhandled_exception", 
+            "path": request.url.path,
+            "exception_type": error_type
+        },
+        exc_info=True
     )
+    
     return JSONResponse(
         status_code=500,
         content={
-            "detail": str(exc),
-            "type": type(exc).__name__,
+            "detail": error_message,
+            "type": error_type,
             "path": request.url.path,
-            "traceback": tb[-3:],  # last 3 lines of traceback
+            "traceback": tb[-5:],
         },
     )
 
@@ -59,7 +64,7 @@ async def unhandled_exception_handler(request: Request, exc: Exception):
 async def log_requests(request: Request, call_next: RequestResponseEndpoint) -> Response:
     logger.info(
         "request_started",
-        extra={"event": "request_started", "method": request.method, "path": request.url.path},
+        extra={"event": "request_started", "method": request.method, "path": request.url.path},      
     )
     t0 = time.perf_counter()
     response = await call_next(request)
